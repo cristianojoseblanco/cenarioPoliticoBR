@@ -1,0 +1,45 @@
+# Todos os parâmetros de ingestão ficam aqui. Nenhuma constante no código.
+
+camara:
+  base_url: "https://dadosabertos.camara.leg.br/arquivos"
+  formato: "csv"
+  csv_delim: ";"
+
+  # Anos ingeridos por padrão (legislatura 57: 2023–2027).
+  # Pode ser sobrescrito pela variável de ambiente ANOS (ex.: "2023,2024").
+  anos_padrao: [2023, 2024, 2025, 2026]
+
+  # Arquivos separados por ano: {base_url}/{nome}/{formato}/{nome}-{ano}.{formato}
+  datasets_anuais:
+    - votacoes
+    - votacoesVotos
+    - votacoesOrientacoes
+    - votacoesProposicoes
+
+  # Arquivos únicos: {base_url}/{nome}/{formato}/{nome}.{formato}
+  datasets_unicos:
+    - deputados
+
+  # Colunas-chave esperadas, conferidas no relatório de qualidade.
+  # Se a Câmara mudar o esquema, o relatório acusa; o código não quebra.
+  chaves:
+    votacoes: [id]
+    votacoesVotos: [idVotacao, deputado_id]
+    votacoesOrientacoes: [idVotacao, siglaPartidoBloco]
+    votacoesProposicoes: [idVotacao, proposicao_id]
+    deputados: [uri]
+
+http:
+  timeout_s: 300
+  retries: 4
+  user_agent: "cenarioPoliticoBR/0.1 (pesquisa acadêmica; github.com/cristianojoseblanco/cenarioPoliticoBR)"
+
+caminhos:
+  staging: "data/staging/camara"
+  metadata: "data/metadata/camara"
+  tmp: "data/raw/_tmp"
+  relatorio_qualidade: "artifacts/reports/qualidade_camara.md"
+
+duckdb:
+  memory_limit: "4GB"
+  threads: 4
