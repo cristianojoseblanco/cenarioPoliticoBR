@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "proposicoes",
+  "ano": 2012,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoes/csv/proposicoes-2012.csv",
+  "coletado_em": "2026-10-24T20:37:08+00:00",
+  "sha256": "c37b4c22e0f0453579b4342ea630d9e54b00df0410d37bfe29913894a07c10e6",
+  "linhas": 23510,
+  "bytes_csv": 19585512,
+  "bytes_parquet": 1629921,
+  "segundos": 3.6,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

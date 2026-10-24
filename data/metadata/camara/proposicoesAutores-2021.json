@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "proposicoesAutores",
+  "ano": 2021,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoesAutores/csv/proposicoesAutores-2021.csv",
+  "coletado_em": "2026-10-24T20:38:33+00:00",
+  "sha256": "daad0a05354665894ee38310939a188335888f0b99dd7500f41c0263768fb710",
+  "linhas": 76396,
+  "bytes_csv": 19442789,
+  "bytes_parquet": 546583,
+  "segundos": 3.4,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

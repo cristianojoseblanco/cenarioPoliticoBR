@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "proposicoesTemas",
+  "ano": 2005,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoesTemas/csv/proposicoesTemas-2005.csv",
+  "coletado_em": "2026-10-24T20:36:22+00:00",
+  "sha256": "70ad6325f5db49d170c96f60e624d8333e05422e5053e24a7cc97d8c2cb4891c",
+  "linhas": 7250,
+  "bytes_csv": 853135,
+  "bytes_parquet": 43644,
+  "segundos": 2.0,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

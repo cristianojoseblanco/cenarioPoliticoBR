@@ -1,7 +1,10 @@
 {
-  "executado_em": "2026-10-24T20:30:56+00:00",
+  "executado_em": "2026-10-24T20:39:49+00:00",
   "anos": [
-    2023
+    2023,
+    2024,
+    2025,
+    2026
   ],
   "resultados": [
     {
@@ -25,15 +28,315 @@
       "status": "sem_mudanca"
     },
     {
-      "arquivo": "proposicoes-2023",
+      "arquivo": "votacoes-2024",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesVotos-2024",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2024",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2024",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoes-2025",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesVotos-2025",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2025",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2025",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoes-2026",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesVotos-2026",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2026",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2026",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "proposicoes-2003",
       "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2003",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2003",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2004",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2004",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2004",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2005",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2005",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2005",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2007",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2007",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2007",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2008",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2008",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2008",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2010",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2010",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2010",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2011",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2011",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2011",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2012",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2012",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2012",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2013",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2013",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2013",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2014",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2014",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2014",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2015",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2015",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2015",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2016",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2016",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2016",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2017",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2017",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2017",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2018",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2018",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2018",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2019",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2019",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2019",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2020",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2020",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2020",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2021",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2021",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2021",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2022",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2022",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2022",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2023",
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "proposicoesTemas-2023",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "proposicoesAutores-2023",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "proposicoes-2024",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2024",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2024",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoes-2026",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesTemas-2026",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "proposicoesAutores-2026",
       "status": "atualizado"
     }
   ],
