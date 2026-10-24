@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "votacoesProposicoes",
+  "ano": 2023,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/votacoesProposicoes/csv/votacoesProposicoes-2023.csv",
+  "coletado_em": "2026-10-24T20:22:49+00:00",
+  "sha256": "ca9e975e5c9e5447737884c9ceeded3cf48dbe756b77d2be8b9ed72c40b7ee3c",
+  "linhas": 8811,
+  "bytes_csv": 4731722,
+  "bytes_parquet": 559064,
+  "segundos": 2.3,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

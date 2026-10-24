@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "deputados",
+  "ano": null,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/deputados/csv/deputados.csv",
+  "coletado_em": "2026-10-24T20:22:38+00:00",
+  "sha256": "5854b0cca21f66cc0157be856e0628f7d76e69f212f29972f6a4567a7753e7b2",
+  "linhas": 7889,
+  "bytes_csv": 1372212,
+  "bytes_parquet": 263361,
+  "segundos": 2.3,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

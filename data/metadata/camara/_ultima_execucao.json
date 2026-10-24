@@ -1,0 +1,29 @@
+{
+  "executado_em": "2026-10-24T20:22:49+00:00",
+  "anos": [
+    2023
+  ],
+  "resultados": [
+    {
+      "arquivo": "deputados",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoes-2023",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesVotos-2023",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2023",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2023",
+      "status": "atualizado"
+    }
+  ],
+  "erros": []
+}
