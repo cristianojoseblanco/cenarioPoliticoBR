@@ -28,6 +28,22 @@ coesão, fragmentação e governabilidade. Começa pela Câmara dos Deputados.
   na camada de processamento, com análise de sensibilidade.
 - Identificadores oficiais são chave. Nome nunca é chave.
 
+## Camada processada (`data/processed/camara`)
+
+| Tabela | Grão | Observação |
+| --- | --- | --- |
+| `deputados` | deputado | sem CPF |
+| `votacoes` | votação | `nominal` indica se há voto por deputado |
+| `votos` | votação × deputado | voto em texto original; ausência = falta de linha |
+| `orientacoes` | votação × bancada | orientação do partido/bloco/governo |
+| `votacao_proposicao` | votação × proposição | uma votação pode tocar várias proposições |
+| `proposicoes` | proposição | ementa, tipo, situação, `principal_id` |
+| `proposicao_tema` | proposição × tema | `origem` = `proprio` ou `herdado_principal` |
+| `proposicao_autor` | proposição × autor | `proponente` separa autor de coautor |
+| `partido_observado` | deputado × período | partido visto nas votações; fusões aparecem como troca |
+
+Relatório: `artifacts/reports/processed_camara.md`.
+
 ## Rodar localmente
 
 ```bash
@@ -36,6 +52,7 @@ pip install -r requirements.txt
 python -m pytest -q tests
 python -m src.ingestion.camara        # ou: ANOS=2023 python -m src.ingestion.camara
 python -m src.processing.validation
+python -m src.processing.entities
 ```
 
 ## Estrutura
@@ -43,8 +60,10 @@ python -m src.processing.validation
 ```
 config/sources.yaml        parâmetros de fontes, caminhos e DuckDB
 src/ingestion/camara.py    download + CSV → Parquet + metadados
-src/processing/validation.py  relatório de qualidade
+src/processing/validation.py  relatório de qualidade do staging
+src/processing/entities.py    camada processada (tabelas limpas e ligadas por ID)
 data/staging/camara/<dataset>/ano=<ano>/part-0.parquet
+data/processed/camara/<tabela>/          votos e votacoes particionados por ano
 data/metadata/camara/<arquivo>.json
 .github/workflows/ingestao_camara.yml
 ```

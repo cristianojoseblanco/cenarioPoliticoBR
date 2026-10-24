@@ -45,16 +45,21 @@ jobs:
         if: always()
         run: python -m src.processing.validation
 
+      - name: Camada processada
+        run: python -m src.processing.entities
+
       - name: Publicar resumo
         if: always()
-        run: cat artifacts/reports/qualidade_camara.md >> "$GITHUB_STEP_SUMMARY" || true
+        run: |
+          cat artifacts/reports/qualidade_camara.md >> "$GITHUB_STEP_SUMMARY" || true
+          cat artifacts/reports/processed_camara.md >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Commit dos dados
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/staging data/metadata artifacts/reports
+          git add data/staging data/processed data/metadata artifacts/reports
           # só commita se algum dado mudou (o log de execução sozinho não conta)
           if git diff --cached --name-only | grep -v '_ultima_execucao.json' | grep -q .; then
             git commit -m "dados: ingestão Câmara $(date -u +%F)"

@@ -49,6 +49,17 @@ caminhos:
   metadata: "data/metadata/camara"
   tmp: "data/raw/_tmp"
   relatorio_qualidade: "artifacts/reports/qualidade_camara.md"
+  processed: "data/processed/camara"
+  relatorio_processed: "artifacts/reports/processed_camara.md"
+
+processamento:
+  # Tipos de proposição sem tema próprio herdam o tema da proposição principal
+  # (ex.: requerimento de urgência herda o tema do PL a que se refere).
+  herdar_tema_da_principal: true
+  # Colunas de staging que não passam para a camada processada
+  # (dado pessoal sem uso analítico).
+  colunas_excluidas:
+    deputados: [cpf]
 
 duckdb:
   memory_limit: "4GB"
