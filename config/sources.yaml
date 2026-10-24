@@ -25,7 +25,7 @@ camara:
   chaves:
     votacoes: [id]
     votacoesVotos: [idVotacao, deputado_id]
-    votacoesOrientacoes: [idVotacao, siglaPartidoBloco]
+    votacoesOrientacoes: [idVotacao, siglaBancada]
     votacoesProposicoes: [idVotacao, proposicao_id]
     deputados: [uri]
 
