@@ -15,9 +15,16 @@ camara:
     - votacoesVotos
     - votacoesOrientacoes
     - votacoesProposicoes
+
+  # Arquivos organizados pelo ano de APRESENTAÇÃO da proposição. Os anos são
+  # derivados dos dados: todo ano de apresentação de proposição que teve
+  # votação nominal nos anos ingeridos (votacoesProposicoes.proposicao_ano),
+  # mais os próprios anos ingeridos.
+  datasets_por_apresentacao:
     - proposicoes
     - proposicoesTemas
     - proposicoesAutores
+  ano_minimo_apresentacao: 1946
 
   # Arquivos únicos: {base_url}/{nome}/{formato}/{nome}.{formato}
   datasets_unicos:

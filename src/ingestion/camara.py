@@ -121,6 +121,26 @@ def _ingest_one(con, cfg: dict, nome: str, ano: int | None) -> dict:
     return {"arquivo": arquivo, "status": "atualizado", **meta}
 
 
+def anos_apresentacao(con, cfg: dict, anos_votacao: list[int]) -> list[int]:
+    """Anos de apresentação das proposições com votação nominal, mais os anos de votação."""
+    staging = path(cfg, "staging")
+    vp, vv = staging / "votacoesProposicoes", staging / "votacoesVotos"
+    anos = set(anos_votacao)
+    if any(vp.rglob("*.parquet")) and any(vv.rglob("*.parquet")):
+        rows = con.execute(
+            f"""
+            SELECT DISTINCT TRY_CAST(vp.proposicao_ano AS INTEGER)
+            FROM read_parquet('{vp.as_posix()}/**/*.parquet', hive_partitioning = true) vp
+            JOIN (SELECT DISTINCT idVotacao
+                  FROM read_parquet('{vv.as_posix()}/**/*.parquet', hive_partitioning = true)) v
+              USING (idVotacao)
+            """
+        ).fetchall()
+        anos |= {r[0] for r in rows if r[0] is not None}
+    minimo = cfg["camara"].get("ano_minimo_apresentacao", 0)
+    return sorted(a for a in anos if a >= minimo)
+
+
 def main() -> int:
     cfg = load_config()
     c = cfg["camara"]
@@ -129,15 +149,22 @@ def main() -> int:
 
     con = connect(cfg)
     resultados, erros = [], []
-    tarefas = [(n, None) for n in c["datasets_unicos"]] + [
-        (n, a) for a in anos for n in c["datasets_anuais"]
-    ]
-    for nome, ano in tarefas:
-        try:
-            resultados.append(_ingest_one(con, cfg, nome, ano))
-        except Exception as e:  # registra e segue; falha no fim
-            print(f"  ERRO: {e}", file=sys.stderr)
-            erros.append({"arquivo": f"{nome}-{ano}" if ano else nome, "erro": str(e)})
+
+    def rodar(tarefas):
+        for nome, ano in tarefas:
+            try:
+                resultados.append(_ingest_one(con, cfg, nome, ano))
+            except Exception as e:  # registra e segue; falha no fim
+                print(f"  ERRO: {e}", file=sys.stderr)
+                erros.append({"arquivo": f"{nome}-{ano}" if ano else nome, "erro": str(e)})
+
+    # 1) arquivos únicos e arquivos por ano de votação
+    rodar([(n, None) for n in c["datasets_unicos"]] + [(n, a) for a in anos for n in c["datasets_anuais"]])
+
+    # 2) arquivos por ano de apresentação, com anos derivados dos dados
+    anos_apres = anos_apresentacao(con, cfg, anos)
+    print(f"Anos de apresentação necessários: {anos_apres}")
+    rodar([(n, a) for a in anos_apres for n in c.get("datasets_por_apresentacao", [])])
 
     log = path(cfg, "metadata") / "_ultima_execucao.json"
     log.write_text(
