@@ -64,3 +64,40 @@ processamento:
 duckdb:
   memory_limit: "4GB"
   threads: 4
+
+# Etapa 3 — rede de votação. Decisões registradas no vault:
+# Método/Codificação dos votos.md e Método/Registro de decisões.md
+redes:
+  saida: "data/marts/camara/redes"
+  relatorio: "artifacts/reports/rede_votacao.md"
+  orgaos: [PLEN]
+  periodo: {inicio: null, fim: null}   # null = tudo o que existe nos dados
+
+  # Valor de cada registro de voto. Registro fora do mapa = sem valor (célula vazia).
+  codificacoes:
+    A: {"Sim": 1, "Não": -1, "Obstrução": -1}
+    B: {"Sim": 1, "Não": -1}
+    C: {"Sim": 1, "Não": -1, "Obstrução": -1, "Abstenção": 0}
+
+  # Votação entra se a minoria (entre os votos com valor ±1) for >= este limiar.
+  # Votação sem nenhum voto com valor (secreta) sai automaticamente.
+  minoria_minima: 0.025
+
+  # Par de deputados só é comparado com pelo menos esse número de votações em comum.
+  min_votos_comuns: 50
+
+  # Grafo: cada deputado liga-se aos k mais parecidos (kNN simétrico), peso = concordância.
+  knn: 15
+
+  leiden:
+    resolucao: 1.0
+    sementes: 20        # roda com várias sementes e fica com a de maior qualidade
+
+  # Variações para a análise de sensibilidade (cada uma muda um parâmetro).
+  sensibilidade:
+    codificacao: [B, C]
+    minoria_minima: [0.0, 0.10]
+    knn: [10, 25]
+
+  principal:
+    codificacao: A
