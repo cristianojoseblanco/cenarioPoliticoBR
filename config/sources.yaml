@@ -15,6 +15,9 @@ camara:
     - votacoesVotos
     - votacoesOrientacoes
     - votacoesProposicoes
+    - proposicoes
+    - proposicoesTemas
+    - proposicoesAutores
 
   # Arquivos únicos: {base_url}/{nome}/{formato}/{nome}.{formato}
   datasets_unicos:
