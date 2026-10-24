@@ -1,10 +1,7 @@
 {
-  "executado_em": "2026-10-24T20:24:34+00:00",
+  "executado_em": "2026-10-24T20:30:56+00:00",
   "anos": [
-    2023,
-    2024,
-    2025,
-    2026
+    2023
   ],
   "resultados": [
     {
@@ -28,51 +25,15 @@
       "status": "sem_mudanca"
     },
     {
-      "arquivo": "votacoes-2024",
+      "arquivo": "proposicoes-2023",
       "status": "atualizado"
     },
     {
-      "arquivo": "votacoesVotos-2024",
+      "arquivo": "proposicoesTemas-2023",
       "status": "atualizado"
     },
     {
-      "arquivo": "votacoesOrientacoes-2024",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2024",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoes-2025",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesVotos-2025",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2025",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2025",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoes-2026",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesVotos-2026",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2026",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2026",
+      "arquivo": "proposicoesAutores-2023",
       "status": "atualizado"
     }
   ],

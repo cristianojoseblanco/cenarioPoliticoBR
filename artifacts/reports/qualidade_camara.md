@@ -54,3 +54,21 @@ Problemas encontrados: 0
   - 2026: 5.737
 - Colunas (12): `idVotacao`, `uriVotacao`, `data`, `descricao`, `proposicao_id`, `proposicao_uri`, `proposicao_titulo`, `proposicao_ementa`, `proposicao_codTipo`, `proposicao_siglaTipo`, `proposicao_numero`, `proposicao_ano`
 - Chave (idVotacao, proposicao_id) única
+
+## proposicoes
+
+- Linhas: 62.437
+  - 2023: 62.437
+- Colunas (30): `id`, `uri`, `siglaTipo`, `numero`, `codTipo`, `descricaoTipo`, `ementa`, `ementaDetalhada`, `keywords`, `dataApresentacao`, `uriOrgaoNumerador`, `uriPropAnterior`, `uriPropPrincipal`, `uriPropPosterior`, `urlInteiroTeor`, `urnFinal`, `ultimoStatus_dataHora`, `ultimoStatus_sequencia`, `ultimoStatus_uriRelator`, `ultimoStatus_idOrgao`, `ultimoStatus_siglaOrgao`, `ultimoStatus_uriOrgao`, `ultimoStatus_regime`, `ultimoStatus_descricaoTramitacao`, `ultimoStatus_idTipoTramitacao`, `ultimoStatus_descricaoSituacao`, `ultimoStatus_idSituacao`, `ultimoStatus_despacho`, `ultimoStatus_apreciacao`, `ultimoStatus_url`
+
+## proposicoesTemas
+
+- Linhas: 22.917
+  - 2023: 22.917
+- Colunas (6): `uriProposicao`, `siglaTipo`, `numero`, `codTema`, `tema`, `relevancia`
+
+## proposicoesAutores
+
+- Linhas: 164.953
+  - 2023: 164.953
+- Colunas (12): `idProposicao`, `uriProposicao`, `idDeputadoAutor`, `uriAutor`, `codTipoAutor`, `tipoAutor`, `nomeAutor`, `siglaPartidoAutor`, `uriPartidoAutor`, `siglaUFAutor`, `ordemAssinatura`, `proponente`

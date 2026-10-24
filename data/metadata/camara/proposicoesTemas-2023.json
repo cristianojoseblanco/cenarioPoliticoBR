@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "proposicoesTemas",
+  "ano": 2023,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoesTemas/csv/proposicoesTemas-2023.csv",
+  "coletado_em": "2026-10-24T20:30:51+00:00",
+  "sha256": "12bc58f09c0b53bad9b4293f7fc6fe9c7b23a56bec2314c9c90c714e76e3e684",
+  "linhas": 22917,
+  "bytes_csv": 2741514,
+  "bytes_parquet": 100561,
+  "segundos": 2.7,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}
