@@ -1,62 +1,11 @@
 {
-  "executado_em": "2026-10-24T20:47:00+00:00",
+  "executado_em": "2026-10-24T22:33:43+00:00",
   "anos": [
-    2023,
-    2024,
-    2025,
     2026
   ],
   "resultados": [
     {
       "arquivo": "deputados",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoes-2023",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesVotos-2023",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2023",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2023",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoes-2024",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesVotos-2024",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2024",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2024",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoes-2025",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesVotos-2025",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2025",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2025",
       "status": "sem_mudanca"
     },
     {
