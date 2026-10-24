@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "votacoes",
+  "ano": 2024,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/votacoes/csv/votacoes-2024.csv",
+  "coletado_em": "2026-10-24T20:24:02+00:00",
+  "sha256": "faa99bd8fc24343ce912c32e7249d1ec36a35b6a0e975e32514fb86bc8be96ef",
+  "linhas": 10373,
+  "bytes_csv": 6270723,
+  "bytes_parquet": 645522,
+  "segundos": 3.0,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

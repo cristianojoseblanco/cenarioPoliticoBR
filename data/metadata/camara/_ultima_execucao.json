@@ -1,27 +1,78 @@
 {
-  "executado_em": "2026-10-24T20:22:49+00:00",
+  "executado_em": "2026-10-24T20:24:34+00:00",
   "anos": [
-    2023
+    2023,
+    2024,
+    2025,
+    2026
   ],
   "resultados": [
     {
       "arquivo": "deputados",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "votacoes-2023",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "votacoesVotos-2023",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "votacoesOrientacoes-2023",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "votacoesProposicoes-2023",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoes-2024",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesVotos-2024",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2024",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2024",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoes-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesVotos-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoes-2026",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesVotos-2026",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2026",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2026",
       "status": "atualizado"
     }
   ],
