@@ -129,7 +129,8 @@ def em_exercicio_historico(cfg, votacoes: pd.DataFrame) -> pd.DataFrame:
 def base_votos(cfg, votacoes, votos, orient):
     g = cfg["governabilidade"]
     val = g["valores_orientacao"]
-    gov = orient[orient["bancada"] == g["bancada_governo"]][["votacao_id", "orientacao"]].rename(
+    nomes_gov = g["bancada_governo"] if isinstance(g["bancada_governo"], list) else [g["bancada_governo"]]
+    gov = orient[orient["bancada"].isin(nomes_gov)].drop_duplicates("votacao_id")[["votacao_id", "orientacao"]].rename(
         columns={"orientacao": "orient_gov"})
     gov["gov_valor"] = gov["orient_gov"].map(val)
     op = orientacoes_partidarias(orient, g)

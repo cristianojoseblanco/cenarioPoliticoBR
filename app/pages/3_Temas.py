@@ -2,10 +2,12 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from dados import cor_com, dec, json_, n, ordem_com, parquet, rodape, rotulo
+from dados import cor_com, dec, json_, n, ordem_com, parquet, rodape, rotulo, seletor_legislatura
 
 st.set_page_config(page_title="Temas · Cenário Político BR", page_icon="🏛️", layout="wide")
 st.title("Por tema")
+st.session_state["_pagina"] = "3_Temas.py"
+seletor_legislatura()
 st.markdown("Temas oficiais da Câmara com pelo menos 75 votações. Uma votação pode ter mais de um tema.")
 
 polos = json_("fatias/polos.json")

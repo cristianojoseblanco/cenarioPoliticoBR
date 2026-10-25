@@ -12,3 +12,6 @@ database/*.duckdb.wal
 # Camadas grandes ficam no GitHub Release `dados` (python -m src.storage baixar)
 data/staging/
 data/processed/
+
+# página gerada (publicada pelo GitHub Pages)
+/site/

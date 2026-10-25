@@ -10,7 +10,8 @@ coesão, fragmentação e governabilidade. Começa pela Câmara dos Deputados.
 | Ingestão | GitHub Actions | Baixa os arquivos em lote da Câmara, converte para Parquet e commita no repositório |
 | Armazenamento | Git + Release `dados` | resultados pequenos e metadados no Git; staging e processed no Release (ver Armazenamento) |
 | Análise | Clone do repositório + DuckDB | Matriz de votação, grafos, comunidades, indicadores |
-| Painel | Streamlit Community Cloud | `app/Home.py`, lendo os Parquet do repositório (Fase 4) |
+| Painel | Streamlit Community Cloud | `app/Home.py`, lendo os resultados do repositório |
+| Página | GitHub Pages | `site/index.html`, gerada a cada execução |
 
 ## Armazenamento
 
@@ -62,6 +63,10 @@ Relatório: `artifacts/reports/processed_camara.md`.
 | 3 — rede de votação | `src/networks/votacao.py` | `redes/` (pares, arestas, comunidades, métricas, grafo) | `artifacts/reports/rede_votacao.md` |
 | 4 — tema e tempo | `src/networks/fatias.py` | `fatias/` (posições no eixo entre polos, deslocamentos) | `artifacts/reports/fatias.md` |
 | 5 — governabilidade | `src/governance/indicadores.py` | `governabilidade/` (apoio ao governo, disciplina, coesão, participação, vitórias) | `artifacts/reports/governabilidade.md` |
+| 7a — comparação | `src/networks/comparacao.py` | `comparacao/` (legislaturas lado a lado, partidos, reeleitos) | `artifacts/reports/comparacao.md` |
+
+As etapas 3 a 5 rodam uma vez por legislatura (`legislaturas` no config), com os mesmos parâmetros;
+saídas em `data/marts/camara/leg<N>/` e relatórios em `artifacts/reports/leg<N>/`.
 
 Notas de método e resultados: repositório `cenarioPoliticoBR-notas` (vault do Obsidian).
 
@@ -73,6 +78,12 @@ Páginas: Rede, Tempo, Temas, Partidos e Deputado. Dependências leves em `app/r
 - Local: `streamlit run app/Home.py`
 - Nuvem: Streamlit Community Cloud apontando para `app/Home.py` neste repositório; o painel se atualiza
   sozinho quando o workflow semanal commita dados novos.
+
+## Página (GitHub Pages)
+
+`src/site/gerar.py` junta os resultados num único HTML (`site/index.html`, sem servidor) a partir de
+`src/site/modelo.html`. O workflow gera e publica no GitHub Pages a cada execução
+(requer Settings → Pages → Source: **GitHub Actions**).
 
 ## Rodar localmente
 
@@ -88,6 +99,8 @@ python -m src.processing.entities
 python -m src.networks.votacao
 python -m src.networks.fatias
 python -m src.governance.indicadores
+python -m src.networks.comparacao
+python -m src.site.gerar
 ```
 
 ## Estrutura

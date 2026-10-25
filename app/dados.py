@@ -19,14 +19,57 @@ SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#62
 CINZA = "#b7b5ae"
 
 
+def legislaturas() -> list[str]:
+    return sorted(p.name[3:] for p in MARTS.glob("leg*") if p.is_dir())
+
+
+def nome_leg(leg: str) -> str:
+    anos = {"56": "2019–2022", "57": "2023–2026"}
+    return f"{leg}ª ({anos.get(leg, '')})" if leg in anos else f"{leg}ª"
+
+
+def leg_atual() -> str:
+    legs = legislaturas()
+    if st.session_state.get("leg") not in legs:
+        st.session_state["leg"] = legs[-1]
+    return st.session_state["leg"]
+
+
+def seletor_legislatura():
+    """Seletor no topo da página; a escolha vale para todas as páginas da sessão."""
+    legs = legislaturas()
+    atual = leg_atual()
+    if len(legs) > 1:
+        escolha = st.radio("Legislatura", legs, index=legs.index(atual), horizontal=True, format_func=nome_leg,
+                           key=f"radio_leg_{st.session_state.get('_pagina', '')}")
+        st.session_state["leg"] = escolha
+    return st.session_state["leg"]
+
+
 @st.cache_data(ttl=3600)
+def _parquet(leg: str, rel: str) -> pd.DataFrame:
+    return pd.read_parquet(MARTS / f"leg{leg}" / rel)
+
+
+@st.cache_data(ttl=3600)
+def _json(leg: str, rel: str) -> dict:
+    return json.loads((MARTS / f"leg{leg}" / rel).read_text(encoding="utf-8"))
+
+
 def parquet(rel: str) -> pd.DataFrame:
-    return pd.read_parquet(MARTS / rel)
+    return _parquet(leg_atual(), rel)
+
+
+def json_(rel: str) -> dict:
+    return _json(leg_atual(), rel)
 
 
 @st.cache_data(ttl=3600)
-def json_(rel: str) -> dict:
-    return json.loads((MARTS / rel).read_text(encoding="utf-8"))
+def comparacao(rel: str):
+    p = MARTS / "comparacao" / rel
+    if not p.exists():
+        return None
+    return json.loads(p.read_text(encoding="utf-8")) if p.suffix == ".json" else pd.read_parquet(p)
 
 
 @st.cache_data(ttl=3600)
@@ -46,9 +89,13 @@ def ordem_com(cs) -> list[str]:
     return sorted(set(cs), key=lambda c: int(str(c)[1:]))
 
 
-@st.cache_data(ttl=3600)
 def composicao() -> dict[str, str]:
-    d = deputados_rede()
+    return _composicao(leg_atual())
+
+
+@st.cache_data(ttl=3600)
+def _composicao(leg: str) -> dict[str, str]:
+    d = _parquet(leg, "redes/deputados_rede.parquet")
     return {c: ", ".join(f"{p} {q}" for p, q in d[d["comunidade"] == c]["partido"].value_counts().head(2).items())
             for c in ordem_com(d["comunidade"])}
 
@@ -94,9 +141,29 @@ def pct(a, b, d=1) -> str:
     return f"{dec(100 * a / b, d)}% ({n(a)} de {n(b)})"
 
 
+@st.cache_data(ttl=3600)
+def marcadores_periodo() -> list[dict]:
+    import yaml
+    try:
+        cfg = yaml.safe_load((ROOT / "config" / "sources.yaml").read_text(encoding="utf-8"))
+        return cfg.get("marcadores_periodo", [])
+    except Exception:
+        return []
+
+
+def marcar_periodos(fig):
+    """Sombreia períodos especiais (ex.: votação remota) num gráfico com eixo de datas."""
+    for m in marcadores_periodo():
+        fig.add_vrect(x0=m["inicio"], x1=m["fim"], fillcolor="#e4e3df", opacity=0.5, line_width=0, layer="below",
+                      annotation_text=m["rotulo"], annotation_position="top left",
+                      annotation_font=dict(size=10, color="#52514e"))
+    return fig
+
+
 def rodape():
     st.caption(
-        f"Dados: Câmara dos Deputados (dados abertos), Plenário, 2023 em diante. Atualizado em {atualizado_em()}. "
+        f"Dados: Câmara dos Deputados (dados abertos), Plenário, legislatura {nome_leg(leg_atual())}. "
+        f"Atualizado em {atualizado_em()}. "
         "Comunidades e polos são definidos pelos votos, sem rótulo ideológico. "
         "Código e método: github.com/cristianojoseblanco/cenarioPoliticoBR"
     )

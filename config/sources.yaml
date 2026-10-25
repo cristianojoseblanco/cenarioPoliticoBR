@@ -147,7 +147,8 @@ governabilidade:
   saida: "data/marts/camara/governabilidade"
   relatorio: "artifacts/reports/governabilidade.md"
   orgaos: [PLEN]
-  bancada_governo: "Governo"
+  # Nome da bancada do líder do Governo (mudou de grafia entre legislaturas).
+  bancada_governo: ["Governo", "GOV."]
   # Orientações que contam como posição (mesma lógica da codificação A).
   # "Liberado" e vazio ficam fora das medidas de apoio e disciplina.
   valores_orientacao: {"Sim": 1, "Não": -1, "Obstrução": -1}
@@ -165,7 +166,7 @@ governabilidade:
     "CIDADAN": "CIDADANIA"
   prefixo_federacao: "Fdr "
   # Bancadas que não são partido (não servem para disciplina).
-  bancadas_nao_partidarias: ["Governo", "Maioria", "Minoria", "Oposição", "Bloco Parlamentar"]
+  bancadas_nao_partidarias: ["Governo", "GOV.", "Maioria", "Minoria", "Oposição", "Bloco Parlamentar"]
   # Blocos: terceiro nível (depois de partido e federação). O nome é decifrado pelas
   # abreviações abaixo; só os membros visíveis antes de "..." entram.
   blocos:

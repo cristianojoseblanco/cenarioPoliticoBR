@@ -1,10 +1,12 @@
 import plotly.graph_objects as go
 import streamlit as st
 
-from dados import CINZA, SERIES, dec, n, parquet, rodape
+from dados import CINZA, SERIES, dec, n, parquet, rodape, seletor_legislatura
 
 st.set_page_config(page_title="Partidos · Cenário Político BR", page_icon="🏛️", layout="wide")
 st.title("Partidos")
+st.session_state["_pagina"] = "4_Partidos.py"
+seletor_legislatura()
 
 p = parquet("governabilidade/partidos.parquet")
 minimo = st.slider("Partidos com pelo menos N deputados no período", 1, 40, 5)

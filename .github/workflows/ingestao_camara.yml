@@ -63,6 +63,9 @@ jobs:
       - name: Indicadores de governabilidade
         run: python -m src.governance.indicadores
 
+      - name: Comparação entre legislaturas
+        run: python -m src.networks.comparacao
+
       - name: Publicar resumo
         if: always()
         run: |
@@ -90,3 +93,28 @@ jobs:
           else
             echo "Nenhum dado novo."
           fi
+
+      - name: Gerar página (site/)
+        continue-on-error: true
+        run: python -m src.site.gerar
+
+      - name: Empacotar página para o GitHub Pages
+        continue-on-error: true
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  pagina:
+    needs: ingestao
+    runs-on: ubuntu-latest
+    # Requer GitHub Pages ativado com fonte "GitHub Actions" (Settings → Pages).
+    continue-on-error: true
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

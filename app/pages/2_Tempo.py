@@ -2,10 +2,12 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from dados import cor_com, dec, json_, ordem_com, parquet, rodape, rotulo
+from dados import cor_com, dec, marcar_periodos, json_, ordem_com, parquet, rodape, rotulo, seletor_legislatura
 
 st.set_page_config(page_title="Tempo · Cenário Político BR", page_icon="🏛️", layout="wide")
 st.title("Ao longo do tempo")
+st.session_state["_pagina"] = "2_Tempo.py"
+seletor_legislatura()
 st.markdown("Cada ponto é uma **janela de 150 votações seguidas**, na data da última votação.")
 
 polos = json_("fatias/polos.json")
@@ -42,6 +44,7 @@ fig.update_layout(height=480, margin=dict(l=0, r=0, t=10, b=0), plot_bgcolor="#f
                   legend=dict(orientation="h", y=-0.15, x=0), hovermode="x unified")
 fig.update_xaxes(gridcolor="#e4e3df")
 fig.update_yaxes(gridcolor="#e4e3df")
+marcar_periodos(fig)
 st.plotly_chart(fig, use_container_width=True, config={"displaylogo": False})
 
 st.subheader("Votações vencidas pelo governo")
@@ -53,6 +56,7 @@ fig2 = go.Figure(go.Scatter(
 fig2.update_layout(height=260, margin=dict(l=0, r=0, t=10, b=0), plot_bgcolor="#fcfcfb", paper_bgcolor="#fcfcfb")
 fig2.update_yaxes(range=[50, 100], title="% de vitórias", gridcolor="#e4e3df")
 fig2.update_xaxes(gridcolor="#e4e3df")
+marcar_periodos(fig2)
 st.plotly_chart(fig2, use_container_width=True, config={"displaylogo": False})
 
 st.subheader("Quem mais se moveu no eixo")

@@ -4,13 +4,15 @@ Rodar: streamlit run app/Home.py
 """
 import streamlit as st
 
-from dados import composicao, grande, json_, n, parquet, pct, rodape, rotulo
+from dados import composicao, grande, json_, n, parquet, pct, rodape, rotulo, seletor_legislatura
 
 st.set_page_config(page_title="Cenário Político BR", page_icon="🏛️", layout="wide")
 
 st.title("Cenário Político BR")
+st.session_state["_pagina"] = "Home.py"
+seletor_legislatura()
 st.markdown("Como os deputados federais votam: **quem vota com quem, sobre o quê e como isso muda no tempo.** "
-            "Plenário da Câmara, legislatura iniciada em 2023.")
+            "Plenário da Câmara, legislaturas de 2019 em diante. Os números abaixo são da legislatura escolhida.")
 
 m = json_("redes/metricas.json")
 g = json_("governabilidade/resumo.json")
@@ -36,7 +38,8 @@ st.markdown(
     "- **Tempo**: como as comunidades se movem e o apoio ao governo ao longo da legislatura.\n"
     "- **Temas**: em que assuntos o centro vota com cada lado.\n"
     "- **Partidos**: apoio ao governo, disciplina e coesão.\n"
-    "- **Deputado**: ficha individual, com os colegas que votam mais parecido."
+    "- **Deputado**: ficha individual, com os colegas que votam mais parecido.\n"
+    "- **Comparação**: as duas legislaturas lado a lado e os deputados reeleitos."
 )
 with st.expander("Como ler os números"):
     st.markdown(

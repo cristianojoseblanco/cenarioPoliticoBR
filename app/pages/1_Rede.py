@@ -1,10 +1,12 @@
 import plotly.graph_objects as go
 import streamlit as st
 
-from dados import CINZA, SERIES, cor_com, deputados_rede, n, ordem_com, parquet, rodape, rotulo
+from dados import CINZA, SERIES, cor_com, deputados_rede, n, ordem_com, parquet, rodape, rotulo, seletor_legislatura
 
 st.set_page_config(page_title="Rede · Cenário Político BR", page_icon="🏛️", layout="wide")
 st.title("Rede de votação")
+st.session_state["_pagina"] = "1_Rede.py"
+seletor_legislatura()
 st.markdown("Cada ponto é um deputado. Cada linha liga um deputado aos 15 colegas que **votam mais parecido** com ele. "
             "Quem fica perto no desenho vota parecido.")
 

@@ -1,0 +1,12 @@
+{
+  "governistas nos dois": 126,
+  "governistas só na 56": 89,
+  "governistas só na 57": 82,
+  "governistas em nenhum": 3,
+  "total": 300,
+  "limiar": 0.7,
+  "legislaturas": [
+    "56",
+    "57"
+  ]
+}

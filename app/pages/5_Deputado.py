@@ -2,10 +2,12 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from dados import SERIES, cor_com, dec, deputados_rede, json_, n, parquet, pct, rodape, rotulo
+from dados import SERIES, cor_com, dec, deputados_rede, json_, n, parquet, pct, rodape, rotulo, seletor_legislatura
 
 st.set_page_config(page_title="Deputado · Cenário Político BR", page_icon="🏛️", layout="wide")
 st.title("Ficha do deputado")
+st.session_state["_pagina"] = "5_Deputado.py"
+seletor_legislatura()
 
 gov = parquet("governabilidade/deputados.parquet")
 rede = deputados_rede().set_index("deputado_id")
