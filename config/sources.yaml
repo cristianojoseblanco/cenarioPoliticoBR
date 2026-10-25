@@ -101,3 +101,25 @@ redes:
 
   principal:
     codificacao: A
+
+# Etapa 4 — fatias por tema e por tempo. Decisões no vault: Método/Registro de decisões.md
+fatias:
+  saida: "data/marts/camara/fatias"
+  relatorio: "artifacts/reports/fatias.md"
+  # Temas oficiais da Câmara, sem agrupamento próprio (decisão revisável).
+  # Entram os temas com pelo menos este número de votações incluídas.
+  tema_min_votacoes: 75
+  # Janelas móveis de N votações seguidas (ordem cronológica), avançando de P em P.
+  janela_votacoes: 150
+  janela_passo: 50
+  # Votações em comum por par dentro da fatia: max(piso, fração × votações da fatia).
+  min_comuns_fracao: 0.40
+  min_comuns_piso: 30
+  # Eixo de referência: os dois polos são as duas comunidades globais com MENOR
+  # concordância entre si (escolhidas pelos dados, sem rótulo ideológico).
+  # Núcleo de um polo = deputados que ficam na mesma comunidade em todas as variantes
+  # de sensibilidade da Etapa 3.
+  # Só comunidades com núcleo estável de pelo menos este tamanho podem ser polo.
+  nucleo_minimo: 20
+  # "Quem mais se moveu": compara a posição média nas primeiras e nas últimas N janelas.
+  janelas_comparacao: 3

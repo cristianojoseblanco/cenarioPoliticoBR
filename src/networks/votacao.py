@@ -41,7 +41,8 @@ def carregar_votos(cfg: dict) -> pd.DataFrame:
     con = connect(cfg)
     return con.execute(
         f"""
-        SELECT v.votacao_id, v.deputado_id, v.voto, v.partido_na_votacao, v.uf, vt.data
+        SELECT v.votacao_id, v.deputado_id, v.voto, v.partido_na_votacao, v.uf, vt.data,
+               vt.data_hora_registro
         FROM {src('votos')} v JOIN {src('votacoes')} vt USING (votacao_id)
         WHERE {' AND '.join(filtros)}
         """

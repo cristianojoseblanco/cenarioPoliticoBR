@@ -1,0 +1,22 @@
+{
+  "polo_a": "C1",
+  "polo_b": "C4",
+  "composicao": {
+    "C1": "PL 100, UNIÃO 21",
+    "C2": "UNIÃO 46, PP 42",
+    "C3": "PSD 49, MDB 36",
+    "C4": "PT 75, PSB 14",
+    "C5": "REPUBLICANOS 45, MDB 4",
+    "C6": "PSOL 14, REDE 3"
+  },
+  "nucleo_a": 157,
+  "nucleo_b": 106,
+  "tamanho_nucleos": {
+    "C1": 157,
+    "C2": 128,
+    "C3": 80,
+    "C4": 106,
+    "C5": 0,
+    "C6": 0
+  }
+}

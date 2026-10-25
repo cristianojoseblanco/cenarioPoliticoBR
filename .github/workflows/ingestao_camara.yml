@@ -51,12 +51,16 @@ jobs:
       - name: Rede de votação
         run: python -m src.networks.votacao
 
+      - name: Fatias por tema e tempo
+        run: python -m src.networks.fatias
+
       - name: Publicar resumo
         if: always()
         run: |
           cat artifacts/reports/qualidade_camara.md >> "$GITHUB_STEP_SUMMARY" || true
           cat artifacts/reports/processed_camara.md >> "$GITHUB_STEP_SUMMARY" || true
           cat artifacts/reports/rede_votacao.md >> "$GITHUB_STEP_SUMMARY" || true
+          cat artifacts/reports/fatias.md >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Commit dos dados
         if: always()
