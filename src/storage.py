@@ -54,6 +54,10 @@ def publicar() -> int:
     a = _cfg()
     tag = a["release_tag"]
     existe = subprocess.run(["gh", "release", "view", tag], capture_output=True).returncode == 0
+    # A tag do Release fica sempre no commit atual: uma tag antiga prenderia versões velhas
+    # do histórico (e os arquivos grandes de antes) no GitHub.
+    subprocess.run(["git", "tag", "-f", tag], check=True)
+    subprocess.run(["git", "push", "--force", "origin", f"refs/tags/{tag}"], check=True)
     if not existe:
         subprocess.run(["gh", "release", "create", tag, "--title", "Dados (pacote corrente)",
                         "--notes", "Camadas staging e processed. Substituídas a cada execução do workflow; "
