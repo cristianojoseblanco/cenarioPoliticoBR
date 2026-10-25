@@ -194,15 +194,20 @@ def pct(a, b) -> str:
     return f"{n(a)} de {n(b)} ({f'{p:.1f}'.replace('.', ',')}%)"
 
 
+def layout(g) -> np.ndarray:
+    """Posições dos deputados no desenho do grafo (determinístico)."""
+    import random
+    random.seed(42)
+    ig.set_random_number_generator(random)
+    return np.array(g.layout_fruchterman_reingold(weights="weight", niter=2000).coords)
+
+
 def desenhar(g, membros, partidos, destino):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    import random
-    random.seed(42)
-    ig.set_random_number_generator(random)
-    lay = np.array(g.layout_fruchterman_reingold(weights="weight", niter=2000).coords)
+    lay = layout(g)
     cores = plt.get_cmap("tab10")
     fig, axs = plt.subplots(1, 2, figsize=(16, 8), dpi=110)
     top = pd.Series(partidos).value_counts().index[:9]
@@ -324,6 +329,8 @@ def main() -> int:
     (saida / "metricas.json").write_text(json.dumps(metricas, ensure_ascii=False, indent=2), encoding="utf-8")
 
     desenhar(g, P["membros"], princ["partido"].tolist(), saida / "rede_plen.png")
+    lay = layout(g)
+    princ.assign(x=lay[:, 0], y=lay[:, 1]).to_parquet(saida / "deputados_rede.parquet", index=False)
 
     # ---- relatório
     ex = P["matriz"].excluidas

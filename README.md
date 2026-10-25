@@ -55,6 +55,15 @@ Relatório: `artifacts/reports/processed_camara.md`.
 
 Notas de método e resultados: repositório `cenarioPoliticoBR-notas` (vault do Obsidian).
 
+## Painel (Etapa 6)
+
+`app/Home.py` + `app/pages/`: Streamlit lendo só os arquivos de `data/marts` (nada pesado roda no painel).
+Páginas: Rede, Tempo, Temas, Partidos e Deputado. Dependências leves em `app/requirements.txt`.
+
+- Local: `streamlit run app/Home.py`
+- Nuvem: Streamlit Community Cloud apontando para `app/Home.py` neste repositório; o painel se atualiza
+  sozinho quando o workflow semanal commita dados novos.
+
 ## Rodar localmente
 
 ```bash
