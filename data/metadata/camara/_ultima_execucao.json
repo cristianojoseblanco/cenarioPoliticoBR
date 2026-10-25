@@ -1,130 +1,11 @@
 {
-  "executado_em": "2026-10-25T19:51:08+00:00",
+  "executado_em": "2026-10-25T20:10:57+00:00",
   "anos": [
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
     2026
   ],
   "resultados": [
     {
       "arquivo": "deputados",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoes-2019",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesVotos-2019",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2019",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2019",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoes-2020",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesVotos-2020",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2020",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2020",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoes-2021",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesVotos-2021",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2021",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2021",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoes-2022",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesVotos-2022",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2022",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2022",
-      "status": "atualizado"
-    },
-    {
-      "arquivo": "votacoes-2023",
-      "status": "consolidado"
-    },
-    {
-      "arquivo": "votacoesVotos-2023",
-      "status": "consolidado"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2023",
-      "status": "consolidado"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2023",
-      "status": "consolidado"
-    },
-    {
-      "arquivo": "votacoes-2024",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesVotos-2024",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2024",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2024",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoes-2025",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesVotos-2025",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesOrientacoes-2025",
-      "status": "sem_mudanca"
-    },
-    {
-      "arquivo": "votacoesProposicoes-2025",
       "status": "sem_mudanca"
     },
     {
@@ -145,75 +26,75 @@
     },
     {
       "arquivo": "proposicoes-1991",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesTemas-1991",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesAutores-1991",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoes-1995",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesTemas-1995",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesAutores-1995",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoes-1997",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesTemas-1997",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesAutores-1997",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoes-2000",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesTemas-2000",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesAutores-2000",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoes-2001",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesTemas-2001",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesAutores-2001",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoes-2002",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesTemas-2002",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoesAutores-2002",
-      "status": "atualizado"
+      "status": "consolidado"
     },
     {
       "arquivo": "proposicoes-2003",
