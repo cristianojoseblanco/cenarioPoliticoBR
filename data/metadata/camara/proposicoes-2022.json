@@ -3,12 +3,12 @@
   "dataset": "proposicoes",
   "ano": 2022,
   "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoes/csv/proposicoes-2022.csv",
-  "coletado_em": "2026-10-24T20:38:37+00:00",
+  "coletado_em": "2026-10-25T16:34:12+00:00",
   "sha256": "090ea0006f3016a093d6bf55fdfc5b4693fb3832bd27bac68b92064a237db728",
   "linhas": 26918,
   "bytes_csv": 23191095,
   "bytes_parquet": 1902679,
-  "segundos": 3.8,
+  "segundos": 3.5,
   "versao_esquema": 1,
   "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
 }

@@ -3,12 +3,12 @@
   "dataset": "proposicoesAutores",
   "ano": 2025,
   "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoesAutores/csv/proposicoesAutores-2025.csv",
-  "coletado_em": "2026-10-24T20:39:39+00:00",
+  "coletado_em": "2026-10-25T16:34:54+00:00",
   "sha256": "d17c860a16231880778d92c69ae67c86589603c647d16d31ed9fc18f729bfc90",
   "linhas": 154579,
   "bytes_csv": 38939258,
   "bytes_parquet": 1023383,
-  "segundos": 4.3,
+  "segundos": 4.5,
   "versao_esquema": 1,
   "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
 }

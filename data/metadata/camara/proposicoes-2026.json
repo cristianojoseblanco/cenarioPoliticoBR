@@ -3,12 +3,12 @@
   "dataset": "proposicoes",
   "ano": 2026,
   "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoes/csv/proposicoes-2026.csv",
-  "coletado_em": "2026-10-25T12:43:51+00:00",
+  "coletado_em": "2026-10-25T16:34:59+00:00",
   "sha256": "27de94d44ff6c1ca23050f6744045416378ac24f43317ff52d18b4540ad0764a",
   "linhas": 46823,
   "bytes_csv": 40965763,
   "bytes_parquet": 3454333,
-  "segundos": 5.3,
+  "segundos": 5.2,
   "versao_esquema": 1,
   "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
 }

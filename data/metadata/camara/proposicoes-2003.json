@@ -3,12 +3,12 @@
   "dataset": "proposicoes",
   "ano": 2003,
   "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoes/csv/proposicoes-2003.csv",
-  "coletado_em": "2026-10-24T20:36:00+00:00",
+  "coletado_em": "2026-10-25T16:31:45+00:00",
   "sha256": "8294ce700dd87b18ff8de9fb086d4fe5b13380033bdb775323194a55247482f1",
   "linhas": 31994,
   "bytes_csv": 26470874,
   "bytes_parquet": 2288607,
-  "segundos": 4.1,
+  "segundos": 3.9,
   "versao_esquema": 1,
   "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
 }

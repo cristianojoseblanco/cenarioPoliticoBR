@@ -3,12 +3,12 @@
   "dataset": "votacoesVotos",
   "ano": 2026,
   "url": "https://dadosabertos.camara.leg.br/arquivos/votacoesVotos/csv/votacoesVotos-2026.csv",
-  "coletado_em": "2026-10-24T20:24:31+00:00",
+  "coletado_em": "2026-10-25T16:31:37+00:00",
   "sha256": "d258db1d925d0d5251ad53b732d4d45a4ab6ff9bee8fe480839448024e6d2abb",
   "linhas": 53126,
   "bytes_csv": 17648870,
   "bytes_parquet": 378625,
-  "segundos": 3.2,
+  "segundos": 3.3,
   "versao_esquema": 1,
   "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
 }

@@ -3,7 +3,7 @@
   "dataset": "proposicoesTemas",
   "ano": 2013,
   "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoesTemas/csv/proposicoesTemas-2013.csv",
-  "coletado_em": "2026-10-25T12:41:45+00:00",
+  "coletado_em": "2026-10-25T16:32:56+00:00",
   "sha256": "41ffa805493cb67390f741989f6d12972ea325a4f9e7be9843c051b937799bac",
   "linhas": 7770,
   "bytes_csv": 905071,

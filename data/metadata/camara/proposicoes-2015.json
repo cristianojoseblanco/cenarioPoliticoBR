@@ -3,7 +3,7 @@
   "dataset": "proposicoes",
   "ano": 2015,
   "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoes/csv/proposicoes-2015.csv",
-  "coletado_em": "2026-10-24T20:37:32+00:00",
+  "coletado_em": "2026-10-25T16:33:10+00:00",
   "sha256": "faa2d13c560466c9fda3c47116684de61d4d7bf65157ff5f8362595888a1306c",
   "linhas": 39648,
   "bytes_csv": 34170795,

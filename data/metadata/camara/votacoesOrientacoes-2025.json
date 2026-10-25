@@ -3,12 +3,12 @@
   "dataset": "votacoesOrientacoes",
   "ano": 2025,
   "url": "https://dadosabertos.camara.leg.br/arquivos/votacoesOrientacoes/csv/votacoesOrientacoes-2025.csv",
-  "coletado_em": "2026-10-24T20:24:22+00:00",
+  "coletado_em": "2026-10-25T16:31:28+00:00",
   "sha256": "75eae7028c521db02037f55fedf1abb1908df193149638fb4201e84d54ba9552",
   "linhas": 4947,
   "bytes_csv": 1095383,
   "bytes_parquet": 32016,
-  "segundos": 2.0,
+  "segundos": 1.8,
   "versao_esquema": 1,
   "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
 }
