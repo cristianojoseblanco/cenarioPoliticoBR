@@ -57,6 +57,9 @@ jobs:
       - name: Fatias por tema e tempo
         run: python -m src.networks.fatias
 
+      - name: Indicadores de governabilidade
+        run: python -m src.governance.indicadores
+
       - name: Publicar resumo
         if: always()
         run: |
@@ -64,6 +67,7 @@ jobs:
           cat artifacts/reports/processed_camara.md >> "$GITHUB_STEP_SUMMARY" || true
           cat artifacts/reports/rede_votacao.md >> "$GITHUB_STEP_SUMMARY" || true
           cat artifacts/reports/fatias.md >> "$GITHUB_STEP_SUMMARY" || true
+          cat artifacts/reports/governabilidade.md >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Commit dos dados
         if: always()

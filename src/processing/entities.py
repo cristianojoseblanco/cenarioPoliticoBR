@@ -146,6 +146,11 @@ def build(cfg: dict) -> dict[str, int]:
     """
 
     particionadas = {"votos", "votacoes"}
+    extras = {}
+    hist = st / "deputadosHistorico" / "part-0.parquet"
+    if hist.exists():
+        import pandas as pd
+        extras["exercicio"] = periodos_exercicio(pd.read_parquet(hist), proc)
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
@@ -162,7 +167,42 @@ def build(cfg: dict) -> dict[str, int]:
             leitura = f"'{arq.as_posix()}'"
         contagens[nome] = con.execute(f"SELECT count(*) FROM {leitura}").fetchone()[0]
         print(f"{nome}: {contagens[nome]:,}".replace(",", "."))
+    for nome, df in extras.items():
+        destino = out / nome
+        destino.mkdir()
+        df.to_parquet(destino / "part-0.parquet", index=False)
+        contagens[nome] = len(df)
+        print(f"{nome}: {contagens[nome]:,}".replace(",", "."))
     return contagens
+
+
+def periodos_exercicio(hist, proc: dict):
+    """Períodos (deputado_id, inicio, fim) em exercício, a partir do histórico de mandato da API.
+
+    Cada evento traz a situação do deputado depois dele; eventos sem situação (troca de nome)
+    não mudam o estado. Um período abre quando a situação entra em `situacoes_exercicio`
+    e fecha no primeiro evento com outra situação.
+    """
+    import pandas as pd
+
+    ok = set(proc.get("situacoes_exercicio", ["Exercício"]))
+    aberto = pd.Timestamp(proc.get("fim_periodo_aberto", "2100-01-01"))
+    h = hist.assign(t=pd.to_datetime(hist["dataHora"], errors="coerce")).dropna(subset=["t"])
+    h = h[h["situacao"].notna()].sort_values(["deputado_id", "t"], kind="stable")
+    linhas = []
+    marcas = tuple(proc.get("marcadores_entrada", []))
+    for dep, ev in h.groupby("deputado_id", sort=False):
+        inicio = None
+        for t, sit, desc in zip(ev["t"], ev["situacao"], ev["descricaoStatus"].fillna("")):
+            entra = sit in ok or (marcas and any(m in desc for m in marcas))
+            if entra and inicio is None:
+                inicio = t
+            elif not entra and inicio is not None:
+                linhas.append((dep, inicio, t))
+                inicio = None
+        if inicio is not None:
+            linhas.append((dep, inicio, aberto))
+    return pd.DataFrame(linhas, columns=["deputado_id", "inicio", "fim"])
 
 
 def relatorio(cfg: dict, contagens: dict[str, int]) -> None:

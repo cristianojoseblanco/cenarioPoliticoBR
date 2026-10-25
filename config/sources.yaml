@@ -67,6 +67,14 @@ processamento:
   # (dado pessoal sem uso analítico).
   colunas_excluidas:
     deputados: [cpf]
+  # Histórico de mandato (API): cada evento traz a situação do deputado depois dele.
+  # Em exercício enquanto a última situação conhecida estiver nesta lista.
+  situacoes_exercicio: ["Exercício"]
+  # Eventos cuja descrição contém um destes marcadores abrem um período mesmo quando a situação
+  # registrada é outra (ex.: "Entrada - Reassunção / DIVERSO - Convocação..." com situação CONVOCADO).
+  marcadores_entrada: ["Entrada - "]
+  # Fim de um período ainda aberto (mandato em curso).
+  fim_periodo_aberto: "2100-01-01"
 
 duckdb:
   memory_limit: "4GB"
@@ -130,3 +138,57 @@ fatias:
   nucleo_minimo: 20
   # "Quem mais se moveu": compara a posição média nas primeiras e nas últimas N janelas.
   janelas_comparacao: 3
+
+# Etapa 5 — indicadores de governabilidade. Decisões no vault: Método/Registro de decisões.md
+governabilidade:
+  saida: "data/marts/camara/governabilidade"
+  relatorio: "artifacts/reports/governabilidade.md"
+  orgaos: [PLEN]
+  bancada_governo: "Governo"
+  # Orientações que contam como posição (mesma lógica da codificação A).
+  # "Liberado" e vazio ficam fora das medidas de apoio e disciplina.
+  valores_orientacao: {"Sim": 1, "Não": -1, "Obstrução": -1}
+  # Padronização de nomes de bancada (grafias e nomes cortados -> sigla do partido).
+  # Vale para bancadas de partido e para membros de federação ("Fdr A-B-C").
+  apelidos_bancada:
+    "Novo": "NOVO"
+    "Solidaried": "SOLIDARIEDADE"
+    "Republican": "REPUBLICANOS"
+    "União": "UNIÃO"
+    "Avante": "AVANTE"
+    "Podemos": "PODE"
+    "Missão": "MISSÃO"
+    "Patriota": "PATRIOTA"
+    "CIDADAN": "CIDADANIA"
+  prefixo_federacao: "Fdr "
+  # Bancadas que não são partido (não servem para disciplina).
+  bancadas_nao_partidarias: ["Governo", "Maioria", "Minoria", "Oposição", "Bloco Parlamentar"]
+  # Blocos: terceiro nível (depois de partido e federação). O nome é decifrado pelas
+  # abreviações abaixo; só os membros visíveis antes de "..." entram.
+  blocos:
+    usar: true
+    prefixo: "Bl "
+    abreviacoes:
+      "Uni": "UNIÃO"
+      "Pp": "PP"
+      "Psd": "PSD"
+      "Mdb": "MDB"
+      "Rep": "REPUBLICANOS"
+      "Pode": "PODE"
+      "Psc": "PSC"
+      "Avan": "AVANTE"
+      "Solid": "SOLIDARIEDADE"
+      "Prd": "PRD"
+      "Pl": "PL"
+      "FdrPsdbCid": ["PSDB", "CIDADANIA"]
+      "FdrPt": ["PT", "PCdoB", "PV"]
+      "FdrPT": ["PT", "PCdoB", "PV"]
+  # Disciplina medida em menos desta fração dos votos do partido aparece com aviso.
+  disciplina_cobertura_minima: 0.30
+  # Coesão (índice de Rice) só quando o partido tem pelo menos N votos com valor na votação.
+  rice_min_votos: 5
+  # Votação com proposição destes tipos exige quórum qualificado: placar Sim > Não não basta.
+  tipos_quorum_qualificado: [PEC, PLP]
+  # Participação: "aproximacao" (em exercício = votou no Plenário no mesmo mês)
+  # ou "historico" (períodos de exercício pela API da Câmara).
+  participacao_fonte: "historico"

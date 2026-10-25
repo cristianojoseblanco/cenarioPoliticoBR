@@ -41,8 +41,19 @@ coesão, fragmentação e governabilidade. Começa pela Câmara dos Deputados.
 | `proposicao_tema` | proposição × tema | `origem` = `proprio` ou `herdado_principal` |
 | `proposicao_autor` | proposição × autor | `proponente` separa autor de coautor |
 | `partido_observado` | deputado × período | partido visto nas votações; fusões aparecem como troca |
+| `exercicio` | deputado × período | períodos oficiais em exercício (API, histórico de mandato) |
 
 Relatório: `artifacts/reports/processed_camara.md`.
+
+## Análises (`data/marts/camara`)
+
+| Etapa | Módulo | Saída | Relatório |
+| --- | --- | --- | --- |
+| 3 — rede de votação | `src/networks/votacao.py` | `redes/` (pares, arestas, comunidades, métricas, grafo) | `artifacts/reports/rede_votacao.md` |
+| 4 — tema e tempo | `src/networks/fatias.py` | `fatias/` (posições no eixo entre polos, deslocamentos) | `artifacts/reports/fatias.md` |
+| 5 — governabilidade | `src/governance/indicadores.py` | `governabilidade/` (apoio ao governo, disciplina, coesão, participação, vitórias) | `artifacts/reports/governabilidade.md` |
+
+Notas de método e resultados: repositório `cenarioPoliticoBR-notas` (vault do Obsidian).
 
 ## Rodar localmente
 
@@ -52,7 +63,11 @@ pip install -r requirements.txt
 python -m pytest -q tests
 python -m src.ingestion.camara        # ou: ANOS=2023 python -m src.ingestion.camara
 python -m src.processing.validation
+python -m src.ingestion.camara_api    # histórico de mandatos (API)
 python -m src.processing.entities
+python -m src.networks.votacao
+python -m src.networks.fatias
+python -m src.governance.indicadores
 ```
 
 ## Estrutura
@@ -60,6 +75,7 @@ python -m src.processing.entities
 ```
 config/sources.yaml        parâmetros de fontes, caminhos e DuckDB
 src/ingestion/camara.py    download + CSV → Parquet + metadados
+src/ingestion/camara_api.py   histórico de mandatos pela API
 src/processing/validation.py  relatório de qualidade do staging
 src/processing/entities.py    camada processada (tabelas limpas e ligadas por ID)
 data/staging/camara/<dataset>/ano=<ano>/part-0.parquet
