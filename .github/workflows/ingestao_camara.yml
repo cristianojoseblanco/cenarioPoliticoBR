@@ -41,6 +41,9 @@ jobs:
           ANOS: ${{ github.event.inputs.anos }}
         run: python -m src.ingestion.camara
 
+      - name: Histórico de mandatos (API)
+        run: python -m src.ingestion.camara_api
+
       - name: Relatório de qualidade
         if: always()
         run: python -m src.processing.validation

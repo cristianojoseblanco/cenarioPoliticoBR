@@ -30,6 +30,13 @@ camara:
   datasets_unicos:
     - deputados
 
+  # API REST (dados que não existem em arquivo em lote)
+  api_base: "https://dadosabertos.camara.leg.br/api/v2"
+  api_pausa_s: 0.15
+  # Legislaturas cujos deputados terão o histórico de mandato baixado
+  # (somados aos deputados que aparecem nos votos ingeridos).
+  legislaturas_historico: [57]
+
   # Colunas-chave esperadas, conferidas no relatório de qualidade.
   # Se a Câmara mudar o esquema, o relatório acusa; o código não quebra.
   chaves:
