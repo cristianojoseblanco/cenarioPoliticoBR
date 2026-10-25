@@ -20,7 +20,7 @@ concurrency:
 jobs:
   ingestao:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
 
@@ -68,9 +68,9 @@ jobs:
         run: |
           cat artifacts/reports/qualidade_camara.md >> "$GITHUB_STEP_SUMMARY" || true
           cat artifacts/reports/processed_camara.md >> "$GITHUB_STEP_SUMMARY" || true
-          cat artifacts/reports/rede_votacao.md >> "$GITHUB_STEP_SUMMARY" || true
-          cat artifacts/reports/fatias.md >> "$GITHUB_STEP_SUMMARY" || true
-          cat artifacts/reports/governabilidade.md >> "$GITHUB_STEP_SUMMARY" || true
+          for f in artifacts/reports/leg*/*.md artifacts/reports/comparacao.md; do
+            [ -f "$f" ] && { echo "## $f"; cat "$f"; } >> "$GITHUB_STEP_SUMMARY"
+          done || true
 
       - name: Publicar pacotes de dados no Release
         env:

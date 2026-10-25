@@ -5,9 +5,12 @@ camara:
   formato: "csv"
   csv_delim: ";"
 
-  # Anos ingeridos por padrão (legislatura 57: 2023–2027).
+  # Anos ingeridos por padrão (legislaturas 56 e 57: 2019–2027).
   # Pode ser sobrescrito pela variável de ambiente ANOS (ex.: "2023,2024").
-  anos_padrao: [2023, 2024, 2025, 2026]
+  anos_padrao: [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+  # Anos mais antigos que (ano atual − N) não são baixados de novo se já existem:
+  # a fonte quase não muda e isso poupa tempo de execução.
+  recarregar_anos_recentes: 2
 
   # Arquivos separados por ano: {base_url}/{nome}/{formato}/{nome}-{ano}.{formato}
   datasets_anuais:
@@ -35,7 +38,7 @@ camara:
   api_pausa_s: 0.15
   # Legislaturas cujos deputados terão o histórico de mandato baixado
   # (somados aos deputados que aparecem nos votos ingeridos).
-  legislaturas_historico: [57]
+  legislaturas_historico: [56, 57]
 
   # Colunas-chave esperadas, conferidas no relatório de qualidade.
   # Se a Câmara mudar o esquema, o relatório acusa; o código não quebra.
@@ -202,3 +205,15 @@ armazenamento:
   pacotes:
     staging_camara: "data/staging/camara"
     processed_camara: "data/processed/camara"
+
+# Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
+# `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
+legislaturas:
+  "56": {inicio: "2019-02-01", fim: "2023-01-31"}
+  "57": {inicio: "2023-02-01", fim: "2027-01-31"}
+# Períodos marcados nos gráficos e notas (não excluem dados).
+marcadores_periodo:
+  - inicio: "2020-03-17"
+    fim: "2021-10-21"
+    rotulo: "votação remota (aprox.)"
+    fonte: "Resolução da Câmara 14/2020; Ato da Mesa 208/2021"

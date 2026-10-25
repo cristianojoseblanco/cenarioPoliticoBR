@@ -34,15 +34,18 @@ def carregar(cfg):
     g = cfg["governabilidade"]
     con = connect(cfg)
     orgaos = ", ".join(f"'{o}'" for o in g["orgaos"])
+    per = cfg["redes"].get("periodo", {})
+    filtro = "".join([f" AND data >= DATE '{per['inicio']}'" if per.get("inicio") else "",
+                      f" AND data <= DATE '{per['fim']}'" if per.get("fim") else ""])
     votacoes = con.execute(
         f"""SELECT votacao_id, data, data_hora_registro, aprovacao, placar_sim, placar_nao
-            FROM {_src(cfg, 'votacoes')} WHERE nominal AND sigla_orgao IN ({orgaos})"""
+            FROM {_src(cfg, 'votacoes')} WHERE nominal AND sigla_orgao IN ({orgaos}){filtro}"""
     ).df()
     votos = con.execute(
         f"""SELECT v.votacao_id, v.deputado_id, v.voto, v.partido_na_votacao AS partido, v.uf,
                    vt.data, vt.data_hora_registro
             FROM {_src(cfg, 'votos')} v JOIN {_src(cfg, 'votacoes')} vt USING (votacao_id)
-            WHERE vt.nominal AND vt.sigla_orgao IN ({orgaos})"""
+            WHERE vt.nominal AND vt.sigla_orgao IN ({orgaos}){filtro.replace("data", "vt.data")}"""
     ).df()
     orient = con.execute(f"SELECT votacao_id, bancada, orientacao FROM {_src(cfg, 'orientacoes')}").df()
     orient = orient[orient["votacao_id"].isin(votacoes["votacao_id"])]
@@ -245,8 +248,7 @@ def grafico_partidos(part, destino, cob_min, minimo=8):
 
 # ---------------------------------------------------------------- principal
 
-def main() -> int:
-    cfg = load_config()
+def rodar(cfg: dict) -> int:
     g = cfg["governabilidade"]
     saida = ROOT / g["saida"]
     saida.mkdir(parents=True, exist_ok=True)
@@ -417,12 +419,26 @@ def main() -> int:
         L.append(f"| {row['data']:%Y-%m-%d} | {row['votacao_id']} | {row['orient_gov']} | "
                  f"{n(row['placar_sim'])} Sim × {n(row['placar_nao'])} Não |")
     L.append("")
+    (ROOT / g["relatorio"]).parent.mkdir(parents=True, exist_ok=True)
     (ROOT / g["relatorio"]).write_text("\n".join(L), encoding="utf-8")
     (saida / "resumo.json").write_text(json.dumps({
         "votacoes": len(res), "votacoes_gov": len(gv), "vitorias_gov": int(gv["governo_venceu"].sum()),
         "participacao_fonte": fonte,
     }, ensure_ascii=False, indent=2), encoding="utf-8")
     print("\n".join(L))
+    return 0
+
+
+def main() -> int:
+    from src.config import legislatura_tem_dados, por_legislatura
+
+    cfg = load_config()
+    for leg, c in por_legislatura(cfg):
+        if not legislatura_tem_dados(c):
+            print(f"===== legislatura {leg}: sem dados suficientes, pulada =====")
+            continue
+        print(f"===== legislatura {leg} =====")
+        rodar(c)
     return 0
 
 

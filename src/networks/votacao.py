@@ -234,8 +234,7 @@ def desenhar(g, membros, partidos, destino):
     plt.close(fig)
 
 
-def main() -> int:
-    cfg = load_config()
+def rodar(cfg: dict) -> int:
     r = cfg["redes"]
     saida = ROOT / r["saida"]
     saida.mkdir(parents=True, exist_ok=True)
@@ -398,6 +397,19 @@ def main() -> int:
     rel.parent.mkdir(parents=True, exist_ok=True)
     rel.write_text("\n".join(L), encoding="utf-8")
     print("\n".join(L))
+    return 0
+
+
+def main() -> int:
+    from src.config import legislatura_tem_dados, por_legislatura
+
+    cfg = load_config()
+    for leg, c in por_legislatura(cfg):
+        if not legislatura_tem_dados(c):
+            print(f"===== legislatura {leg}: sem dados suficientes, pulada =====")
+            continue
+        print(f"===== legislatura {leg} =====")
+        rodar(c)
     return 0
 
 

@@ -86,6 +86,10 @@ def _ingest_one(con, cfg: dict, nome: str, ano: int | None) -> dict:
     anterior = json.loads(meta_file.read_text(encoding="utf-8")) if meta_file.exists() else {}
 
     print(f"→ {arquivo}")
+    recentes = c.get("recarregar_anos_recentes")
+    if ano and recentes is not None and ano < datetime.now().year - recentes and destino.exists() and anterior:
+        print("  ano consolidado; mantido")
+        return {"arquivo": arquivo, "status": "consolidado"}
     csv_path = tmp_dir / f"{arquivo}.{fmt}"
     inicio = time.time()
     sha = _download(url, csv_path, cfg["http"])
