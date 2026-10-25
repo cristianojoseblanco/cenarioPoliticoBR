@@ -8,7 +8,7 @@ coesão, fragmentação e governabilidade. Começa pela Câmara dos Deputados.
 | Camada | Onde | O quê |
 | --- | --- | --- |
 | Ingestão | GitHub Actions | Baixa os arquivos em lote da Câmara, converte para Parquet e commita no repositório |
-| Armazenamento | Este repositório | `data/staging` (Parquet fiel à fonte) e `data/metadata` (origem, hash, linhas) |
+| Armazenamento | Git + Release `dados` | resultados pequenos e metadados no Git; staging e processed no Release (ver Armazenamento) |
 | Análise | Clone do repositório + DuckDB | Matriz de votação, grafos, comunidades, indicadores |
 | Painel | Streamlit Community Cloud | `app/Home.py`, lendo os Parquet do repositório (Fase 4) |
 
