@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "votacoesOrientacoes",
+  "ano": 2019,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/votacoesOrientacoes/csv/votacoesOrientacoes-2019.csv",
+  "coletado_em": "2026-10-25T19:48:19+00:00",
+  "sha256": "1405553e25671e0ec942d3a91c030270e1973886cbb7bf165a8a21b5da3bb559",
+  "linhas": 7085,
+  "bytes_csv": 1701827,
+  "bytes_parquet": 29088,
+  "segundos": 2.8,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

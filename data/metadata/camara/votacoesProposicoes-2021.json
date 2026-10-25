@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "votacoesProposicoes",
+  "ano": 2021,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/votacoesProposicoes/csv/votacoesProposicoes-2021.csv",
+  "coletado_em": "2026-10-25T19:48:53+00:00",
+  "sha256": "50f4a965638df70cbfa979ceff6da598a9b613ff0ae1eee7c9e68d9cf313c89d",
+  "linhas": 7936,
+  "bytes_csv": 4553148,
+  "bytes_parquet": 463149,
+  "segundos": 3.1,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

@@ -1,0 +1,26 @@
+{
+  "polo_a": "C2",
+  "polo_b": "C3",
+  "composicao": {
+    "C1": "PL 40, PP 40",
+    "C2": "PT 58, PSB 30",
+    "C3": "PSL 49, PSD 9",
+    "C4": "PSDB 33, NOVO 8",
+    "C5": "REPUBLICANOS 34, SOLIDARIEDADE 3",
+    "C6": "MDB 32, REPUBLICANOS 1",
+    "C7": "DEM 23, PTB 1",
+    "C8": "PDT 21, CIDADANIA 1"
+  },
+  "nucleo_a": 118,
+  "nucleo_b": 76,
+  "tamanho_nucleos": {
+    "C1": 150,
+    "C2": 118,
+    "C3": 76,
+    "C4": 44,
+    "C5": 34,
+    "C6": 26,
+    "C7": 0,
+    "C8": 0
+  }
+}

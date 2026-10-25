@@ -1,0 +1,86 @@
+{
+  "parametros": {
+    "codificacao": "A",
+    "minoria": 0.025,
+    "k": 15,
+    "min_votos_comuns": 50,
+    "orgaos": [
+      "PLEN"
+    ],
+    "periodo": {
+      "inicio": "2019-02-01",
+      "fim": "2023-01-31"
+    },
+    "leiden": {
+      "resolucao": 1.0,
+      "sementes": 20
+    }
+  },
+  "votacoes": {
+    "votacoes_total": 1971,
+    "sem_voto_com_valor": 1,
+    "abaixo_minoria": 247,
+    "incluidas": 1723
+  },
+  "deputados_na_matriz": 597,
+  "deputados_no_grafo": 592,
+  "arestas": 7374,
+  "comunidades": {
+    "C1": 172,
+    "C2": 119,
+    "C3": 113,
+    "C4": 68,
+    "C5": 41,
+    "C6": 33,
+    "C7": 24,
+    "C8": 22
+  },
+  "modularidade": 0.5271266060334842,
+  "estabilidade_sementes_ari": 0.9007634864623771,
+  "ari_com_partido": 0.30323972688644923,
+  "nmi_com_partido": 0.541705964078387,
+  "sensibilidade": {
+    "codificacao=B": {
+      "ari_vs_principal": 0.982196561098933,
+      "comunidades": 8,
+      "modularidade": 0.5287121431186076,
+      "deputados": 592,
+      "votacoes": 1724
+    },
+    "codificacao=C": {
+      "ari_vs_principal": 0.9252754625611778,
+      "comunidades": 8,
+      "modularidade": 0.5257500292644126,
+      "deputados": 592,
+      "votacoes": 1723
+    },
+    "minoria=0.0": {
+      "ari_vs_principal": 0.8735649271148501,
+      "comunidades": 8,
+      "modularidade": 0.5216268397332481,
+      "deputados": 593,
+      "votacoes": 1970
+    },
+    "minoria=0.1": {
+      "ari_vs_principal": 0.7999733437545906,
+      "comunidades": 8,
+      "modularidade": 0.5431645782221736,
+      "deputados": 591,
+      "votacoes": 1396
+    },
+    "knn=10": {
+      "ari_vs_principal": 0.7652166674512836,
+      "comunidades": 10,
+      "modularidade": 0.5385728966779982,
+      "deputados": 592,
+      "votacoes": 1723
+    },
+    "knn=25": {
+      "ari_vs_principal": 0.7208034925180193,
+      "comunidades": 6,
+      "modularidade": 0.5106798704670586,
+      "deputados": 592,
+      "votacoes": 1723
+    }
+  }
+}

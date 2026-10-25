@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "proposicoesAutores",
+  "ano": 1995,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoesAutores/csv/proposicoesAutores-1995.csv",
+  "coletado_em": "2026-10-25T19:49:59+00:00",
+  "sha256": "342e642bffce0bc8e13e9fc59b65751fee7629af8430adee172b5537c97fc31f",
+  "linhas": 5217,
+  "bytes_csv": 1311477,
+  "bytes_parquet": 72404,
+  "segundos": 2.1,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

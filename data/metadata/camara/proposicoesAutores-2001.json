@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "proposicoesAutores",
+  "ano": 2001,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoesAutores/csv/proposicoesAutores-2001.csv",
+  "coletado_em": "2026-10-25T19:50:21+00:00",
+  "sha256": "eec65700a03906eb7fbc4fdc5bef07542602b6fad7cee3f5b8b957b7a11d814a",
+  "linhas": 19021,
+  "bytes_csv": 4745582,
+  "bytes_parquet": 171512,
+  "segundos": 3.0,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

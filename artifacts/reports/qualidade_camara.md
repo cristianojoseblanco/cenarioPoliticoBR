@@ -10,7 +10,11 @@ Problemas encontrados: 0
 
 ## votacoes
 
-- Linhas: 42.490
+- Linhas: 68.291
+  - 2019: 8.730
+  - 2020: 1.493
+  - 2021: 9.998
+  - 2022: 5.580
   - 2023: 10.851
   - 2024: 10.373
   - 2025: 13.827
@@ -20,7 +24,11 @@ Problemas encontrados: 0
 
 ## votacoesVotos
 
-- Linhas: 473.272
+- Linhas: 1.273.413
+  - 2019: 120.998
+  - 2020: 159.717
+  - 2021: 322.237
+  - 2022: 197.189
   - 2023: 128.679
   - 2024: 116.400
   - 2025: 175.067
@@ -28,16 +36,20 @@ Problemas encontrados: 0
 - Colunas (12): `idVotacao`, `uriVotacao`, `dataHoraVoto`, `voto`, `deputado_id`, `deputado_uri`, `deputado_nome`, `deputado_siglaPartido`, `deputado_uriPartido`, `deputado_siglaUf`, `deputado_idLegislatura`, `deputado_urlFoto`
 - Chave (idVotacao, deputado_id) única
 - Valores de `voto`:
-  - `Sim`: 277.280 de 473.272 (58,6%)
-  - `Não`: 187.657 de 473.272 (39,7%)
-  - `Obstrução`: 5.272 de 473.272 (1,1%)
-  - `Abstenção`: 1.131 de 473.272 (0,2%)
-  - `Artigo 17`: 1.045 de 473.272 (0,2%)
-  - `None`: 887 de 473.272 (0,2%)
+  - `Sim`: 697.973 de 1.273.413 (54,8%)
+  - `Não`: 549.659 de 1.273.413 (43,2%)
+  - `Obstrução`: 18.938 de 1.273.413 (1,5%)
+  - `Abstenção`: 2.809 de 1.273.413 (0,2%)
+  - `Artigo 17`: 2.799 de 1.273.413 (0,2%)
+  - `None`: 1.235 de 1.273.413 (0,1%)
 
 ## votacoesOrientacoes
 
-- Linhas: 15.571
+- Linhas: 68.838
+  - 2019: 7.085
+  - 2020: 9.352
+  - 2021: 22.415
+  - 2022: 14.415
   - 2023: 4.359
   - 2024: 4.361
   - 2025: 4.947
@@ -47,7 +59,11 @@ Problemas encontrados: 0
 
 ## votacoesProposicoes
 
-- Linhas: 32.338
+- Linhas: 51.882
+  - 2019: 5.880
+  - 2020: 1.434
+  - 2021: 7.936
+  - 2022: 4.294
   - 2023: 8.811
   - 2024: 7.459
   - 2025: 10.331
@@ -57,7 +73,13 @@ Problemas encontrados: 0
 
 ## proposicoes
 
-- Linhas: 796.570
+- Linhas: 846.732
+  - 1991: 4.436
+  - 1995: 4.780
+  - 1997: 4.122
+  - 2000: 7.476
+  - 2001: 13.101
+  - 2002: 16.247
   - 2003: 31.994
   - 2004: 23.739
   - 2005: 26.150
@@ -84,7 +106,13 @@ Problemas encontrados: 0
 
 ## proposicoesTemas
 
-- Linhas: 278.819
+- Linhas: 295.565
+  - 1991: 1.472
+  - 1995: 1.415
+  - 1997: 2.424
+  - 2000: 3.072
+  - 2001: 3.456
+  - 2002: 4.907
   - 2003: 8.492
   - 2004: 5.115
   - 2005: 7.250
@@ -111,7 +139,13 @@ Problemas encontrados: 0
 
 ## proposicoesAutores
 
-- Linhas: 1.660.453
+- Linhas: 1.730.081
+  - 1991: 4.629
+  - 1995: 5.217
+  - 1997: 4.559
+  - 2000: 10.201
+  - 2001: 19.021
+  - 2002: 26.001
   - 2003: 220.184
   - 2004: 75.914
   - 2005: 74.784
@@ -138,8 +172,12 @@ Problemas encontrados: 0
 
 ## Cobertura das proposições com votação nominal
 
+- 2019: com tema 77 de 78 (98,7%); com cadastro 78 de 78 (100,0%)
+- 2020: com tema 83 de 95 (87,4%); com cadastro 95 de 95 (100,0%)
+- 2021: com tema 257 de 309 (83,2%); com cadastro 309 de 309 (100,0%)
+- 2022: com tema 165 de 193 (85,5%); com cadastro 193 de 193 (100,0%)
 - 2023: com tema 182 de 229 (79,5%); com cadastro 229 de 229 (100,0%)
 - 2024: com tema 186 de 235 (79,1%); com cadastro 235 de 235 (100,0%)
 - 2025: com tema 216 de 241 (89,6%); com cadastro 241 de 241 (100,0%)
 - 2026: com tema 99 de 112 (88,4%); com cadastro 112 de 112 (100,0%)
-- Total: com tema 683 de 817 (83,6%); com cadastro 817 de 817 (100,0%)
+- Total: com tema 1.265 de 1.492 (84,8%); com cadastro 1.492 de 1.492 (100,0%)

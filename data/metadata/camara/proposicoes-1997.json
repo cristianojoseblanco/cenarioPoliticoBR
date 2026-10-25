@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "proposicoes",
+  "ano": 1997,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoes/csv/proposicoes-1997.csv",
+  "coletado_em": "2026-10-25T19:50:02+00:00",
+  "sha256": "a6c2fe59e6c4989074ee73bdeb0c34eb4f1ae2aaa58f88a4d9cb82f94fc5f6a6",
+  "linhas": 4122,
+  "bytes_csv": 4310968,
+  "bytes_parquet": 622992,
+  "segundos": 2.8,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}
