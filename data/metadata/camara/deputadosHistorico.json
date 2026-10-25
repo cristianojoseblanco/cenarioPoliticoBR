@@ -1,0 +1,11 @@
+{
+  "fonte": "camara_api",
+  "dataset": "deputadosHistorico",
+  "url": "https://dadosabertos.camara.leg.br/api/v2/deputados/{id}/historico",
+  "coletado_em": "2026-10-25T15:07:56+00:00",
+  "sha256": "14bc88022be7424b3b5f89441b1c40043f6cea4cc41e7c8db7cf968598c3cd28",
+  "linhas": 6863,
+  "deputados": 648,
+  "erros": 0,
+  "transformacao": "JSON -> parquet, todas as colunas como texto"
+}
