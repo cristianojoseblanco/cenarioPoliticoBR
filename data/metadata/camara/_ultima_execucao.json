@@ -1,5 +1,5 @@
 {
-  "executado_em": "2026-10-24T22:33:43+00:00",
+  "executado_em": "2026-10-25T12:43:57+00:00",
   "anos": [
     2026
   ],
@@ -30,7 +30,7 @@
     },
     {
       "arquivo": "proposicoesTemas-2003",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesAutores-2003",
@@ -54,7 +54,7 @@
     },
     {
       "arquivo": "proposicoesTemas-2005",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesAutores-2005",
@@ -126,7 +126,7 @@
     },
     {
       "arquivo": "proposicoesTemas-2013",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesAutores-2013",
@@ -150,7 +150,7 @@
     },
     {
       "arquivo": "proposicoesTemas-2015",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesAutores-2015",
@@ -278,7 +278,7 @@
     },
     {
       "arquivo": "proposicoes-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesTemas-2026",
