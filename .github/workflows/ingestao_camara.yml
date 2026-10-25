@@ -36,6 +36,9 @@ jobs:
       - name: Testes
         run: python -m pytest -q tests
 
+      - name: Baixar pacotes de dados do Release
+        run: python -m src.storage baixar || echo "Sem pacotes ainda; ingestão completa."
+
       - name: Baixar e converter
         env:
           ANOS: ${{ github.event.inputs.anos }}
@@ -69,12 +72,17 @@ jobs:
           cat artifacts/reports/fatias.md >> "$GITHUB_STEP_SUMMARY" || true
           cat artifacts/reports/governabilidade.md >> "$GITHUB_STEP_SUMMARY" || true
 
-      - name: Commit dos dados
+      - name: Publicar pacotes de dados no Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m src.storage publicar
+
+      - name: Commit dos resultados
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/staging data/processed data/marts data/metadata artifacts/reports
+          git add data/marts data/metadata artifacts/reports
           # só commita se algum dado mudou (o log de execução sozinho não conta)
           if git diff --cached --name-only | grep -v '_ultima_execucao.json' | grep -q .; then
             git commit -m "dados: ingestão Câmara $(date -u +%F)"

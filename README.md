@@ -12,6 +12,16 @@ coesão, fragmentação e governabilidade. Começa pela Câmara dos Deputados.
 | Análise | Clone do repositório + DuckDB | Matriz de votação, grafos, comunidades, indicadores |
 | Painel | Streamlit Community Cloud | `app/Home.py`, lendo os Parquet do repositório (Fase 4) |
 
+## Armazenamento
+
+| Onde | O quê | Histórico |
+| --- | --- | --- |
+| Git | código, config, `data/metadata`, `data/marts` (resultados pequenos), relatórios | sim |
+| Release `dados` | `staging_camara.tar`, `processed_camara.tar` (camadas grandes) | não: substituído a cada execução |
+
+Para ter as camadas grandes localmente (ou no Colab): `python -m src.storage baixar`.
+O workflow baixa os pacotes no início, roda tudo e publica de novo no fim.
+
 ## Ingestão
 
 - Automática toda segunda-feira.
@@ -70,6 +80,7 @@ Páginas: Rede, Tempo, Temas, Partidos e Deputado. Dependências leves em `app/r
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python -m pytest -q tests
+python -m src.storage baixar          # camadas grandes do Release (opcional)
 python -m src.ingestion.camara        # ou: ANOS=2023 python -m src.ingestion.camara
 python -m src.processing.validation
 python -m src.ingestion.camara_api    # histórico de mandatos (API)

@@ -192,3 +192,13 @@ governabilidade:
   # Participação: "aproximacao" (em exercício = votou no Plenário no mesmo mês)
   # ou "historico" (períodos de exercício pela API da Câmara).
   participacao_fonte: "historico"
+
+# Armazenamento. Camadas grandes (staging, processed) NÃO ficam no Git: vão como pacotes
+# num Release fixo do GitHub, substituídos a cada execução (sem histórico acumulado).
+# No Git ficam só código, config, metadados, relatórios e marts (resultados pequenos).
+armazenamento:
+  repositorio: "cristianojoseblanco/cenarioPoliticoBR"
+  release_tag: "dados"
+  pacotes:
+    staging_camara: "data/staging/camara"
+    processed_camara: "data/processed/camara"

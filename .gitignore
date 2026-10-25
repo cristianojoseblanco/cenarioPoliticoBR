@@ -8,3 +8,7 @@ data/raw/_tmp/
 *.tmp
 database/*.duckdb
 database/*.duckdb.wal
+
+# Camadas grandes ficam no GitHub Release `dados` (python -m src.storage baixar)
+data/staging/
+data/processed/
