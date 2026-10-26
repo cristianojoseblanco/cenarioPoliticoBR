@@ -57,7 +57,7 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 ## Participação
 
 - Fonte: **historico** (períodos oficiais de exercício, API da Câmara)
-- Participação média dos deputados: 79,1%
+- Participação média dos deputados: 79,2%
 - Votos registrados fora de um período de exercício: 38
 
 | Comunidade | Participação média |

@@ -14,7 +14,7 @@ Mesmos parâmetros nas duas. Polos e comunidades são calculados separadamente e
 | Polo B | C3 (PSL 49, PSD 9) | C4 (PT 75, PSB 14) |
 | Concordância entre polos (janelas: mín.–máx.) | 20,7% a 36,4% | 17,4% a 38,6% |
 | Vitórias do governo | 1.506 de 1.595 (94,4%) | 750 de 878 (85,4%) |
-| Participação média | 77,9% | 79,1% |
+| Participação média | 78,0% | 79,2% |
 | Coesão média dos partidos (Rice, ponderada) | 86,4% | 81,6% |
 
 ## Partidos: apoio ao governo em cada legislatura (5+ deputados nas duas)

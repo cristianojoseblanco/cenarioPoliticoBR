@@ -2,9 +2,9 @@
   "fonte": "camara_api",
   "dataset": "deputadosHistorico",
   "url": "https://dadosabertos.camara.leg.br/api/v2/deputados/{id}/historico",
-  "coletado_em": "2026-10-25T20:03:55+00:00",
-  "sha256": "49cca4df99ae5c89c117e2ad9af8967dd828f0792bbebc383c62a93f098e403e",
-  "linhas": 9755,
+  "coletado_em": "2026-10-26T16:20:27+00:00",
+  "sha256": "5f26eb11e7119b7d3ed7b12ec729d02aa2e2526bcbefaea847f3e1c97de8db98",
+  "linhas": 9757,
   "deputados": 930,
   "erros": 0,
   "transformacao": "JSON -> parquet, todas as colunas como texto"
