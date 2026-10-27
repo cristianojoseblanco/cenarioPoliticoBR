@@ -73,7 +73,7 @@ Problemas encontrados: 0
 
 ## proposicoes
 
-- Linhas: 846.732
+- Linhas: 846.813
   - 1991: 4.436
   - 1995: 4.780
   - 1997: 4.122
@@ -101,12 +101,12 @@ Problemas encontrados: 0
   - 2023: 62.437
   - 2024: 61.536
   - 2025: 107.587
-  - 2026: 46.823
+  - 2026: 46.904
 - Colunas (30): `id`, `uri`, `siglaTipo`, `numero`, `codTipo`, `descricaoTipo`, `ementa`, `ementaDetalhada`, `keywords`, `dataApresentacao`, `uriOrgaoNumerador`, `uriPropAnterior`, `uriPropPrincipal`, `uriPropPosterior`, `urlInteiroTeor`, `urnFinal`, `ultimoStatus_dataHora`, `ultimoStatus_sequencia`, `ultimoStatus_uriRelator`, `ultimoStatus_idOrgao`, `ultimoStatus_siglaOrgao`, `ultimoStatus_uriOrgao`, `ultimoStatus_regime`, `ultimoStatus_descricaoTramitacao`, `ultimoStatus_idTipoTramitacao`, `ultimoStatus_descricaoSituacao`, `ultimoStatus_idSituacao`, `ultimoStatus_despacho`, `ultimoStatus_apreciacao`, `ultimoStatus_url`
 
 ## proposicoesTemas
 
-- Linhas: 295.565
+- Linhas: 295.607
   - 1991: 1.472
   - 1995: 1.415
   - 1997: 2.424
@@ -134,12 +134,12 @@ Problemas encontrados: 0
   - 2023: 22.917
   - 2024: 23.732
   - 2025: 40.909
-  - 2026: 25.626
+  - 2026: 25.668
 - Colunas (6): `uriProposicao`, `siglaTipo`, `numero`, `codTema`, `tema`, `relevancia`
 
 ## proposicoesAutores
 
-- Linhas: 1.730.081
+- Linhas: 1.730.162
   - 1991: 4.629
   - 1995: 5.217
   - 1997: 4.559
@@ -167,7 +167,7 @@ Problemas encontrados: 0
   - 2023: 164.953
   - 2024: 97.124
   - 2025: 154.579
-  - 2026: 58.789
+  - 2026: 58.870
 - Colunas (12): `idProposicao`, `uriProposicao`, `idDeputadoAutor`, `uriAutor`, `codTipoAutor`, `tipoAutor`, `nomeAutor`, `siglaPartidoAutor`, `uriPartidoAutor`, `siglaUFAutor`, `ordemAssinatura`, `proponente`
 
 ## Cobertura das proposições com votação nominal
