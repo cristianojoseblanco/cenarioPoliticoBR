@@ -53,6 +53,8 @@ O workflow baixa os pacotes no início, roda tudo e publica de novo no fim.
 | `proposicao_autor` | proposição × autor | `proponente` separa autor de coautor |
 | `partido_observado` | deputado × período | partido visto nas votações; fusões aparecem como troca |
 | `exercicio` | deputado × período | períodos oficiais em exercício (API, histórico de mandato) |
+| `frentes` | frente | frentes parlamentares, todas as legislaturas |
+| `frente_membro` | frente × deputado | membros e coordenadores |
 
 Relatório: `artifacts/reports/processed_camara.md`.
 
@@ -67,6 +69,7 @@ Relatório: `artifacts/reports/processed_camara.md`.
 | Dimensões de voto | `src/networks/dimensoes.py` | `leg<N>/dimensoes/` (PCA com imputação iterativa: mapa 2D, temas e votações que definem cada dimensão) | `artifacts/reports/leg<N>/dimensoes.md` |
 | Dinâmica mensal | `src/governance/dinamica.py` | `leg<N>/dinamica/` (agenda por tema, polarização, votações apertadas, folga do governo) | `artifacts/reports/leg<N>/dinamica.md` |
 | Pontos de mudança | `src/networks/mudancas.py` | `leg<N>/mudancas/` (PELT nas séries mensais, trechos, troca de grupo entre janelas) | `artifacts/reports/leg<N>/mudancas.md` |
+| Frentes e coautoria | `src/networks/multicamadas.py` | `leg<N>/multicamadas/` (camadas voto, frentes e coautoria; efeito temático de frentes-chave; coesão além do partido; Leiden multiplex) | `artifacts/reports/leg<N>/multicamadas.md` |
 | Deputados acompanhados | `src/governance/acompanhamento.py` | `acompanhamento/` (ficha mensal: segue o partido, vota com a bancada, apoio ao governo, votos contra o partido) | `artifacts/reports/acompanhamento.md` |
 
 Para acompanhar um deputado, acrescente-o em `acompanhar` no config (com `id` da Câmara, ou nome + UF
@@ -80,7 +83,7 @@ Notas de método e resultados: repositório `cenarioPoliticoBR-notas` (vault do 
 ## Painel (Etapa 6)
 
 `app/Home.py` + `app/pages/`: Streamlit lendo só os arquivos de `data/marts` (nada pesado roda no painel).
-Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças e Acompanhados. Dependências leves em `app/requirements.txt`.
+Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças, Acompanhados e Frentes. Dependências leves em `app/requirements.txt`.
 
 - Local: `streamlit run app/Home.py`
 - Nuvem: Streamlit Community Cloud apontando para `app/Home.py` neste repositório; o painel se atualiza
@@ -110,6 +113,7 @@ python -m src.networks.comparacao
 python -m src.networks.dimensoes
 python -m src.governance.dinamica
 python -m src.networks.mudancas
+python -m src.networks.multicamadas
 python -m src.governance.acompanhamento
 python -m src.site.gerar
 ```

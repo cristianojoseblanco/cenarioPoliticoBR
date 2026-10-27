@@ -1,6 +1,6 @@
 # Camada processada — Câmara
 
-Gerado em 2026-10-27T22:46:00+00:00
+Gerado em 2026-10-27T22:50:58+00:00
 
 ## Tabelas
 
@@ -13,6 +13,8 @@ Gerado em 2026-10-27T22:46:00+00:00
 - `proposicao_autor`: 1.730.162 linhas
 - `proposicao_tema`: 1.067.761 linhas
 - `partido_observado`: 1.489 linhas
+- `frentes`: 1.443 linhas
+- `frente_membro`: 262.014 linhas
 - `exercicio`: 2.756 linhas
 
 ## Cobertura de tema (proposições com votação nominal)

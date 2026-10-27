@@ -265,6 +265,36 @@ mudancas:
   # Evento de contexto associado ao ponto se estiver a até N dias.
   janela_contexto_dias: 90
 
+# Rede em várias camadas (voto, frentes parlamentares, coautoria), por legislatura.
+multicamadas:
+  # Coautoria: só estes tipos, autores deputados proponentes, no máximo N autores por proposição
+  # (acima disso é abaixo-assinado, não parceria).
+  tipos_coautoria: [PL, PLP, PEC, PDL]
+  max_autores: 30
+  # Coesão de frente: só frentes com N+ membros com voto; sorteios com a mesma composição partidária.
+  min_membros_frente: 10
+  sorteios: 200
+  semente: 0
+  percentil_bloco: 0.95
+  # Frentes-chave e os temas oficiais ligados a cada uma (escolha revisável). `padrao` = expressão no título,
+  # procurada entre as frentes da legislatura.
+  frentes_tematicas:
+    - {nome: "Agropecuária (FPA)", padrao: "Agropecuária - FPA", temas: ["Agricultura, Pecuária, Pesca e Extrativismo", "Estrutura Fundiária", "Meio Ambiente e Desenvolvimento Sustentável"]}
+    - {nome: "Ambientalista", padrao: "Ambientalista", temas: ["Meio Ambiente e Desenvolvimento Sustentável", "Estrutura Fundiária", "Agricultura, Pecuária, Pesca e Extrativismo"]}
+    - {nome: "Agricultura Familiar", padrao: "Mista da Agricultura Familiar", temas: ["Agricultura, Pecuária, Pesca e Extrativismo", "Estrutura Fundiária"]}
+    - {nome: "Povos Indígenas", padrao: "Direitos dos Povos Indígenas", temas: ["Direitos Humanos e Minorias", "Estrutura Fundiária", "Meio Ambiente e Desenvolvimento Sustentável"]}
+    - {nome: "Evangélica", padrao: "Evangélica do Congresso", temas: ["Direitos Humanos e Minorias", "Arte, Cultura e Religião", "Educação"]}
+    - {nome: "Vida e Família", padrao: "Defesa da Vida e da Família", temas: ["Direitos Humanos e Minorias", "Direito Penal e Processual Penal", "Educação"]}
+    - {nome: "Segurança Pública", padrao: "^Frente Parlamentar da Segurança Pública$", temas: ["Defesa e Segurança", "Direito Penal e Processual Penal"]}
+    - {nome: "Livre Mercado", padrao: "Livre Mercado", temas: ["Economia", "Trabalho e Emprego", "Indústria, Comércio e Serviços", "Finanças Públicas e Orçamento"]}
+  # Em cada votação, partido entra com pelo menos N membros e N não membros votando.
+  min_por_lado: 3
+  reamostragens: 200
+  # Efeito do tema só é chamado de claro com intervalos separados E diferença de pelo menos isto.
+  efeito_minimo: 0.01
+  # Peso de cada camada nas comunidades multicamada (Leiden multiplex).
+  pesos_camadas: {voto: 1.0, frentes: 0.5, coautoria: 0.5}
+
 # Deputados acompanhados (ficha mensal). `id` = identificador da Câmara, quando já existe.
 # Sem id, a identificação é pelo nome parlamentar (sem acento/caixa) em deputados da legislatura
 # `desde_legislatura` em diante, conferida pela UF dos votos.

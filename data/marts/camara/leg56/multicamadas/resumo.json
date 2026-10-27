@@ -1,0 +1,24 @@
+{
+  "camadas": [
+    "voto",
+    "coautoria",
+    "frentes"
+  ],
+  "pesos": {
+    "voto": 1.0,
+    "coautoria": 0.5,
+    "frentes": 0.5
+  },
+  "comunidades_multi": 8,
+  "comunidades_voto": 8,
+  "ari_multi_voto": 0.7161413914549003,
+  "ari_multi_partido": 0.3199564739449687,
+  "ari_voto_partido": 0.30323972688644923,
+  "pares_coautoria": 12933,
+  "pares_frentes": 155810,
+  "frentes_analisadas": 352,
+  "frentes_tematicas_efeito_claro": [
+    "Agropecuária (FPA)"
+  ],
+  "frentes_bloco": 6
+}

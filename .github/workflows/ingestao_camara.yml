@@ -75,6 +75,9 @@ jobs:
       - name: Pontos de mudança e comunidades no tempo
         run: python -m src.networks.mudancas
 
+      - name: Rede em várias camadas (frentes e coautoria)
+        run: python -m src.networks.multicamadas
+
       - name: Deputados acompanhados
         run: python -m src.governance.acompanhamento
 

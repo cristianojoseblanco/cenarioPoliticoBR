@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 
-from src.config import ROOT, legislatura_tem_dados, load_config, por_legislatura
+from src.config import ROOT, legislatura_tem_dados, load_config, path, por_legislatura
 
 MODELO = ROOT / "src" / "site" / "modelo.html"
 SAIDA = ROOT / "site" / "index.html"
@@ -186,11 +186,39 @@ def dados_legislatura(leg: str, c: dict) -> dict:
                        for r in fl.itertuples() if r.de != r.para],
         }
 
+    # rede em várias camadas
+    base_mc = ROOT / c["redes"]["saida"].replace("/redes", "/multicamadas")
+    multi = None
+    if (base_mc / "resumo.json").exists():
+        cr = pd.read_parquet(base_mc / "correlacoes.parquet")
+        fr = pd.read_parquet(base_mc / "frentes.parquet")
+        ft = pd.read_parquet(base_mc / "frentes_tematicas.parquet")
+        multi = {
+            "resumo": json.loads((base_mc / "resumo.json").read_text(encoding="utf-8")),
+            "corr": [{"cam": r.camada, "pares": r.pares, "rho": _r(r.spearman, 3), "com": _r(r.conc_com_ligacao, 3),
+                      "sem": _r(r.conc_sem_ligacao, 3), "nl": int(r.com_ligacao), "n": int(r.n_pares)} for r in cr.itertuples()],
+            "frentes": [{"t": r.titulo, "m": int(r.membros_com_voto), "o": _r(r.coesao, 3), "e": _r(r.coesao_esperada, 3),
+                         "x": _r(r.excesso, 4), "pc": _r(r.percentil, 3), "p": r.partidos, "b": bool(r.bloco)}
+                        for r in fr.sort_values("excesso", ascending=False).head(15).itertuples()] if len(fr) else [],
+            "frentes_analisadas": int(len(fr)), "frentes_bloco": int(fr["bloco"].sum()) if len(fr) else 0,
+            "tematicas": [{"f": r.frente, "t": r.titulo, "m": int(r.membros), "temas": r.temas,
+                           "dt": _r(r.dif_tema, 4), "dti": _r(r.ic_tema_inf, 4), "dts": _r(r.ic_tema_sup, 4),
+                           "do": _r(r.dif_outros, 4), "doi": _r(r.ic_outros_inf, 4), "dos": _r(r.ic_outros_sup, 4),
+                           "esp": _r(r.especifico, 4), "claro": bool(r.efeito_claro), "nv": int(r.votacoes_tema)}
+                          for r in ft.sort_values("especifico", ascending=False).itertuples()] if len(ft) else [],
+        }
+        if len(fr):
+            mem = pd.read_parquet(path(c, "processed") / "frente_membro")
+            mem = mem[mem["legislatura"] == int(leg)]
+            multi["frentes_total"] = int(mem["frente_id"].nunique())
+            multi["frentes_por_dep"] = _r(mem.groupby("deputado_id")["frente_id"].nunique().median(), 1)
+            multi["membros_mediana"] = _r(mem.groupby("frente_id")["deputado_id"].nunique().median(), 0)
+
     per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
         "leg": leg, "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
         "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
-        "dim": dim, "din": din, "mud": mud,
+        "dim": dim, "din": din, "mud": mud, "multi": multi,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
         "modularidade": _r(m["modularidade"]), "nmi": _r(m["nmi_com_partido"]),
         "polos": {"a": polos["polo_a"], "b": polos["polo_b"]},

@@ -1,0 +1,26 @@
+{
+  "camadas": [
+    "voto",
+    "coautoria",
+    "frentes"
+  ],
+  "pesos": {
+    "voto": 1.0,
+    "coautoria": 0.5,
+    "frentes": 0.5
+  },
+  "comunidades_multi": 6,
+  "comunidades_voto": 6,
+  "ari_multi_voto": 0.8541124194384069,
+  "ari_multi_partido": 0.3737228266893265,
+  "ari_voto_partido": 0.38469695770037343,
+  "pares_coautoria": 14044,
+  "pares_frentes": 166175,
+  "frentes_analisadas": 320,
+  "frentes_tematicas_efeito_claro": [
+    "Agropecuária (FPA)",
+    "Evangélica",
+    "Segurança Pública"
+  ],
+  "frentes_bloco": 48
+}

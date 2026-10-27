@@ -230,7 +230,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     <nav class="secoes" aria-label="Seções" id="nav">
       <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#mudancas">Mudanças</a>
       <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a>
-      <a href="#partidos">Partidos</a><a href="#comparacao">Governos</a><a href="#acompanhados">Acompanhados</a><a href="#glossario">Glossário</a>
+      <a href="#partidos">Partidos</a><a href="#frentes">Frentes</a><a href="#comparacao">Governos</a><a href="#acompanhados">Acompanhados</a><a href="#glossario">Glossário</a>
     </nav>
   </div>
 </header>
@@ -392,6 +392,26 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
       <dt>Disciplina</dt><dd>% dos votos iguais à orientação do próprio partido; se ele não orientou, a da federação; se nenhum dos dois, a do bloco. Em cinza: medida em menos de 30% dos votos.</dd>
       <dt>Coesão (índice de Rice)</dt><dd>Em cada votação, a diferença entre % Sim e % Não dentro do partido. 100% = todos votaram igual; 0% = racharam ao meio.</dd></dl></div></details>
     <div class="card"><div id="ptab"></div></div>
+  </div>
+</section>
+
+<section class="cap" id="frentes">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Frentes parlamentares e coautoria</span><h2>Além do partido, o que junta os votos?</h2>
+      <p class="lede" id="frLede"></p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
+      <dt>Frente parlamentar</dt><dd>Associação de deputados e senadores em torno de um tema (agro, segurança, meio ambiente…). Para existir, precisa da assinatura de um terço do Congresso, então quase toda frente tem perto de 200 membros e cada deputado assina mais de cem. Assinar é barato; por isso medimos se assinar muda o voto.</dd>
+      <dt>Efeito no tema</dt><dd>Nas votações dos temas da frente, comparamos membros com colegas do <b>mesmo partido</b> que não assinaram: quantos pontos a mais seguem a linha da frente (o lado da maioria dos membros de outros partidos). A mesma conta nos demais temas serve de controle. Efeito claro = intervalos de 95% separados e diferença de 1 ponto ou mais.</dd>
+      <dt>Coesão além do partido</dt><dd>Concordância média de voto entre os membros, comparada com grupos sorteados com a mesma composição partidária. Uma frente acima do esperado pode ser só seleção: entram os deputados que já votavam parecido.</dd>
+      <dt>Coautoria</dt><dd>Deputados que apresentam juntos PL, PLP, PEC ou PDL (até 30 autores). Mostra parceria de trabalho; comparamos com a concordância de voto dos mesmos pares.</dd></dl></div></details>
+    <div class="destaques" id="frDest"></div>
+    <div class="card rel"><h3>Frentes-chave: membros votam diferente dos colegas de partido no tema da frente?</h3>
+      <p class="nota">Ponto cheio: votações do tema da frente. Ponto vazado: demais votações (controle). Traços: intervalo de 95%. Em pontos percentuais.</p>
+      <div class="rolagem"><svg class="chart" id="frTemSvg" style="min-width:0"></svg></div><div class="tip" id="frTemTip" hidden></div></div>
+    <div class="cols">
+      <div class="card" style="align-content:start"><h3>Coautoria e voto</h3><p class="nota">Concordância média de voto entre pares de deputados que assinaram ao menos um projeto juntos e entre os que não assinaram.</p><div id="frCo"></div></div>
+      <div class="card" style="align-content:start"><h3>Frentes mais coesas que a composição partidária</h3><p class="nota">Pontos acima da concordância esperada para grupos com os mesmos partidos. Lembre: pode ser seleção de quem assina.</p><ol class="rank" id="frCoes"></ol></div>
+    </div>
   </div>
 </section>
 
@@ -963,6 +983,51 @@ function acChart(f, i) {
   svg.onpointerleave = () => tip.hidden = true;
 }
 
+/* ================= frentes e coautoria ================= */
+function frentes() {
+  const F = L.multi; const sec = $("#frentes");
+  if (!F || !F.tematicas.length) { sec.hidden = true; return; } sec.hidden = false;
+  const r = F.resumo; const claros = F.tematicas.filter(t => t.claro && t.esp > 0).map(t => t.f);
+  const coDif = F.corr.find(c => c.cam === "coautoria" && c.pares === "partidos diferentes");
+  $("#frLede").innerHTML = `${fmt.format(F.frentes_total)} frentes na legislatura, com mediana de ${fmt.format(F.membros_mediana)} membros; cada deputado assina, na mediana, ${fmt.format(Math.round(F.frentes_por_dep))}. Dentro do mesmo partido, assinar uma frente quase não muda o voto: ${claros.length ? `só ${claros.length > 1 ? claros.slice(0, -1).join(", ") + " e " + claros[claros.length - 1] : claros[0]} ${claros.length > 1 ? "mostram" : "mostra"} efeito claro no próprio tema` : "nenhuma frente-chave mostra efeito claro no próprio tema"}.`;
+  const fe = F.tematicas.reduce((a, b) => a.esp > b.esp ? a : b);
+  $("#frDest").innerHTML = [
+    [`${fe.esp >= 0 ? "+" : "−"}${dec(Math.abs(100 * fe.esp), 1)} p.p.`, `maior efeito de tema: ${fe.f}, em ${fmt.format(fe.nv)} votações (membros × colegas de partido não membros)`],
+    coDif ? [`${pctf(coDif.com)} × ${pctf(coDif.sem)}`, `concordância de voto entre deputados de partidos diferentes que assinaram projetos juntos × que não assinaram (${fmt.format(coDif.nl)} de ${fmt.format(coDif.n)} pares)`] : null,
+    [dec(r.ari_multi_voto), `semelhança (ARI) entre os grupos só de voto e os grupos com voto + frentes + coautoria: as frentes e a coautoria quase não redesenham os grupos`],
+  ].filter(Boolean).map(([b, t]) => `<div class="destaque"><b>${b}</b><span>${t}</span></div>`).join("");
+  // dumbbell com intervalos
+  const T = F.tematicas, svg = $("#frTemSvg"); svg.innerHTML = "";
+  const estreito = svg.parentElement.clientWidth < 640;
+  const W = estreito ? 520 : 960, rh = estreito ? 50 : 44, m = {l: estreito ? 150 : 190, r: 20, t: 24, b: 30}, H = m.t + m.b + rh * T.length; svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const vals = T.flatMap(t => [t.dti, t.dts, t.doi, t.dos]).filter(v => v != null);
+  const lo = Math.min(-0.02, Math.floor(Math.min(...vals) * 100) / 100), hi = Math.max(0.04, Math.ceil(Math.max(...vals) * 100) / 100);
+  const X = v => m.l + (v - lo) / (hi - lo) * (W - m.l - m.r);
+  for (let v = Math.ceil(lo * 100); v <= Math.floor(hi * 100); v++) { el("line", {class: v === 0 ? "zero" : "grid", x1: X(v / 100), x2: X(v / 100), y1: m.t - 6, y2: H - m.b}, svg); txt(svg, X(v / 100), H - 10, (v > 0 ? "+" : "") + v, {"text-anchor": "middle"}); }
+  txt(svg, X(0) + 6, m.t - 10, "membros seguem mais a frente →", {class: "ctxlbl"});
+  T.forEach((t, k) => { const y = m.t + k * rh + rh / 2; const cor = t.claro ? (t.esp > 0 ? cssv("--accent") : cssv("--warn")) : cssv("--ink-3");
+    txt(svg, m.l - 14, y - 2, t.f, {"text-anchor": "end", style: "font:600 13px var(--f-body);fill:var(--ink)"});
+    txt(svg, m.l - 14, y + 13, t.claro ? `efeito ${t.esp > 0 ? "+" : "−"}${dec(Math.abs(100 * t.esp), 1)} p.p.` : "sem efeito claro", {"text-anchor": "end", style: `font:500 10.5px var(--f-data);fill:${cor}`});
+    el("line", {x1: X(t.doi), x2: X(t.dos), y1: y + 6, y2: y + 6, stroke: cssv("--ink-3"), "stroke-width": 2}, svg);
+    el("line", {x1: X(t.dti), x2: X(t.dts), y1: y - 6, y2: y - 6, stroke: cor, "stroke-width": 3, "stroke-linecap": "round"}, svg);
+    el("line", {x1: X(t.do), x2: X(t.dt), y1: y + 6, y2: y - 6, stroke: cor, "stroke-width": 1, opacity: .5}, svg);
+    el("circle", {cx: X(t.do), cy: y + 6, r: 5.5, fill: cssv("--surface"), stroke: cssv("--ink-2"), "stroke-width": 2}, svg);
+    const c = el("circle", {cx: X(t.dt), cy: y - 6, r: 6.5, fill: cor}, svg); c.dataset.k = k; });
+  const tip = $("#frTemTip"), bx = svg.closest(".rel");
+  svg.onpointermove = e => { const rr = svg.getBoundingClientRect(); const yy = (e.clientY - rr.top) * H / rr.height; const k = Math.floor((yy - m.t) / rh);
+    if (k < 0 || k >= T.length) { tip.hidden = true; return; } const t = T[k];
+    tip.innerHTML = `<b>${t.t}</b><br>${fmt.format(t.m)} membros · temas: ${t.temas}<br>No tema: <b>${dec(100 * t.dt, 1)} p.p.</b> [${dec(100 * t.dti, 1)} a ${dec(100 * t.dts, 1)}] em ${fmt.format(t.nv)} votações<br>Controle: ${dec(100 * t.do, 1)} p.p. [${dec(100 * t.doi, 1)} a ${dec(100 * t.dos, 1)}]`;
+    const rb = bx.getBoundingClientRect(); tip.hidden = false; posTip(tip, e.clientX - rb.left, e.clientY - rb.top, rb.width); };
+  svg.onpointerleave = () => tip.hidden = true;
+  // coautoria
+  const co = F.corr.filter(c => c.cam === "coautoria");
+  $("#frCo").innerHTML = co.map(c => `<div class="cmp" style="grid-template-columns:1fr"><div><span class="rot">${c.pares}</span>
+    <span class="ref">assinaram juntos: <b>${pctf(c.com)}</b> · não assinaram: <b>${pctf(c.sem)}</b> · ${fmt.format(c.nl)} de ${fmt.format(c.n)} pares ligados</span>
+    <div class="duo"><i style="width:${(100 * c.com).toFixed(1)}%"></i><s style="left:calc(${(100 * c.sem).toFixed(1)}% - 1px)" title="não assinaram juntos"></s></div></div></div>`).join("");
+  $("#frCoes").innerHTML = F.frentes.slice(0, 10).map(f => `<li><span><b>${f.t}</b><br><span class="muted">${fmt.format(f.m)} membros com voto · ${f.p}</span></span><span class="num">+${dec(100 * f.x, 1)} p.p.</span></li>`).join("") +
+    `<p class="nota">${fmt.format(F.frentes_bloco)} de ${fmt.format(F.frentes_analisadas)} frentes acima do percentil 95 dos sorteios.</p>`;
+}
+
 function rodape() {
   const dt = new Date(D.atualizado + "T12:00:00").toLocaleDateString("pt-BR");
   $("#rodape").innerHTML = `Dados abertos da Câmara dos Deputados, atualizados em ${dt}. Código, dados e método: <a href="${D.repo}" target="_blank" rel="noopener">${D.repo.replace("https://", "")}</a>.`;
@@ -971,7 +1036,7 @@ segOn("#redeCor", v => { redeModo = v; rede(); });
 segOn("#tempoMet", v => { tempoModo = v; tempo(); });
 segOn("#temaMet", v => { temaModo = v; temas(); });
 segOn("#mudMet", v => { mudModo = v; mudancas(); });
-function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); partidos(); comparacao(); acompanhados(); rodape(); }
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); }
 tudo(true);
 // navegação: destaca a seção visível
 const links = [...document.querySelectorAll("#nav a")];

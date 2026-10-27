@@ -145,6 +145,21 @@ def build(cfg: dict) -> dict[str, int]:
         FROM g GROUP BY deputado_id, seq, partido
     """
 
+    # Frentes parlamentares e membros (arquivo único com todas as legislaturas)
+    if any((st / "frentes").rglob("*.parquet")) and any((st / "frentesDeputados").rglob("*.parquet")):
+        tabelas["frentes"] = f"""
+            SELECT DISTINCT id AS frente_id, titulo, TRY_CAST(idLegislatura AS INTEGER) AS legislatura,
+                   TRY_CAST(dataCriacao AS TIMESTAMP) AS data_criacao, situacao, keywords,
+                   coordenador_id, coordenador_siglaPartido AS coordenador_partido
+            FROM {S('frentes')}
+        """
+        tabelas["frente_membro"] = f"""
+            SELECT DISTINCT id AS frente_id, "deputado_.id" AS deputado_id,
+                   TRY_CAST("deputado_.idLegislatura" AS INTEGER) AS legislatura,
+                   CASE WHEN "deputado_.titulo" ILIKE 'Coorde%' THEN 'Coordenador' ELSE "deputado_.titulo" END AS cargo
+            FROM {S('frentesDeputados')} WHERE "deputado_.id" IS NOT NULL
+        """
+
     particionadas = {"votos", "votacoes"}
     extras = {}
     hist = st / "deputadosHistorico" / "part-0.parquet"
