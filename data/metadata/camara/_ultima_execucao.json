@@ -1,12 +1,12 @@
 {
-  "executado_em": "2026-10-27T20:38:21+00:00",
+  "executado_em": "2026-10-27T21:46:56+00:00",
   "anos": [
     2026
   ],
   "resultados": [
     {
       "arquivo": "deputados",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "votacoes-2026",
@@ -326,11 +326,11 @@
     },
     {
       "arquivo": "proposicoes-2024",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "proposicoesTemas-2024",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "proposicoesAutores-2024",
@@ -338,11 +338,11 @@
     },
     {
       "arquivo": "proposicoes-2025",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "proposicoesTemas-2025",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "proposicoesAutores-2025",
@@ -350,15 +350,15 @@
     },
     {
       "arquivo": "proposicoes-2026",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "proposicoesTemas-2026",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "proposicoesAutores-2026",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     }
   ],
   "erros": []
