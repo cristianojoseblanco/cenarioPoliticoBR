@@ -210,11 +210,36 @@ armazenamento:
 # Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
 # `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
 legislaturas:
-  "56": {inicio: "2019-02-01", fim: "2023-01-31"}
-  "57": {inicio: "2023-02-01", fim: "2027-01-31"}
+  "56": {inicio: "2019-02-01", fim: "2023-01-31", nome: "56ª legislatura", governo: "Governo Bolsonaro"}
+  "57": {inicio: "2023-02-01", fim: "2027-01-31", nome: "57ª legislatura", governo: "Governo Lula (3º mandato)"}
+
+# Contexto político usado para nomear períodos e marcar gráficos (fatos institucionais, sem juízo).
+contexto:
+  governos:
+    - {nome: "Governo Jair Bolsonaro", curto: "Bolsonaro", inicio: "2019-01-01", fim: "2022-12-31"}
+    - {nome: "Governo Luiz Inácio Lula da Silva (3º mandato)", curto: "Lula 3", inicio: "2023-01-01", fim: null}
+  presidentes_camara:
+    - {nome: "Rodrigo Maia", partido: "DEM-RJ", inicio: "2019-02-01", fim: "2021-02-01"}
+    - {nome: "Arthur Lira", partido: "PP-AL", inicio: "2021-02-01", fim: "2025-02-01"}
+    - {nome: "Hugo Motta", partido: "Republicanos-PB", inicio: "2025-02-01", fim: null}
+  eventos:
+    - {data: "2022-10-02", rotulo: "Eleições gerais"}
+    - {data: "2024-10-06", rotulo: "Eleições municipais"}
 # Períodos marcados nos gráficos e notas (não excluem dados).
 marcadores_periodo:
   - inicio: "2020-03-17"
     fim: "2021-10-21"
     rotulo: "votação remota (aprox.)"
     fonte: "Resolução da Câmara 14/2020; Ato da Mesa 208/2021"
+
+# Dimensões de voto (PCA da matriz deputado × votação, por legislatura).
+dimensoes:
+  componentes: 3
+  # Deputado entra se tem valor em pelo menos esta fração das votações analisadas.
+  cobertura_minima: 0.30
+  iteracoes_imputacao: 30
+
+# Dinâmica mensal (agenda, polarização, peso de quem está fora dos polos).
+dinamica:
+  # Votação "apertada": diferença entre os lados abaixo desta fração dos votos com valor.
+  margem_apertada: 0.10

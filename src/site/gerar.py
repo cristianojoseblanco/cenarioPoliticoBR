@@ -129,8 +129,41 @@ def dados_legislatura(leg: str, c: dict) -> dict:
     mov = dl.reindex(dl["delta"].abs().sort_values(ascending=False).index).head(TOP)
     rankings["moveram"] = [{"i": idx[i], "de": _r(r.inicio, 3), "ate": _r(r.fim, 3)} for i, r in mov.iterrows()]
 
+    # dimensões de voto
+    base_dim = ROOT / c["redes"]["saida"].replace("/redes", "/dimensoes")
+    dim = None
+    if (base_dim / "resumo.json").exists():
+        dres = json.loads((base_dim / "resumo.json").read_text(encoding="utf-8"))
+        ddep = pd.read_parquet(base_dim / "deputados.parquet").set_index("deputado_id")
+        dvt = pd.read_parquet(base_dim / "votacoes.parquet")
+        dim = {
+            "var": [_r(v) for v in dres["variancia"]], "temas": dres["temas_principais"],
+            "corr": dres["correlacoes"],
+            "pts": [[idx[i], _r(r.d1, 3), _r(r.d2, 3)] for i, r in ddep.iterrows() if i in idx],
+            "votacoes": [{"dim": r.dim, "lado": r.lado, "data": (r.data or "")[:10], "prop": r.proposicao,
+                          "ementa": (r.ementa or "").splitlines()[0][:160]} for r in dvt.itertuples()],
+        }
+
+    # dinâmica mensal e agenda
+    base_din = ROOT / c["redes"]["saida"].replace("/redes", "/dinamica")
+    din = None
+    if (base_din / "mensal.parquet").exists():
+        mm = pd.read_parquet(base_din / "mensal.parquet")
+        ag = pd.read_parquet(base_din / "agenda.parquet")
+        dr = json.loads((base_din / "resumo.json").read_text(encoding="utf-8"))
+        din = {
+            "resumo": dr,
+            "mensal": [{"m": r.mes.strftime("%Y-%m"), "n": int(r.votacoes), "pol": int(r.polarizadas),
+                        "ap": int(r.apertadas), "go": int(r.gov_orientou), "gv": int(r.gov_venceu),
+                        "folga": _r(r.votos_para_virar, 1), "fora": _r(r.fora_no_lado_gov, 3)} for r in mm.itertuples()],
+            "agenda": [{"t": r.tri.strftime("%Y-%m"), "tema": r.tema, "n": int(r.votacoes)} for r in ag.itertuples()],
+        }
+
+    per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
         "leg": leg, "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
+        "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
+        "dim": dim, "din": din,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
         "modularidade": _r(m["modularidade"]), "nmi": _r(m["nmi_com_partido"]),
         "polos": {"a": polos["polo_a"], "b": polos["polo_b"]},
@@ -167,7 +200,7 @@ def main() -> int:
     except Exception:
         atualizado = datetime.now(timezone.utc).date().isoformat()
     dados = {"atualizado": atualizado, "legislaturas": legs, "comparacao": dados_comparacao(),
-             "marcadores": cfg.get("marcadores_periodo", []),
+             "marcadores": cfg.get("marcadores_periodo", []), "contexto": cfg.get("contexto", {}),
              "repo": f"https://github.com/{cfg['armazenamento']['repositorio']}"}
     js = json.dumps(dados, ensure_ascii=False, separators=(",", ":"))
     corpo = MODELO.read_text(encoding="utf-8").replace("/*__DADOS__*/null", js.replace("</", "<\\/"))

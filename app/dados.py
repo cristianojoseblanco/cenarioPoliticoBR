@@ -23,9 +23,21 @@ def legislaturas() -> list[str]:
     return sorted(p.name[3:] for p in MARTS.glob("leg*") if p.is_dir())
 
 
+@st.cache_data(ttl=3600)
+def _legs_cfg() -> dict:
+    import yaml
+    try:
+        return yaml.safe_load((ROOT / "config" / "sources.yaml").read_text(encoding="utf-8")).get("legislaturas", {})
+    except Exception:
+        return {}
+
+
 def nome_leg(leg: str) -> str:
-    anos = {"56": "2019–2022", "57": "2023–2026"}
-    return f"{leg}ª ({anos.get(leg, '')})" if leg in anos else f"{leg}ª"
+    """Ex.: '57ª · Governo Lula (3º mandato) · 2023–2026'."""
+    c = _legs_cfg().get(leg, {})
+    anos = f"{c['inicio'][:4]}–{int(c['fim'][:4]) - 1}" if c.get("inicio") else ""
+    partes = [f"{leg}ª", c.get("governo", ""), anos]
+    return " · ".join(p for p in partes if p)
 
 
 def leg_atual() -> str:

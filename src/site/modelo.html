@@ -1,144 +1,202 @@
 <title>Cenário Político BR</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Quem vota com quem na Câmara dos Deputados: comunidades de votação, apoio ao governo, temas e partidos, com dados abertos.">
+<meta name="description" content="Quem vota com quem na Câmara dos Deputados: comunidades de votação, governos, temas, polarização e partidos, com dados abertos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <style>
-/* Layout: uma coluna editorial larga; o Plenário (hemiciclo) abre a página, seções em sequência com navegação fixa. */
+/* Layout: abertura em faixa escura de ponta a ponta ("Plenário à noite") com o hemiciclo aceso;
+   depois, capítulos em coluna larga, cada um com o que é / como ler / destaques. */
 :root{
-  --bg:#f3f5f2; --surface:#fbfcfa; --ink:#14201a; --ink-2:#4a5852; --ink-3:#7c8983; --rule:#dce2dd;
-  --accent:#17694b; --accent-soft:#e1efe8; --band:#e8ece8;
-  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100; --c5:#e87ba4; --c6:#008300; --c7:#6250d6; --c8:#e34948; --cx:#b9c0bb;
+  --bg:#f2f4f1; --surface:#fbfcfa; --ink:#121c17; --ink-2:#47554e; --ink-3:#7a8780; --rule:#d9e0db;
+  --accent:#147a54; --accent-2:#0d5a3d; --soft:#e2efe8; --band:#e7ece8; --warn:#b4541c;
+  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100; --c5:#e87ba4; --c6:#008300; --c7:#6250d6; --c8:#e34948; --cx:#b7beb9;
+  /* faixa escura de abertura: mesma nos dois temas (escolha deliberada) */
+  --h-bg:#08110d; --h-bg-2:#0f1c16; --h-ink:#eef4f0; --h-ink-2:#a9b8b0; --h-ink-3:#6f8178; --h-rule:#1f2f27; --h-accent:#4fd3a0;
+  --hc1:#3987e5; --hc2:#d95926; --hc3:#199e70; --hc4:#c98500; --hc5:#d55181; --hc6:#2a9a2a; --hc7:#9085e9; --hc8:#e66767;
   --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
   --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-data:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
-  --r:10px;
+  --r:12px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0d1411; --surface:#131c18; --ink:#e7eee9; --ink-2:#b0bcb5; --ink-3:#7d8a84; --rule:#25312c;
-  --accent:#43b488; --accent-soft:#18302a; --band:#1b2621;
+  --bg:#0c1310; --surface:#121b17; --ink:#e6ede8; --ink-2:#aebbb4; --ink-3:#7b8982; --rule:#24312b;
+  --accent:#4cc596; --accent-2:#7fdbb5; --soft:#173027; --band:#19241f; --warn:#e08a52;
   --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#2a9a2a; --c7:#9085e9; --c8:#e66767; --cx:#56625c;
   color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0d1411; --surface:#131c18; --ink:#e7eee9; --ink-2:#b0bcb5; --ink-3:#7d8a84; --rule:#25312c;
-  --accent:#43b488; --accent-soft:#18302a; --band:#1b2621;
+  --bg:#0c1310; --surface:#121b17; --ink:#e6ede8; --ink-2:#aebbb4; --ink-3:#7b8982; --rule:#24312b;
+  --accent:#4cc596; --accent-2:#7fdbb5; --soft:#173027; --band:#19241f; --warn:#e08a52;
   --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#2a9a2a; --c7:#9085e9; --c8:#e66767; --cx:#56625c;
   color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);margin:0}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--f-display);font-stretch:78%;line-height:1.02;letter-spacing:-.01em;text-wrap:balance;margin:0}
-h1{font-size:clamp(2.4rem,7vw,4.6rem);font-weight:800}
-h2{font-size:clamp(1.7rem,4.2vw,2.5rem);font-weight:750}
-h3{font-size:1.15rem;font-weight:700;font-stretch:90%}
-p{margin:0;max-width:65ch}
-.lede{font-size:1.06rem;color:var(--ink-2)}
-.eyebrow{font:500 .72rem/1 var(--f-data);text-transform:uppercase;letter-spacing:.12em;color:var(--accent)}
+html{scroll-padding-top:120px}
+body{background:var(--bg);color:var(--ink);font:15.5px/1.6 var(--f-body);margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--h-bg)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1;letter-spacing:-.015em;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.9rem,9vw,6.4rem);font-weight:900;font-stretch:72%}
+h2{font-size:clamp(2rem,5vw,3.3rem);font-weight:850;font-stretch:74%}
+h3{font-size:1.15rem;font-weight:750;font-stretch:88%;letter-spacing:0}
+p{margin:0;max-width:68ch}
+.lede{font-size:1.08rem;color:var(--ink-2)}
+.eyebrow{font:600 .72rem/1.2 var(--f-data);text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}
 .muted{color:var(--ink-3)}
 .num{font-family:var(--f-data);font-variant-numeric:tabular-nums}
 a{color:var(--accent)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+button{font:inherit}
 
 /* barra fixa */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
-.top .wrap{display:flex;align-items:center;gap:12px;padding-block:10px;flex-wrap:wrap}
-.brand{font:800 1.05rem/1 var(--f-display);font-stretch:80%;letter-spacing:.01em;margin-right:auto;display:flex;align-items:center;gap:8px}
-.brand i{display:inline-block;width:18px;height:10px;border-radius:18px 18px 0 0;background:var(--accent)}
-.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;padding:2px;background:var(--surface)}
-.seg button{all:unset;cursor:pointer;font:500 .8rem/1 var(--f-data);padding:7px 11px;border-radius:999px;color:var(--ink-2)}
-.seg button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
-.seg button:focus-visible{outline:2px solid var(--accent)}
-nav.secoes{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;width:100%;padding-bottom:2px}
-nav.secoes a{flex:none;text-decoration:none;color:var(--ink-2);font:500 .78rem/1 var(--f-data);padding:6px 10px;border-radius:999px;border:1px solid var(--rule)}
-nav.secoes a:hover{color:var(--ink);border-color:var(--ink-3)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:color-mix(in srgb,var(--h-bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--h-rule);color:var(--h-ink)}
+.top .wrap{display:flex;align-items:center;gap:10px 14px;padding-block:10px;flex-wrap:wrap}
+.brand{font:850 1.05rem/1 var(--f-display);font-stretch:78%;letter-spacing:.02em;margin-right:auto;display:flex;align-items:center;gap:9px;color:var(--h-ink);text-decoration:none}
+.brand svg{flex:none}
+nav.secoes{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;width:100%;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent)}
+nav.secoes a{flex:none;text-decoration:none;color:var(--h-ink-2);font:500 .76rem/1 var(--f-data);padding:7px 10px;border-radius:999px}
+nav.secoes a:hover,nav.secoes a.ativo{color:var(--h-ink);background:var(--h-rule)}
+.legbtns{display:inline-flex;gap:4px;background:var(--h-bg-2);border:1px solid var(--h-rule);border-radius:999px;padding:3px}
+.legbtns button{all:unset;cursor:pointer;font:600 .74rem/1 var(--f-data);padding:8px 12px;border-radius:999px;color:var(--h-ink-2);white-space:nowrap}
+.legbtns button[aria-pressed="true"]{background:var(--h-accent);color:var(--h-bg)}
+.legbtns button:focus-visible{outline:2px solid var(--h-accent)}
 
-section{padding-block:56px;border-bottom:1px solid var(--rule)}
-section > .wrap{display:grid;gap:20px}
-.head{display:grid;gap:10px}
-
-/* hero */
-.hero{padding-block:40px 28px}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden}
-.kpi{background:var(--surface);padding:14px 16px;display:grid;gap:4px;align-content:start}
-.kpi b{font:600 1.55rem/1.1 var(--f-data);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.kpi span{font-size:.82rem;color:var(--ink-2)}
-.hemi-box{position:relative}
-#hemi{width:100%;max-width:920px;margin-inline:auto;height:auto;display:block;touch-action:manipulation}
-.hemi-labels{max-width:920px;margin-inline:auto;width:100%}
-#hemi circle{cursor:pointer;transition:opacity .15s}
-.hemi-labels{display:flex;justify-content:space-between;gap:12px;font:500 .78rem/1.3 var(--f-data);color:var(--ink-2);margin-top:-6px}
+/* abertura escura */
+.hero{background:radial-gradient(120% 80% at 50% 105%,#123a2b 0%,var(--h-bg) 62%);color:var(--h-ink);padding-block:44px 36px;border-bottom:1px solid var(--h-rule)}
+.hero .wrap{display:grid;gap:22px}
+.hero .eyebrow{color:var(--h-accent)}
+.hero .lede{color:var(--h-ink-2)}
+.gov{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.gov b{font:800 clamp(1.25rem,3vw,1.8rem)/1.1 var(--f-display);font-stretch:80%;color:var(--h-ink)}
+.gov span{font:500 .85rem var(--f-data);color:var(--h-ink-2)}
+.hemi-box{position:relative;max-width:980px;width:100%;margin-inline:auto}
+#hemi{width:100%;height:auto;display:block;touch-action:manipulation;overflow:visible}
+#hemi circle{cursor:pointer;transform-box:fill-box;transform-origin:center}
+.hemi-centro{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);text-align:center;pointer-events:none}
+.hemi-centro b{display:block;font:900 clamp(2.2rem,7vw,4.4rem)/1 var(--f-display);font-stretch:70%;color:var(--h-ink)}
+.hemi-centro span{font:500 .78rem var(--f-data);color:var(--h-ink-2);letter-spacing:.06em;text-transform:uppercase}
+.hemi-labels{display:flex;justify-content:space-between;gap:14px;font:500 .78rem/1.35 var(--f-data);color:var(--h-ink-2);max-width:980px;margin:-4px auto 0;width:100%}
+.hemi-labels b{color:var(--h-ink);font-weight:600}
 .hemi-labels span:last-child{text-align:right}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.85rem;color:var(--ink-2)}
-.legend button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:2px 0}
-.legend button[aria-pressed="false"]{opacity:.35}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.86rem}
+.hero .legend{color:var(--h-ink-2)}
+.legend button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:3px 0}
+.legend button[aria-pressed="false"]{opacity:.32}
 .dot{width:10px;height:10px;border-radius:50%;flex:none;display:inline-block}
-.busca{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.busca input{font:inherit;padding:9px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--surface);color:var(--ink);min-width:0;flex:1 1 220px;max-width:360px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--h-rule);border:1px solid var(--h-rule);border-radius:var(--r);overflow:hidden}
+.kpi{background:var(--h-bg-2);padding:15px 16px;display:grid;gap:5px;align-content:start}
+.kpi b{font:600 1.7rem/1.05 var(--f-data);font-variant-numeric:tabular-nums;letter-spacing:-.03em;color:var(--h-ink)}
+.kpi span{font-size:.82rem;color:var(--h-ink-2);line-height:1.4}
+.busca{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.busca label{font:500 .8rem var(--f-data);color:var(--h-ink-2)}
+.busca input{font:inherit;padding:10px 14px;border:1px solid var(--h-rule);border-radius:999px;background:var(--h-bg-2);color:var(--h-ink);min-width:0;flex:1 1 240px;max-width:380px}
+.busca input::placeholder{color:var(--h-ink-3)}
 
 /* ficha */
-.ficha{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:16px;display:grid;gap:12px}
-.ficha[hidden]{display:none!important}
-.ficha .nome{font:750 1.35rem/1.1 var(--f-display);font-stretch:85%}
-.ficha .linhas{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
-.met{display:grid;gap:4px}
-.met small{font-size:.75rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
-.met b{font:500 1rem/1.2 var(--f-data);font-variant-numeric:tabular-nums}
+.ficha{background:var(--h-bg-2);border:1px solid var(--h-rule);border-radius:var(--r);padding:18px;display:grid;gap:14px;color:var(--h-ink)}
+.ficha .nome{font:850 1.5rem/1.05 var(--f-display);font-stretch:80%}
+.ficha .sub{color:var(--h-ink-2);font-size:.9rem}
+.ficha .linhas{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.met{display:grid;gap:5px}
+.met small{font:500 .7rem var(--f-data);color:var(--h-ink-3);text-transform:uppercase;letter-spacing:.08em}
+.met b{font:500 1rem/1.25 var(--f-data);font-variant-numeric:tabular-nums}
+.ficha .bar{background:var(--h-rule)}
+.ficha .bar i{background:var(--h-accent)}
+.fecha{all:unset;cursor:pointer;font:500 .78rem var(--f-data);color:var(--h-ink-2);border:1px solid var(--h-rule);border-radius:999px;padding:6px 12px}
 .bar{height:6px;border-radius:6px;background:var(--band);overflow:hidden}
 .bar i{display:block;height:100%;background:var(--accent);border-radius:6px}
 
-/* gráficos */
+/* linha do tempo de contexto */
+.ctx{display:grid;gap:8px}
+.ctx svg{width:100%;height:auto;display:block;overflow:visible}
+.ctx text{font:11px var(--f-data);fill:var(--ink-2)}
+.ctx .lbl{font:600 12px var(--f-body);fill:var(--ink)}
+
+/* capítulos */
+section.cap{padding-block:64px;border-bottom:1px solid var(--rule)}
+section.cap > .wrap{display:grid;gap:22px}
+.head{display:grid;gap:12px}
+details.ler{border:1px solid var(--rule);border-radius:var(--r);background:var(--surface);padding:0 16px;max-width:860px}
+details.ler summary{cursor:pointer;list-style:none;padding:12px 0;font:600 .85rem var(--f-body);color:var(--ink-2);display:flex;align-items:center;gap:8px}
+details.ler summary::before{content:"+";font:600 1rem var(--f-data);color:var(--accent);width:1ch}
+details.ler[open] summary::before{content:"−"}
+details.ler summary::-webkit-details-marker{display:none}
+details.ler .corpo{padding:0 0 14px;display:grid;gap:8px;color:var(--ink-2);font-size:.94rem}
+details.ler dl{margin:0;display:grid;gap:8px}
+details.ler dt{font-weight:700;color:var(--ink)}
+details.ler dd{margin:0}
+.destaques{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.destaque{border-left:3px solid var(--accent);padding:4px 0 4px 14px;display:grid;gap:4px}
+.destaque b{font:600 1.35rem/1.15 var(--f-data);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.destaque span{font-size:.9rem;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:18px;display:grid;gap:14px;min-width:0}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;padding:3px;background:var(--surface);gap:2px;flex-wrap:wrap}
+.seg button{all:unset;cursor:pointer;font:500 .8rem/1 var(--f-data);padding:8px 12px;border-radius:999px;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid var(--accent)}
 .chart{width:100%;height:auto;display:block;overflow:visible}
+.rolagem{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.rolagem > .chart{min-width:680px}
+.rolagem.estreito > .chart{min-width:520px}
+@media (max-width:700px){.dica-rolar::after{content:"← arraste para ver o período todo →";display:block;font:500 .72rem var(--f-data);color:var(--ink-3);margin-top:4px}}
 .chart text{fill:var(--ink-2);font:11px var(--f-data)}
 .chart .grid{stroke:var(--rule)}
 .chart .zero{stroke:var(--ink-3)}
 .chart .band{fill:var(--band)}
-.card{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:16px;display:grid;gap:12px;min-width:0}
-.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font:12px/1.4 var(--f-data);padding:8px 10px;border-radius:8px;max-width:240px;z-index:3;box-shadow:0 6px 18px rgb(0 0 0/.18)}
-.tip[hidden]{display:none!important}
+.chart .ctxlbl{fill:var(--ink-3);font:10px var(--f-data);text-transform:uppercase;letter-spacing:.06em}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font:12px/1.45 var(--f-data);padding:9px 11px;border-radius:10px;max-width:260px;z-index:3;box-shadow:0 10px 26px rgb(0 0 0/.22)}
 .rel{position:relative}
+.legend.claro{color:var(--ink-2)}
 canvas#redeCanvas{width:100%;height:auto;aspect-ratio:4/3;display:block;border-radius:var(--r);background:var(--surface);border:1px solid var(--rule);touch-action:manipulation;max-width:100%}
+.dupla{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
+@media (max-width:860px){.dupla{grid-template-columns:minmax(0,1fr)}}
+.lista-v{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.lista-v li{display:grid;gap:2px;padding-bottom:10px;border-bottom:1px solid var(--rule);font-size:.88rem}
+.lista-v li b{font:500 .78rem var(--f-data);color:var(--ink-3)}
+.pill{display:inline-block;font:600 .7rem/1 var(--f-data);padding:5px 8px;border-radius:999px;background:var(--soft);color:var(--accent-2);letter-spacing:.04em}
 
 /* rankings */
 .tabs{display:flex;gap:6px;flex-wrap:wrap}
-.tabs button{all:unset;cursor:pointer;font:500 .82rem/1 var(--f-body);padding:8px 12px;border-radius:999px;border:1px solid var(--rule);color:var(--ink-2);background:var(--surface)}
-.tabs button[aria-selected="true"]{border-color:var(--ink);color:var(--ink);font-weight:600}
-.rank{display:grid;gap:0;margin:0;padding:0;list-style:none;counter-reset:r}
-.rank li{display:grid;grid-template-columns:2ch minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule);counter-increment:r;cursor:pointer}
-.rank li::before{content:counter(r);font:500 .8rem var(--f-data);color:var(--ink-3)}
+.tabs button{all:unset;cursor:pointer;font:500 .84rem/1 var(--f-body);padding:9px 13px;border-radius:999px;border:1px solid var(--rule);color:var(--ink-2);background:var(--surface)}
+.tabs button[aria-selected="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg);font-weight:600}
+.rank{display:grid;margin:0;padding:0;list-style:none;counter-reset:r}
+.rank li{display:grid;grid-template-columns:2.4ch minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule);counter-increment:r;cursor:pointer}
+.rank li:hover .q b{color:var(--accent)}
+.rank li::before{content:counter(r,decimal-leading-zero);font:500 .8rem var(--f-data);color:var(--ink-3)}
 .rank .q{min-width:0}
 .rank .q b{font-weight:600}
 .rank .q span{color:var(--ink-3);font-size:.85rem}
 .rank .v{font:500 .9rem var(--f-data);font-variant-numeric:tabular-nums;text-align:right}
 .rank .bar{grid-column:2/4;height:4px}
-.rank .bar i{opacity:.7}
 
 /* partidos */
-.ptab{display:grid;gap:0}
-.prow{display:grid;grid-template-columns:minmax(90px,1.1fr) repeat(3,minmax(0,1fr));gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
-.prow.h{font:500 .72rem var(--f-data);text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
-.prow .cell{display:grid;gap:4px;min-width:0}
+.prow{display:grid;grid-template-columns:minmax(96px,1.1fr) repeat(3,minmax(0,1fr));gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule)}
+.prow.h{font:500 .7rem var(--f-data);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3)}
 .prow > div:first-child{min-width:0;overflow-wrap:anywhere;line-height:1.25}
+.prow .cell{display:grid;gap:5px;min-width:0}
 .prow .cell span{font:500 .82rem var(--f-data);font-variant-numeric:tabular-nums}
 .prow .cell.fraca span{color:var(--ink-3)}
 .prow .cell.fraca .bar i{background:var(--cx)}
-@media (max-width:560px){.prow{grid-template-columns:minmax(70px,.9fr) repeat(3,minmax(0,1fr));gap:8px}.prow .cell span{font-size:.74rem}.prow > div:first-child b{font-size:.78rem}}
+@media (max-width:560px){.prow{grid-template-columns:minmax(72px,.9fr) repeat(3,minmax(0,1fr));gap:8px}.prow .cell span{font-size:.72rem}.prow > div:first-child b{font-size:.78rem}}
 
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.nota{font-size:.82rem;color:var(--ink-3)}
-footer{padding-block:40px 60px;color:var(--ink-3);font-size:.85rem}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.glos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.glos div{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:14px 16px;display:grid;gap:6px}
+.glos b{font:750 1rem var(--f-display);font-stretch:88%}
+.glos p{font-size:.9rem;color:var(--ink-2)}
+.nota{font-size:.84rem;color:var(--ink-3)}
+footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><i aria-hidden="true"></i>Cenário Político BR</div>
-    <div class="seg" id="legSeg" role="group" aria-label="Legislatura"></div>
-    <nav class="secoes" aria-label="Seções">
-      <a href="#plenario">Plenário</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#temas">Temas</a>
-      <a href="#rankings">Rankings</a><a href="#partidos">Partidos</a><a href="#comparacao">Comparação</a><a href="#metodo">Método</a>
+    <a class="brand" href="#plenario"><svg width="22" height="12" viewBox="0 0 22 12" aria-hidden="true"><path d="M1 11a10 10 0 0 1 20 0" fill="none" stroke="var(--h-accent)" stroke-width="2.2"/><path d="M6 11a5 5 0 0 1 10 0" fill="none" stroke="var(--h-accent)" stroke-width="2.2" opacity=".55"/></svg>Cenário Político BR</a>
+    <div class="legbtns" id="legSeg" role="group" aria-label="Legislatura"></div>
+    <nav class="secoes" aria-label="Seções" id="nav">
+      <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a>
+      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a>
+      <a href="#partidos">Partidos</a><a href="#comparacao">Governos</a><a href="#glossario">Glossário</a>
     </nav>
   </div>
 </header>
@@ -147,90 +205,167 @@ footer{padding-block:40px 60px;color:var(--ink-3);font-size:.85rem}
 <section class="hero" id="plenario">
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow" id="heroEyebrow">Câmara dos Deputados · Plenário</span>
+      <span class="eyebrow">Câmara dos Deputados · Plenário · votações nominais</span>
       <h1>Quem vota com quem</h1>
-      <p class="lede">Cada assento é um deputado, colocado da esquerda para a direita conforme vota mais perto de um ou de outro dos dois blocos que mais discordam entre si. As cores são comunidades de votação encontradas nos próprios votos. Nenhum lado recebe rótulo ideológico.</p>
+      <div class="gov" id="govLinha"></div>
+      <p class="lede">Cada ponto é um deputado sentado no Plenário. A posição vai de um polo ao outro: os dois blocos que mais discordam entre si nos votos. A cor é a comunidade de votação, o grupo com quem ele mais vota igual. Nenhum lado recebe rótulo de esquerda ou direita.</p>
     </div>
-    <div class="kpis" id="kpis"></div>
-    <div class="hemi-box rel">
+    <div class="hemi-box">
       <svg id="hemi" viewBox="-1.08 -1.08 2.16 1.16" role="img" aria-label="Hemiciclo do Plenário"></svg>
-      <div class="hemi-labels"><span id="poloA"></span><span id="poloB"></span></div>
+      <div class="hemi-centro"><b id="hemiN"></b><span>deputados no desenho</span></div>
       <div class="tip" id="hemiTip" hidden></div>
     </div>
+    <div class="hemi-labels"><span id="poloA"></span><span id="poloB"></span></div>
     <div class="legend" id="legend"></div>
+    <div class="kpis" id="kpis"></div>
     <div class="busca">
-      <label class="muted" for="buscaDep">Procurar deputado</label>
-      <input id="buscaDep" list="listaDep" placeholder="Digite um nome" autocomplete="off">
+      <label for="buscaDep">Procurar deputado</label>
+      <input id="buscaDep" list="listaDep" placeholder="Digite um nome e escolha" autocomplete="off">
       <datalist id="listaDep"></datalist>
     </div>
     <div class="ficha" id="ficha" hidden></div>
   </div>
 </section>
 
-<section id="rede">
+<section class="cap" id="contexto">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Contexto</span><h2>Governos, presidentes da Câmara e marcos</h2>
+      <p class="lede">Uma <b>legislatura</b> é o mandato de quatro anos da Câmara, que começa em 1º de fevereiro do ano seguinte à eleição. Este estudo cobre duas legislaturas, cada uma com um governo diferente do início ao fim. O presidente da Câmara define a pauta do Plenário, por isso aparece aqui junto com os governos.</p></div>
+    <div class="card ctx" style="overflow-x:auto"><svg id="ctxSvg" viewBox="0 0 1000 178" style="min-width:640px"></svg></div>
+  </div>
+</section>
+
+<section class="cap" id="mapa">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Mapa de votos</span><h2>Duas dimensões explicam a maior parte dos votos</h2>
+      <p class="lede" id="mapaLede"></p></div>
+    <details class="ler"><summary>Como ler este mapa</summary><div class="corpo">
+      <p>Cada ponto é um deputado. O mapa resume milhares de votos em duas coordenadas, com análise de componentes principais da matriz deputado × votação: deputados próximos votaram parecido em quase tudo.</p>
+      <dl><dt>Dimensão 1 (horizontal)</dt><dd>A principal divisão do Plenário. Neste estudo ela coincide quase perfeitamente com o eixo entre os polos e com o apoio ao governo.</dd>
+      <dt>Dimensão 2 (vertical)</dt><dd>Uma segunda divisão, independente da primeira. O nome dela vem dos temas em que ela mais pesa, listados abaixo do gráfico.</dd>
+      <dt>Variação explicada</dt><dd>Quanto de toda a diferença entre os votos a dimensão consegue resumir.</dd></dl>
+      <p class="nota">Só entram deputados com voto em pelo menos 30% das votações analisadas. A dimensão 2 se relaciona um pouco com a participação (quem vota menos tende a ficar de um lado), então leia o eixo vertical com cautela.</p>
+    </div></details>
+    <div class="dupla">
+      <div class="card rel"><svg class="chart" id="mapaSvg" viewBox="0 0 640 520"></svg><div class="tip" id="mapaTip" hidden></div><div class="legend claro" id="mapaLegend"></div></div>
+      <div class="card"><h3>O que define a dimensão 2</h3><div id="dim2Temas"></div><p class="nota">Votações em que votar Sim mais leva para cima (+) ou para baixo (−):</p><ul class="lista-v" id="dim2Vot"></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="cap" id="rede">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Rede de votação</span><h2>Vizinhos de voto</h2>
-      <p class="lede">Cada deputado se liga aos 15 colegas que mais votam igual a ele. Quem fica perto no desenho vota parecido; os grupos aparecem sozinhos. Toque num ponto para ver a ficha.</p></div>
+      <p class="lede">Cada deputado se liga aos 15 colegas que mais votam igual a ele. Os grupos aparecem sozinhos, sem que ninguém diga quem é de qual partido. Toque num ponto para ver a ficha e as ligações dele.</p></div>
+    <details class="ler"><summary>Como ler a rede</summary><div class="corpo">
+      <dl><dt>Concordância</dt><dd>Proporção das votações em comum em que dois deputados votaram igual (mínimo de 50 votações em comum).</dd>
+      <dt>Comunidade</dt><dd>Grupo encontrado pelo algoritmo Leiden: os deputados de dentro têm mais ligações entre si do que com os de fora. O nome é só a composição (por exemplo, "C1 · PL 100, União 21").</dd>
+      <dt>Pontes</dt><dd>Deputados cujas ligações se espalham por várias comunidades. Estão no ranking "Pontes".</dd></dl>
+    </div></details>
     <div class="row"><div class="seg" id="redeCor" role="group" aria-label="Colorir por"><button aria-pressed="true" data-v="c">Comunidade</button><button aria-pressed="false" data-v="p">Partido</button></div></div>
     <div class="rel"><canvas id="redeCanvas" width="1200" height="900" aria-label="Rede de votação"></canvas><div class="tip" id="redeTip" hidden></div></div>
-    <div class="legend" id="redeLegend"></div>
+    <div class="legend claro" id="redeLegend"></div>
   </div>
 </section>
 
-<section id="tempo">
+<section class="cap" id="tempo">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">Ao longo da legislatura</span><h2>O centro se move</h2>
-      <p class="lede" id="tempoLede">Cada ponto resume 150 votações seguidas.</p></div>
+    <div class="head"><span class="eyebrow">Ao longo do mandato</span><h2>Para onde as comunidades se movem</h2>
+      <p class="lede" id="tempoLede"></p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo">
+      <dl><dt>Janela</dt><dd>Grupo de 150 votações seguidas. Cada ponto é uma janela, colocado na data da última votação dela. As janelas avançam de 50 em 50 votações, então se sobrepõem.</dd>
+      <dt>Posição entre os polos</dt><dd>Concordância com o núcleo do polo B menos concordância com o núcleo do polo A, de −1 (sempre com A) a +1 (sempre com B).</dd>
+      <dt>Apoio ao governo</dt><dd>% dos votos iguais à orientação do líder do Governo, entre as votações em que ele orientou.</dd>
+      <dt>Faixas ao fundo</dt><dd>Presidente da Câmara em cada período e, quando houver, o período de votação remota.</dd></dl>
+    </div></details>
     <div class="row"><div class="seg" id="tempoMet" role="group" aria-label="Medida"><button aria-pressed="true" data-v="pos">Posição entre os polos</button><button aria-pressed="false" data-v="ap">Apoio ao governo</button></div></div>
-    <div class="card rel"><svg class="chart" id="tempoChart" viewBox="0 0 900 380"></svg><div class="tip" id="tempoTip" hidden></div></div>
-    <div class="card rel"><h3>Votações vencidas pelo governo</h3><svg class="chart" id="vitChart" viewBox="0 0 900 200"></svg><div class="tip" id="vitTip" hidden></div></div>
-    <p class="nota" id="tempoNota"></p>
+    <div class="card rel"><div class="rolagem dica-rolar"><svg class="chart" id="tempoChart" viewBox="0 0 960 400"></svg></div><div class="tip" id="tempoTip" hidden></div><div class="legend claro" id="tempoLegend"></div></div>
+    <div class="destaques" id="tempoDest"></div>
   </div>
 </section>
 
-<section id="temas">
+<section class="cap" id="clima">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Polarização e governabilidade</span><h2>Quanto o Plenário se divide, mês a mês</h2>
+      <p class="lede">Uma votação é <b>polarizada</b> quando a maioria de um polo vota Sim e a do outro vota Não. A <b>folga do governo</b> é quantos votos precisariam ter mudado de lado para o governo perder uma votação que ganhou.</p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo">
+      <dl><dt>% polarizadas</dt><dd>Das votações nominais do mês, quantas tiveram os dois polos em lados opostos.</dd>
+      <dt>Votações apertadas</dt><dd>Diferença entre Sim e Não menor que 10% dos votos.</dd>
+      <dt>Folga</dt><dd>Mediana, no mês, dos votos que precisariam virar para inverter o resultado das vitórias do governo (maioria simples; não considera quórum qualificado). Quanto menor, mais frágil a maioria.</dd>
+      <dt>Vitórias do governo</dt><dd>Votações em que o resultado seguiu a orientação do líder do Governo.</dd></dl>
+    </div></details>
+    <div class="card rel"><h3>Votações polarizadas por mês</h3><p class="nota">Quanto mais escura a barra, maior a proporção de votações com os dois polos em lados opostos.</p><div class="rolagem dica-rolar"><svg class="chart" id="polSvg" viewBox="0 0 960 260"></svg></div><div class="tip" id="polTip" hidden></div></div>
+    <div class="cols">
+      <div class="card rel"><h3>Vitórias do governo</h3><p class="nota">Em laranja, meses em que o governo venceu menos de 70% das votações em que orientou.</p><div class="rolagem dica-rolar estreito"><svg class="chart" id="vitSvg" viewBox="0 0 640 230"></svg></div><div class="tip" id="vitTip" hidden></div></div>
+      <div class="card rel"><h3>Folga do governo (votos para virar)</h3><div class="rolagem dica-rolar estreito"><svg class="chart" id="folSvg" viewBox="0 0 640 230"></svg></div><div class="tip" id="folTip" hidden></div></div>
+    </div>
+    <div class="destaques" id="climaDest"></div>
+  </div>
+</section>
+
+<section class="cap" id="agenda">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Agenda</span><h2>O que foi a voto</h2>
+      <p class="lede">Votações nominais no Plenário por trimestre e por tema oficial da Câmara. Uma votação pode ter mais de um tema, por isso as camadas somam mais do que o total de votações.</p></div>
+    <div class="card rel"><div class="rolagem dica-rolar"><svg class="chart" id="agSvg" viewBox="0 0 960 360"></svg></div><div class="tip" id="agTip" hidden></div><div class="legend claro" id="agLegend"></div></div>
+    <div class="destaques" id="agDest"></div>
+  </div>
+</section>
+
+<section class="cap" id="temas">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Por tema</span><h2>O lado muda com o assunto</h2>
-      <p class="lede">Temas oficiais da Câmara com pelo menos 75 votações. Os pontos são a posição média de cada comunidade naquele tema.</p></div>
+      <p class="lede">Temas com pelo menos 75 votações. Cada ponto é a posição média (ou o apoio ao governo) de uma comunidade naquele tema.</p></div>
     <div class="row"><div class="seg" id="temaMet" role="group" aria-label="Medida"><button aria-pressed="true" data-v="pos">Posição entre os polos</button><button aria-pressed="false" data-v="ap">Apoio ao governo</button></div></div>
-    <div class="card rel" style="overflow-x:auto"><svg class="chart" id="temaChart" viewBox="0 0 900 420"></svg><div class="tip" id="temaTip" hidden></div></div>
+    <div class="card rel" style="overflow-x:auto"><svg class="chart" id="temaChart" viewBox="0 0 960 420"></svg><div class="tip" id="temaTip" hidden></div></div>
   </div>
 </section>
 
-<section id="rankings">
+<section class="cap" id="rankings">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Rankings</span><h2>Quem se destaca</h2>
-      <p class="lede">Só entram deputados com pelo menos 100 votos medidos no indicador. Toque num nome para ver a ficha.</p></div>
+      <p class="lede">Só entram deputados com pelo menos 100 votos medidos no indicador. Toque num nome para abrir a ficha.</p></div>
     <div class="tabs" role="tablist" id="rankTabs"></div>
     <div class="card"><p class="nota" id="rankDesc"></p><ol class="rank" id="rankList"></ol></div>
   </div>
 </section>
 
-<section id="partidos">
+<section class="cap" id="partidos">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Partidos</span><h2>Apoio, disciplina e coesão</h2>
-      <p class="lede">Partidos com pelo menos 5 deputados no período. Disciplina em cinza: medida em menos de 30% dos votos do partido, porque ele quase não orienta sozinho.</p></div>
-    <div class="card"><div class="ptab" id="ptab"></div></div>
+      <p class="lede">Partidos com pelo menos 5 deputados no período, ordenados pelo apoio ao governo.</p></div>
+    <details class="ler"><summary>O que é cada coluna</summary><div class="corpo"><dl>
+      <dt>Apoio ao governo</dt><dd>% dos votos dos deputados do partido iguais à orientação do líder do Governo.</dd>
+      <dt>Disciplina</dt><dd>% dos votos iguais à orientação do próprio partido; se ele não orientou, a da federação; se nenhum dos dois, a do bloco. Em cinza: medida em menos de 30% dos votos.</dd>
+      <dt>Coesão (índice de Rice)</dt><dd>Em cada votação, a diferença entre % Sim e % Não dentro do partido. 100% = todos votaram igual; 0% = racharam ao meio.</dd></dl></div></details>
+    <div class="card"><div id="ptab"></div></div>
   </div>
 </section>
 
-<section id="comparacao">
+<section class="cap" id="comparacao">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">Comparação entre legislaturas</span><h2>Dois governos, mesma régua</h2>
-      <p class="lede">Mesmos parâmetros nas duas legislaturas. Comunidades e polos são calculados separadamente em cada uma.</p></div>
+    <div class="head"><span class="eyebrow">Dois governos, mesma régua</span><h2>Bolsonaro e Lula 3 no Plenário</h2>
+      <p class="lede">Os mesmos parâmetros nas duas legislaturas. Comunidades e polos são calculados separadamente em cada uma, então a C1 de uma não é o mesmo grupo que a C1 da outra.</p></div>
     <div id="compBox"></div>
   </div>
 </section>
 
-<section id="metodo">
+<section class="cap" id="glossario">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">Método</span><h2>Como ler</h2></div>
-    <div class="cols">
-      <div class="card"><h3>Votos</h3><p>Só votações nominais do Plenário. Sim = +1; Não e Obstrução = −1; abstenção, voto do presidente da sessão e ausência ficam sem valor. Votações secretas e quase unânimes (minoria abaixo de 2,5%) saem da conta.</p></div>
-      <div class="card"><h3>Comunidades</h3><p>Concordância entre cada par de deputados, grafo com os 15 vizinhos mais parecidos e algoritmo Leiden. Testado com outras codificações, limiares e vizinhanças.</p></div>
-      <div class="card"><h3>Polos</h3><p>As duas comunidades estáveis que mais discordam entre si. Posição = concordância com o núcleo do polo B menos com o do polo A, de −1 a +1. Não significa esquerda ou direita.</p></div>
-      <div class="card"><h3>Governabilidade</h3><p>Apoio = voto igual à orientação do líder do Governo. Disciplina = igual à orientação do partido, federação ou bloco. Participação = votos ÷ votações em que o deputado estava em exercício.</p></div>
+    <div class="head"><span class="eyebrow">Glossário</span><h2>O que é cada coisa</h2></div>
+    <div class="glos">
+      <div><b>Votação nominal</b><p>Cada deputado registra o voto no painel e o voto fica público. É a única que mostra quem votou o quê. As simbólicas, em que o presidente só anuncia o resultado, ficam de fora.</p></div>
+      <div><b>Codificação dos votos</b><p>Sim = +1; Não e Obstrução = −1. Abstenção, voto do presidente da sessão (Artigo 17) e ausência não entram na conta. Votações secretas e quase unânimes (minoria abaixo de 2,5%) saem da análise.</p></div>
+      <div><b>Obstrução</b><p>Registro de presença que não conta para o quórum: uma ferramenta da minoria para atrasar ou derrubar uma votação. Aqui conta como voto contrário.</p></div>
+      <div><b>Orientação de bancada</b><p>Antes de cada votação, o líder de cada partido, bloco, governo e oposição anuncia como sua bancada deve votar.</p></div>
+      <div><b>Comunidade</b><p>Grupo de deputados que votam parecido, encontrado pelo algoritmo nos votos. Não é partido nem frente formal.</p></div>
+      <div><b>Polos</b><p>As duas comunidades estáveis que mais discordam entre si. Elas definem a régua de −1 a +1. Não significam esquerda nem direita.</p></div>
+      <div><b>Núcleo</b><p>Os deputados de uma comunidade que continuam nela em todos os testes de robustez. A régua usa só eles.</p></div>
+      <div><b>Fora dos polos</b><p>Os deputados das demais comunidades. Na prática, quem decide as maiorias.</p></div>
+      <div><b>Em exercício</b><p>O deputado que estava no mandato naquela data, pelo histórico oficial da Câmara (titulares, suplentes, licenças). Base da participação.</p></div>
+      <div><b>Federação e bloco</b><p>Federação: partidos que atuam como um só por quatro anos. Bloco: aliança formal dentro da Câmara que pode orientar em nome dos membros.</p></div>
     </div>
+    <p class="nota">Similaridade de voto não prova coordenação, vínculo pessoal nem motivo comum. Todos os números são descritivos.</p>
   </div>
 </section>
 </main>
@@ -240,117 +375,173 @@ footer{padding-block:40px 60px;color:var(--ink-3);font-size:.85rem}
 <script>
 const D = /*__DADOS__*/null;
 const fmt = new Intl.NumberFormat("pt-BR");
-const pctf = (v, d = 1) => v == null ? "—" : (100 * v).toLocaleString("pt-BR", {minimumFractionDigits: d, maximumFractionDigits: d}) + "%";
+const pctf = (v, d = 1) => v == null || isNaN(v) ? "—" : (100 * v).toLocaleString("pt-BR", {minimumFractionDigits: d, maximumFractionDigits: d}) + "%";
 const pctn = (a, b, d = 1) => b ? `${pctf(a / b, d)} (${fmt.format(Math.round(a))} de ${fmt.format(b)})` : "—";
 const dec = (v, d = 2) => v == null ? "—" : v.toLocaleString("pt-BR", {minimumFractionDigits: d, maximumFractionDigits: d});
 const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const corCom = c => cssv(`--c${((+String(c).slice(1) - 1) % 8) + 1}`);
+const corCom = (c, h) => cssv(`--${h ? "h" : ""}c${((+String(c).slice(1) - 1) % 8) + 1}`);
 const svgNS = "http://www.w3.org/2000/svg";
 const el = (t, a = {}, p) => { const e = document.createElementNS(svgNS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+const txt = (p, x, y, s, a = {}) => { const t = el("text", {x, y, ...a}, p); t.textContent = s; return t; };
 const $ = s => document.querySelector(s);
-const nomeLeg = l => ({"56": "56ª · 2019–2022", "57": "57ª · 2023–2026"}[l] || `${l}ª`);
-const mesAno = s => { const d = new Date(s + "T12:00:00"); return d.toLocaleDateString("pt-BR", {month: "short", year: "numeric"}).replace(".", ""); };
+const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+const mesAno = s => { const [y, m] = s.split("-"); return `${MESES[+m - 1]} ${y}`; };
+const anoF = s => s.slice(0, 4);
+const periodoLeg = l => `${anoF(l.ini)}–${+anoF(l.fim) - 1}`;
+const curtoGov = l => /Bolsonaro/.test(l.governo) ? "Bolsonaro" : /Lula/.test(l.governo) ? "Lula 3" : l.governo;
+const nomeLeg = l => `${l.leg}ª · ${curtoGov(l)}`;
 
 let L = D.legislaturas[D.legislaturas.length - 1];
 let selecionado = null;
 const ocultas = new Set();
 try { const s = localStorage.getItem("cpbr_leg"); const f = D.legislaturas.find(l => l.leg === s); if (f) L = f; } catch (e) {}
 
-function composicao(c) { const x = L.comunidades.find(k => k.id === c); return x ? x.comp.slice(0, 2).map(([p, q]) => `${p} ${q}`).join(", ") : ""; }
+function composicao(c, k = 2) { const x = L.comunidades.find(q => q.id === c); return x ? x.comp.slice(0, k).map(([p, q]) => `${p} ${q}`).join(", ") : ""; }
 function rotulo(c) { return `${c} · ${composicao(c)}`; }
+function posTip(tip, x, y, w) { tip.style.left = Math.max(4, Math.min(x + 14, w - 270)) + "px"; tip.style.top = (y + 16) + "px"; }
+const segOn = (id, fn) => { $(id).onclick = e => { const b = e.target.closest("button"); if (!b) return; [...$(id).children].forEach(x => x.setAttribute("aria-pressed", x === b)); fn(b.dataset.v); }; };
 
-/* ---------- topo e KPIs ---------- */
+/* ================= topo / abertura ================= */
 function topo() {
   const seg = $("#legSeg"); seg.innerHTML = "";
   D.legislaturas.forEach(l => {
-    const b = document.createElement("button"); b.textContent = nomeLeg(l.leg); b.setAttribute("aria-pressed", l === L);
-    b.onclick = () => { L = l; selecionado = null; ocultas.clear(); try { localStorage.setItem("cpbr_leg", l.leg); } catch (e) {} tudo(); };
+    const b = document.createElement("button"); b.textContent = `${l.leg}ª · ${curtoGov(l)}`; b.title = `${l.nome} · ${l.governo} · ${periodoLeg(l)}`;
+    b.setAttribute("aria-pressed", l === L);
+    b.onclick = () => { if (l === L) return; L = l; selecionado = null; ocultas.clear(); try { localStorage.setItem("cpbr_leg", l.leg); } catch (e) {} tudo(true); };
     seg.appendChild(b);
   });
-  $("#heroEyebrow").textContent = `Câmara dos Deputados · Plenário · legislatura ${nomeLeg(L.leg)}`;
+  const pres = (D.contexto.presidentes_camara || []).filter(p => p.inicio < L.fim && (!p.fim || p.fim > L.ini)).map(p => p.nome).join(", ");
+  $("#govLinha").innerHTML = `<b>${L.governo}</b><span>${L.nome} · ${periodoLeg(L)} · presidência da Câmara: ${pres}</span>`;
   const cps = L.janelas.map(j => j.cp).filter(v => v != null);
+  const dr = L.din ? L.din.resumo : null;
   const k = [
     [fmt.format(L.votacoes), "votações nominais no Plenário"],
-    [pctf(L.gov.v / L.gov.n), `vencidas pelo governo (${fmt.format(L.gov.v)} de ${fmt.format(L.gov.n)})`],
-    [`${pctf(Math.min(...cps), 0)}–${pctf(Math.max(...cps), 0)}`, "concordância entre os dois polos, conforme o período"],
+    [pctf(L.gov.v / L.gov.n), `vencidas pelo governo (${fmt.format(L.gov.v)} de ${fmt.format(L.gov.n)} em que orientou)`],
+    dr ? [pctf(dr.polarizadas / dr.votacoes), `polarizadas: os dois polos em lados opostos (${fmt.format(dr.polarizadas)} de ${fmt.format(dr.votacoes)})`] : null,
+    [`${pctf(Math.min(...cps), 0)} a ${pctf(Math.max(...cps), 0)}`, "concordância entre os polos, conforme o período"],
     [String(L.comunidades.length), "comunidades de votação"],
-  ];
+  ].filter(Boolean);
   $("#kpis").innerHTML = k.map(([b, s]) => `<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join("");
-  $("#poloA").textContent = `← polo A · ${rotulo(L.polos.a)}`;
-  $("#poloB").textContent = `polo B · ${rotulo(L.polos.b)} →`;
+  $("#poloA").innerHTML = `← polo A<br><b>${rotulo(L.polos.a)}</b>`;
+  $("#poloB").innerHTML = `polo B →<br><b>${rotulo(L.polos.b)}</b>`;
 }
 
-/* ---------- hemiciclo ---------- */
-function hemiciclo() {
+function hemiciclo(animar) {
   const svg = $("#hemi"); svg.innerHTML = "";
   const deps = L.deputados.map((d, i) => ({...d, i})).filter(d => d.pos != null).sort((a, b) => a.pos - b.pos);
-  const N = deps.length, R = 10, rin = .32, rout = 1;
+  const N = deps.length, R = 11, rin = .3, rout = 1;
+  $("#hemiN").textContent = fmt.format(N);
   const radii = Array.from({length: R}, (_, i) => rin + i * (rout - rin) / (R - 1));
   const soma = radii.reduce((a, b) => a + b, 0);
-  let cont = radii.map(r => Math.round(N * r / soma));
-  cont[R - 1] += N - cont.reduce((a, b) => a + b, 0);
+  const cont = radii.map(r => Math.round(N * r / soma)); cont[R - 1] += N - cont.reduce((a, b) => a + b, 0);
   const assentos = [];
   radii.forEach((r, k) => { const n = cont[k]; for (let j = 0; j < n; j++) { const t = Math.PI - (n === 1 ? Math.PI / 2 : j * Math.PI / (n - 1)); assentos.push({x: r * Math.cos(t), y: -r * Math.sin(t), t, r}); } });
   assentos.sort((a, b) => b.t - a.t || a.r - b.r);
-  const raio = Math.min(.45 * Math.PI * rout / cont[R - 1], .45 * (rout - rin) / (R - 1));
-  const g = el("g", {}, svg);
+  const raio = Math.min(.44 * Math.PI * rout / cont[R - 1], .44 * (rout - rin) / (R - 1));
+  const defs = el("defs", {}, svg);
+  const f = el("filter", {id: "brilho", x: "-50%", y: "-50%", width: "200%", height: "200%"}, defs);
+  el("feGaussianBlur", {stdDeviation: raio * .9, result: "b"}, f);
+  const mg = el("feMerge", {}, f); el("feMergeNode", {in: "b"}, mg); el("feMergeNode", {in: "SourceGraphic"}, mg);
+  el("path", {d: `M${-rout - .05},0 A${rout + .05},${rout + .05} 0 0 1 ${rout + .05},0`, fill: "none", stroke: cssv("--h-rule"), "stroke-width": .004}, svg);
+  const g = el("g", {filter: "url(#brilho)"}, svg);
   deps.forEach((d, k) => {
     const s = assentos[k];
-    const c = el("circle", {cx: s.x.toFixed(4), cy: s.y.toFixed(4), r: raio.toFixed(4), fill: corCom(d.c), "data-i": d.i, tabindex: -1}, g);
-    c.style.opacity = ocultas.size && ocultas.has(d.c) ? .12 : 1;
-    if (selecionado === d.i) { c.setAttribute("stroke", cssv("--ink")); c.setAttribute("stroke-width", raio * .7); }
+    const c = el("circle", {cx: s.x.toFixed(4), cy: s.y.toFixed(4), r: raio.toFixed(4), fill: corCom(d.c, true), "data-i": d.i}, g);
+    c.style.opacity = ocultas.size && ocultas.has(d.c) ? .1 : 1;
+    if (selecionado === d.i) { c.setAttribute("stroke", "#fff"); c.setAttribute("stroke-width", raio * .8); }
+    if (animar && !reduz && c.animate) c.animate([{opacity: .15, transform: "scale(.4)"}, {opacity: c.style.opacity, transform: "scale(1)"}], {duration: 520, delay: 700 * (Math.PI - s.t) / Math.PI + 60 * (s.r - rin), easing: "cubic-bezier(.2,.7,.2,1)", fill: "backwards"});
   });
-  const tip = $("#hemiTip"), box = svg.parentElement;
-  svg.onpointermove = e => {
-    const t = e.target.closest("circle"); if (!t) { tip.hidden = true; return; }
+  const tip = $("#hemiTip"), box = svg.closest('.rel');
+  svg.onpointermove = e => { const t = e.target.closest("circle[data-i]"); if (!t) { tip.hidden = true; return; }
     const d = L.deputados[+t.dataset.i]; const r = box.getBoundingClientRect();
-    tip.innerHTML = `<b>${d.n}</b><br>${d.p} · ${d.uf} · ${d.c}<br>Posição ${dec(d.pos)}`;
-    tip.hidden = false; posTip(tip, e.clientX - r.left, e.clientY - r.top, r.width);
-  };
+    tip.innerHTML = `<b>${d.n}</b><br>${d.p} · ${d.uf} · ${d.c}<br>Posição ${dec(d.pos)} · apoio ao governo ${pctf(d.ag, 0)}`;
+    tip.hidden = false; posTip(tip, e.clientX - r.left, e.clientY - r.top, r.width); };
   svg.onpointerleave = () => tip.hidden = true;
-  svg.onclick = e => { const t = e.target.closest("circle"); if (t) mostrar(+t.dataset.i); };
-  // legenda
+  svg.onclick = e => { const t = e.target.closest("circle[data-i]"); if (t) mostrar(+t.dataset.i); };
   const lg = $("#legend"); lg.innerHTML = "";
   L.comunidades.forEach(c => {
     const b = document.createElement("button"); b.setAttribute("aria-pressed", !ocultas.has(c.id));
-    b.innerHTML = `<span class="dot" style="background:${corCom(c.id)}"></span>${rotulo(c.id)} <span class="muted num">${c.tam}</span>`;
+    b.innerHTML = `<span class="dot" style="background:${corCom(c.id, true)}"></span>${rotulo(c.id)} <span class="num" style="opacity:.6">${c.tam}</span>`;
     b.onclick = () => { ocultas.has(c.id) ? ocultas.delete(c.id) : ocultas.add(c.id); if (ocultas.size === L.comunidades.length) ocultas.clear(); hemiciclo(); };
     lg.appendChild(b);
   });
-  const fora = L.deputados.length - N;
-  if (fora > 0) { const s = document.createElement("span"); s.className = "muted"; s.textContent = `${fora} com poucos votos ficam fora do desenho`; lg.appendChild(s); }
 }
-function posTip(tip, x, y, w) { tip.style.left = Math.max(4, Math.min(x + 12, w - 250)) + "px"; tip.style.top = (y + 14) + "px"; }
 
-/* ---------- ficha ---------- */
 function mostrar(i, rolar = true) {
   selecionado = i; const d = L.deputados[i]; const f = $("#ficha");
-  const lin = (rot, txt, v) => `<div class="met"><small>${rot}</small><b>${txt}</b>${v != null ? `<div class="bar"><i style="width:${(100 * v).toFixed(1)}%"></i></div>` : ""}</div>`;
-  f.innerHTML = `<div class="row" style="justify-content:space-between"><div><div class="nome">${d.n}</div><div class="muted">${d.p} · ${d.uf} · comunidade <span class="dot" style="background:${corCom(d.c)}"></span> ${rotulo(d.c)}</div></div>
-    <button class="seg" style="padding:6px 10px;cursor:pointer;color:var(--ink-2)" id="fechaFicha" aria-label="Fechar ficha">Fechar</button></div>
+  const lin = (rot, t, v) => `<div class="met"><small>${rot}</small><b>${t}</b>${v != null ? `<div class="bar"><i style="width:${(100 * v).toFixed(1)}%"></i></div>` : ""}</div>`;
+  f.innerHTML = `<div class="row" style="justify-content:space-between;align-items:flex-start"><div style="display:grid;gap:4px"><div class="nome">${d.n}</div>
+    <div class="sub">${d.p} · ${d.uf} · <span class="dot" style="background:${corCom(d.c, true)}"></span> comunidade ${rotulo(d.c)} · ${L.nome} (${curtoGov(L)})</div></div>
+    <button class="fecha" id="fechaFicha">Fechar</button></div>
     <div class="linhas">
-      ${lin("Posição entre os polos", d.pos != null ? `${dec(d.pos)} ${d.pos < 0 ? "(mais perto de A)" : "(mais perto de B)"}` : "—", d.pos != null ? (d.pos + 1) / 2 : null)}
+      ${lin("Posição entre os polos", d.pos != null ? `${dec(d.pos)} · ${d.pos < 0 ? "mais perto do polo A" : "mais perto do polo B"}` : "—", d.pos != null ? (d.pos + 1) / 2 : null)}
       ${lin("Apoio ao governo", d.vg ? pctn(d.ag * d.vg, d.vg) : "—", d.vg ? d.ag : null)}
       ${lin("Disciplina partidária", d.vd ? pctn(d.di * d.vd, d.vd) : "—", d.vd ? d.di : null)}
       ${lin("Participação", d.ex ? pctn(d.pr, d.ex) : "—", d.ex ? d.pa : null)}
     </div>`;
-  f.hidden = false; $("#fechaFicha").onclick = () => { selecionado = null; f.hidden = true; hemiciclo(); rede(); };
-  hemiciclo(); rede();
-  if (rolar) f.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center"});
+  f.hidden = false; $("#fechaFicha").onclick = () => { selecionado = null; f.hidden = true; hemiciclo(); rede(); mapa(); };
+  hemiciclo(); rede(); mapa();
+  if (rolar) f.scrollIntoView({behavior: reduz ? "auto" : "smooth", block: "center"});
 }
 function busca() {
-  const dl = $("#listaDep"); dl.innerHTML = L.deputados.map(d => `<option value="${d.n} (${d.p})">`).join("");
+  $("#listaDep").innerHTML = L.deputados.map(d => `<option value="${d.n} (${d.p})">`).join("");
   const inp = $("#buscaDep"); inp.value = "";
   inp.onchange = () => { const i = L.deputados.findIndex(d => `${d.n} (${d.p})` === inp.value || d.n.toLowerCase() === inp.value.toLowerCase()); if (i >= 0) mostrar(i, false); };
 }
 
-/* ---------- rede ---------- */
-let redeModo = "c";
-function coresPartido() {
-  const cont = {}; L.deputados.forEach(d => cont[d.p] = (cont[d.p] || 0) + 1);
-  const top = Object.entries(cont).sort((a, b) => b[1] - a[1]).slice(0, 8).map(x => x[0]);
-  return {top, cor: p => { const k = top.indexOf(p); return k >= 0 ? cssv(`--c${k + 1}`) : cssv("--cx"); }};
+/* ================= linha do tempo de contexto ================= */
+function contexto() {
+  const svg = $("#ctxSvg"); svg.innerHTML = "";
+  const W = 1000, m = {l: 130, r: 16};
+  const ini = Math.min(...D.legislaturas.map(l => +new Date(l.ini))) - 32 * 864e5, fim = Math.max(...D.legislaturas.map(l => +new Date(l.fim)));
+  const X = t => m.l + (+new Date(t) - ini) / (fim - ini) * (W - m.l - m.r);
+  const lin = (y, rot) => txt(svg, 0, y + 15, rot, {class: "ctxlbl", style: "font:600 10px var(--f-data);fill:var(--ink-3);letter-spacing:.06em;text-transform:uppercase"});
+  const faixa = (y, h, a, b, cor, rotulo, ativo) => { const x0 = X(a), x1 = X(b || new Date(fim).toISOString());
+    el("rect", {x: x0 + 1, y, width: Math.max(2, x1 - x0 - 2), height: h, rx: 6, fill: cor, opacity: ativo ? 1 : .35}, svg);
+    if (x1 - x0 > 60) txt(svg, x0 + 10, y + h / 2 + 4, rotulo, {class: "lbl", style: `fill:${ativo ? "#fff" : "var(--ink)"};font:600 12px var(--f-body)`}); };
+  const ativo = (a, b) => a < L.fim && (!b || b > L.ini);
+  for (let y = new Date(ini).getFullYear() + 1; y <= new Date(fim).getFullYear(); y++) { const x = X(`${y}-01-01`); el("line", {x1: x, x2: x, y1: 16, y2: 150, stroke: cssv("--rule"), "stroke-dasharray": "2 4"}, svg); txt(svg, x + 3, 11, y, {style: "font:10px var(--f-data);fill:var(--ink-3)"}); }
+  lin(20, "Legislatura"); D.legislaturas.forEach(l => faixa(20, 26, l.ini, l.fim, cssv("--ink"), `${l.nome} · ${periodoLeg(l)}`, l === L));
+  lin(56, "Governo"); (D.contexto.governos || []).forEach((g, k) => faixa(56, 26, g.inicio, g.fim, k % 2 ? cssv("--accent") : cssv("--accent-2"), g.nome, ativo(g.inicio, g.fim)));
+  lin(92, "Pres. da Câmara"); (D.contexto.presidentes_camara || []).forEach((p, k) => faixa(92, 26, p.inicio, p.fim, [cssv("--c1"), cssv("--c7"), cssv("--c2")][k % 3], `${p.nome} (${p.partido})`, ativo(p.inicio, p.fim)));
+  lin(128, "Marcos");
+  (D.marcadores || []).forEach(mk => { el("rect", {x: X(mk.inicio), y: 130, width: X(mk.fim) - X(mk.inicio), height: 14, rx: 3, fill: cssv("--band"), stroke: cssv("--rule")}, svg); txt(svg, X(mk.inicio) + 5, 141, mk.rotulo, {style: "font:10px var(--f-data);fill:var(--ink-2)"}); });
+  (D.contexto.eventos || []).forEach(ev => { const x = X(ev.data); el("line", {x1: x, x2: x, y1: 126, y2: 150, stroke: cssv("--warn"), "stroke-width": 2}, svg); txt(svg, x, 166, ev.rotulo, {"text-anchor": "middle", style: "font:10px var(--f-data);fill:var(--warn)"}); });
 }
+
+/* ================= mapa de votos (dimensões) ================= */
+function mapa() {
+  const svg = $("#mapaSvg"); svg.innerHTML = ""; const Dm = L.dim; if (!Dm) return;
+  const W = 640, H = 520, m = {l: 36, r: 14, t: 14, b: 40};
+  const xs = Dm.pts.map(p => p[1]), ys = Dm.pts.map(p => p[2]);
+  const ext = (a) => { const mn = Math.min(...a), mx = Math.max(...a), pd = (mx - mn) * .06; return [mn - pd, mx + pd]; };
+  const [x0, x1] = ext(xs), [y0, y1] = ext(ys);
+  const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r), Y = v => m.t + (y1 - v) / (y1 - y0) * (H - m.t - m.b);
+  el("line", {class: "zero", x1: X(0), x2: X(0), y1: m.t, y2: H - m.b, "stroke-dasharray": "3 4"}, svg);
+  el("line", {class: "zero", x1: m.l, x2: W - m.r, y1: Y(0), y2: Y(0), "stroke-dasharray": "3 4"}, svg);
+  txt(svg, m.l, H - 14, `← polo A`, {}); txt(svg, W - m.r, H - 14, `polo B →`, {"text-anchor": "end"});
+  txt(svg, (m.l + W - m.r) / 2, H - 2, `Dimensão 1 · governo × oposição · ${pctf(Dm.var[0], 0)} da variação`, {"text-anchor": "middle", style: "font:600 11px var(--f-data);fill:var(--ink)"});
+  const yt = (m.t + H - m.b) / 2; txt(svg, 12, yt, `Dimensão 2 · ${pctf(Dm.var[1], 0)}`, {"text-anchor": "middle", transform: `rotate(-90 12 ${yt})`, style: "font:600 11px var(--f-data);fill:var(--ink)"});
+  const g = el("g", {}, svg);
+  Dm.pts.forEach(([i, a, b]) => { const d = L.deputados[i]; const c = el("circle", {cx: X(a), cy: Y(b), r: selecionado === i ? 8 : 4.6, fill: corCom(d.c), "fill-opacity": .85, stroke: selecionado === i ? cssv("--ink") : cssv("--surface"), "stroke-width": selecionado === i ? 2.5 : 1, "data-i": i}, g); if (selecionado === i) g.appendChild(c); });
+  const tip = $("#mapaTip"), box = svg.closest('.rel');
+  svg.onpointermove = e => { const t = e.target.closest("circle[data-i]"); if (!t) { tip.hidden = true; return; } const d = L.deputados[+t.dataset.i]; const r = box.getBoundingClientRect();
+    tip.innerHTML = `<b>${d.n}</b><br>${d.p} · ${d.uf} · ${d.c}`; tip.hidden = false; posTip(tip, e.clientX - r.left, e.clientY - r.top, r.width); };
+  svg.onpointerleave = () => tip.hidden = true;
+  svg.onclick = e => { const t = e.target.closest("circle[data-i]"); if (t) mostrar(+t.dataset.i); };
+  $("#mapaLegend").innerHTML = L.comunidades.map(c => `<span class="row" style="gap:6px"><span class="dot" style="background:${corCom(c.id)}"></span>${rotulo(c.id)}</span>`).join("");
+  const t2 = Dm.temas.d2 || [];
+  $("#mapaLede").textContent = `Na ${L.nome}, a primeira dimensão resume ${pctf(Dm.var[0], 0)} de toda a diferença entre os votos e é o próprio eixo governo × oposição. A segunda resume ${pctf(Dm.var[1], 0)} e separa os deputados em outra pauta: ${t2.slice(0, 3).join(", ").toLowerCase()}.`;
+  $("#dim2Temas").innerHTML = t2.map(t => `<span class="pill">${t}</span>`).join(" ");
+  $("#dim2Vot").innerHTML = Dm.votacoes.filter(v => v.dim === "d2").slice(0, 8).map(v => `<li><b>${v.lado === "positivo" ? "+" : "−"} ${v.data} · ${v.prop || ""}</b>${v.ementa}</li>`).join("");
+}
+
+/* ================= rede ================= */
+let redeModo = "c";
+function coresPartido() { const cont = {}; L.deputados.forEach(d => cont[d.p] = (cont[d.p] || 0) + 1);
+  const top = Object.entries(cont).sort((a, b) => b[1] - a[1]).slice(0, 8).map(x => x[0]);
+  return {top, cor: p => { const k = top.indexOf(p); return k >= 0 ? cssv(`--c${k + 1}`) : cssv("--cx"); }}; }
 function rede() {
   const cv = $("#redeCanvas"), ctx = cv.getContext("2d"); const W = cv.width, H = cv.height;
   const xs = L.deputados.map(d => d.x), ys = L.deputados.map(d => d.y);
@@ -359,188 +550,263 @@ function rede() {
   const ox = (W - s * (x1 - x0)) / 2, oy = (H - s * (y1 - y0)) / 2;
   const P = L.deputados.map(d => [ox + (d.x - x0) * s, oy + (d.y - y0) * s]);
   ctx.clearRect(0, 0, W, H);
-  ctx.strokeStyle = cssv("--rule"); ctx.lineWidth = 1; ctx.globalAlpha = .55; ctx.beginPath();
+  ctx.strokeStyle = cssv("--rule"); ctx.lineWidth = 1; ctx.globalAlpha = .6; ctx.beginPath();
   L.arestas.forEach(([a, b]) => { ctx.moveTo(...P[a]); ctx.lineTo(...P[b]); }); ctx.stroke(); ctx.globalAlpha = 1;
-  const cp = coresPartido();
-  const cor = d => redeModo === "c" ? corCom(d.c) : cp.cor(d.p);
-  const bg = cssv("--surface");
+  const cp = coresPartido(); const cor = d => redeModo === "c" ? corCom(d.c) : cp.cor(d.p); const bg = cssv("--surface");
   L.deputados.forEach((d, i) => { ctx.beginPath(); ctx.arc(P[i][0], P[i][1], 6.5, 0, 2 * Math.PI); ctx.fillStyle = cor(d); ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = bg; ctx.stroke(); });
-  if (selecionado != null) {
-    const [sx, sy] = P[selecionado]; ctx.strokeStyle = cssv("--ink"); ctx.lineWidth = 2;
+  if (selecionado != null) { const [sx, sy] = P[selecionado]; ctx.strokeStyle = cssv("--ink"); ctx.lineWidth = 2;
     L.arestas.forEach(([a, b]) => { if (a === selecionado || b === selecionado) { const o = a === selecionado ? b : a; ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(...P[o]); ctx.stroke(); } });
-    ctx.beginPath(); ctx.arc(sx, sy, 11, 0, 2 * Math.PI); ctx.lineWidth = 3; ctx.stroke();
-  }
+    ctx.beginPath(); ctx.arc(sx, sy, 12, 0, 2 * Math.PI); ctx.lineWidth = 3; ctx.stroke(); }
   const perto = e => { const r = cv.getBoundingClientRect(); const mx = (e.clientX - r.left) * W / r.width, my = (e.clientY - r.top) * H / r.height;
-    let best = -1, bd = 1e9; P.forEach(([x, y], i) => { const dd = (x - mx) ** 2 + (y - my) ** 2; if (dd < bd) { bd = dd; best = i; } });
-    return bd < (22 * W / r.width) ** 2 ? best : -1; };
+    let best = -1, bd = 1e9; P.forEach(([x, y], i) => { const dd = (x - mx) ** 2 + (y - my) ** 2; if (dd < bd) { bd = dd; best = i; } }); return bd < (22 * W / r.width) ** 2 ? best : -1; };
   const tip = $("#redeTip");
   cv.onpointermove = e => { const i = perto(e); if (i < 0) { tip.hidden = true; return; } const d = L.deputados[i]; const r = cv.getBoundingClientRect();
     tip.innerHTML = `<b>${d.n}</b><br>${d.p} · ${d.uf} · ${d.c}`; tip.hidden = false; posTip(tip, e.clientX - r.left, e.clientY - r.top, r.width); };
-  cv.onpointerleave = () => tip.hidden = true;
-  cv.onclick = e => { const i = perto(e); if (i >= 0) mostrar(i); };
-  const lg = $("#redeLegend");
-  lg.innerHTML = redeModo === "c"
+  cv.onpointerleave = () => tip.hidden = true; cv.onclick = e => { const i = perto(e); if (i >= 0) mostrar(i); };
+  $("#redeLegend").innerHTML = redeModo === "c"
     ? L.comunidades.map(c => `<span class="row" style="gap:6px"><span class="dot" style="background:${corCom(c.id)}"></span>${rotulo(c.id)}</span>`).join("")
     : cp.top.map((p, k) => `<span class="row" style="gap:6px"><span class="dot" style="background:${cssv(`--c${k + 1}`)}"></span>${p}</span>`).join("") + `<span class="row" style="gap:6px"><span class="dot" style="background:${cssv("--cx")}"></span>Outros</span>`;
 }
-$("#redeCor").onclick = e => { const b = e.target.closest("button"); if (!b) return; redeModo = b.dataset.v; [...$("#redeCor").children].forEach(x => x.setAttribute("aria-pressed", x === b)); rede(); };
 
-/* ---------- gráfico de linhas genérico ---------- */
+/* ================= eixo de tempo com contexto ================= */
+function eixoTempo(svg, W, H, m, t0, t1, rotulos = true) {
+  const X = t => m.l + (+new Date(t) - t0) / (t1 - t0 || 1) * (W - m.l - m.r);
+  const clip = (a, b) => [Math.max(+new Date(a), t0), Math.min(b ? +new Date(b) : t1, t1)];
+  (D.contexto.presidentes_camara || []).forEach((p, k) => { const [a, b] = clip(p.inicio, p.fim); if (b <= a) return;
+    if (k % 2) el("rect", {class: "band", x: X(a), y: m.t, width: X(b) - X(a), height: H - m.t - m.b, opacity: .55}, svg);
+    if (rotulos && X(b) - X(a) > 70) txt(svg, X(a) + 6, m.t + 11, `Pres. ${p.nome}`, {class: "ctxlbl"}); });
+  (D.marcadores || []).forEach(mk => { const [a, b] = clip(mk.inicio, mk.fim); if (b <= a) return;
+    el("rect", {x: X(a), y: H - m.b - 8, width: X(b) - X(a), height: 4, rx: 2, fill: cssv("--warn"), opacity: .6}, svg);
+    if (rotulos) txt(svg, X(a), H - m.b - 12, mk.rotulo, {class: "ctxlbl", style: "fill:var(--warn)"}); });
+  (D.contexto.eventos || []).forEach(ev => { const t = +new Date(ev.data); if (t < t0 || t > t1) return;
+    el("line", {x1: X(t), x2: X(t), y1: m.t, y2: H - m.b, stroke: cssv("--warn"), "stroke-dasharray": "3 3", opacity: .7}, svg);
+    if (rotulos) txt(svg, X(t) - 4, m.t + 24, ev.rotulo, {"text-anchor": "end", class: "ctxlbl", style: "fill:var(--warn)"}); });
+  for (let y = new Date(t0).getFullYear(); y <= new Date(t1).getFullYear() + 1; y++) { const t = +new Date(`${y}-01-01`); if (t < t0 || t > t1) continue;
+    el("line", {class: "grid", x1: X(t), x2: X(t), y1: m.t, y2: H - m.b, "stroke-dasharray": "2 4"}, svg); txt(svg, X(t), H - m.b + 16, y, {"text-anchor": "middle"}); }
+  return X;
+}
 function linhas(svg, tip, series, opt) {
   svg.innerHTML = ""; const [W, H] = svg.getAttribute("viewBox").split(" ").slice(2).map(Number);
-  const m = {l: 48, r: 14, t: 14, b: 28}; const iw = W - m.l - m.r, ih = H - m.t - m.b;
-  const datas = series.flatMap(s => s.pts.map(p => +new Date(p[0])));
-  const t0 = Math.min(...datas), t1 = Math.max(...datas);
-  const X = t => m.l + (+new Date(t) - t0) / (t1 - t0 || 1) * iw, Y = v => m.t + (opt.y1 - v) / (opt.y1 - opt.y0) * ih;
-  (D.marcadores || []).forEach(mk => { const a = Math.max(+new Date(mk.inicio), t0), b = Math.min(+new Date(mk.fim), t1);
-    if (b > a) { el("rect", {class: "band", x: X(a), y: m.t, width: X(b) - X(a), height: ih}, svg); const t = el("text", {x: X(a) + 4, y: m.t + 12}, svg); t.textContent = mk.rotulo; } });
-  opt.ticks.forEach(v => { el("line", {class: v === 0 && opt.zero ? "zero" : "grid", x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v)}, svg);
-    const t = el("text", {x: m.l - 8, y: Y(v) + 4, "text-anchor": "end"}, svg); t.textContent = opt.fy(v); });
-  const anos = []; for (let y = new Date(t0).getFullYear(); y <= new Date(t1).getFullYear() + 1; y++) { const t = +new Date(`${y}-01-01`); if (t >= t0 && t <= t1) anos.push(t); }
-  anos.forEach(t => { el("line", {class: "grid", x1: X(t), x2: X(t), y1: m.t, y2: H - m.b, "stroke-dasharray": "2 4"}, svg); const tx = el("text", {x: X(t), y: H - 8, "text-anchor": "middle"}, svg); tx.textContent = new Date(t).getFullYear(); });
+  const m = {l: 46, r: 16, t: 16, b: 28}; const ih = H - m.t - m.b;
+  const t0 = +new Date(L.ini), t1 = Math.min(+new Date(L.fim), Math.max(...series.flatMap(s => s.pts.map(p => +new Date(p[0])))) + 30 * 864e5);
+  const Y = v => m.t + (opt.y1 - v) / (opt.y1 - opt.y0) * ih;
+  opt.ticks.forEach(v => { el("line", {class: v === 0 && opt.zero ? "zero" : "grid", x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v)}, svg); txt(svg, m.l - 8, Y(v) + 4, opt.fy(v), {"text-anchor": "end"}); });
+  const X = eixoTempo(svg, W, H, m, t0, t1);
   series.forEach(s => {
-    el("path", {d: s.pts.map((p, k) => `${k ? "L" : "M"}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(""), fill: "none", stroke: s.cor, "stroke-width": 2.2, "stroke-linejoin": "round"}, svg);
-    const u = s.pts[s.pts.length - 1]; el("circle", {cx: X(u[0]), cy: Y(u[1]), r: 4, fill: s.cor, stroke: cssv("--surface"), "stroke-width": 2}, svg);
+    if (opt.area) el("path", {d: `M${X(s.pts[0][0])},${Y(opt.y0)}` + s.pts.map(p => `L${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join("") + `L${X(s.pts[s.pts.length - 1][0])},${Y(opt.y0)}Z`, fill: s.cor, opacity: .12}, svg);
+    el("path", {d: s.pts.map((p, k) => `${k ? "L" : "M"}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(""), fill: "none", stroke: s.cor, "stroke-width": 2.4, "stroke-linejoin": "round", "stroke-linecap": "round"}, svg);
+    const u = s.pts[s.pts.length - 1]; el("circle", {cx: X(u[0]), cy: Y(u[1]), r: 4.5, fill: s.cor, stroke: cssv("--surface"), "stroke-width": 2}, svg);
   });
-  const guia = el("line", {class: "zero", y1: m.t, y2: H - m.b, visibility: "hidden"}, svg);
-  const box = svg.parentElement;
+  const guia = el("line", {class: "zero", y1: m.t, y2: H - m.b, visibility: "hidden"}, svg); const box = svg.closest('.rel');
   svg.onpointermove = e => { const r = svg.getBoundingClientRect(); const mx = (e.clientX - r.left) * W / r.width;
     const pts = series[0].pts; let k = 0, bd = 1e9; pts.forEach((p, j) => { const dd = Math.abs(X(p[0]) - mx); if (dd < bd) { bd = dd; k = j; } });
     const xx = X(pts[k][0]); guia.setAttribute("x1", xx); guia.setAttribute("x2", xx); guia.setAttribute("visibility", "visible");
-    tip.innerHTML = opt.titulo(pts[k]) + series.map(s => { const p = s.pts[k]; return p ? `<br><span class="dot" style="background:${s.cor}"></span> ${s.nome}: <b>${opt.fv(p, s)}</b>` : ""; }).join("");
+    tip.innerHTML = opt.titulo(pts[k]) + series.map(s => { const p = s.pts.find(q => q[0] === pts[k][0]); return p ? `<br><span class="dot" style="background:${s.cor}"></span> ${s.nome}: <b>${opt.fv(p, s)}</b>` : ""; }).join("");
     const rb = box.getBoundingClientRect(); tip.hidden = false; posTip(tip, e.clientX - rb.left, e.clientY - rb.top, rb.width); };
   svg.onpointerleave = () => { tip.hidden = true; guia.setAttribute("visibility", "hidden"); };
 }
+
+/* ================= tempo ================= */
 let tempoModo = "pos";
 function tempo() {
-  const cs = L.comunidades.map(c => c.id);
-  const series = cs.map(c => ({nome: c, cor: corCom(c), pts: L.janelas.filter(j => (tempoModo === "pos" ? j.pos[c] : j.ap[c]) != null).map(j => [j.fim, tempoModo === "pos" ? j.pos[c] : j.ap[c], j])}));
-  const isPos = tempoModo === "pos";
-  linhas($("#tempoChart"), $("#tempoTip"), series, {
-    y0: isPos ? -1 : 0, y1: 1, zero: isPos, ticks: isPos ? [-1, -.5, 0, .5, 1] : [0, .25, .5, .75, 1],
-    fy: v => isPos ? (v === -1 ? "A" : v === 1 ? "B" : dec(v, 1)) : pctf(v, 0),
-    titulo: p => `${mesAno(p[2].ini)} a ${mesAno(p[2].fim)}`, fv: p => isPos ? dec(p[1]) : pctf(p[1]),
-  });
-  const v = L.janelas.filter(j => j.vit != null);
-  linhas($("#vitChart"), $("#vitTip"), [{nome: "Governo venceu", cor: cssv("--accent"), pts: v.map(j => [j.fim, j.vit, j])}], {
-    y0: .5, y1: 1, ticks: [.5, .75, 1], fy: v => pctf(v, 0), titulo: p => `${mesAno(p[2].ini)} a ${mesAno(p[2].fim)}`,
-    fv: p => pctn(p[1] * p[2].nv, p[2].nv),
-  });
-  $("#tempoLede").textContent = isPos
-    ? `Cada ponto resume 150 votações seguidas. Abaixo de zero, a comunidade votou mais com o polo A (${rotulo(L.polos.a)}); acima, com o polo B (${rotulo(L.polos.b)}).`
-    : "Cada ponto resume as votações do mesmo intervalo de datas: % dos votos de cada comunidade iguais à orientação do líder do Governo.";
-  const ini = L.janelas[0]?.ini, fim = L.janelas[L.janelas.length - 1]?.fim;
-  $("#tempoNota").textContent = (D.marcadores || []).filter(m => m.fim >= ini && m.inicio <= fim).map(m => `Faixa cinza: ${m.rotulo} (${m.fonte}).`).join(" ");
+  const cs = L.comunidades.map(c => c.id); const isPos = tempoModo === "pos";
+  const series = cs.map(c => ({nome: c, cor: corCom(c), pts: L.janelas.filter(j => (isPos ? j.pos[c] : j.ap[c]) != null).map(j => [j.fim, isPos ? j.pos[c] : j.ap[c], j])})).filter(s => s.pts.length);
+  linhas($("#tempoChart"), $("#tempoTip"), series, {y0: isPos ? -1 : 0, y1: 1, zero: isPos, ticks: isPos ? [-1, -.5, 0, .5, 1] : [0, .25, .5, .75, 1],
+    fy: v => isPos ? (v === -1 ? "A" : v === 1 ? "B" : dec(v, 1)) : pctf(v, 0), titulo: p => `<b>${mesAno(p[2].ini)} a ${mesAno(p[2].fim)}</b>`, fv: p => isPos ? dec(p[1]) : pctf(p[1])});
+  $("#tempoLegend").innerHTML = L.comunidades.map(c => `<span class="row" style="gap:6px"><span class="dot" style="background:${corCom(c.id)}"></span>${rotulo(c.id)}</span>`).join("");
+  $("#tempoLede").innerHTML = isPos
+    ? `Abaixo de zero, a comunidade votou mais com o polo A (<b>${rotulo(L.polos.a)}</b>); acima, com o polo B (<b>${rotulo(L.polos.b)}</b>). ${L.governo}, ${periodoLeg(L)}.`
+    : `% dos votos de cada comunidade iguais à orientação do líder do Governo (${L.governo}), em janelas de tempo.`;
+  // destaques: polos mais distantes e janela de maior aproximação do centro a cada polo
+  const js = L.janelas.filter(j => j.cp != null); const min = js.reduce((a, b) => a.cp < b.cp ? a : b), max = js.reduce((a, b) => a.cp > b.cp ? a : b);
+  const fora = cs.filter(c => c !== L.polos.a && c !== L.polos.b);
+  const media = j => { const v = fora.map(c => j.pos[c]).filter(x => x != null); return v.reduce((a, b) => a + b, 0) / v.length; };
+  const jA = js.reduce((a, b) => media(a) < media(b) ? a : b), jB = js.reduce((a, b) => media(a) > media(b) ? a : b);
+  $("#tempoDest").innerHTML = [
+    [pctf(min.cp), `menor concordância entre os polos, em ${mesAno(min.ini)} a ${mesAno(min.fim)} (maior foi ${pctf(max.cp)}, em ${mesAno(max.ini)} a ${mesAno(max.fim)})`],
+    [dec(media(jB)), `posição média de quem está fora dos polos no momento mais perto do polo B: ${mesAno(jB.ini)} a ${mesAno(jB.fim)}`],
+    [dec(media(jA)), `e no momento mais perto do polo A: ${mesAno(jA.ini)} a ${mesAno(jA.fim)}`],
+  ].map(([b, s]) => `<div class="destaque"><b>${b}</b><span>${s}</span></div>`).join("");
 }
-$("#tempoMet").onclick = e => { const b = e.target.closest("button"); if (!b) return; tempoModo = b.dataset.v; [...$("#tempoMet").children].forEach(x => x.setAttribute("aria-pressed", x === b)); tempo(); };
 
-/* ---------- temas ---------- */
+/* ================= polarização e governabilidade ================= */
+function barras(svg, tip, dados, opt) {
+  svg.innerHTML = ""; const [W, H] = svg.getAttribute("viewBox").split(" ").slice(2).map(Number);
+  const m = {l: 46, r: 16, t: 16, b: 28}; const ih = H - m.t - m.b;
+  const t0 = +new Date(L.ini), t1 = Math.min(+new Date(L.fim), +new Date(dados[dados.length - 1].m + "-28"));
+  const Y = v => m.t + (opt.y1 - v) / (opt.y1 - opt.y0) * ih;
+  opt.ticks.forEach(v => { el("line", {class: "grid", x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v)}, svg); txt(svg, m.l - 8, Y(v) + 4, opt.fy(v), {"text-anchor": "end"}); });
+  const X = eixoTempo(svg, W, H, m, t0, t1, opt.rotulos !== false);
+  const bw = Math.max(2, (X("2020-02-01") - X("2020-01-01")) * .72);
+  const g = el("g", {}, svg);
+  if (!opt.linha) dados.forEach((d, k) => { const v = opt.v(d); if (v == null || isNaN(v)) return; const x = X(d.m + "-15") - bw / 2;
+    const r = el("rect", {x, y: Y(v), width: bw, height: Math.max(0, Y(opt.y0) - Y(v)), rx: Math.min(3, bw / 2), fill: opt.cor(d, v), "fill-opacity": opt.op ? opt.op(v) : 1, "data-k": k}, g); });
+  if (opt.linha) { const pts = dados.filter(d => opt.v(d) != null);
+    el("path", {d: pts.map((d, k) => `${k ? "L" : "M"}${X(d.m + "-15").toFixed(1)},${Y(opt.v(d)).toFixed(1)}`).join(""), fill: "none", stroke: opt.cor(), "stroke-width": 2.2, "stroke-linejoin": "round"}, svg);
+    pts.forEach(d => el("circle", {cx: X(d.m + "-15"), cy: Y(opt.v(d)), r: 3, fill: opt.cor(), stroke: cssv("--surface"), "stroke-width": 1.5}, svg)); }
+  const box = svg.closest('.rel');
+  svg.onpointermove = e => { const r = svg.getBoundingClientRect(); const mx = (e.clientX - r.left) * W / r.width;
+    let k = 0, bd = 1e9; dados.forEach((d, j) => { const dd = Math.abs(X(d.m + "-15") - mx); if (dd < bd) { bd = dd; k = j; } });
+    tip.innerHTML = opt.tip(dados[k]); const rb = box.getBoundingClientRect(); tip.hidden = false; posTip(tip, e.clientX - rb.left, e.clientY - rb.top, rb.width); };
+  svg.onpointerleave = () => tip.hidden = true;
+}
+function clima() {
+  const M = L.din ? L.din.mensal : null; if (!M) return;
+  const ac = cssv("--accent"), cx = cssv("--cx");
+  barras($("#polSvg"), $("#polTip"), M, {y0: 0, y1: 1, ticks: [0, .25, .5, .75, 1], fy: v => pctf(v, 0), v: d => d.n >= 3 ? d.pol / d.n : null,
+    cor: () => ac, op: v => .25 + .75 * v,
+    tip: d => `<b>${mesAno(d.m)}</b><br>${pctn(d.pol, d.n)} polarizadas<br>${fmt.format(d.ap)} apertadas`});
+  barras($("#vitSvg"), $("#vitTip"), M, {y0: 0, y1: 1, ticks: [0, .5, 1], fy: v => pctf(v, 0), v: d => d.go >= 3 ? d.gv / d.go : null,
+    cor: (d, v) => v < .7 ? cssv("--warn") : ac, rotulos: false, tip: d => `<b>${mesAno(d.m)}</b><br>Governo venceu ${pctn(d.gv, d.go)}`});
+  const fmax = Math.max(...M.map(d => d.folga || 0)); const top = Math.ceil(fmax / 50) * 50;
+  barras($("#folSvg"), $("#folTip"), M, {y0: 0, y1: top, ticks: [0, top / 2, top], fy: v => fmt.format(v), v: d => d.folga, linha: true, rotulos: false,
+    cor: () => cssv("--c1"), tip: d => `<b>${mesAno(d.m)}</b><br>Folga mediana: ${d.folga == null ? "—" : fmt.format(d.folga) + " votos"}`});
+  const r = L.din.resumo; const sem = {};
+  M.forEach(d => { const s = `${d.m.slice(0, 4)}-${+d.m.slice(5) <= 6 ? 1 : 2}`; sem[s] = sem[s] || {n: 0, p: 0}; sem[s].n += d.n; sem[s].p += d.pol; });
+  const ss = Object.entries(sem).filter(([, v]) => v.n >= 30); const mx = ss.reduce((a, b) => a[1].p / a[1].n > b[1].p / b[1].n ? a : b), mn = ss.reduce((a, b) => a[1].p / a[1].n < b[1].p / b[1].n ? a : b);
+  const sl = s => `${s.endsWith("1") ? "1º" : "2º"} semestre de ${s.slice(0, 4)}`;
+  $("#climaDest").innerHTML = [
+    [pctf(r.polarizadas / r.votacoes), `das votações da legislatura foram polarizadas (${fmt.format(r.polarizadas)} de ${fmt.format(r.votacoes)})`],
+    [pctf(mx[1].p / mx[1].n), `no semestre mais polarizado, o ${sl(mx[0])}; o menos polarizado foi o ${sl(mn[0])} (${pctf(mn[1].p / mn[1].n)})`],
+    [fmt.format(r.votos_para_virar_mediana), `votos precisariam mudar de lado, na mediana, para o governo perder o que ganhou: ${pctf(r.fracao_fora_para_virar_mediana)} dos votos de fora dos polos que estavam com ele`],
+  ].map(([b, s]) => `<div class="destaque"><b>${b}</b><span>${s}</span></div>`).join("");
+}
+
+/* ================= agenda (áreas empilhadas) ================= */
+function agenda() {
+  const svg = $("#agSvg"); svg.innerHTML = ""; const A = L.din ? L.din.agenda : null; if (!A) return;
+  const W = 960, H = 360, m = {l: 46, r: 16, t: 16, b: 28};
+  const tris = [...new Set(A.map(a => a.t))].sort();
+  const tot = {}; A.forEach(a => tot[a.tema] = (tot[a.tema] || 0) + a.n);
+  const temas = Object.keys(tot).filter(t => t !== "Outros").sort((a, b) => tot[b] - tot[a]).concat(tot.Outros ? ["Outros"] : []);
+  const cor = t => t === "Outros" ? cssv("--cx") : cssv(`--c${(temas.indexOf(t) % 8) + 1}`);
+  const val = {}; A.forEach(a => { val[a.t + a.tema] = a.n; });
+  const pilha = tris.map(t => { let acc = 0; return temas.map(te => { const v = val[t + te] || 0; const r = [acc, acc + v]; acc += v; return r; }); });
+  const ymax = Math.max(...pilha.map(p => p[p.length - 1][1])); const top = Math.ceil(ymax / 50) * 50;
+  const Y = v => m.t + (top - v) / top * (H - m.t - m.b);
+  [0, top / 2, top].forEach(v => { el("line", {class: "grid", x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v)}, svg); txt(svg, m.l - 8, Y(v) + 4, fmt.format(v), {"text-anchor": "end"}); });
+  const t0 = +new Date(L.ini), t1 = Math.min(+new Date(L.fim), +new Date(tris[tris.length - 1]) + 92 * 864e5);
+  const X = eixoTempo(svg, W, H, m, t0, t1); const xm = t => X(+new Date(t) + 45 * 864e5);
+  temas.forEach((te, k) => { const up = tris.map((t, i) => `${xm(t).toFixed(1)},${Y(pilha[i][k][1]).toFixed(1)}`), dn = tris.map((t, i) => `${xm(t).toFixed(1)},${Y(pilha[i][k][0]).toFixed(1)}`).reverse();
+    el("path", {d: `M${up.join("L")}L${dn.join("L")}Z`, fill: cor(te), "fill-opacity": .88, stroke: cssv("--surface"), "stroke-width": 1}, svg); });
+  const tip = $("#agTip"), box = svg.closest('.rel');
+  svg.onpointermove = e => { const r = svg.getBoundingClientRect(); const mx = (e.clientX - r.left) * W / r.width; let k = 0, bd = 1e9; tris.forEach((t, j) => { const dd = Math.abs(xm(t) - mx); if (dd < bd) { bd = dd; k = j; } });
+    const t = tris[k]; const tri = Math.floor((+t.slice(5) - 1) / 3) + 1;
+    tip.innerHTML = `<b>${tri}º trimestre de ${t.slice(0, 4)}</b>` + temas.slice().reverse().map(te => val[t + te] ? `<br><span class="dot" style="background:${cor(te)}"></span> ${te}: ${fmt.format(val[t + te])}` : "").join("");
+    const rb = box.getBoundingClientRect(); tip.hidden = false; posTip(tip, e.clientX - rb.left, e.clientY - rb.top, rb.width); };
+  svg.onpointerleave = () => tip.hidden = true;
+  $("#agLegend").innerHTML = temas.map(te => `<span class="row" style="gap:6px"><span class="dot" style="background:${cor(te)}"></span>${te}</span>`).join("");
+  const principal = temas[0]; const somaTot = Object.values(tot).reduce((a, b) => a + b, 0);
+  const pico = tris.reduce((a, t) => (pilha[tris.indexOf(t)].at(-1)[1] > pilha[tris.indexOf(a)].at(-1)[1] ? t : a), tris[0]);
+  $("#agDest").innerHTML = [
+    [principal, `foi o tema mais votado: ${pctn(tot[principal], somaTot)} das marcações de tema`],
+    [`${Math.floor((+pico.slice(5) - 1) / 3) + 1}º tri ${pico.slice(0, 4)}`, "foi o trimestre com mais votações nominais com tema"],
+  ].map(([b, s]) => `<div class="destaque"><b style="font-size:1.1rem">${b}</b><span>${s}</span></div>`).join("");
+}
+
+/* ================= temas ================= */
 let temaModo = "pos";
 function temas() {
   const svg = $("#temaChart"); svg.innerHTML = ""; const T = L.temas; const isPos = temaModo === "pos";
-  const W = 900, rowH = 44, m = {l: 230, r: 20, t: 26, b: 30}; const H = m.t + m.b + rowH * T.length; svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const W = 960, rowH = 46, m = {l: 250, r: 20, t: 26, b: 30}; const H = m.t + m.b + rowH * T.length; svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
   const x0 = isPos ? -1 : 0, x1 = 1; const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
   (isPos ? [-1, -.5, 0, .5, 1] : [0, .25, .5, .75, 1]).forEach(v => { el("line", {class: v === 0 && isPos ? "zero" : "grid", x1: X(v), x2: X(v), y1: m.t - 8, y2: H - m.b}, svg);
-    const t = el("text", {x: X(v), y: H - 10, "text-anchor": "middle"}, svg); t.textContent = isPos ? (v === -1 ? "A" : v === 1 ? "B" : dec(v, 1)) : pctf(v, 0); });
-  const tip = $("#temaTip"), box = svg.parentElement;
-  T.forEach((t, k) => {
-    const y = m.t + k * rowH + rowH / 2; const lab = el("text", {x: m.l - 14, y: y + 4, "text-anchor": "end", style: "font:13px var(--f-body);fill:var(--ink)"}, svg);
-    lab.textContent = t.t.length > 30 ? t.t.slice(0, 29) + "…" : t.t;
-    const sub = el("text", {x: m.l - 14, y: y + 18, "text-anchor": "end"}, svg); sub.textContent = `${fmt.format(t.nv)} votações`;
-    const vals = Object.entries(isPos ? t.pos : t.ap).filter(([, v]) => v != null);
-    const xsv = vals.map(([, v]) => X(v)); el("line", {x1: Math.min(...xsv), x2: Math.max(...xsv), y1: y, y2: y, stroke: cssv("--rule"), "stroke-width": 3, "stroke-linecap": "round"}, svg);
-    vals.forEach(([c, v]) => { const cc = el("circle", {cx: X(v), cy: y, r: 7, fill: corCom(c), stroke: cssv("--surface"), "stroke-width": 2}, svg); cc.dataset.c = c; cc.dataset.k = k; });
-  });
-  svg.onpointermove = e => { const c = e.target.closest("circle"); if (!c) { tip.hidden = true; return; } const t = T[+c.dataset.k];
-    const v = (isPos ? t.pos : t.ap)[c.dataset.c]; const r = box.getBoundingClientRect();
-    tip.innerHTML = `<b>${t.t}</b><br>${rotulo(c.dataset.c)}<br>${isPos ? "Posição " + dec(v) : "Apoio ao governo " + pctf(v)}<br>Governo venceu ${pctf(t.vit)}`;
-    tip.hidden = false; posTip(tip, e.clientX - r.left, e.clientY - r.top + box.scrollTop, r.width); };
+    txt(svg, X(v), H - 10, isPos ? (v === -1 ? "polo A" : v === 1 ? "polo B" : dec(v, 1)) : pctf(v, 0), {"text-anchor": "middle"}); });
+  const tip = $("#temaTip"), box = svg.closest('.rel');
+  T.forEach((t, k) => { const y = m.t + k * rowH + rowH / 2;
+    txt(svg, m.l - 14, y + 2, t.t.length > 32 ? t.t.slice(0, 31) + "…" : t.t, {"text-anchor": "end", style: "font:600 13px var(--f-body);fill:var(--ink)"});
+    txt(svg, m.l - 14, y + 17, `${fmt.format(t.nv)} votações · governo venceu ${pctf(t.vit, 0)}`, {"text-anchor": "end"});
+    const vals = Object.entries(isPos ? t.pos : t.ap).filter(([, v]) => v != null); const xsv = vals.map(([, v]) => X(v));
+    el("line", {x1: Math.min(...xsv), x2: Math.max(...xsv), y1: y, y2: y, stroke: cssv("--rule"), "stroke-width": 4, "stroke-linecap": "round"}, svg);
+    vals.forEach(([c, v]) => { const cc = el("circle", {cx: X(v), cy: y, r: 7.5, fill: corCom(c), stroke: cssv("--surface"), "stroke-width": 2}, svg); cc.dataset.c = c; cc.dataset.k = k; }); });
+  svg.onpointermove = e => { const c = e.target.closest("circle"); if (!c) { tip.hidden = true; return; } const t = T[+c.dataset.k]; const v = (isPos ? t.pos : t.ap)[c.dataset.c]; const r = box.getBoundingClientRect();
+    tip.innerHTML = `<b>${t.t}</b><br>${rotulo(c.dataset.c)}<br>${isPos ? "Posição " + dec(v) : "Apoio ao governo " + pctf(v)}`; tip.hidden = false; posTip(tip, e.clientX - r.left, e.clientY - r.top, r.width); };
   svg.onpointerleave = () => tip.hidden = true;
 }
-$("#temaMet").onclick = e => { const b = e.target.closest("button"); if (!b) return; temaModo = b.dataset.v; [...$("#temaMet").children].forEach(x => x.setAttribute("aria-pressed", x === b)); temas(); };
 
-/* ---------- rankings ---------- */
+/* ================= rankings ================= */
 const RANKS = [
-  ["governistas", "Mais governistas", "Maior % de votos iguais à orientação do Governo.", d => [pctn(d.ag * d.vg, d.vg), d.ag]],
-  ["oposicao", "Mais oposicionistas", "Menor % de votos iguais à orientação do Governo.", d => [pctn(d.ag * d.vg, d.vg), d.ag]],
+  ["governistas", "Mais governistas", "Maior % de votos iguais à orientação do líder do Governo.", d => [pctn(d.ag * d.vg, d.vg), d.ag]],
+  ["oposicao", "Mais oposicionistas", "Menor % de votos iguais à orientação do líder do Governo.", d => [pctn(d.ag * d.vg, d.vg), d.ag]],
   ["divergentes", "Divergem do partido", "Menor % de votos iguais à orientação do próprio partido, federação ou bloco.", d => [pctn(d.di * d.vd, d.vd), d.di]],
-  ["pontes", "Pontes", "Ligações mais espalhadas por comunidades diferentes (coeficiente de participação, 0 a 1).", d => [dec(d.po), d.po]],
+  ["pontes", "Pontes", "Ligações mais espalhadas por comunidades diferentes (coeficiente de participação, de 0 a 1).", d => [dec(d.po), d.po]],
   ["participacao", "Menor participação", "Votos registrados ÷ votações em que estava em exercício. Líderes de bancada costumam aparecer aqui; a causa não está nos dados.", d => [pctn(d.pr, d.ex), d.pa]],
-  ["moveram", "Mais se moveram", "Posição entre os polos no começo e no fim da legislatura (média das 3 primeiras e das 3 últimas janelas).", null],
+  ["moveram", "Mais se moveram", "Posição entre os polos no começo e no fim do mandato (média das 3 primeiras e das 3 últimas janelas).", null],
 ];
 let rankAtual = "governistas";
 function rankings() {
   const tabs = $("#rankTabs"); tabs.innerHTML = "";
-  RANKS.forEach(([k, t]) => { const b = document.createElement("button"); b.setAttribute("role", "tab"); b.setAttribute("aria-selected", k === rankAtual); b.textContent = t;
-    b.onclick = () => { rankAtual = k; rankings(); }; tabs.appendChild(b); });
-  const [k, , desc, f] = RANKS.find(r => r[0] === rankAtual);
-  $("#rankDesc").textContent = desc;
+  RANKS.forEach(([k, t]) => { const b = document.createElement("button"); b.setAttribute("role", "tab"); b.setAttribute("aria-selected", k === rankAtual); b.textContent = t; b.onclick = () => { rankAtual = k; rankings(); }; tabs.appendChild(b); });
+  const [k, , desc, f] = RANKS.find(r => r[0] === rankAtual); $("#rankDesc").textContent = `${desc} ${L.governo}, ${periodoLeg(L)}.`;
   const ol = $("#rankList"); ol.innerHTML = "";
-  (L.rankings[k] || []).forEach(item => {
-    const i = typeof item === "number" ? item : item.i; const d = L.deputados[i]; const li = document.createElement("li");
-    let v, w;
+  (L.rankings[k] || []).forEach(item => { const i = typeof item === "number" ? item : item.i; const d = L.deputados[i]; const li = document.createElement("li"); let v, w;
     if (k === "moveram") { v = `${dec(item.de)} → ${dec(item.ate)}`; w = null; } else { [v, w] = f(d); }
-    li.innerHTML = `<div class="q"><b>${d.n}</b> <span>${d.p} · ${d.uf} · <span class="dot" style="background:${corCom(d.c)}"></span> ${d.c}</span></div><div class="v">${v}</div>` +
-      (w != null ? `<div class="bar"><i style="width:${(100 * w).toFixed(1)}%"></i></div>` : "");
-    li.onclick = () => mostrar(i); ol.appendChild(li);
-  });
+    li.innerHTML = `<div class="q"><b>${d.n}</b> <span>${d.p} · ${d.uf} · <span class="dot" style="background:${corCom(d.c)}"></span> ${d.c}</span></div><div class="v">${v}</div>` + (w != null ? `<div class="bar"><i style="width:${(100 * w).toFixed(1)}%"></i></div>` : "");
+    li.onclick = () => mostrar(i); ol.appendChild(li); });
 }
 
-/* ---------- partidos ---------- */
+/* ================= partidos ================= */
 function partidos() {
-  const cel = (v, txt, fraca) => `<div class="cell${fraca ? " fraca" : ""}"><span>${txt}</span><div class="bar"><i style="width:${v == null ? 0 : (100 * v).toFixed(1)}%"></i></div></div>`;
-  $("#ptab").innerHTML = `<div class="prow h"><div>Partido</div><div>Apoio ao governo</div><div>Disciplina</div><div>Coesão</div></div>` +
+  const cel = (v, t, fraca) => `<div class="cell${fraca ? " fraca" : ""}"><span>${t}</span><div class="bar"><i style="width:${v == null ? 0 : (100 * v).toFixed(1)}%"></i></div></div>`;
+  $("#ptab").innerHTML = `<div class="prow h"><div>Partido · deputados</div><div>Apoio ao governo</div><div>Disciplina</div><div>Coesão</div></div>` +
     L.partidos.map(p => `<div class="prow"><div><b>${p.p}</b> <span class="muted num">${p.dep}</span></div>${cel(p.ag, pctf(p.ag))}${cel(p.di, pctf(p.di) + (p.cob < .3 ? "*" : ""), p.cob < .3)}${cel(p.ri, pctf(p.ri))}</div>`).join("");
 }
 
-/* ---------- comparação ---------- */
+/* ================= comparação ================= */
 function comparacao() {
   const box = $("#compBox"); const C = D.comparacao;
   if (!C || D.legislaturas.length < 2) { box.innerHTML = `<div class="card"><p class="muted">A comparação aparece quando as duas legislaturas estiverem processadas.</p></div>`; return; }
-  const legs = C.legs.map(l => D.legislaturas.find(x => x.leg === l));
-  const cartao = l => { const cps = l.janelas.map(j => j.cp); return `<div class="card"><h3>${nomeLeg(l.leg)}</h3>
-    <div class="linhas" style="display:grid;gap:10px">
-      <div class="met"><small>Governo venceu</small><b>${pctn(l.gov.v, l.gov.n)}</b></div>
-      <div class="met"><small>Concordância entre os polos</small><b>${pctf(Math.min(...cps))} a ${pctf(Math.max(...cps))}</b></div>
-      <div class="met"><small>Comunidades</small><b>${l.comunidades.length}</b></div>
-      <div class="met"><small>Polos</small><b style="font-size:.85rem">A: ${l.comunidades.find(c => c.id === l.polos.a).comp.slice(0, 2).map(x => x.join(" ")).join(", ")}<br>B: ${l.comunidades.find(c => c.id === l.polos.b).comp.slice(0, 2).map(x => x.join(" ")).join(", ")}</b></div>
-    </div></div>`; };
-  const q = C.quad; const [l0, l1] = C.legs;
-  const qk = Object.keys(q).filter(k => !["total", "limiar", "legislaturas"].includes(k));
+  const legs = C.legs.map(l => D.legislaturas.find(x => x.leg === l)); const [l0, l1] = C.legs; const [g0, g1] = legs.map(curtoGov);
+  const cartao = l => { const cps = l.janelas.map(j => j.cp); const r = l.din ? l.din.resumo : null; const pc = c => l.comunidades.find(x => x.id === c).comp.slice(0, 2).map(x => x.join(" ")).join(", ");
+    return `<div class="card"><span class="eyebrow">${l.nome} · ${periodoLeg(l)}</span><h3 style="font-size:1.5rem">${l.governo}</h3>
+    <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+      <div class="destaque"><b>${pctf(l.gov.v / l.gov.n)}</b><span>vitórias do governo (${fmt.format(l.gov.v)} de ${fmt.format(l.gov.n)})</span></div>
+      ${r ? `<div class="destaque"><b>${pctf(r.polarizadas / r.votacoes)}</b><span>votações polarizadas</span></div>` : ""}
+      <div class="destaque"><b>${l.comunidades.length}</b><span>comunidades de votação</span></div>
+      <div class="destaque"><b>${pctf(Math.min(...cps), 0)}–${pctf(Math.max(...cps), 0)}</b><span>concordância entre os polos</span></div>
+    </div><p class="nota">Polo A: ${pc(l.polos.a)} · Polo B: ${pc(l.polos.b)}</p></div>`; };
+  const q = C.quad; const qk = Object.keys(q).filter(k => !["total", "limiar", "legislaturas"].includes(k));
+  const rotQ = k => k.replace(`só na ${l0}`, `só com ${g0}`).replace(`só na ${l1}`, `só com ${g1}`).replace("nos dois", `com ${g0} e com ${g1}`).replace("em nenhum", "com nenhum dos dois");
   box.innerHTML = `<div class="cols">${legs.map(cartao).join("")}</div>
-    <div class="card rel"><h3>Partidos: apoio ao governo da vez</h3><p class="nota">Cada legislatura teve um governo diferente. Ponto vazado: ${nomeLeg(l0)}; cheio: ${nomeLeg(l1)}.</p><svg class="chart" id="dumb"></svg></div>
-    <div class="card rel"><h3>Deputados reeleitos</h3><p class="nota">${fmt.format(q.total)} deputados com 100+ votos medidos nas duas. Governista = apoio de ${pctf(q.limiar, 0)} ou mais ao governo da vez.</p>
-      <div class="kpis">${qk.map(k => `<div class="kpi"><b>${pctf(q[k] / q.total, 0)}</b><span>${k} (${fmt.format(q[k])})</span></div>`).join("")}</div>
-      <svg class="chart" id="reel" viewBox="0 0 600 460" style="max-width:640px"></svg><div class="tip" id="reelTip" hidden></div></div>`;
-  // dumbbell
-  const P = C.partidos, svg = $("#dumb"), W = 900, rh = 28, m = {l: 120, r: 20, t: 10, b: 26}, H = m.t + m.b + rh * P.length;
+    <div class="card rel"><h3>Partidos: apoio ao governo da vez</h3><p class="nota">Ponto vazado: ${g0} (${periodoLeg(legs[0])}). Ponto cheio: ${g1} (${periodoLeg(legs[1])}).</p><div class="rolagem"><svg class="chart" id="dumb"></svg></div></div>
+    <div class="card rel"><h3>Deputados reeleitos: governistas com um governo, com o outro ou com os dois</h3><p class="nota">${fmt.format(q.total)} deputados com 100+ votos medidos nas duas legislaturas. Governista = ${pctf(q.limiar, 0)} ou mais de apoio ao governo da vez.</p>
+      <div class="destaques">${qk.map(k => `<div class="destaque"><b>${pctf(q[k] / q.total, 0)}</b><span>governistas ${rotQ(k).replace("governistas ", "")} (${fmt.format(q[k])} deputados)</span></div>`).join("")}</div>
+      <svg class="chart" id="reel" viewBox="0 0 600 470" style="max-width:660px"></svg><div class="tip" id="reelTip" hidden></div></div>`;
+  const P = C.partidos, svg = $("#dumb"), W = 960, rh = 30, m = {l: 130, r: 24, t: 10, b: 28}, H = m.t + m.b + rh * P.length;
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`); const X = v => m.l + v * (W - m.l - m.r);
-  [0, .25, .5, .75, 1].forEach(v => { el("line", {class: "grid", x1: X(v), x2: X(v), y1: m.t, y2: H - m.b}, svg); const t = el("text", {x: X(v), y: H - 8, "text-anchor": "middle"}, svg); t.textContent = pctf(v, 0); });
-  P.forEach((p, k) => { const y = m.t + k * rh + rh / 2; const t = el("text", {x: m.l - 10, y: y + 4, "text-anchor": "end", style: "font:12px var(--f-data);fill:var(--ink)"}, svg); t.textContent = p.p;
-    el("line", {x1: X(p.a0), x2: X(p.a1), y1: y, y2: y, stroke: cssv("--ink-3"), "stroke-width": 2}, svg);
-    el("circle", {cx: X(p.a0), cy: y, r: 5.5, fill: cssv("--surface"), stroke: cssv("--accent"), "stroke-width": 2}, svg);
-    el("circle", {cx: X(p.a1), cy: y, r: 5.5, fill: cssv("--accent")}, svg); });
-  // dispersão de reeleitos
-  const s2 = $("#reel"), W2 = 600, H2 = 460, mm = {l: 52, r: 14, t: 14, b: 44}; const XX = v => mm.l + v * (W2 - mm.l - mm.r), YY = v => mm.t + (1 - v) * (H2 - mm.t - mm.b);
+  [0, .25, .5, .75, 1].forEach(v => { el("line", {class: "grid", x1: X(v), x2: X(v), y1: m.t, y2: H - m.b}, svg); txt(svg, X(v), H - 8, pctf(v, 0), {"text-anchor": "middle"}); });
+  P.forEach((p, k) => { const y = m.t + k * rh + rh / 2; txt(svg, m.l - 12, y + 4, p.p, {"text-anchor": "end", style: "font:600 12px var(--f-data);fill:var(--ink)"});
+    el("line", {x1: X(p.a0), x2: X(p.a1), y1: y, y2: y, stroke: p.a1 > p.a0 ? cssv("--accent") : cssv("--warn"), "stroke-width": 3, "stroke-linecap": "round", opacity: .55}, svg);
+    el("circle", {cx: X(p.a0), cy: y, r: 6, fill: cssv("--surface"), stroke: cssv("--ink-2"), "stroke-width": 2}, svg);
+    el("circle", {cx: X(p.a1), cy: y, r: 6, fill: cssv("--ink")}, svg); });
+  const s2 = $("#reel"), W2 = 600, H2 = 470, mm = {l: 52, r: 14, t: 14, b: 50}; const XX = v => mm.l + v * (W2 - mm.l - mm.r), YY = v => mm.t + (1 - v) * (H2 - mm.t - mm.b);
+  el("rect", {x: XX(q.limiar), y: mm.t, width: XX(1) - XX(q.limiar), height: YY(q.limiar) - mm.t, fill: cssv("--soft")}, s2);
   [0, .25, .5, .75, 1].forEach(v => { el("line", {class: "grid", x1: XX(v), x2: XX(v), y1: mm.t, y2: H2 - mm.b}, s2); el("line", {class: "grid", x1: mm.l, x2: W2 - mm.r, y1: YY(v), y2: YY(v)}, s2);
-    const a = el("text", {x: XX(v), y: H2 - mm.b + 16, "text-anchor": "middle"}, s2); a.textContent = pctf(v, 0); const b = el("text", {x: mm.l - 8, y: YY(v) + 4, "text-anchor": "end"}, s2); b.textContent = pctf(v, 0); });
-  el("line", {class: "zero", x1: XX(q.limiar), x2: XX(q.limiar), y1: mm.t, y2: H2 - mm.b, "stroke-dasharray": "4 4"}, s2);
-  el("line", {class: "zero", x1: mm.l, x2: W2 - mm.r, y1: YY(q.limiar), y2: YY(q.limiar), "stroke-dasharray": "4 4"}, s2);
-  const ax = el("text", {x: (mm.l + W2 - mm.r) / 2, y: H2 - 6, "text-anchor": "middle"}, s2); ax.textContent = `Apoio ao governo na ${nomeLeg(l0)}`;
-  const ay = el("text", {x: 12, y: (mm.t + H2 - mm.b) / 2, "text-anchor": "middle", transform: `rotate(-90 12 ${(mm.t + H2 - mm.b) / 2})`}, s2); ay.textContent = `Apoio na ${nomeLeg(l1)}`;
-  C.reeleitos.forEach((r, k) => { const c = el("circle", {cx: XX(r.a0), cy: YY(r.a1), r: 4.5, fill: cssv("--accent"), "fill-opacity": .7, stroke: cssv("--surface"), "stroke-width": 1}, s2); c.dataset.k = k; });
-  const tip = $("#reelTip"), bx = s2.parentElement;
+    txt(s2, XX(v), H2 - mm.b + 16, pctf(v, 0), {"text-anchor": "middle"}); txt(s2, mm.l - 8, YY(v) + 4, pctf(v, 0), {"text-anchor": "end"}); });
+  el("line", {class: "zero", x1: XX(q.limiar), x2: XX(q.limiar), y1: mm.t, y2: H2 - mm.b, "stroke-dasharray": "4 4"}, s2); el("line", {class: "zero", x1: mm.l, x2: W2 - mm.r, y1: YY(q.limiar), y2: YY(q.limiar), "stroke-dasharray": "4 4"}, s2);
+  txt(s2, (mm.l + W2 - mm.r) / 2, H2 - 8, `Apoio ao governo ${g0}`, {"text-anchor": "middle", style: "font:600 11px var(--f-data);fill:var(--ink)"});
+  const yc = (mm.t + H2 - mm.b) / 2; txt(s2, 12, yc, `Apoio ao governo ${g1}`, {"text-anchor": "middle", transform: `rotate(-90 12 ${yc})`, style: "font:600 11px var(--f-data);fill:var(--ink)"});
+  txt(s2, XX(.99), mm.t + 16, `governistas com os dois`, {"text-anchor": "end", style: "font:600 11px var(--f-data);fill:var(--accent-2)"});
+  C.reeleitos.forEach((r, k) => { const c = el("circle", {cx: XX(r.a0), cy: YY(r.a1), r: 4.6, fill: cssv("--accent"), "fill-opacity": .7, stroke: cssv("--surface"), "stroke-width": 1}, s2); c.dataset.k = k; });
+  const tip = $("#reelTip"), bx = s2.closest('.rel');
   s2.onpointermove = e => { const c = e.target.closest("circle[data-k]"); if (!c) { tip.hidden = true; return; } const r = C.reeleitos[+c.dataset.k]; const rb = bx.getBoundingClientRect();
-    tip.innerHTML = `<b>${r.n}</b><br>${r.p0} → ${r.p1}<br>${nomeLeg(l0)}: ${pctf(r.a0, 0)}<br>${nomeLeg(l1)}: ${pctf(r.a1, 0)}`; tip.hidden = false; posTip(tip, e.clientX - rb.left, e.clientY - rb.top, rb.width); };
+    tip.innerHTML = `<b>${r.n}</b><br>${r.p0} → ${r.p1}<br>Com ${g0}: ${pctf(r.a0, 0)}<br>Com ${g1}: ${pctf(r.a1, 0)}`; tip.hidden = false; posTip(tip, e.clientX - rb.left, e.clientY - rb.top, rb.width); };
   s2.onpointerleave = () => tip.hidden = true;
 }
 
 function rodape() {
   const dt = new Date(D.atualizado + "T12:00:00").toLocaleDateString("pt-BR");
-  $("#rodape").innerHTML = `Dados abertos da Câmara dos Deputados, atualizados em ${dt}. Código, dados e método: <a href="${D.repo}" target="_blank" rel="noopener">${D.repo.replace("https://", "")}</a>. Similaridade de voto não prova coordenação nem motivo comum.`;
+  $("#rodape").innerHTML = `Dados abertos da Câmara dos Deputados, atualizados em ${dt}. Código, dados e método: <a href="${D.repo}" target="_blank" rel="noopener">${D.repo.replace("https://", "")}</a>.`;
 }
-function tudo() { topo(); hemiciclo(); busca(); $("#ficha").hidden = true; rede(); tempo(); temas(); rankings(); partidos(); comparacao(); rodape(); }
-tudo();
-matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", tudo);
-new MutationObserver(tudo).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+segOn("#redeCor", v => { redeModo = v; rede(); });
+segOn("#tempoMet", v => { tempoModo = v; tempo(); });
+segOn("#temaMet", v => { temaModo = v; temas(); });
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); clima(); agenda(); temas(); rankings(); partidos(); comparacao(); rodape(); }
+tudo(true);
+// navegação: destaca a seção visível
+const links = [...document.querySelectorAll("#nav a")];
+if ("IntersectionObserver" in window) { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle("ativo", a.getAttribute("href") === "#" + e.target.id)); }), {rootMargin: "-40% 0px -55% 0px"});
+  document.querySelectorAll("main > section").forEach(s => io.observe(s)); }
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => tudo());
+new MutationObserver(() => tudo()).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
 </script>

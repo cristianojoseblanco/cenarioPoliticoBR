@@ -1,0 +1,47 @@
+{
+  "deputados": 522,
+  "votacoes": 1039,
+  "cobertura_minima": 0.3,
+  "variancia": [
+    0.5390201167289125,
+    0.13106907315456542,
+    0.025912397268659675
+  ],
+  "correlacoes": {
+    "d1": {
+      "posicao_eixo": 0.994679102289972,
+      "apoio_gov": 0.9950592031364686,
+      "disciplina": 0.497823414410907,
+      "participacao": -0.03404582719445203
+    },
+    "d2": {
+      "posicao_eixo": -0.08110218348166523,
+      "apoio_gov": 0.04875848356411068,
+      "disciplina": -0.0021120609038789272,
+      "participacao": -0.24929210779002364
+    },
+    "d3": {
+      "posicao_eixo": 0.012071562269802018,
+      "apoio_gov": 0.04766581606126776,
+      "disciplina": 0.2117700045439531,
+      "participacao": -0.0522347560039393
+    }
+  },
+  "temas_principais": {
+    "d1": [
+      "Relações Internacionais e Comércio Exterior",
+      "Educação",
+      "Direito e Justiça"
+    ],
+    "d2": [
+      "Estrutura Fundiária",
+      "Direito Penal e Processual Penal",
+      "Agricultura, Pecuária, Pesca e Extrativismo"
+    ],
+    "d3": [
+      "Política, Partidos e Eleições",
+      "Finanças Públicas e Orçamento",
+      "Direitos Humanos e Minorias"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "deputados": 520,
+  "votacoes": 1723,
+  "cobertura_minima": 0.3,
+  "variancia": [
+    0.6011238955719279,
+    0.05259969376870912,
+    0.028835189589712543
+  ],
+  "correlacoes": {
+    "d1": {
+      "posicao_eixo": 0.9987473122423761,
+      "apoio_gov": 0.997263692564328,
+      "disciplina": 0.0535395870015897,
+      "participacao": -0.1448058148757723
+    },
+    "d2": {
+      "posicao_eixo": -0.03234862989375218,
+      "apoio_gov": 0.03894261929788643,
+      "disciplina": 0.2064909485535003,
+      "participacao": -0.34018036633612225
+    },
+    "d3": {
+      "posicao_eixo": 0.0072580749936025585,
+      "apoio_gov": 0.0024566875519858792,
+      "disciplina": 0.345077736026822,
+      "participacao": 0.05117918125082645
+    }
+  },
+  "temas_principais": {
+    "d1": [
+      "Estrutura Fundiária",
+      "Trabalho e Emprego",
+      "Direito Civil e Processual Civil"
+    ],
+    "d2": [
+      "Política, Partidos e Eleições",
+      "Direito e Justiça",
+      "Direito Penal e Processual Penal"
+    ],
+    "d3": [
+      "Direito Penal e Processual Penal",
+      "Ciência, Tecnologia e Inovação",
+      "Agricultura, Pecuária, Pesca e Extrativismo"
+    ]
+  }
+}

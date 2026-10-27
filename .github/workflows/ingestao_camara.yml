@@ -66,6 +66,12 @@ jobs:
       - name: Comparação entre legislaturas
         run: python -m src.networks.comparacao
 
+      - name: Dimensões de voto
+        run: python -m src.networks.dimensoes
+
+      - name: Dinâmica mensal (agenda, polarização, folga)
+        run: python -m src.governance.dinamica
+
       - name: Publicar resumo
         if: always()
         run: |

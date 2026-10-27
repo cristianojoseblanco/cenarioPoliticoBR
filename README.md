@@ -64,6 +64,8 @@ Relatório: `artifacts/reports/processed_camara.md`.
 | 4 — tema e tempo | `src/networks/fatias.py` | `fatias/` (posições no eixo entre polos, deslocamentos) | `artifacts/reports/fatias.md` |
 | 5 — governabilidade | `src/governance/indicadores.py` | `governabilidade/` (apoio ao governo, disciplina, coesão, participação, vitórias) | `artifacts/reports/governabilidade.md` |
 | 7a — comparação | `src/networks/comparacao.py` | `comparacao/` (legislaturas lado a lado, partidos, reeleitos) | `artifacts/reports/comparacao.md` |
+| Dimensões de voto | `src/networks/dimensoes.py` | `leg<N>/dimensoes/` (PCA com imputação iterativa: mapa 2D, temas e votações que definem cada dimensão) | `artifacts/reports/leg<N>/dimensoes.md` |
+| Dinâmica mensal | `src/governance/dinamica.py` | `leg<N>/dinamica/` (agenda por tema, polarização, votações apertadas, folga do governo) | `artifacts/reports/leg<N>/dinamica.md` |
 
 As etapas 3 a 5 rodam uma vez por legislatura (`legislaturas` no config), com os mesmos parâmetros;
 saídas em `data/marts/camara/leg<N>/` e relatórios em `artifacts/reports/leg<N>/`.
@@ -100,6 +102,8 @@ python -m src.networks.votacao
 python -m src.networks.fatias
 python -m src.governance.indicadores
 python -m src.networks.comparacao
+python -m src.networks.dimensoes
+python -m src.governance.dinamica
 python -m src.site.gerar
 ```
 
