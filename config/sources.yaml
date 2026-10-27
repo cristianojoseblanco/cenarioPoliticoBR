@@ -32,6 +32,8 @@ camara:
   # Arquivos únicos: {base_url}/{nome}/{formato}/{nome}.{formato}
   datasets_unicos:
     - deputados
+    - frentes            # frentes parlamentares (todas as legislaturas)
+    - frentesDeputados   # membros de cada frente
 
   # API REST (dados que não existem em arquivo em lote)
   api_base: "https://dadosabertos.camara.leg.br/api/v2"
