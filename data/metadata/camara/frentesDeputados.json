@@ -1,0 +1,14 @@
+{
+  "fonte": "camara",
+  "dataset": "frentesDeputados",
+  "ano": null,
+  "url": "https://dadosabertos.camara.leg.br/arquivos/frentesDeputados/csv/frentesDeputados.csv",
+  "coletado_em": "2026-10-27T22:33:18+00:00",
+  "sha256": "797bbc2799c1074554b0e75818a8ae4578c0483020bc225e5e153043aba84a50",
+  "linhas": 262271,
+  "bytes_csv": 98473102,
+  "bytes_parquet": 1502309,
+  "segundos": 7.3,
+  "versao_esquema": 1,
+  "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
+}

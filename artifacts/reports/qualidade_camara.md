@@ -8,6 +8,16 @@ Problemas encontrados: 0
 - Colunas (13): `uri`, `nome`, `idLegislaturaInicial`, `idLegislaturaFinal`, `nomeCivil`, `cpf`, `siglaSexo`, `urlRedeSocial`, `urlWebsite`, `dataNascimento`, `dataFalecimento`, `ufNascimento`, `municipioNascimento`
 - Chave (uri) única
 
+## frentes
+
+- Linhas: 1.443
+- Colunas (20): `id`, `uri`, `titulo`, `dataCriacao`, `idLegislatura`, `telefone`, `email`, `keywords`, `idSituacao`, `situacao`, `urlWebsite`, `urlDocumento`, `coordenador_id`, `coordenador_uri`, `coordenador_nome`, `coordenador_siglaPartido`, `coordenador_uriPartido`, `coordenador_siglaUf`, `coordenador_idLegislatura`, `coordenador_urlFoto`
+
+## frentesDeputados
+
+- Linhas: 262.271
+- Colunas (14): `id`, `uri`, `titulo`, `deputado_.id`, `deputado_.uri`, `deputado_.uriPartido`, `deputado_.nome`, `deputado_.siglaUf`, `deputado_.idLegislatura`, `deputado_.urlFoto`, `deputado_.codTitulo`, `deputado_.titulo`, `dataInicio`, `dataFim`
+
 ## votacoes
 
 - Linhas: 68.291

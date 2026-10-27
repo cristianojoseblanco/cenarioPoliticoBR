@@ -1,5 +1,5 @@
 {
-  "executado_em": "2026-10-27T21:46:56+00:00",
+  "executado_em": "2026-10-27T22:34:04+00:00",
   "anos": [
     2026
   ],
@@ -7,6 +7,14 @@
     {
       "arquivo": "deputados",
       "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "frentes",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "frentesDeputados",
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoes-2026",
