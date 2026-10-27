@@ -145,11 +145,20 @@ def anos_apresentacao(con, cfg: dict, anos_votacao: list[int]) -> list[int]:
     return sorted(a for a in anos if a >= minimo)
 
 
+def anos_padrao(c: dict) -> list[int]:
+    """Lista do config, ou {desde: AAAA} = de AAAA até o ano corrente (ano sem arquivo dá 404 e é pulado)."""
+    a = c["anos_padrao"]
+    if isinstance(a, dict):
+        import datetime as _dt
+        return list(range(int(a["desde"]), _dt.date.today().year + 1))
+    return list(a)
+
+
 def main() -> int:
     cfg = load_config()
     c = cfg["camara"]
     anos_env = os.environ.get("ANOS", "").strip()
-    anos = [int(a) for a in anos_env.split(",") if a.strip()] if anos_env else c["anos_padrao"]
+    anos = [int(a) for a in anos_env.split(",") if a.strip()] if anos_env else anos_padrao(c)
 
     con = connect(cfg)
     resultados, erros = [], []

@@ -1,0 +1,21 @@
+{
+  "polo_a": "C2",
+  "polo_b": "C3",
+  "composicao": {
+    "C1": "PL 40, PP 40",
+    "C2": "PT 58, PSB 30",
+    "C3": "PSL 49, PSD 9",
+    "C4": "PSDB 33, NOVO 8",
+    "C5": "REPUBLICANOS 34, SOLIDARIEDADE 3",
+    "C6": "MDB 32, REPUBLICANOS 1",
+    "C7": "DEM 23, PTB 1",
+    "C8": "PDT 21, CIDADANIA 1"
+  },
+  "meses": 40,
+  "pontos": 1,
+  "robustos": 0,
+  "penalidade_fator": 1.0,
+  "min_meses": 3,
+  "ari_mediana": 0.6102690776799106,
+  "trocaram_mediana": 0.210235516685772
+}

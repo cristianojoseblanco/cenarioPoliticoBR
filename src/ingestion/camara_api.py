@@ -46,8 +46,12 @@ def ids_deputados(cfg: dict) -> list[str]:
     for leg in c.get("legislaturas_historico", []):
         pagina = 1
         while True:
-            js = _get(f"{c['api_base']}/deputados", cfg["http"],
-                      {"idLegislatura": leg, "itens": 100, "pagina": pagina, "ordem": "ASC", "ordenarPor": "id"})
+            try:
+                js = _get(f"{c['api_base']}/deputados", cfg["http"],
+                          {"idLegislatura": leg, "itens": 100, "pagina": pagina, "ordem": "ASC", "ordenarPor": "id"})
+            except RuntimeError as e:  # legislatura futura ou API fora do ar: segue com o que tem
+                print(f"  legislatura {leg}: {e}", file=sys.stderr)
+                break
             dados = js.get("dados", [])
             ids |= {str(d["id"]) for d in dados}
             if len(dados) < 100:

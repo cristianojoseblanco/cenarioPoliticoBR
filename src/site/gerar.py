@@ -159,11 +159,38 @@ def dados_legislatura(leg: str, c: dict) -> dict:
             "agenda": [{"t": r.tri.strftime("%Y-%m"), "tema": r.tema, "n": int(r.votacoes)} for r in ag.itertuples()],
         }
 
+    # pontos de mudança e comunidades no tempo
+    base_mud = ROOT / c["redes"]["saida"].replace("/redes", "/mudancas")
+    mud = None
+    if (base_mud / "resumo.json").exists():
+        ss = pd.read_parquet(base_mud / "series.parquet")
+        sg = pd.read_parquet(base_mud / "segmentos.parquet")
+        pt = pd.read_parquet(base_mud / "pontos.parquet")
+        js_ = pd.read_parquet(base_mud / "janelas.parquet")
+        fl = pd.read_parquet(base_mud / "fluxos.parquet")
+        cols = ["apoio_polo_a", "apoio_polo_b", "apoio_fora", "polarizacao", "vitoria_gov"]
+        mud = {
+            "resumo": json.loads((base_mud / "resumo.json").read_text(encoding="utf-8")),
+            "series": [{"m": r["mes"].strftime("%Y-%m"), "n": int(r["votacoes"]), **{k: _r(r[k], 3) for k in cols}}
+                       for _, r in ss.iterrows()],
+            "segmentos": [{"ini": r["inicio"].strftime("%Y-%m"), "fim": r["fim"].strftime("%Y-%m"), "meses": int(r["meses"]),
+                           "n": int(r["votacoes"]), **{k: _r(r[k], 3) for k in cols}} for _, r in sg.iterrows()],
+            "pontos": [{"m": r["mes"].strftime("%Y-%m"), "rob": bool(r["robusto"]), "princ": list(r["principais"]),
+                        "delta": {k: _r(r[f"delta_{k}"], 3) for k in cols},
+                        "ev": r["evento"] if pd.notna(r["evento"]) else None,
+                        "evd": r["evento_data"].strftime("%Y-%m-%d") if pd.notna(r["evento_data"]) else None}
+                       for _, r in pt.iterrows()] if len(pt) else [],
+            "janelas": [{"j": r.janela[:3], "fim": r.fim, "ari": _r(r.ari_anterior, 3), "tr": _r(r.trocaram, 3),
+                         "k": int(r.comunidades)} for r in js_.itertuples()],
+            "fluxos": [{"j": r.janela[:3], "de": r.de, "para": r.para, "n": int(r.deputados)}
+                       for r in fl.itertuples() if r.de != r.para],
+        }
+
     per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
         "leg": leg, "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
         "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
-        "dim": dim, "din": din,
+        "dim": dim, "din": din, "mud": mud,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
         "modularidade": _r(m["modularidade"]), "nmi": _r(m["nmi_com_partido"]),
         "polos": {"a": polos["polo_a"], "b": polos["polo_b"]},
@@ -191,6 +218,30 @@ def dados_comparacao() -> dict | None:
     }
 
 
+def dados_acompanhamento(cfg) -> list | None:
+    p = ROOT / cfg.get("acompanhamento", {}).get("saida", "data/marts/camara/acompanhamento")
+    if not (p / "deputados.json").exists():
+        return None
+    fichas = json.loads((p / "deputados.json").read_text(encoding="utf-8"))
+    mm = pd.read_parquet(p / "mensal.parquet") if (p / "mensal.parquet").stat().st_size > 0 else pd.DataFrame()
+    rb = pd.read_parquet(p / "rebeldias.parquet") if (p / "rebeldias.parquet").stat().st_size > 0 else pd.DataFrame()
+    minimo = int(cfg.get("acompanhamento", {}).get("min_colegas", 3))
+    for f in fichas:
+        i = f.get("deputado_id")
+        f["mensal"] = [] if mm.empty or not i else [
+            {"m": r.mes.strftime("%Y-%m"), "p": r.partido, "v": int(r.votos) if r.votos == r.votos else 0,
+             "sp": _r(r.segue_partido, 3), "nsp": int(r.n_segue_partido) if r.n_segue_partido == r.n_segue_partido else 0,
+             "cb": _r(r.com_bancada, 3), "ag": _r(r.apoio_gov, 3), "pr": _r(r.presenca, 3),
+             "psp": _r(r.partido_segue_partido, 3), "pcb": _r(r.partido_com_bancada, 3), "pag": _r(r.partido_apoio_gov, 3),
+             "peq": bool(r.colegas == r.colegas and r.colegas < minimo)}
+            for r in mm[mm["deputado_id"] == i].sort_values("mes").itertuples()]
+        f["rebs"] = [] if rb.empty or not i else [
+            {"d": str(r.data)[:10], "p": r.partido, "prop": r.proposicao, "t": r.texto, "v": r.voto_dep,
+             "op": r.orientacao_partido, "og": r.orientacao_governo}
+            for r in rb[rb["deputado_id"] == i].head(cfg.get("acompanhamento", {}).get("rebeldias_na_pagina", 15)).itertuples()]
+    return fichas
+
+
 def main() -> int:
     cfg = load_config()
     legs = [dados_legislatura(leg, c) for leg, c in por_legislatura(cfg) if legislatura_tem_dados(c)]
@@ -200,6 +251,7 @@ def main() -> int:
     except Exception:
         atualizado = datetime.now(timezone.utc).date().isoformat()
     dados = {"atualizado": atualizado, "legislaturas": legs, "comparacao": dados_comparacao(),
+             "acompanhamento": dados_acompanhamento(cfg),
              "marcadores": cfg.get("marcadores_periodo", []), "contexto": cfg.get("contexto", {}),
              "repo": f"https://github.com/{cfg['armazenamento']['repositorio']}"}
     js = json.dumps(dados, ensure_ascii=False, separators=(",", ":"))

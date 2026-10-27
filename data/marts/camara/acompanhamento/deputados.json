@@ -1,0 +1,281 @@
+[
+  {
+    "nome": "Lucas Pavanato",
+    "uf": "SP",
+    "partido_eleito": "PL",
+    "nota": null,
+    "eleicao": "Eleito em 2026 com 3.038.185 votos (mais votado de SP)",
+    "deputado_id": null,
+    "situacao": "aguardando dados (ainda sem registro na Câmara)"
+  },
+  {
+    "nome": "Jones Manoel",
+    "uf": "PE",
+    "partido_eleito": "PSOL",
+    "nota": null,
+    "eleicao": "Eleito em 2026 com cerca de 249 mil votos",
+    "deputado_id": null,
+    "situacao": "aguardando dados (ainda sem registro na Câmara)"
+  },
+  {
+    "nome": "Kim Kataguiri",
+    "uf": "SP",
+    "partido_eleito": "MISSÃO",
+    "nota": null,
+    "eleicao": "Reeleito em 2026 com 520.025 votos; deputado desde 2019",
+    "deputado_id": "204536",
+    "situacao": "ok",
+    "primeiro_voto": "2019-02-12",
+    "ultimo_voto": "2026-10-14",
+    "votos": 2343,
+    "segue_partido": 0.6267,
+    "n_segue_partido": 1870,
+    "com_bancada": 0.5928,
+    "n_com_bancada": 2235,
+    "apoio_gov": 0.5489,
+    "n_apoio_gov": 1860,
+    "rebeldias": 698,
+    "partido_atual": "MISSÃO",
+    "meses_bancada_pequena": 8,
+    "bancada_pequena_atual": true,
+    "legislaturas": [
+      {
+        "leg": "56",
+        "governo": "Governo Bolsonaro",
+        "partido": "DEM",
+        "comunidade": "C4",
+        "apoio_gov": 0.7378,
+        "disciplina": 0.6766,
+        "participacao": 0.7347,
+        "apoio_percentil": 0.2707,
+        "posicao_media": 0.3715,
+        "posicoes": [
+          {
+            "fim": "2019-09-03",
+            "posicao": 0.6272
+          },
+          {
+            "fim": "2019-11-06",
+            "posicao": 0.6048
+          },
+          {
+            "fim": "2020-02-17",
+            "posicao": 0.5553
+          },
+          {
+            "fim": "2020-05-04",
+            "posicao": 0.4911
+          },
+          {
+            "fim": "2020-06-17",
+            "posicao": 0.5275
+          },
+          {
+            "fim": "2020-07-14",
+            "posicao": 0.5811
+          },
+          {
+            "fim": "2020-09-01",
+            "posicao": 0.5728
+          },
+          {
+            "fim": "2020-12-10",
+            "posicao": 0.6027
+          },
+          {
+            "fim": "2020-12-17",
+            "posicao": 0.5884
+          },
+          {
+            "fim": "2021-02-11",
+            "posicao": 0.6029
+          },
+          {
+            "fim": "2021-03-11",
+            "posicao": 0.5554
+          },
+          {
+            "fim": "2021-04-20",
+            "posicao": 0.5473
+          },
+          {
+            "fim": "2021-05-13",
+            "posicao": 0.3188
+          },
+          {
+            "fim": "2021-05-20",
+            "posicao": 0.2689
+          },
+          {
+            "fim": "2021-06-16",
+            "posicao": 0.1784
+          },
+          {
+            "fim": "2021-07-13",
+            "posicao": 0.2996
+          },
+          {
+            "fim": "2021-08-10",
+            "posicao": 0.3298
+          },
+          {
+            "fim": "2021-08-19",
+            "posicao": 0.3202
+          },
+          {
+            "fim": "2021-09-08",
+            "posicao": 0.3252
+          },
+          {
+            "fim": "2021-09-22",
+            "posicao": 0.2678
+          },
+          {
+            "fim": "2021-10-13",
+            "posicao": 0.2439
+          },
+          {
+            "fim": "2021-11-16",
+            "posicao": 0.1109
+          },
+          {
+            "fim": "2021-12-15",
+            "posicao": 0.032
+          },
+          {
+            "fim": "2022-02-16",
+            "posicao": -0.033
+          },
+          {
+            "fim": "2022-03-10",
+            "posicao": 0.1594
+          },
+          {
+            "fim": "2022-04-05",
+            "posicao": 0.2277
+          },
+          {
+            "fim": "2022-05-04",
+            "posicao": 0.404
+          },
+          {
+            "fim": "2022-05-24",
+            "posicao": 0.3774
+          },
+          {
+            "fim": "2022-06-29",
+            "posicao": 0.4437
+          },
+          {
+            "fim": "2022-08-02",
+            "posicao": 0.2119
+          },
+          {
+            "fim": "2022-10-19",
+            "posicao": 0.2904
+          },
+          {
+            "fim": "2022-12-15",
+            "posicao": 0.2584
+          },
+          {
+            "fim": "2022-12-21",
+            "posicao": 0.3675
+          }
+        ]
+      },
+      {
+        "leg": "57",
+        "governo": "Governo Lula (3º mandato)",
+        "partido": "UNIÃO",
+        "comunidade": "C1",
+        "apoio_gov": 0.2444,
+        "disciplina": 0.5098,
+        "participacao": 0.7934,
+        "apoio_percentil": 0.0213,
+        "posicao_media": -0.5239,
+        "posicoes": [
+          {
+            "fim": "2023-10-03",
+            "posicao": -0.3054
+          },
+          {
+            "fim": "2023-11-22",
+            "posicao": -0.3248
+          },
+          {
+            "fim": "2023-12-15",
+            "posicao": -0.5748
+          },
+          {
+            "fim": "2024-03-13",
+            "posicao": -0.5386
+          },
+          {
+            "fim": "2024-05-21",
+            "posicao": -0.4421
+          },
+          {
+            "fim": "2024-08-14",
+            "posicao": -0.4993
+          },
+          {
+            "fim": "2024-11-05",
+            "posicao": -0.4673
+          },
+          {
+            "fim": "2024-12-17",
+            "posicao": -0.5476
+          },
+          {
+            "fim": "2025-04-01",
+            "posicao": -0.4678
+          },
+          {
+            "fim": "2025-05-26",
+            "posicao": -0.5471
+          },
+          {
+            "fim": "2025-06-11",
+            "posicao": -0.5518
+          },
+          {
+            "fim": "2025-07-15",
+            "posicao": -0.6757
+          },
+          {
+            "fim": "2025-09-02",
+            "posicao": -0.6871
+          },
+          {
+            "fim": "2025-10-14",
+            "posicao": -0.5567
+          },
+          {
+            "fim": "2025-11-05",
+            "posicao": -0.486
+          },
+          {
+            "fim": "2025-12-09",
+            "posicao": -0.5077
+          },
+          {
+            "fim": "2026-03-03",
+            "posicao": -0.6138
+          },
+          {
+            "fim": "2026-05-19",
+            "posicao": -0.6344
+          },
+          {
+            "fim": "2026-10-14",
+            "posicao": -0.5271
+          }
+        ]
+      }
+    ],
+    "partido_segue_partido": 0.8971,
+    "partido_com_bancada": 0.8748,
+    "partido_apoio_gov": 0.7721
+  }
+]

@@ -187,6 +187,40 @@ canvas#redeCanvas{width:100%;height:auto;aspect-ratio:4/3;display:block;border-r
 .nota{font-size:.84rem;color:var(--ink-3)}
 footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* pontos de mudança */
+.viradas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.virada{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:16px 18px;display:grid;gap:8px;position:relative;overflow:hidden}
+.virada::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--warn)}
+.virada.rob::before{background:var(--accent)}
+.virada .quando{font:700 1.6rem/1 var(--f-display);font-stretch:85%;letter-spacing:-.01em}
+.virada .selo{justify-self:start;font:600 .68rem var(--f-data);text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:99px;background:var(--soft);color:var(--accent-2)}
+.virada:not(.rob) .selo{background:color-mix(in srgb,var(--warn) 14%,transparent);color:var(--warn)}
+.virada ul{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:.9rem}
+.virada li b{font:600 .95rem var(--f-data);font-variant-numeric:tabular-nums}
+.virada .perto{font-size:.82rem;color:var(--ink-3)}
+.tab{width:100%;border-collapse:collapse;font-size:.86rem;min-width:620px}
+.tab th{font:500 .68rem var(--f-data);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);text-align:right;padding:6px 8px;border-bottom:1px solid var(--rule)}
+.tab th:first-child,.tab td:first-child{text-align:left}
+.tab td{text-align:right;padding:8px;border-bottom:1px solid var(--rule);font-variant-numeric:tabular-nums;font-family:var(--f-data);font-size:.82rem}
+.tab td:first-child{font-family:var(--f-body);font-size:.86rem}
+/* acompanhados */
+#acompBox{display:grid;gap:18px;grid-template-columns:minmax(0,1fr)}
+.acomp{background:var(--surface);border:1px solid var(--rule);border-radius:calc(var(--r) + 4px);padding:20px;display:grid;gap:16px;min-width:0;grid-template-columns:minmax(0,1fr)}
+@media (max-width:560px){.acomp{padding:16px}}
+.acomp .topo{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:flex-end;justify-content:space-between}
+.acomp .nome{font:850 clamp(1.6rem,4vw,2.3rem)/1 var(--f-display);font-stretch:78%;letter-spacing:-.01em}
+.acomp .partido{font:600 .78rem var(--f-data);padding:4px 10px;border-radius:99px;background:var(--ink);color:var(--surface)}
+.acomp .espera{display:grid;gap:6px;padding:16px;border:1px dashed var(--rule);border-radius:var(--r);background:repeating-linear-gradient(135deg,transparent 0 10px,var(--band) 10px 11px)}
+.acomp .espera b{font:600 1rem var(--f-data);color:var(--ink-2)}
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.cmp > div{border:1px solid var(--rule);border-radius:var(--r);padding:12px 14px;display:grid;gap:6px}
+.cmp .rot{font:500 .7rem var(--f-data);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+.cmp .val{font:600 1.55rem/1 var(--f-data);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.cmp .ref{font-size:.8rem;color:var(--ink-2)}
+.cmp .duo{position:relative;height:8px;border-radius:99px;background:var(--band)}
+.cmp .duo i{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+.cmp .duo s{position:absolute;top:-4px;width:2px;height:16px;background:var(--ink);text-decoration:none}
+.aviso{font-size:.84rem;padding:10px 12px;border-radius:var(--r);background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--ink)}
 </style>
 
 <header class="top">
@@ -194,9 +228,9 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     <a class="brand" href="#plenario"><svg width="22" height="12" viewBox="0 0 22 12" aria-hidden="true"><path d="M1 11a10 10 0 0 1 20 0" fill="none" stroke="var(--h-accent)" stroke-width="2.2"/><path d="M6 11a5 5 0 0 1 10 0" fill="none" stroke="var(--h-accent)" stroke-width="2.2" opacity=".55"/></svg>Cenário Político BR</a>
     <div class="legbtns" id="legSeg" role="group" aria-label="Legislatura"></div>
     <nav class="secoes" aria-label="Seções" id="nav">
-      <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a>
+      <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#mudancas">Mudanças</a>
       <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a>
-      <a href="#partidos">Partidos</a><a href="#comparacao">Governos</a><a href="#glossario">Glossário</a>
+      <a href="#partidos">Partidos</a><a href="#comparacao">Governos</a><a href="#acompanhados">Acompanhados</a><a href="#glossario">Glossário</a>
     </nav>
   </div>
 </header>
@@ -284,6 +318,25 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
   </div>
 </section>
 
+<section class="cap" id="mudancas">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Pontos de mudança</span><h2>Quando o Plenário mudou de comportamento</h2>
+      <p class="lede" id="mudLede"></p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
+      <dt>Séries mensais</dt><dd>Para cada mês com pelo menos 5 votações em que o Governo orientou: o apoio ao governo do polo A, do polo B e de quem está fora dos polos; a fração de votações polarizadas; a fração de vitórias do governo.</dd>
+      <dt>Ponto de mudança</dt><dd>Mês em que o nível médio das séries, olhadas juntas, muda de patamar. Encontrado pelo algoritmo PELT, que só aceita uma quebra se ela explicar os dados bem melhor do que uma linha contínua (penalidade do tipo BIC). Cada trecho entre quebras tem pelo menos 3 meses.</dd>
+      <dt>Robusto</dt><dd>A quebra continua aparecendo quando a exigência fica mais frouxa (penalidade × 0,5) e mais rígida (× 1,5). Quebra não robusta é um sinal moderado, não um fato estabelecido.</dd>
+      <dt>Perto de</dt><dd>Evento de contexto a até 90 dias da quebra. Proximidade no tempo não prova causa.</dd>
+      <dt>Trocaram de grupo</dt><dd>Em cada janela de 150 votações, os deputados são agrupados de novo. A barra mostra quantos estão num grupo diferente do da janela anterior (só quem aparece nas duas).</dd></dl></div></details>
+    <div class="row"><div class="seg" id="mudMet" role="group" aria-label="Séries"><button aria-pressed="true" data-v="ap">Apoio ao governo por grupo</button><button aria-pressed="false" data-v="pv">Polarização e vitórias</button></div></div>
+    <div class="card rel"><div class="rolagem dica-rolar"><svg class="chart" id="mudSvg" viewBox="0 0 960 340"></svg></div><div class="tip" id="mudTip" hidden></div><div class="legend claro" id="mudLegend"></div></div>
+    <div class="viradas" id="mudPontos"></div>
+    <div class="card"><h3>Os trechos entre as quebras</h3><div class="rolagem"><table class="tab" id="mudSeg"></table></div></div>
+    <div class="card rel"><h3>Quantos deputados trocaram de grupo de uma janela para a seguinte</h3><p class="nota">Toque numa barra para ver os maiores fluxos entre grupos.</p><div class="rolagem dica-rolar"><svg class="chart" id="estSvg" viewBox="0 0 960 230"></svg></div><div class="tip" id="estTip" hidden></div></div>
+    <div class="destaques" id="mudDest"></div>
+  </div>
+</section>
+
 <section class="cap" id="clima">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Polarização e governabilidade</span><h2>Quanto o Plenário se divide, mês a mês</h2>
@@ -344,9 +397,23 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
 
 <section class="cap" id="comparacao">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">Dois governos, mesma régua</span><h2>Bolsonaro e Lula 3 no Plenário</h2>
+    <div class="head"><span class="eyebrow">Dois governos, mesma régua</span><h2 id="compTit">Dois governos no Plenário</h2>
       <p class="lede">Os mesmos parâmetros nas duas legislaturas. Comunidades e polos são calculados separadamente em cada uma, então a C1 de uma não é o mesmo grupo que a C1 da outra.</p></div>
     <div id="compBox"></div>
+  </div>
+</section>
+
+<section class="cap" id="acompanhados">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Acompanhados</span><h2>Vota com o partido ou sozinho?</h2>
+      <p class="lede">Ficha mês a mês de deputados escolhidos, em todas as legislaturas com dados. Cada taxa vem ao lado da média dos colegas do mesmo partido nas mesmas votações: é isso que diz se o deputado destoa.</p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
+      <dt>Segue o partido</dt><dd>Voto igual à orientação do próprio partido (se o partido não orientou, a da federação; se nenhum dos dois, a do bloco).</dd>
+      <dt>Vota com a bancada</dt><dd>Voto igual ao da maioria dos colegas de partido naquela votação, sem contar o próprio deputado. Só é medido com 3 ou mais colegas votando.</dd>
+      <dt>Apoio ao governo</dt><dd>Voto igual à orientação do líder do Governo da vez.</dd>
+      <dt>Votos contra o partido</dt><dd>Votações em que votou Sim e o partido orientou Não, ou o contrário.</dd>
+      <dt>Bancada pequena</dt><dd>Em partido com muito poucos deputados, a orientação pode ser do próprio deputado (como líder). Nesses meses, "segue o partido" quase não informa nada.</dd></dl></div></details>
+    <div id="acompBox"></div>
   </div>
 </section>
 
@@ -389,7 +456,7 @@ const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "o
 const mesAno = s => { const [y, m] = s.split("-"); return `${MESES[+m - 1]} ${y}`; };
 const anoF = s => s.slice(0, 4);
 const periodoLeg = l => `${anoF(l.ini)}–${+anoF(l.fim) - 1}`;
-const curtoGov = l => /Bolsonaro/.test(l.governo) ? "Bolsonaro" : /Lula/.test(l.governo) ? "Lula 3" : l.governo;
+const curtoGov = l => { const g = l.governo || ""; if (/Bolsonaro/.test(g)) return "Bolsonaro"; const k = g.match(/Lula \((\d+)/); return k ? `Lula ${k[1]}` : g; };
 const nomeLeg = l => `${l.leg}ª · ${curtoGov(l)}`;
 
 let L = D.legislaturas[D.legislaturas.length - 1];
@@ -604,6 +671,7 @@ function linhas(svg, tip, series, opt) {
     tip.innerHTML = opt.titulo(pts[k]) + series.map(s => { const p = s.pts.find(q => q[0] === pts[k][0]); return p ? `<br><span class="dot" style="background:${s.cor}"></span> ${s.nome}: <b>${opt.fv(p, s)}</b>` : ""; }).join("");
     const rb = box.getBoundingClientRect(); tip.hidden = false; posTip(tip, e.clientX - rb.left, e.clientY - rb.top, rb.width); };
   svg.onpointerleave = () => { tip.hidden = true; guia.setAttribute("visibility", "hidden"); };
+  return {X, Y, m, W, H};
 }
 
 /* ================= tempo ================= */
@@ -757,6 +825,7 @@ function comparacao() {
   const box = $("#compBox"); const C = D.comparacao;
   if (!C || D.legislaturas.length < 2) { box.innerHTML = `<div class="card"><p class="muted">A comparação aparece quando as duas legislaturas estiverem processadas.</p></div>`; return; }
   const legs = C.legs.map(l => D.legislaturas.find(x => x.leg === l)); const [l0, l1] = C.legs; const [g0, g1] = legs.map(curtoGov);
+  $("#compTit").textContent = `${g0} e ${g1} no Plenário`;
   const cartao = l => { const cps = l.janelas.map(j => j.cp); const r = l.din ? l.din.resumo : null; const pc = c => l.comunidades.find(x => x.id === c).comp.slice(0, 2).map(x => x.join(" ")).join(", ");
     return `<div class="card"><span class="eyebrow">${l.nome} · ${periodoLeg(l)}</span><h3 style="font-size:1.5rem">${l.governo}</h3>
     <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
@@ -794,6 +863,106 @@ function comparacao() {
   s2.onpointerleave = () => tip.hidden = true;
 }
 
+/* ================= pontos de mudança ================= */
+let mudModo = "ap";
+const MUD_ROT = {apoio_polo_a: "apoio ao governo do polo A", apoio_polo_b: "apoio ao governo do polo B", apoio_fora: "apoio ao governo de quem está fora dos polos", polarizacao: "votações polarizadas", vitoria_gov: "vitórias do governo"};
+function mudancas() {
+  const M = L.mud; const sec = $("#mudancas");
+  if (!M) { sec.hidden = true; return; } sec.hidden = false;
+  const corA = corCom(L.polos.a), corB = corCom(L.polos.b);
+  const def = mudModo === "ap"
+    ? [["apoio_polo_a", `Polo A · ${composicao(L.polos.a)}`, corA], ["apoio_polo_b", `Polo B · ${composicao(L.polos.b)}`, corB], ["apoio_fora", "Fora dos polos", cssv("--ink-2")]]
+    : [["polarizacao", "Votações polarizadas", cssv("--warn")], ["vitoria_gov", "Vitórias do governo", cssv("--accent")]];
+  const series = def.map(([k, nome, cor]) => ({k, nome, cor, pts: M.series.map(d => [d.m + "-15", d[k], d])}));
+  const svg = $("#mudSvg");
+  const sc = linhas(svg, $("#mudTip"), series, {y0: 0, y1: 1, ticks: [0, .25, .5, .75, 1], fy: v => pctf(v, 0),
+    titulo: p => `<b>${mesAno(p[2].m)}</b> · ${fmt.format(p[2].n)} votações`, fv: p => pctf(p[1])});
+  const {X, Y, m, H} = sc;
+  // patamares de cada trecho
+  M.segmentos.forEach(g => def.forEach(([k, , cor]) => el("line", {x1: X(g.ini + "-01"), x2: X(g.fim + "-28"), y1: Y(g[k]), y2: Y(g[k]), stroke: cor, "stroke-width": 5, "stroke-linecap": "round", opacity: .22}, svg)));
+  // quebras
+  M.pontos.forEach(p => { const x = X(p.m + "-01");
+    el("line", {x1: x, x2: x, y1: m.t, y2: H - m.b, stroke: p.rob ? cssv("--accent") : cssv("--warn"), "stroke-width": 2, "stroke-dasharray": p.rob ? "" : "6 4"}, svg);
+    const g = el("g", {}, svg); el("rect", {x: x - 34, y: H - m.b - 30, width: 68, height: 18, rx: 9, fill: p.rob ? cssv("--accent") : cssv("--warn")}, g);
+    txt(g, x, H - m.b - 17, mesAno(p.m), {"text-anchor": "middle", style: "font:600 10.5px var(--f-data);fill:var(--surface)"}); });
+  $("#mudLegend").innerHTML = def.map(([, nome, cor]) => `<span class="row" style="gap:6px"><span class="dot" style="background:${cor}"></span>${nome}</span>`).join("") +
+    `<span class="row" style="gap:6px"><span style="width:22px;height:5px;border-radius:3px;background:var(--ink-3);opacity:.4"></span>nível médio do trecho</span>`;
+  const n = M.pontos.length, rob = M.pontos.filter(p => p.rob).length;
+  $("#mudLede").innerHTML = n
+    ? `Em ${fmt.format(M.resumo.meses)} meses com votações suficientes, no ${L.governo}, o algoritmo encontrou <b>${n} ${n > 1 ? "mudanças de patamar" : "mudança de patamar"}</b>${rob ? `, ${rob} delas robusta${rob > 1 ? "s" : ""}` : ", nenhuma robusta"}. Linha cheia = robusta; tracejada = sinal moderado.`
+    : `Em ${fmt.format(M.resumo.meses)} meses com votações suficientes, no ${L.governo}, nenhuma mudança de patamar passou no critério. O comportamento oscila, mas sem quebra clara.`;
+  const sinal = v => (v >= 0 ? "+" : "−") + dec(Math.abs(100 * v), 1) + " p.p.";
+  $("#mudPontos").innerHTML = M.pontos.map(p => `<div class="virada${p.rob ? " rob" : ""}"><span class="selo">${p.rob ? "robusta" : "sinal moderado"}</span>
+      <div class="quando">${mesAno(p.m)}</div>
+      <ul>${Object.keys(p.delta).sort((a, b) => (p.princ.includes(b) - p.princ.includes(a)) || Math.abs(p.delta[b]) - Math.abs(p.delta[a])).slice(0, 3).map(k => `<li><b>${sinal(p.delta[k])}</b> ${MUD_ROT[k]}</li>`).join("")}</ul>
+      <span class="perto">${p.ev ? `Perto de: ${p.ev} (${new Date(p.evd + "T12:00:00").toLocaleDateString("pt-BR")})` : "Sem evento de contexto registrado a até 90 dias."}</span></div>`).join("");
+  const ks = ["apoio_polo_a", "apoio_polo_b", "apoio_fora", "polarizacao", "vitoria_gov"];
+  $("#mudSeg").innerHTML = `<tr><th>Trecho</th><th>Meses</th><th>Votações</th><th>Apoio polo A</th><th>Apoio polo B</th><th>Apoio fora dos polos</th><th>Polarizadas</th><th>Vitórias do governo</th></tr>` +
+    M.segmentos.map(g => `<tr><td>${mesAno(g.ini)} a ${mesAno(g.fim)}${g.n < 60 ? ' <span class="muted">(pouco volume)</span>' : ""}</td><td>${g.meses}</td><td>${fmt.format(g.n)}</td>${ks.map(k => `<td>${pctf(g[k])}</td>`).join("")}</tr>`).join("");
+  // estabilidade dos grupos
+  const J = M.janelas.filter(j => j.tr != null).map(j => ({...j, m: j.fim.slice(0, 7)}));
+  const fl = {}; M.fluxos.forEach(f => (fl[f.j] = fl[f.j] || []).push(f));
+  const ttop = Math.max(.4, Math.ceil(Math.max(...J.map(j => j.tr)) * 10) / 10);
+  barras($("#estSvg"), $("#estTip"), J, {y0: 0, y1: ttop, ticks: [0, ttop / 2, ttop], fy: v => pctf(v, 0), v: d => d.tr, rotulos: false,
+    cor: (d, v) => v >= .25 ? cssv("--warn") : cssv("--c1"),
+    tip: d => `<b>Janela ${d.j}, até ${new Date(d.fim + "T12:00:00").toLocaleDateString("pt-BR")}</b><br>${pctf(d.tr)} trocaram de grupo · estabilidade (ARI) ${dec(d.ari)}` +
+      (fl[d.j] || []).sort((a, b) => b.n - a.n).slice(0, 3).map(f => `<br>${f.de} → ${f.para}: <b>${fmt.format(f.n)}</b>`).join("")});
+  const pior = J.reduce((a, b) => a.tr > b.tr ? a : b, J[0]);
+  $("#mudDest").innerHTML = [
+    [pctf(M.resumo.trocaram_mediana), `dos deputados mudam de grupo de uma janela para a seguinte, na mediana (estabilidade ARI ${dec(M.resumo.ari_mediana)})`],
+    pior ? [pctf(pior.tr), `na maior reorganização, na janela que termina em ${mesAno(pior.fim.slice(0, 7))}`] : null,
+  ].filter(Boolean).map(([b, t]) => `<div class="destaque"><b>${b}</b><span>${t}</span></div>`).join("");
+}
+
+/* ================= deputados acompanhados ================= */
+const acModo = {};
+function acompanhados() {
+  const A = D.acompanhamento || []; const box = $("#acompBox");
+  if (!A.length) { $("#acompanhados").hidden = true; return; }
+  const comp = (rot, v, n, ref) => { const k = v == null ? null : Math.round(v * n);
+    return `<div><span class="rot">${rot}</span><span class="val">${pctf(v)}</span><span class="ref">${k == null ? "sem medida" : `${fmt.format(k)} de ${fmt.format(n)} votos`}${ref != null ? ` · colegas de partido: <b>${pctf(ref)}</b>` : ""}</span>
+      <div class="duo"><i style="width:${v == null ? 0 : (100 * v).toFixed(1)}%"></i>${ref != null ? `<s style="left:calc(${(100 * ref).toFixed(1)}% - 1px)" title="colegas de partido"></s>` : ""}</div></div>`; };
+  box.innerHTML = A.map((f, i) => {
+    const cab = `<div class="topo"><div style="display:grid;gap:6px"><span class="eyebrow">${f.uf || ""}${f.partido_eleito ? ` · eleito pelo ${f.partido_eleito}` : ""}</span><div class="nome">${f.nome}</div></div>${f.partido_atual ? `<span class="partido">${f.partido_atual} hoje</span>` : ""}</div>${f.eleicao ? `<p class="nota" style="margin:0">${f.eleicao}</p>` : ""}`;
+    if (!f.votos) return `<div class="acomp">${cab}<div class="espera"><b>Aguardando os primeiros votos</b><span>${/aguardando/.test(f.situacao) ? "Ainda sem registro na Câmara." : f.situacao + "."} A 58ª legislatura começa em 1º de fevereiro de 2027; a ficha se preenche sozinha a partir das primeiras votações nominais no Plenário (atualização toda segunda-feira).</span></div></div>`;
+    const legs = (f.legislaturas || []).map(l => `<tr><td>${l.leg}ª · ${l.governo}</td><td>${l.partido}</td><td>${l.comunidade || "—"}</td><td>${pctf(l.apoio_gov)}</td><td>${l.apoio_percentil == null ? "—" : pctf(l.apoio_percentil, 0)}</td><td>${l.posicao_media == null ? "—" : dec(l.posicao_media)}</td><td>${pctf(l.participacao)}</td></tr>`).join("");
+    const reb = f.rebs.map(r => `<li><b>${new Date(r.d + "T12:00:00").toLocaleDateString("pt-BR")} · ${r.prop || "votação"} · ${r.p}</b><span>Votou <b>${r.v}</b>; o partido orientou <b>${r.op}</b>${r.og ? `; o governo, ${r.og}` : ""}.</span><span class="muted">${r.t || ""}</span></li>`).join("");
+    return `<div class="acomp">${cab}
+      <div class="cmp">${comp("Segue a orientação do partido", f.segue_partido, f.n_segue_partido, f.partido_segue_partido)}
+        ${comp("Vota com a maioria da bancada", f.com_bancada, f.n_com_bancada, f.partido_com_bancada)}
+        ${comp("Apoio ao governo da vez", f.apoio_gov, f.n_apoio_gov, f.partido_apoio_gov)}
+        <div><span class="rot">Votos contra o partido</span><span class="val">${fmt.format(f.rebeldias)}</span><span class="ref">em ${fmt.format(f.votos)} votos no Plenário, de ${new Date(f.primeiro_voto + "T12:00:00").toLocaleDateString("pt-BR")} a ${new Date(f.ultimo_voto + "T12:00:00").toLocaleDateString("pt-BR")}</span></div></div>
+      ${f.bancada_pequena_atual ? `<div class="aviso">Hoje a bancada do ${f.partido_atual} tem menos de 3 colegas votando: "segue o partido" pode refletir a orientação do próprio deputado. Compare com o apoio ao governo e com as legislaturas anteriores.</div>` : ""}
+      <div class="row"><div class="seg" id="acSeg${i}" role="group" aria-label="Medida"><button aria-pressed="${(acModo[i] || "sp") === "sp"}" data-v="sp">Partido</button><button aria-pressed="${acModo[i] === "cb"}" data-v="cb">Bancada</button><button aria-pressed="${acModo[i] === "ag"}" data-v="ag">Governo</button></div></div>
+      <div class="rel"><div class="rolagem dica-rolar"><svg class="chart" id="acSvg${i}" viewBox="0 0 960 280"></svg></div><div class="tip" id="acTip${i}" hidden></div>
+        <div class="legend claro"><span class="row" style="gap:6px"><span class="dot" style="background:var(--accent)"></span>${f.nome}</span><span class="row" style="gap:6px"><span style="width:18px;border-top:2px dashed var(--ink-3)"></span>colegas de partido</span><span class="row" style="gap:6px"><span class="dot" style="background:var(--warn)"></span>mês com bancada pequena</span></div></div>
+      ${legs ? `<div class="rolagem"><table class="tab"><tr><th>Legislatura</th><th>Partido</th><th>Grupo</th><th>Apoio ao governo</th><th>Mais governista que</th><th>Posição A↔B</th><th>Participação</th></tr>${legs}</table></div>` : ""}
+      ${reb ? `<details class="ler"><summary>Últimos votos contra a orientação do partido</summary><div class="corpo"><ul class="lista-v">${reb}</ul></div></details>` : ""}
+    </div>`; }).join("");
+  A.forEach((f, i) => { if (!f.votos) return; acChart(f, i); segOn(`#acSeg${i}`, v => { acModo[i] = v; acChart(f, i); }); });
+}
+function acChart(f, i) {
+  const k = acModo[i] || "sp", ref = {sp: "psp", cb: "pcb", ag: "pag"}[k];
+  const svg = $(`#acSvg${i}`), tip = $(`#acTip${i}`); svg.innerHTML = "";
+  const W = 960, H = 280, m = {l: 46, r: 16, t: 16, b: 28};
+  const M = f.mensal; if (!M.length) return;
+  const t0 = +new Date(M[0].m + "-01"), t1 = +new Date(M[M.length - 1].m + "-28");
+  const Y = v => m.t + (1 - v) * (H - m.t - m.b);
+  [0, .25, .5, .75, 1].forEach(v => { el("line", {class: "grid", x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v)}, svg); txt(svg, m.l - 8, Y(v) + 4, pctf(v, 0), {"text-anchor": "end"}); });
+  const X = eixoTempo(svg, W, H, m, t0, t1, false);
+  D.legislaturas.forEach(l => { const t = +new Date(l.ini); if (t <= t0 || t >= t1) return; el("line", {x1: X(t), x2: X(t), y1: m.t, y2: H - m.b, stroke: cssv("--ink-3"), "stroke-width": 1.2}, svg); txt(svg, X(t) + 5, m.t + 12, `${l.leg}ª · ${curtoGov(l)}`, {class: "ctxlbl"}); });
+  const caminho = key => { let d = "", pen = false; M.forEach(r => { const v = r[key]; if (v == null || (key === k && r.nsp < 1 && k === "sp")) { pen = false; return; } d += `${pen ? "L" : "M"}${X(r.m + "-15").toFixed(1)},${Y(v).toFixed(1)}`; pen = true; }); return d; };
+  el("path", {d: caminho(ref), fill: "none", stroke: cssv("--ink-3"), "stroke-width": 1.6, "stroke-dasharray": "5 4"}, svg);
+  el("path", {d: caminho(k), fill: "none", stroke: cssv("--accent"), "stroke-width": 2.2, "stroke-linejoin": "round", opacity: .9}, svg);
+  M.forEach(r => { if (r[k] == null) return; el("circle", {cx: X(r.m + "-15"), cy: Y(r[k]), r: 2 + Math.min(5, Math.sqrt(r.v) / 2), fill: r.peq ? cssv("--warn") : cssv("--accent"), stroke: cssv("--surface"), "stroke-width": 1.2}, svg); });
+  const box = svg.closest(".rel");
+  svg.onpointermove = e => { const rr = svg.getBoundingClientRect(); const mx = (e.clientX - rr.left) * W / rr.width;
+    let j = 0, bd = 1e9; M.forEach((r, q) => { const dd = Math.abs(X(r.m + "-15") - mx); if (dd < bd) { bd = dd; j = q; } }); const r = M[j];
+    tip.innerHTML = `<b>${mesAno(r.m)}</b> · ${r.p}<br>${fmt.format(r.v)} votos · presença ${pctf(r.pr, 0)}<br>Segue o partido: <b>${pctf(r.sp)}</b> (colegas ${pctf(r.psp)})<br>Com a bancada: <b>${pctf(r.cb)}</b> (colegas ${pctf(r.pcb)})<br>Apoio ao governo: <b>${pctf(r.ag)}</b> (colegas ${pctf(r.pag)})${r.peq ? "<br><i>bancada pequena neste mês</i>" : ""}`;
+    const rb = box.getBoundingClientRect(); tip.hidden = false; posTip(tip, e.clientX - rb.left, e.clientY - rb.top, rb.width); };
+  svg.onpointerleave = () => tip.hidden = true;
+}
+
 function rodape() {
   const dt = new Date(D.atualizado + "T12:00:00").toLocaleDateString("pt-BR");
   $("#rodape").innerHTML = `Dados abertos da Câmara dos Deputados, atualizados em ${dt}. Código, dados e método: <a href="${D.repo}" target="_blank" rel="noopener">${D.repo.replace("https://", "")}</a>.`;
@@ -801,7 +970,8 @@ function rodape() {
 segOn("#redeCor", v => { redeModo = v; rede(); });
 segOn("#tempoMet", v => { tempoModo = v; tempo(); });
 segOn("#temaMet", v => { temaModo = v; temas(); });
-function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); clima(); agenda(); temas(); rankings(); partidos(); comparacao(); rodape(); }
+segOn("#mudMet", v => { mudModo = v; mudancas(); });
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); partidos(); comparacao(); acompanhados(); rodape(); }
 tudo(true);
 // navegação: destaca a seção visível
 const links = [...document.querySelectorAll("#nav a")];

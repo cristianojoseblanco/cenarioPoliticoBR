@@ -72,12 +72,18 @@ jobs:
       - name: Dinâmica mensal (agenda, polarização, folga)
         run: python -m src.governance.dinamica
 
+      - name: Pontos de mudança e comunidades no tempo
+        run: python -m src.networks.mudancas
+
+      - name: Deputados acompanhados
+        run: python -m src.governance.acompanhamento
+
       - name: Publicar resumo
         if: always()
         run: |
           cat artifacts/reports/qualidade_camara.md >> "$GITHUB_STEP_SUMMARY" || true
           cat artifacts/reports/processed_camara.md >> "$GITHUB_STEP_SUMMARY" || true
-          for f in artifacts/reports/leg*/*.md artifacts/reports/comparacao.md; do
+          for f in artifacts/reports/leg*/*.md artifacts/reports/comparacao.md artifacts/reports/acompanhamento.md; do
             [ -f "$f" ] && { echo "## $f"; cat "$f"; } >> "$GITHUB_STEP_SUMMARY"
           done || true
 

@@ -5,9 +5,9 @@ camara:
   formato: "csv"
   csv_delim: ";"
 
-  # Anos ingeridos por padrão (legislaturas 56 e 57: 2019–2027).
+  # Anos ingeridos por padrão: de `desde` até o ano corrente (legislaturas 56 em diante).
   # Pode ser sobrescrito pela variável de ambiente ANOS (ex.: "2023,2024").
-  anos_padrao: [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+  anos_padrao: {desde: 2019}
   # Anos mais antigos que (ano atual − N) não são baixados de novo se já existem:
   # a fonte quase não muda e isso poupa tempo de execução.
   recarregar_anos_recentes: 2
@@ -38,7 +38,7 @@ camara:
   api_pausa_s: 0.15
   # Legislaturas cujos deputados terão o histórico de mandato baixado
   # (somados aos deputados que aparecem nos votos ingeridos).
-  legislaturas_historico: [56, 57]
+  legislaturas_historico: [56, 57, 58]
 
   # Colunas-chave esperadas, conferidas no relatório de qualidade.
   # Se a Câmara mudar o esquema, o relatório acusa; o código não quebra.
@@ -212,12 +212,15 @@ armazenamento:
 legislaturas:
   "56": {inicio: "2019-02-01", fim: "2023-01-31", nome: "56ª legislatura", governo: "Governo Bolsonaro"}
   "57": {inicio: "2023-02-01", fim: "2027-01-31", nome: "57ª legislatura", governo: "Governo Lula (3º mandato)"}
+  # Começa em 2027-02-01; só entra nas análises quando tiver votações suficientes.
+  "58": {inicio: "2027-02-01", fim: "2031-01-31", nome: "58ª legislatura", governo: "Governo Lula (4º mandato)"}
 
 # Contexto político usado para nomear períodos e marcar gráficos (fatos institucionais, sem juízo).
 contexto:
   governos:
     - {nome: "Governo Jair Bolsonaro", curto: "Bolsonaro", inicio: "2019-01-01", fim: "2022-12-31"}
-    - {nome: "Governo Luiz Inácio Lula da Silva (3º mandato)", curto: "Lula 3", inicio: "2023-01-01", fim: null}
+    - {nome: "Governo Luiz Inácio Lula da Silva (3º mandato)", curto: "Lula 3", inicio: "2023-01-01", fim: "2026-12-31"}
+    - {nome: "Governo Luiz Inácio Lula da Silva (4º mandato)", curto: "Lula 4", inicio: "2027-01-01", fim: null}
   presidentes_camara:
     - {nome: "Rodrigo Maia", partido: "DEM-RJ", inicio: "2019-02-01", fim: "2021-02-01"}
     - {nome: "Arthur Lira", partido: "PP-AL", inicio: "2021-02-01", fim: "2025-02-01"}
@@ -225,6 +228,7 @@ contexto:
   eventos:
     - {data: "2022-10-02", rotulo: "Eleições gerais"}
     - {data: "2024-10-06", rotulo: "Eleições municipais"}
+    - {data: "2026-10-04", rotulo: "Eleições gerais"}
 # Períodos marcados nos gráficos e notas (não excluem dados).
 marcadores_periodo:
   - inicio: "2020-03-17"
@@ -243,3 +247,35 @@ dimensoes:
 dinamica:
   # Votação "apertada": diferença entre os lados abaixo desta fração dos votos com valor.
   margem_apertada: 0.10
+
+# Pontos de mudança e comunidades ao longo do tempo (por legislatura).
+mudancas:
+  # Mês entra nas séries se teve pelo menos N votações nominais com orientação do Governo.
+  min_votacoes_mes: 5
+  series: [apoio_polo_a, apoio_polo_b, apoio_fora, polarizacao, vitoria_gov]
+  # PELT com custo L2 nas séries padronizadas; penalidade = fator × nº de séries × ln(nº de meses)
+  # (fator 1 = critério tipo BIC). Também roda com o fator multiplicado por cada valor de
+  # `variantes`: ponto "robusto" = aparece em todas (± tolerancia_meses).
+  penalidade_fator: 1.0
+  variantes: [0.5, 1.5]
+  min_meses: 3
+  tolerancia_meses: 1
+  # Evento de contexto associado ao ponto se estiver a até N dias.
+  janela_contexto_dias: 90
+
+# Deputados acompanhados (ficha mensal). `id` = identificador da Câmara, quando já existe.
+# Sem id, a identificação é pelo nome parlamentar (sem acento/caixa) em deputados da legislatura
+# `desde_legislatura` em diante, conferida pela UF dos votos.
+acompanhar:
+  - {nome: "Lucas Pavanato", uf: "SP", partido_eleito: "PL", desde_legislatura: 58,
+     eleicao: "Eleito em 2026 com 3.038.185 votos (mais votado de SP)"}
+  - {nome: "Jones Manoel", uf: "PE", partido_eleito: "PSOL", desde_legislatura: 58,
+     eleicao: "Eleito em 2026 com cerca de 249 mil votos"}
+  - {nome: "Kim Kataguiri", id: 204536, uf: "SP", partido_eleito: "MISSÃO",
+     eleicao: "Reeleito em 2026 com 520.025 votos; deputado desde 2019"}
+
+acompanhamento:
+  saida: "data/marts/camara/acompanhamento"
+  relatorio: "artifacts/reports/acompanhamento.md"
+  # "Vota com a bancada" só é medido quando há pelo menos N colegas de partido com voto Sim/Não.
+  min_colegas: 3

@@ -1,0 +1,19 @@
+{
+  "polo_a": "C1",
+  "polo_b": "C4",
+  "composicao": {
+    "C1": "PL 100, UNIÃO 21",
+    "C2": "UNIÃO 46, PP 42",
+    "C3": "PSD 49, MDB 36",
+    "C4": "PT 75, PSB 14",
+    "C5": "REPUBLICANOS 45, MDB 4",
+    "C6": "PSOL 14, REDE 3"
+  },
+  "meses": 39,
+  "pontos": 2,
+  "robustos": 1,
+  "penalidade_fator": 1.0,
+  "min_meses": 3,
+  "ari_mediana": 0.734057101226101,
+  "trocaram_mediana": 0.13747027202432036
+}

@@ -66,6 +66,11 @@ Relatório: `artifacts/reports/processed_camara.md`.
 | 7a — comparação | `src/networks/comparacao.py` | `comparacao/` (legislaturas lado a lado, partidos, reeleitos) | `artifacts/reports/comparacao.md` |
 | Dimensões de voto | `src/networks/dimensoes.py` | `leg<N>/dimensoes/` (PCA com imputação iterativa: mapa 2D, temas e votações que definem cada dimensão) | `artifacts/reports/leg<N>/dimensoes.md` |
 | Dinâmica mensal | `src/governance/dinamica.py` | `leg<N>/dinamica/` (agenda por tema, polarização, votações apertadas, folga do governo) | `artifacts/reports/leg<N>/dinamica.md` |
+| Pontos de mudança | `src/networks/mudancas.py` | `leg<N>/mudancas/` (PELT nas séries mensais, trechos, troca de grupo entre janelas) | `artifacts/reports/leg<N>/mudancas.md` |
+| Deputados acompanhados | `src/governance/acompanhamento.py` | `acompanhamento/` (ficha mensal: segue o partido, vota com a bancada, apoio ao governo, votos contra o partido) | `artifacts/reports/acompanhamento.md` |
+
+Para acompanhar um deputado, acrescente-o em `acompanhar` no config (com `id` da Câmara, ou nome + UF
+para quem ainda não tomou posse). A 58ª legislatura (2027–2031) entra sozinha quando tiver votações.
 
 As etapas 3 a 5 rodam uma vez por legislatura (`legislaturas` no config), com os mesmos parâmetros;
 saídas em `data/marts/camara/leg<N>/` e relatórios em `artifacts/reports/leg<N>/`.
@@ -75,7 +80,7 @@ Notas de método e resultados: repositório `cenarioPoliticoBR-notas` (vault do 
 ## Painel (Etapa 6)
 
 `app/Home.py` + `app/pages/`: Streamlit lendo só os arquivos de `data/marts` (nada pesado roda no painel).
-Páginas: Rede, Tempo, Temas, Partidos e Deputado. Dependências leves em `app/requirements.txt`.
+Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças e Acompanhados. Dependências leves em `app/requirements.txt`.
 
 - Local: `streamlit run app/Home.py`
 - Nuvem: Streamlit Community Cloud apontando para `app/Home.py` neste repositório; o painel se atualiza
@@ -104,6 +109,8 @@ python -m src.governance.indicadores
 python -m src.networks.comparacao
 python -m src.networks.dimensoes
 python -m src.governance.dinamica
+python -m src.networks.mudancas
+python -m src.governance.acompanhamento
 python -m src.site.gerar
 ```
 
