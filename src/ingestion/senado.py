@@ -83,6 +83,10 @@ def main() -> int:
     a = s["anos_padrao"]
     anos = [int(x) for x in env.split(",") if x.strip()] if env else (
         list(range(int(a["desde"]), datetime.now().year + 1)) if isinstance(a, dict) else list(a))
+    # anos do período padrão que ainda não existem no staging entram sempre (mesmo com ANOS definido)
+    padrao = list(range(int(a["desde"]), datetime.now().year + 1)) if isinstance(a, dict) else list(a)
+    faltando = [y for y in padrao if not (staging / "votacoes" / f"ano={y}" / "part-0.parquet").exists()]
+    anos = sorted(set(anos) | set(faltando))
     recentes = s.get("recarregar_anos_recentes", 2)
     registro = []
     for ano in anos:
