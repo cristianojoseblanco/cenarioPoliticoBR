@@ -378,6 +378,8 @@ tse:
   # Eleições reprocessadas toda semana (prestação de contas ainda aberta); as outras ficam como estão.
   recarregar: [2026]
   cargos: {senador: 5, deputado_federal: 6}
+  # Presidente: só votos por município (mapa), nos dois turnos.
+  cargo_presidente: 1
   # Eleição -> legislatura que ela elegeu (senadores eleitos servem duas legislaturas).
   legislatura_da_eleicao: {2018: "56", 2022: "57", 2026: "58"}
   # Senado: nome de urna × nome parlamentar na mesma UF, semelhança mínima para ligar.

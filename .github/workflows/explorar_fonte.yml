@@ -48,7 +48,7 @@ jobs:
           i=0
           for u in $URLS; do
             i=$((i+1))
-            code=$(curl -sS -L -m 120 -H "Accept: application/json" -A "cenarioPoliticoBR/0.1 (pesquisa)" -o "amostras/$i.raw" -w "%{http_code}" "$u" || echo erro)
+            code=$(curl -sS -L -m 180 --retry 2 -H "Accept: application/json" -A "cenarioPoliticoBR/0.1 (pesquisa)" -o "amostras/$i.raw" -w "%{http_code}" "$u" 2> "amostras/$i.err" || echo erro)
             tam=$(stat -c %s "amostras/$i.raw" 2>/dev/null || echo 0)
             head -c 600000 "amostras/$i.raw" > "amostras/$i.txt" 2>/dev/null || true
             rm -f "amostras/$i.raw"

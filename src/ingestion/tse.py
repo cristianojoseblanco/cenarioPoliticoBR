@@ -5,6 +5,7 @@ RESUMOS por candidato (os arquivos brutos, de centenas de MB, não são guardado
 
   data/staging/tse/<ano>/candidatos.parquet   candidato, partido, UF, situação final, deputado_id (Câmara)
   data/staging/tse/<ano>/votos_municipio.parquet   votos nominais válidos por candidato e município
+  data/staging/tse/<ano>/votos_presidente.parquet  votos para presidente por município, nos dois turnos
   data/staging/tse/<ano>/receitas.parquet     receitas por candidato, fonte e origem
 
 Eleições já baixadas não são reprocessadas, exceto as listadas em `tse.recarregar` (contas ainda abertas).
@@ -106,19 +107,25 @@ def processar(ano: int, t: dict, http: dict, destino: Path, mapa: dict) -> dict:
     zv = baixar(f"{base}/votacao_candidato_munzona/votacao_candidato_munzona_{ano}.zip", http)
     z = zipfile.ZipFile(zv)
     col_votos = ["QT_VOTOS_NOMINAIS_VALIDOS", "QT_VOTOS_NOMINAIS"]
-    partes = []
+    partes, pres = [], []
+    pres_cod = str(t.get("cargo_presidente", 1))
+    com_pres = lambda df: df[df["CD_CARGO"].isin(cargos | {pres_cod})]  # noqa: E731
     for m in _ufs(z, f"votacao_candidato_munzona_{ano}"):
         df = _ler(z, m, ["SQ_CANDIDATO", "CD_CARGO", "SG_UF", "CD_MUNICIPIO", "NM_MUNICIPIO", "NR_TURNO",
-                         "CD_TIPO_ELEICAO", *col_votos], so_cargos)
+                         "CD_TIPO_ELEICAO", "NR_CANDIDATO", "NM_URNA_CANDIDATO", "SG_PARTIDO", *col_votos], com_pres)
         if "CD_TIPO_ELEICAO" in df:
             df = df[df["CD_TIPO_ELEICAO"] == "2"]
-        df = df[df["NR_TURNO"] == "1"]
         vc = next(c for c in col_votos if c in df.columns)
         df["votos"] = pd.to_numeric(df[vc], errors="coerce").fillna(0)
+        p_ = df[df["CD_CARGO"] == pres_cod]
+        pres.append(p_.groupby(["NR_TURNO", "SG_UF", "CD_MUNICIPIO", "NM_MUNICIPIO", "NR_CANDIDATO", "NM_URNA_CANDIDATO",
+                                "SG_PARTIDO"], as_index=False)["votos"].sum())
+        df = df[(df["NR_TURNO"] == "1") & (df["CD_CARGO"] != pres_cod)]
         partes.append(df.groupby(["SQ_CANDIDATO", "SG_UF", "CD_MUNICIPIO", "NM_MUNICIPIO"], as_index=False)["votos"].sum())
     zv.unlink()
     votos = pd.concat(partes, ignore_index=True)
     votos.to_parquet(destino / "votos_municipio.parquet", index=False)
+    pd.concat(pres, ignore_index=True).to_parquet(destino / "votos_presidente.parquet", index=False)
 
     # receitas
     zr = baixar(f"{base}/prestacao_contas/prestacao_de_contas_eleitorais_candidatos_{ano}.zip", http)
@@ -147,7 +154,8 @@ def main() -> int:
     mapa = None
     for ano in t["eleicoes"]:
         d = out / str(ano)
-        pronto = all((d / f).exists() for f in ("candidatos.parquet", "votos_municipio.parquet", "receitas.parquet"))
+        pronto = all((d / f).exists() for f in ("candidatos.parquet", "votos_municipio.parquet", "votos_presidente.parquet",
+                                                  "receitas.parquet"))
         if pronto and ano not in t.get("recarregar", []):
             print(f"{ano}: já processado, pulado")
             continue
