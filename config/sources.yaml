@@ -212,6 +212,7 @@ armazenamento:
     processed_senado: "data/processed/senado"
     staging_tse: "data/staging/tse"
     staging_emendas: "data/staging/emendas"
+    staging_ibge: "data/staging/ibge"
 
 # Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
 # `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
@@ -402,3 +403,28 @@ emendas:
   defasagem_ano: 1
   # Tipos analisados por parlamentar (bancada e comissão não têm autor individual).
   tipos_individuais: ["Emenda Individual - Transferências com Finalidade Definida", "Emenda Individual - Transferências Especiais"]
+
+# IBGE (Etapa 7d): indicadores municipais (SIDRA) e malha municipal (geoftp). O servicodados.ibge.gov.br não
+# responde ao GitHub Actions; estes dois serviços oficiais respondem.
+ibge:
+  caminhos:
+    staging: "data/staging/ibge"
+    metadata: "data/metadata/ibge"
+    geo: "data/marts/geo"
+  dias_validade: 30
+  tabelas:
+    censo_area_densidade: "/t/4714/n6/all/v/all/p/2022"        # população residente, área, densidade (Censo 2022)
+    populacao_estimada: "/t/6579/n6/all/v/9324/p/last%201"      # estimativa mais recente
+    alfabetizacao: "/t/9543/n6/all/v/2513/p/2022"               # taxa de alfabetização 15+ (Censo 2022)
+    situacao_domicilio: "/t/9923/n6/all/v/93/p/2022/c1/all"     # população urbana e rural (Censo 2022)
+    pib: "/t/5938/n6/all/v/37/p/last%201"                       # PIB a preços correntes (mil R$)
+  geoftp: "https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2024/Brasil"
+  malha_municipios: "BR_Municipios_2024.zip"
+  malha_ufs: "BR_UF_2024.zip"
+  # Fração de vértices mantida pelo mapshaper (equilíbrio entre detalhe e peso da página).
+  simplificacao_municipios: "4%"
+  simplificacao_ufs: "6%"
+  mapshaper: "0.6"
+  capitais: [1100205, 1200401, 1302603, 1400100, 1501402, 1600303, 1721000, 2111300, 2211001, 2304400, 2408102,
+             2507507, 2611606, 2704302, 2800308, 2927408, 3106200, 3205309, 3304557, 3550308, 4106902, 4205407,
+             4314902, 5002704, 5103403, 5208707, 5300108]
