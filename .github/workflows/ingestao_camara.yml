@@ -1,4 +1,4 @@
-name: Ingestão e análises (Câmara e Senado)
+name: Ingestão e análises (Câmara, Senado e TSE)
 
 on:
   workflow_dispatch:
@@ -81,9 +81,6 @@ jobs:
       - name: Modelo de voto individual
         run: python -m src.models.voto_individual
 
-      - name: Deputados acompanhados
-        run: python -m src.governance.acompanhamento
-
       - name: Senado · ingestão
         continue-on-error: true
         env:
@@ -97,6 +94,17 @@ jobs:
       - name: Senado · análises
         continue-on-error: true
         run: python -m src.senado
+
+      - name: TSE · ingestão (candidatos, votos, receitas)
+        continue-on-error: true
+        run: python -m src.ingestion.tse
+
+      - name: Campanha × Plenário
+        continue-on-error: true
+        run: python -m src.governance.eleicoes
+
+      - name: Deputados acompanhados
+        run: python -m src.governance.acompanhamento
 
       - name: Publicar resumo
         if: always()

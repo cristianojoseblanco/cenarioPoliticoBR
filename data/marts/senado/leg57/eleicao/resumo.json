@@ -1,0 +1,18 @@
+{
+  "casa": "senado",
+  "legislatura": "57",
+  "eleicoes": [
+    2018,
+    2022
+  ],
+  "eleitos": 80,
+  "ligados": 71,
+  "com_comportamento": true,
+  "mediana_votos": 854673.5,
+  "mediana_receita": 2508486.325,
+  "mediana_custo_por_voto": 2.135941544084922,
+  "mediana_frac_fundo_eleitoral": 0.6800209892231673,
+  "eleitos_qp": 0,
+  "eleitos_media": 0,
+  "qp_vs_media": null
+}

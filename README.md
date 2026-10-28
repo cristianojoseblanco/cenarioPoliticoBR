@@ -84,7 +84,7 @@ Notas de método e resultados: repositório `cenarioPoliticoBR-notas` (vault do 
 ## Painel (Etapa 6)
 
 `app/Home.py` + `app/pages/`: Streamlit lendo só os arquivos de `data/marts` (nada pesado roda no painel).
-Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças, Acompanhados, Frentes e Imprevisíveis. Dependências leves em `app/requirements.txt`.
+Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças, Acompanhados, Frentes, Imprevisíveis e Campanha (Câmara e Senado). Dependências leves em `app/requirements.txt`.
 
 - Local: `streamlit run app/Home.py`
 - Nuvem: Streamlit Community Cloud apontando para `app/Home.py` neste repositório; o painel se atualiza
@@ -104,6 +104,15 @@ Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças, Acomp
   parâmetros de `senado.analise` (81 senadores, cerca de 70 votações nominais abertas por ano).
 - Saídas em `data/marts/senado/leg<N>/` e relatórios em `artifacts/reports/senado/leg<N>/`.
 - O Senado não publica temas no padrão da Câmara: análises por tema e agenda ficam de fora.
+
+## TSE (Etapa 7c)
+
+- `src/ingestion/tse.py`: baixa do CDN do TSE os candidatos, a votação por município e as receitas de campanha
+  (deputado federal e senador; eleições em `tse.eleicoes`) e grava só resumos por candidato em `data/staging/tse/<ano>/`
+  (cerca de 5 MB por eleição; os zips de centenas de MB não são guardados). Eleições fechadas não são baixadas de novo.
+- Ligação com a Câmara: nome civil + data de nascimento. CPF não é lido. Senado: nome de urna + UF.
+- `src/governance/eleicoes.py`: campanha × comportamento por legislatura (`leg<N>/eleicao/`), com correlações em
+  todos e dentro do partido, só as com p < `tse.alfa`.
 
 ## Rodar localmente
 
@@ -127,6 +136,7 @@ python -m src.networks.multicamadas
 python -m src.models.voto_individual
 python -m src.governance.acompanhamento
 python -m src.ingestion.senado && python -m src.processing.senado && python -m src.senado
+python -m src.ingestion.tse && python -m src.governance.eleicoes
 python -m src.site.gerar
 ```
 

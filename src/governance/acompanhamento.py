@@ -171,6 +171,40 @@ def contexto_legislaturas(cfg, dep_id: str) -> list[dict]:
     return out
 
 
+def campanhas(cfg, alvo: dict, dep_id: str | None) -> list[dict]:
+    """Perfil de campanha (TSE) do deputado em cada eleição disponível: pelo deputado_id ou por nome + UF."""
+    from src.governance.eleicoes import _nome, perfil_eleicao
+    t = cfg.get("tse")
+    if not t:
+        return []
+    cargo = str(t["cargos"]["deputado_federal"])
+    nomes = {_nome(x) for x in [alvo["nome"], *alvo.get("nomes_alternativos", [])]}
+    out = []
+    for ano in t["eleicoes"]:
+        p = perfil_eleicao(int(ano), cfg)
+        if p.empty:
+            continue
+        p = p[p["CD_CARGO"] == cargo]
+        sel = p[p["deputado_id"] == dep_id] if dep_id else p.iloc[0:0]
+        if sel.empty:
+            urna, civil = p["NM_URNA_CANDIDATO"].map(_nome), p["NM_CANDIDATO"].map(_nome)
+            sel = p[(urna.isin(nomes) | civil.isin(nomes)) & (p["SG_UF"] == alvo.get("uf", p["SG_UF"]))]
+        if len(sel) != 1:
+            continue
+        r = sel.iloc[0]
+        uf = p[p["SG_UF"] == r["SG_UF"]]
+        out.append({"ano": int(ano), "partido": r["SG_PARTIDO"], "situacao": r["DS_SIT_TOT_TURNO"],
+                    "votos": int(r["votos"]) if r["votos"] == r["votos"] else None, "frac_uf": _f(r["frac_uf"]),
+                    "posicao_uf": int((uf["votos"] > r["votos"]).sum()) + 1, "candidatos_uf": int(len(uf)),
+                    "municipio_principal": r.get("municipio_principal"), "maior_municipio": _f(r["maior_municipio"]),
+                    "municipios_1pct": int(r["municipios_1pct"]) if r["municipios_1pct"] == r["municipios_1pct"] else None,
+                    "receita_total": _f(r.get("receita_total")), "custo_por_voto": _f(r.get("custo_por_voto")),
+                    "frac_fundo_eleitoral": _f(r.get("frac_fundo_eleitoral")),
+                    "frac_pessoas_fisicas": _f(r.get("frac_pessoas_fisicas")),
+                    "frac_recursos_proprios": _f(r.get("frac_recursos_proprios"))})
+    return out
+
+
 def _f(x):
     try:
         x = float(x)
@@ -193,7 +227,7 @@ def main() -> int:
     for alvo in alvos:
         dep_id, situacao = identificar(cfg, alvo, b)
         ficha = {k: alvo.get(k) for k in ("nome", "uf", "partido_eleito", "nota", "eleicao")}
-        ficha.update(deputado_id=dep_id, situacao=situacao)
+        ficha.update(deputado_id=dep_id, situacao=situacao, campanhas=campanhas(cfg, alvo, dep_id))
         if dep_id:
             m = mensal_deputado(dep_id, b, votacoes, exerc)
             r = rebeldias(dep_id, b, cfg)

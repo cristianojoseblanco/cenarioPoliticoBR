@@ -1,0 +1,17 @@
+{
+  "casa": "senado",
+  "legislatura": "56",
+  "eleicoes": [
+    2018
+  ],
+  "eleitos": 53,
+  "ligados": 47,
+  "com_comportamento": true,
+  "mediana_votos": 895738.0,
+  "mediana_receita": 1868517.42,
+  "mediana_custo_por_voto": 1.5033154355509277,
+  "mediana_frac_fundo_eleitoral": 0.6400731083555273,
+  "eleitos_qp": 0,
+  "eleitos_media": 0,
+  "qp_vs_media": null
+}

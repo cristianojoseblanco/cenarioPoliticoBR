@@ -6,7 +6,26 @@
     "nota": null,
     "eleicao": "Eleito em 2026 com 3.038.185 votos (mais votado de SP)",
     "deputado_id": null,
-    "situacao": "aguardando dados (ainda sem registro na Câmara)"
+    "situacao": "aguardando dados (ainda sem registro na Câmara)",
+    "campanhas": [
+      {
+        "ano": 2026,
+        "partido": "PL",
+        "situacao": "ELEITO POR QP",
+        "votos": 3038438,
+        "frac_uf": 0.1322,
+        "posicao_uf": 1,
+        "candidatos_uf": 1132,
+        "municipio_principal": "SÃO PAULO",
+        "maior_municipio": 0.2586,
+        "municipios_1pct": 11,
+        "receita_total": 3082120.04,
+        "custo_por_voto": 1.0144,
+        "frac_fundo_eleitoral": 0.4218,
+        "frac_pessoas_fisicas": 0.0664,
+        "frac_recursos_proprios": 0.0016
+      }
+    ]
   },
   {
     "nome": "Jones Manoel",
@@ -15,7 +34,26 @@
     "nota": null,
     "eleicao": "Eleito em 2026 com cerca de 249 mil votos",
     "deputado_id": null,
-    "situacao": "aguardando dados (ainda sem registro na Câmara)"
+    "situacao": "aguardando dados (ainda sem registro na Câmara)",
+    "campanhas": [
+      {
+        "ano": 2026,
+        "partido": "PSOL",
+        "situacao": "ELEITO POR QP",
+        "votos": 249077,
+        "frac_uf": 0.0488,
+        "posicao_uf": 2,
+        "candidatos_uf": 392,
+        "municipio_principal": "RECIFE",
+        "maior_municipio": 0.3267,
+        "municipios_1pct": 14,
+        "receita_total": 1273202.22,
+        "custo_por_voto": 5.1117,
+        "frac_fundo_eleitoral": 0.4909,
+        "frac_pessoas_fisicas": 0.006,
+        "frac_recursos_proprios": 0.0005
+      }
+    ]
   },
   {
     "nome": "Kim Kataguiri",
@@ -25,6 +63,59 @@
     "eleicao": "Reeleito em 2026 com 520.025 votos; deputado desde 2019",
     "deputado_id": "204536",
     "situacao": "ok",
+    "campanhas": [
+      {
+        "ano": 2018,
+        "partido": "DEM",
+        "situacao": "ELEITO POR QP",
+        "votos": 465310,
+        "frac_uf": 0.0238,
+        "posicao_uf": 4,
+        "candidatos_uf": 1686,
+        "municipio_principal": "SÃO PAULO",
+        "maior_municipio": 0.3536,
+        "municipios_1pct": 12,
+        "receita_total": 305495.99,
+        "custo_por_voto": 0.6565,
+        "frac_fundo_eleitoral": 0.0,
+        "frac_pessoas_fisicas": 0.7383,
+        "frac_recursos_proprios": 0.0
+      },
+      {
+        "ano": 2022,
+        "partido": "UNIÃO",
+        "situacao": "ELEITO POR QP",
+        "votos": 295460,
+        "frac_uf": 0.0132,
+        "posicao_uf": 8,
+        "candidatos_uf": 1540,
+        "municipio_principal": "SÃO PAULO",
+        "maior_municipio": 0.3596,
+        "municipios_1pct": 13,
+        "receita_total": 1625249.99,
+        "custo_por_voto": 5.5007,
+        "frac_fundo_eleitoral": 0.0,
+        "frac_pessoas_fisicas": 0.165,
+        "frac_recursos_proprios": 0.0005
+      },
+      {
+        "ano": 2026,
+        "partido": "MISSÃO",
+        "situacao": "ELEITO POR QP",
+        "votos": 520071,
+        "frac_uf": 0.0226,
+        "posicao_uf": 4,
+        "candidatos_uf": 1132,
+        "municipio_principal": "SÃO PAULO",
+        "maior_municipio": 0.3367,
+        "municipios_1pct": 12,
+        "receita_total": 506582.55,
+        "custo_por_voto": 0.9741,
+        "frac_fundo_eleitoral": 0.0,
+        "frac_pessoas_fisicas": 0.4139,
+        "frac_recursos_proprios": 0.0
+      }
+    ],
     "primeiro_voto": "2019-02-12",
     "ultimo_voto": "2026-10-14",
     "votos": 2343,

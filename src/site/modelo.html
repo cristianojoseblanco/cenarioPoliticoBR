@@ -230,7 +230,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     <div class="legbtns" id="legSeg" role="group" aria-label="Legislatura"></div>
     <nav class="secoes" aria-label="Seções" id="nav">
       <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#mudancas">Mudanças</a>
-      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a>
+      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a><a href="#campanha">Campanha</a>
       <a href="#partidos">Partidos</a><a href="#frentes">Frentes</a><a href="#comparacao">Governos</a><a href="#acompanhados">Acompanhados</a><a href="#glossario">Glossário</a>
     </nav>
   </div>
@@ -400,6 +400,27 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
         <h3 style="margin-top:8px" id="moTemasTit">Temas com mais votos imprevisíveis</h3><div id="moTemas"></div></div>
     </div>
     <div class="card"><h3>Votações com mais votos imprevisíveis</h3><ul class="lista-v" id="moVot"></ul></div>
+  </div>
+</section>
+
+<section class="cap" id="campanha">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Campanha (TSE) × Plenário</span><h2>O voto que elegeu e o voto no Plenário</h2>
+      <p class="lede" id="caLede"></p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
+      <dt>Fonte</dt><dd>Tribunal Superior Eleitoral: votos por município e receitas declaradas na prestação de contas de cada eleito. Deputados ligados à Câmara pelo nome civil e data de nascimento; senadores pelo nome de urna e UF.</dd>
+      <dt>Peso do maior município</dt><dd>Fração dos votos do parlamentar que veio da cidade onde ele foi mais votado. Alto = voto de reduto; baixo = voto espalhado pelo estado.</dd>
+      <dt>Fundo eleitoral</dt><dd>Fundo Especial de Financiamento de Campanha (dinheiro público distribuído pelos partidos), como fração da receita declarada.</dd>
+      <dt>Dentro do partido</dt><dd>A mesma correlação, mas comparando cada parlamentar só com a mediana do próprio partido. Se a relação some dentro do partido, ela era efeito de partido, não da campanha.</dd>
+      <dt>Correlação (ρ de Spearman)</dt><dd>De −1 a +1. Perto de 0: sem relação; 0,2 a 0,3 já é uma relação fraca mas visível. Só aparecem relações com p &lt; 0,01.</dd></dl></div></details>
+    <div class="destaques" id="caDest"></div>
+    <div class="row" style="gap:10px;flex-wrap:wrap"><div class="seg" id="caX" role="group" aria-label="Campanha"><button aria-pressed="true" data-v="1">Peso do maior município</button><button aria-pressed="false" data-v="2">% do fundo eleitoral</button><button aria-pressed="false" data-v="3">Custo por voto</button></div>
+      <div class="seg" id="caY" role="group" aria-label="Plenário"><button aria-pressed="true" data-v="di">Disciplina</button><button aria-pressed="false" data-v="imp">Imprevisíveis</button><button aria-pressed="false" data-v="ag">Apoio ao governo</button></div></div>
+    <div class="card rel"><p class="nota" id="caNota"></p><div class="rolagem"><svg class="chart" id="caSvg" viewBox="0 0 960 460"></svg></div><div class="tip" id="caTip" hidden></div><div class="legend claro" id="caLegend"></div></div>
+    <div class="cols">
+      <div class="card" style="align-content:start"><h3>Relações encontradas</h3><p class="nota">ρ em todos e dentro do partido. Em negrito, p &lt; 0,01.</p><div class="rolagem"><table class="tab" id="caTab" style="min-width:420px"></table></div></div>
+      <div class="card" style="align-content:start"><h3>Campanhas ficando mais caras e mais públicas</h3><p class="nota">Medianas dos eleitos, em reais da época (sem correção pela inflação).</p><div class="rolagem"><table class="tab" id="caTend" style="min-width:420px"></table></div></div>
+    </div>
   </div>
 </section>
 
@@ -968,6 +989,8 @@ function mudancas() {
 
 /* ================= deputados acompanhados ================= */
 const acModo = {};
+const titulo = s => s ? s.toLowerCase().replace(/(^|\s)\S/g, x => x.toUpperCase()) : "—";
+const campTab = f => (f.campanhas || []).length ? `<div class="rolagem"><table class="tab"><tr><th>Eleição (TSE)</th><th>Votos</th><th>Na UF</th><th>Maior município</th><th>Receita</th><th>Por voto</th><th>Fundo eleitoral</th></tr>${f.campanhas.map(c => `<tr><td>${c.ano} · ${c.partido} · ${(c.situacao || "").toLowerCase()}</td><td>${fmt.format(c.votos)}</td><td>${c.posicao_uf}º · ${pctf(c.frac_uf)}</td><td>${titulo(c.municipio_principal)} (${pctf(c.maior_municipio, 0)})</td><td>${brl(c.receita_total)}</td><td>${brl(c.custo_por_voto)}</td><td>${pctf(c.frac_fundo_eleitoral, 0)}</td></tr>`).join("")}</table></div>` : "";
 function acompanhados() {
   const A = D.acompanhamento || []; const box = $("#acompBox");
   if (!A.length) { $("#acompanhados").hidden = true; return; }
@@ -976,7 +999,7 @@ function acompanhados() {
       <div class="duo"><i style="width:${v == null ? 0 : (100 * v).toFixed(1)}%"></i>${ref != null ? `<s style="left:calc(${(100 * ref).toFixed(1)}% - 1px)" title="colegas de partido"></s>` : ""}</div></div>`; };
   box.innerHTML = A.map((f, i) => {
     const cab = `<div class="topo"><div style="display:grid;gap:6px"><span class="eyebrow">${f.uf || ""}${f.partido_eleito ? ` · eleito pelo ${f.partido_eleito}` : ""}</span><div class="nome">${f.nome}</div></div>${f.partido_atual ? `<span class="partido">${f.partido_atual} hoje</span>` : ""}</div>${f.eleicao ? `<p class="nota" style="margin:0">${f.eleicao}</p>` : ""}`;
-    if (!f.votos) return `<div class="acomp">${cab}<div class="espera"><b>Aguardando os primeiros votos</b><span>${/aguardando/.test(f.situacao) ? "Ainda sem registro na Câmara." : f.situacao + "."} A 58ª legislatura começa em 1º de fevereiro de 2027; a ficha se preenche sozinha a partir das primeiras votações nominais no Plenário (atualização toda segunda-feira).</span></div></div>`;
+    if (!f.votos) return `<div class="acomp">${cab}<div class="espera"><b>Aguardando os primeiros votos</b><span>${/aguardando/.test(f.situacao) ? "Ainda sem registro na Câmara." : f.situacao + "."} A 58ª legislatura começa em 1º de fevereiro de 2027; a ficha se preenche sozinha a partir das primeiras votações nominais no Plenário (atualização toda segunda-feira).</span></div>${campTab(f)}</div>`;
     const legs = (f.legislaturas || []).map(l => `<tr><td>${l.leg}ª · ${l.governo}</td><td>${l.partido}</td><td>${l.comunidade || "—"}</td><td>${pctf(l.apoio_gov)}</td><td>${l.apoio_percentil == null ? "—" : pctf(l.apoio_percentil, 0)}</td><td>${l.posicao_media == null ? "—" : dec(l.posicao_media)}</td><td>${pctf(l.participacao)}</td><td>${l.imprevisibilidade == null ? "—" : `${pctf(l.imprevisibilidade)} <span class="muted">(${l.imprev_posicao}º de ${fmt.format(l.imprev_total)}; partido ${pctf(l.imprev_partido)})</span>`}</td></tr>`).join("");
     const reb = f.rebs.map(r => `<li><b>${new Date(r.d + "T12:00:00").toLocaleDateString("pt-BR")} · ${r.prop || "votação"} · ${r.p}</b><span>Votou <b>${r.v}</b>; o partido orientou <b>${r.op}</b>${r.og ? `; o governo, ${r.og}` : ""}.</span><span class="muted">${r.t || ""}</span></li>`).join("");
     return `<div class="acomp">${cab}
@@ -989,6 +1012,8 @@ function acompanhados() {
       <div class="rel"><div class="rolagem dica-rolar"><svg class="chart" id="acSvg${i}" viewBox="0 0 960 280"></svg></div><div class="tip" id="acTip${i}" hidden></div>
         <div class="legend claro"><span class="row" style="gap:6px"><span class="dot" style="background:var(--accent)"></span>${f.nome}</span><span class="row" style="gap:6px"><span style="width:18px;border-top:2px dashed var(--ink-3)"></span>colegas de partido</span><span class="row" style="gap:6px"><span class="dot" style="background:var(--warn)"></span>mês com bancada pequena</span></div></div>
       ${legs ? `<div class="rolagem"><table class="tab"><tr><th>Legislatura</th><th>Partido</th><th>Grupo</th><th>Apoio ao governo</th><th>Mais governista que</th><th>Posição A↔B</th><th>Participação</th><th>Votos imprevisíveis</th></tr>${legs}</table></div>` : ""}
+      ${campTab(f)}
+      
       ${reb ? `<details class="ler"><summary>Últimos votos contra a orientação do partido</summary><div class="corpo"><ul class="lista-v">${reb}</ul></div></details>` : ""}
     </div>`; }).join("");
   A.forEach((f, i) => { if (!f.votos) return; acChart(f, i); segOn(`#acSeg${i}`, v => { acModo[i] = v; acChart(f, i); }); });
@@ -1101,6 +1126,50 @@ function termos() {
     while ((n = w.nextNode())) { const t = n.nodeValue; if (!/[Dd]eputad|DEPUTAD|da Câmara/.test(t)) continue; let u = t; trocas.forEach(([r, x]) => u = u.replace(r, x)); if (u !== t) { originais.set(n, t); n.nodeValue = u; } } });
 }
 
+/* ================= campanha (TSE) ================= */
+let caX = 1, caY = "di";
+const CA_ROT = {votos: "votos", frac_uf: "% dos votos da UF", maior_municipio: "peso do maior município", concentracao: "concentração geográfica", municipios_1pct: "municípios com 1%+ dos votos", eleito_qp: "eleito pela votação própria", receita_total: "receita total", custo_por_voto: "custo por voto", frac_fundo_eleitoral: "% do fundo eleitoral", frac_pessoas_fisicas: "% de pessoas físicas", frac_recursos_proprios: "% de recursos próprios", apoio_gov: "apoio ao governo", disciplina: "disciplina", participacao: "participação", imprevisibilidade: "votos imprevisíveis", posicao: "posição no eixo"};
+const brl = v => v == null ? "—" : "R$ " + v.toLocaleString("pt-BR", {maximumFractionDigits: v < 100 ? 2 : 0, minimumFractionDigits: v < 100 ? 2 : 0});
+function campanha() {
+  const E = L.eleicao; const sec = $("#campanha");
+  if (!E || !E.pts.length) { sec.hidden = true; return; } sec.hidden = false;
+  const r = E.resumo;
+  $("#caLede").innerHTML = `Eleições de ${r.eleicoes.join(" e ")}: ${fmt.format(r.ligados)} de ${fmt.format(r.eleitos)} eleitos ligados ao Plenário. A pergunta: o jeito como o parlamentar se elegeu (voto concentrado ou espalhado, dinheiro público ou privado) tem a ver com como ele vota?`;
+  $("#caDest").innerHTML = [
+    [fmt.format(Math.round(r.mediana_votos)), "votos do eleito mediano"],
+    [brl(r.mediana_receita), `de receita de campanha na mediana; ${brl(r.mediana_custo_por_voto)} por voto`],
+    [pctf(r.mediana_frac_fundo_eleitoral, 0), "da receita veio do fundo eleitoral (mediana)"],
+    r.eleitos_qp ? [`${fmt.format(r.eleitos_qp)} × ${fmt.format(r.eleitos_media)}`, "eleitos pela votação própria (quociente) × pelas sobras; o comportamento no Plenário é quase igual"] : null,
+  ].filter(Boolean).map(([b, t]) => `<div class="destaque"><b>${b}</b><span>${t}</span></div>`).join("");
+  // dispersão
+  const xs = {1: ["maior_municipio", "peso do maior município"], 2: ["frac_fundo_eleitoral", "% do fundo eleitoral"], 3: ["custo_por_voto", "custo por voto (R$)"]}[caX];
+  const ys = {di: ["disciplina", "di"], imp: ["imprevisibilidade", null], ag: ["apoio_gov", "ag"]}[caY];
+  const P = E.pts.map(p => { const d = L.deputados[p[0]]; const y = ys[1] ? d[ys[1]] : p[8]; return {d, x: p[caX], y, p}; }).filter(o => o.x != null && o.y != null && (ys[1] ? (ys[1] === "ag" ? o.d.vg >= 100 : o.d.vd >= 100) : true));
+  const svg = $("#caSvg"); svg.innerHTML = ""; const W = 960, H = 460, m = {l: 56, r: 20, t: 16, b: 44};
+  const xv = P.map(o => o.x).sort((a, b) => a - b), yv = P.map(o => o.y).sort((a, b) => a - b);
+  const q = (a, f) => a[Math.min(a.length - 1, Math.floor(f * a.length))];
+  const x0 = caX === 3 ? 0 : 0, x1 = caX === 3 ? q(xv, .98) : 1, y0 = Math.max(0, q(yv, .01) - .02), y1 = Math.min(1, q(yv, .99) + .02);
+  const X = v => m.l + (Math.min(v, x1) - x0) / (x1 - x0) * (W - m.l - m.r), Y = v => m.t + (y1 - Math.max(v, y0)) / (y1 - y0) * (H - m.t - m.b);
+  for (let k = 0; k <= 4; k++) { const v = x0 + (x1 - x0) * k / 4, w = y0 + (y1 - y0) * k / 4;
+    el("line", {class: "grid", x1: X(v), x2: X(v), y1: m.t, y2: H - m.b}, svg); txt(svg, X(v), H - m.b + 16, caX === 3 ? brl(v) : pctf(v, 0), {"text-anchor": "middle"});
+    el("line", {class: "grid", x1: m.l, x2: W - m.r, y1: Y(w), y2: Y(w)}, svg); txt(svg, m.l - 8, Y(w) + 4, pctf(w, 0), {"text-anchor": "end"}); }
+  txt(svg, (m.l + W - m.r) / 2, H - 8, xs[1], {"text-anchor": "middle", style: "font:600 11px var(--f-data);fill:var(--ink)"});
+  P.forEach((o, k) => { const c = el("circle", {cx: X(o.x), cy: Y(o.y), r: 4.2, fill: corCom(o.d.c), "fill-opacity": .72, stroke: cssv("--surface"), "stroke-width": .8}, svg); c.dataset.k = k; });
+  const tip = $("#caTip"), bx = svg.closest(".rel");
+  svg.onpointermove = e => { const c = e.target.closest("circle[data-k]"); if (!c) { tip.hidden = true; return; } const o = P[+c.dataset.k]; const rb = bx.getBoundingClientRect();
+    tip.innerHTML = `<b>${o.d.n}</b> · ${o.d.p}-${o.d.uf}<br>${fmt.format(o.p[4] || 0)} votos · ${pctf(o.p[1], 0)} de ${o.p[6] || "—"}<br>Receita ${brl(o.p[5])} · fundo eleitoral ${pctf(o.p[2], 0)} · ${brl(o.p[3])} por voto<br>${ys[0] === "imprevisibilidade" ? "Votos imprevisíveis" : CA_ROT[ys[0]]}: <b>${pctf(o.y)}</b>`;
+    tip.hidden = false; posTip(tip, e.clientX - rb.left, e.clientY - rb.top, rb.width); };
+  svg.onpointerleave = () => tip.hidden = true;
+  $("#caLegend").innerHTML = L.comunidades.map(c => `<span class="row" style="gap:6px"><span class="dot" style="background:${corCom(c.id)}"></span>${rotulo(c.id)}</span>`).join("");
+  const rel = E.corr.find(c => c.x === xs[0] && c.y === ys[0]);
+  $("#caNota").innerHTML = `Cada ponto é um parlamentar, na cor do seu grupo de votação. ${rel ? `Correlação: <b>${dec(rel.r)}</b> em todos e <b>${dec(rel.rd)}</b> dentro do partido.` : "Sem relação com p < 0,01 entre essas duas medidas."}`;
+  $("#caTab").innerHTML = `<tr><th>Campanha</th><th>Plenário</th><th>Todos</th><th>No partido</th></tr>` + E.corr.slice(0, 12).map(c => `<tr><td>${CA_ROT[c.x]}</td><td style="text-align:left">${CA_ROT[c.y]}</td><td>${c.s ? `<b>${dec(c.r)}</b>` : dec(c.r)}</td><td>${c.sd ? `<b>${dec(c.rd)}</b>` : dec(c.rd)}</td></tr>`).join("");
+  const T = (D.campanha_tendencia || []).filter(t => t.casa === (L.casa || "camara"));
+  $("#caTend").innerHTML = `<tr><th>Eleição</th><th>Votos</th><th>Receita</th><th>Por voto</th><th>Fundo eleitoral</th></tr>` + T.map(t => `<tr><td>${t.eleicoes.join(" e ")}</td><td>${fmt.format(Math.round(t.votos))}</td><td>${brl(t.receita)}</td><td>${brl(t.custo)}</td><td>${pctf(t.fundo, 0)}</td></tr>`).join("");
+}
+segOn("#caX", v => { caX = +v; campanha(); });
+segOn("#caY", v => { caY = v; campanha(); });
+
 function rodape() {
   const dt = new Date(D.atualizado + "T12:00:00").toLocaleDateString("pt-BR");
   $("#rodape").innerHTML = `Dados abertos da Câmara dos Deputados, atualizados em ${dt}. Código, dados e método: <a href="${D.repo}" target="_blank" rel="noopener">${D.repo.replace("https://", "")}</a>.`;
@@ -1109,7 +1178,7 @@ segOn("#redeCor", v => { redeModo = v; rede(); });
 segOn("#tempoMet", v => { tempoModo = v; tempo(); });
 segOn("#temaMet", v => { temaModo = v; temas(); });
 segOn("#mudMet", v => { mudModo = v; mudancas(); });
-function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); campanha(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
 tudo(true);
 // navegação: destaca a seção visível
 const links = [...document.querySelectorAll("#nav a")];

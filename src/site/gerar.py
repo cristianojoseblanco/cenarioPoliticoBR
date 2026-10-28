@@ -243,11 +243,34 @@ def dados_legislatura(leg: str, c: dict, casa: str = "camara") -> dict:
                          for r in vv.head(8).itertuples()],
         }
 
+    # campanha (TSE) × comportamento
+    base_el = ROOT / c["redes"]["saida"].replace("/redes", "/eleicao")
+    eleicao = None
+    if (base_el / "resumo.json").exists():
+        pa = pd.read_parquet(base_el / "parlamentares.parquet")
+        co = pd.read_parquet(base_el / "correlacoes.parquet")
+        alfa = float(load_config()["tse"].get("alfa", 0.01))
+        pts = []
+        for r in pa.itertuples():
+            if r.deputado_id in idx:
+                pts.append([idx[r.deputado_id], _r(r.maior_municipio, 3), _r(getattr(r, "frac_fundo_eleitoral", None), 3),
+                            _r(r.custo_por_voto, 2), int(r.votos) if r.votos == r.votos else None,
+                            _r(getattr(r, "receita_total", None), 0), r.municipio_principal, r.municipios_1pct if r.municipios_1pct == r.municipios_1pct else None,
+                            _r(getattr(r, "imprevisibilidade", None), 4)])
+        sig = co[(co["p"] < alfa) | (co["p_dentro"] < alfa)] if len(co) else co
+        eleicao = {
+            "resumo": json.loads((base_el / "resumo.json").read_text(encoding="utf-8")),
+            "pts": pts,
+            "corr": [{"x": r.campanha, "y": r.comportamento, "r": _r(r.spearman, 3), "rd": _r(r.spearman_dentro_partido, 3),
+                      "s": bool(r.p < alfa), "sd": bool(r.p_dentro < alfa), "n": int(r.n)}
+                     for r in sig.sort_values("spearman_dentro_partido", key=abs, ascending=False).itertuples()] if len(sig) else [],
+        }
+
     per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
         "leg": leg, "casa": casa, "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
         "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
-        "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo,
+        "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo, "eleicao": eleicao,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
         "modularidade": _r(m["modularidade"]), "nmi": _r(m["nmi_com_partido"]),
         "polos": {"a": polos["polo_a"], "b": polos["polo_b"]},
@@ -312,7 +335,21 @@ def main() -> int:
         atualizado = meta["executado_em"][:10]
     except Exception:
         atualizado = datetime.now(timezone.utc).date().isoformat()
-    dados = {"atualizado": atualizado, "legislaturas": legs, "comparacao": dados_comparacao(),
+    tend = []
+    for casa, base in (("camara", cfg), ("senado", None)):
+        if casa == "senado":
+            if "senado" not in cfg:
+                continue
+            from src.config import para_senado
+            base = para_senado(cfg)
+        for leg, c in por_legislatura(base):
+            p = ROOT / c["redes"]["saida"].replace("/redes", "/eleicao") / "resumo.json"
+            if p.exists():
+                r = json.loads(p.read_text(encoding="utf-8"))
+                tend.append({"casa": casa, "leg": leg, "eleicoes": r["eleicoes"], "votos": r["mediana_votos"],
+                             "receita": r["mediana_receita"], "custo": r["mediana_custo_por_voto"],
+                             "fundo": r["mediana_frac_fundo_eleitoral"]})
+    dados = {"atualizado": atualizado, "campanha_tendencia": tend, "legislaturas": legs, "comparacao": dados_comparacao(),
              "acompanhamento": dados_acompanhamento(cfg),
              "marcadores": cfg.get("marcadores_periodo", []), "contexto": cfg.get("contexto", {}),
              "repo": f"https://github.com/{cfg['armazenamento']['repositorio']}"}

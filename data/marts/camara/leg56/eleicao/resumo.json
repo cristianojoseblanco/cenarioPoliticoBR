@@ -1,0 +1,30 @@
+{
+  "casa": "camara",
+  "legislatura": "56",
+  "eleicoes": [
+    2018
+  ],
+  "eleitos": 513,
+  "ligados": 495,
+  "com_comportamento": true,
+  "mediana_votos": 89378.0,
+  "mediana_receita": 1051478.47,
+  "mediana_custo_por_voto": 11.509538367251292,
+  "mediana_frac_fundo_eleitoral": 0.7009687581733453,
+  "eleitos_qp": 387,
+  "eleitos_media": 126,
+  "qp_vs_media": {
+    "0.0": {
+      "apoio_gov": 0.8937984496124031,
+      "disciplina": 0.9655990510083037,
+      "imprevisibilidade": 0.02142857142857143,
+      "participacao": 0.8158295281582952
+    },
+    "1.0": {
+      "apoio_gov": 0.8923444976076556,
+      "disciplina": 0.9636591478696742,
+      "imprevisibilidade": 0.021479713603818614,
+      "participacao": 0.7965499746321664
+    }
+  }
+}

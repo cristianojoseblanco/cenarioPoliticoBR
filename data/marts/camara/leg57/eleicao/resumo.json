@@ -1,0 +1,30 @@
+{
+  "casa": "camara",
+  "legislatura": "57",
+  "eleicoes": [
+    2022
+  ],
+  "eleitos": 513,
+  "ligados": 501,
+  "com_comportamento": true,
+  "mediana_votos": 101154.0,
+  "mediana_receita": 1953026.8,
+  "mediana_custo_por_voto": 18.542529424585876,
+  "mediana_frac_fundo_eleitoral": 0.841442682579801,
+  "eleitos_qp": 335,
+  "eleitos_media": 178,
+  "qp_vs_media": {
+    "0.0": {
+      "apoio_gov": 0.8040865384615384,
+      "disciplina": 0.9454022988505747,
+      "imprevisibilidade": 0.028047464940668825,
+      "participacao": 0.8235815602836879
+    },
+    "1.0": {
+      "apoio_gov": 0.8235870658848836,
+      "disciplina": 0.9581151832460733,
+      "imprevisibilidade": 0.02618695512170688,
+      "participacao": 0.8071808510638298
+    }
+  }
+}

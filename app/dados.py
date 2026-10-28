@@ -29,7 +29,8 @@ CINZA = "#b7b5ae"
 
 
 def legislaturas() -> list[str]:
-    return sorted(p.name[3:] for p in marts().glob("leg*") if p.is_dir())
+    # só legislaturas com a rede calculada (a 58ª pode ter só o perfil de campanha, antes dos primeiros votos)
+    return sorted(p.name[3:] for p in marts().glob("leg*") if (p / "redes" / "metricas.json").exists())
 
 
 @st.cache_data(ttl=3600)
