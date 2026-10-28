@@ -15,9 +15,11 @@ import requests
 
 saida = Path("amostras_zip")
 saida.mkdir(exist_ok=True)
-filtro = re.compile(os.environ.get("FILTRO", "BRASIL|_BR|SP"), re.I)
+args = [a for a in sys.argv[1:] if not a.startswith("--filtro=")]
+filtro = re.compile(next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--filtro=")),
+                         os.environ.get("FILTRO", "BRASIL|_BR|SP")), re.I)
 idx = []
-for i, url in enumerate(sys.argv[1:], 1):
+for i, url in enumerate(args, 1):
     try:
         with tempfile.NamedTemporaryFile(suffix=".zip", delete=False) as tmp:
             with requests.get(url, stream=True, timeout=600) as r:
