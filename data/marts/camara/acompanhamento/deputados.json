@@ -131,11 +131,11 @@
     "bancada_pequena_atual": true,
     "legislaturas": [
       {
-        "imprevisibilidade": 0.0431,
-        "imprev_partido": 0.0243,
-        "imprev_surpresas": 62,
+        "imprevisibilidade": 0.0473,
+        "imprev_partido": 0.0237,
+        "imprev_surpresas": 68,
         "imprev_votos": 1439,
-        "imprev_posicao": 97,
+        "imprev_posicao": 69,
         "imprev_total": 579,
         "leg": "56",
         "governo": "Governo Bolsonaro",
@@ -282,11 +282,11 @@
         ]
       },
       {
-        "imprevisibilidade": 0.0922,
-        "imprev_partido": 0.0378,
-        "imprev_surpresas": 82,
+        "imprevisibilidade": 0.09,
+        "imprev_partido": 0.0363,
+        "imprev_surpresas": 80,
         "imprev_votos": 889,
-        "imprev_posicao": 3,
+        "imprev_posicao": 4,
         "imprev_total": 576,
         "leg": "57",
         "governo": "Governo Lula (3º mandato)",
