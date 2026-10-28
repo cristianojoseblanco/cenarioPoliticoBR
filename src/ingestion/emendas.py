@@ -6,6 +6,7 @@
 Staging:
   data/staging/emendas/emendas.parquet     tabela principal, colunas como texto (nomes padronizados)
   data/staging/emendas/pagamentos.parquet  pagamentos somados por emenda e mês (do arquivo por favorecido)
+  data/staging/emendas/pagamentos_municipio.parquet  pagamentos somados por emenda e município do favorecido
 
 Idempotente: zip com o mesmo SHA-256 não é reprocessado.
 Uso: python -m src.ingestion.emendas
@@ -58,7 +59,7 @@ def main() -> int:
     sha = h.hexdigest()
     mp = meta / "_ultima_execucao.json"
     antes = json.loads(mp.read_text(encoding="utf-8")) if mp.exists() else {}
-    if antes.get("sha256") == sha and (out / "emendas.parquet").exists():
+    if antes.get("sha256") == sha and (out / "pagamentos_municipio.parquet").exists():
         print("Emendas: sem mudança")
         tmp.unlink()
         return 0
@@ -66,17 +67,23 @@ def main() -> int:
     em = _csv(z, "EmendasParlamentares.csv")
     em.columns = [_col(c) for c in em.columns]
     em.to_parquet(out / "emendas.parquet", index=False)
-    partes = []
+    partes, partes_mun = [], []
     membro = next(m for m in z.namelist() if Path(m).name == "EmendasParlamentares_PorFavorecido.csv")
     with z.open(membro) as f:  # lê em pedaços DENTRO do with (o arquivo precisa ficar aberto)
         for ch in pd.read_csv(io.TextIOWrapper(f, encoding="latin-1"), sep=";", dtype=str, chunksize=500_000,
-                              usecols=["Código da Emenda", "Ano/Mês", "Valor Recebido"]):
-            ch.columns = ["codigo_emenda", "ano_mes", "valor"]
+                              usecols=["Código da Emenda", "Ano/Mês", "Valor Recebido", "UF Favorecido",
+                                       "Município Favorecido", "Tipo Favorecido"]):
+            ch = ch.rename(columns={"Código da Emenda": "codigo_emenda", "Ano/Mês": "ano_mes", "Valor Recebido": "valor",
+                                    "UF Favorecido": "uf", "Município Favorecido": "municipio", "Tipo Favorecido": "tipo_favorecido"})
             ch["valor"] = pd.to_numeric(ch["valor"].str.replace(".", "", regex=False).str.replace(",", ".", regex=False),
                                         errors="coerce").fillna(0)
             partes.append(ch.groupby(["codigo_emenda", "ano_mes"], as_index=False)["valor"].sum())
+            partes_mun.append(ch.groupby(["codigo_emenda", "uf", "municipio", "tipo_favorecido"], as_index=False, dropna=False)["valor"].sum())
     pag = pd.concat(partes).groupby(["codigo_emenda", "ano_mes"], as_index=False)["valor"].sum()
     pag.to_parquet(out / "pagamentos.parquet", index=False)
+    # destino real do dinheiro: município do favorecido (prefeitura, fundo, entidade, empresa)
+    pm = pd.concat(partes_mun).groupby(["codigo_emenda", "uf", "municipio", "tipo_favorecido"], as_index=False, dropna=False)["valor"].sum()
+    pm.to_parquet(out / "pagamentos_municipio.parquet", index=False)
     tmp.unlink()
     info = {"sha256": sha, "linhas_emendas": len(em), "linhas_pagamentos": len(pag),
             "executado_em": datetime.now(timezone.utc).isoformat(timespec="seconds")}
