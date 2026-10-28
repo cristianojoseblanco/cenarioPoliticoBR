@@ -23,7 +23,7 @@ Votações em que votar Sim mais aproxima do lado positivo:
 
 - 2020-06-17 · MPV 927/2020 · Dispõe sobre as medidas trabalhistas para enfrentamento do estado de calamidade pública reconhecido pelo Decreto Legislativo nº 6, de 20 de 
 - 2021-08-03 · PL 2633/2020 · Altera a Lei n° 11.952, de 25 de junho de 2009, que dispõe sobre a regularização fundiária das ocupações incidentes em terras situadas em ár
-- 2021-08-18 · REQ 1115/2021 · Requer, nos termos do art. 153, inciso IV, somado ao art. 154, inciso II, do Regimento Interno da Câmara dos Deputados, que seja colocado em
+- 2021-08-18 · PL 2510/2019 · Altera a Lei nº 12.651, de 25 maio de 2012, para dispor sobre as áreas de proteção permanente no perímetro urbano e nas regiões metropolitan
 - 2020-05-04 · PEC 10/2020 · Institui Regime Extraordinário Fiscal, Financeiro e de Contratações para enfrentamento de calamidade pública nacional decorrente de pandemia
 - 2021-09-16 · MPV 1052/2021 · Altera a Lei nº 12.712, de 30 de agosto de 2012, a Lei nº 7.827, de 27 de setembro de 1989, a Lei nº 10.177, de 12 de janeiro de 2001, e a L
 
