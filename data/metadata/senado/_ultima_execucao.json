@@ -1,13 +1,69 @@
 {
-  "executado_em": "2026-10-28T01:19:38+00:00",
+  "executado_em": "2026-10-28T01:46:38+00:00",
   "anos": [
     {
+      "ano": 2019,
+      "sha256": "95a4f5bb380c24543bf7d7d8ad3387d4600e7939655211ccd66aba585a935df5",
+      "votacoes": 195,
+      "votos": 15763,
+      "orientacoes": 559,
+      "baixado_em": "2026-10-28T01:46:17+00:00"
+    },
+    {
+      "ano": 2020,
+      "sha256": "d7408d37961973efa904949cb8a7adacc15479cfcb009d2cb223f0c827b242ab",
+      "votacoes": 223,
+      "votos": 18023,
+      "orientacoes": 96,
+      "baixado_em": "2026-10-28T01:46:20+00:00"
+    },
+    {
+      "ano": 2021,
+      "sha256": "09a77af7354f7b27230929e8e81b6c7abc0cb25da236b9997cf684ed24fb39be",
+      "votacoes": 200,
+      "votos": 16198,
+      "orientacoes": 2561,
+      "baixado_em": "2026-10-28T01:46:24+00:00"
+    },
+    {
+      "ano": 2022,
+      "sha256": "5315bef281910002bb03d115c0b01021840b3cb157e3fb30d0e5f06e47f31787",
+      "votacoes": 125,
+      "votos": 10119,
+      "orientacoes": 1368,
+      "baixado_em": "2026-10-28T01:46:27+00:00"
+    },
+    {
+      "ano": 2023,
+      "sha256": "71d5f385203d92b625bde9613a9b80815029be359c5115bc5ecbad9273fb23cc",
+      "votacoes": 148,
+      "votos": 11988,
+      "orientacoes": 695,
+      "baixado_em": "2026-10-28T01:46:30+00:00"
+    },
+    {
+      "ano": 2024,
+      "sha256": "ea296ac1c27df2892cebddd2e30cbe70b7dadddf6663c28adf449a117fa8e61f",
+      "votacoes": 90,
+      "votos": 7290,
+      "orientacoes": 719,
+      "baixado_em": "2026-10-28T01:46:33+00:00"
+    },
+    {
+      "ano": 2025,
+      "sha256": "9bc51bb40f80f5bebce3cb3126e91a28bcaab507e8fa66afc0409f4384d8df0b",
+      "votacoes": 93,
+      "votos": 7533,
+      "orientacoes": 603,
+      "baixado_em": "2026-10-28T01:46:35+00:00"
+    },
+    {
       "ano": 2026,
-      "sha256": "b535cf0af5ede9ebc29da55a6d7c53d7abc206cf026cf23f81ab12acc9c888cc",
+      "sha256": "2930e0ed5b2cbf52c8765166d73019648073c418fe26008c7c994e4b1b0c3e40",
       "votacoes": 27,
       "votos": 2187,
       "orientacoes": 136,
-      "baixado_em": "2026-10-28T01:19:38+00:00"
+      "baixado_em": "2026-10-28T01:46:38+00:00"
     }
   ]
 }

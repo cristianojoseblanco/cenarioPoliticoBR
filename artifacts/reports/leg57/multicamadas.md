@@ -15,25 +15,25 @@ Camadas: voto, coautoria, frentes. Pares de coautoria: 14.044; de frentes: 166.1
 
 ## Frentes: votam como bloco além da composição partidária? (320 frentes com 10+ membros com voto)
 
-47 frentes acima do percentil 95 dos sorteios com a mesma composição partidária.
+43 frentes acima do percentil 95 dos sorteios com a mesma composição partidária.
 
 | Frente | Membros | Coesão | Esperada pela composição | Excesso | Maiores partidos |
 | --- | --- | --- | --- | --- | --- |
-| Frente Parlamentar Mista em Defesa das Universidades Públicas Estaduais e Munici | 200 | 73,8% | 69,9% | +3,9 p.p. | PT 40, UNIÃO 19, PSD 18 |
-| Frente Parlamentar em Defesa do Nordeste | 200 | 73,5% | 70,2% | +3,4 p.p. | PT 48, UNIÃO 22, PP 17 |
+| Frente Parlamentar Mista em Defesa das Universidades Públicas Estaduais e Munici | 200 | 73,8% | 70,1% | +3,7 p.p. | PT 40, UNIÃO 19, PSD 18 |
+| Frente Parlamentar Mista do Artesão e Apoio do Artesanato Brasileiro | 203 | 73,5% | 70,1% | +3,3 p.p. | PT 62, UNIÃO 24, MDB 14 |
 | Frente Parlamentar Mista pela Educação no Campo - FPMEDOC | 204 | 73,7% | 70,4% | +3,3 p.p. | PT 61, UNIÃO 24, PP 15 |
-| Frente Parlamentar em Defesa das Universidades Públicas | 204 | 76,0% | 72,8% | +3,2 p.p. | PT 65, PDT 15, REPUBLICANOS 15 |
-| Frente Parlamentar Mista do Artesão e Apoio do Artesanato Brasileiro | 203 | 73,5% | 70,2% | +3,2 p.p. | PT 62, UNIÃO 24, PP 14 |
-| Frente Parlamentar Mista pela Reestatização da Eletrobras | 190 | 78,3% | 75,1% | +3,2 p.p. | PT 66, PDT 17, REPUBLICANOS 14 |
-| Frente Parlamentar da Economia Popular e Solidária | 214 | 74,6% | 71,5% | +3,0 p.p. | PT 65, UNIÃO 21, PL 14 |
-| Frente Parlamentar Mista em Defesa do Patrimônio Histórico e Cultural Brasileiro | 201 | 71,7% | 68,7% | +3,0 p.p. | PT 37, UNIÃO 28, REPUBLICANOS 17 |
-| Frente Parlamentar contra os Juros Abusivos | 212 | 73,6% | 70,7% | +2,8 p.p. | PT 56, UNIÃO 22, PP 17 |
-| Frente Parlamentar Mista em Defesa do Serviço Público | 197 | 76,7% | 73,9% | +2,8 p.p. | PT 65, UNIÃO 17, PDT 14 |
-| Frente Parlamentar Mista em Defesa dos Correios | 184 | 76,6% | 73,9% | +2,7 p.p. | PT 66, UNIÃO 18, PP 12 |
-| Frente Parlamentar Mista em Defesa dos Direitos dos Povos Indígenas | 194 | 77,4% | 74,8% | +2,6 p.p. | PT 55, UNIÃO 19, PDT 16 |
-| Frente Parlamentar Mista Ambientalista | 186 | 77,7% | 75,1% | +2,6 p.p. | PT 65, REPUBLICANOS 17, UNIÃO 14 |
-| Frente Parlamentar em Defesa da Soberania Nacional | 200 | 72,7% | 70,1% | +2,5 p.p. | PT 67, UNIÃO 20, PL 16 |
-| Frente Parlamentar Mista em Defesa do Saneamento Público | 196 | 76,3% | 73,8% | +2,5 p.p. | PT 65, UNIÃO 16, REPUBLICANOS 15 |
+| Frente Parlamentar em Defesa do Nordeste | 200 | 73,5% | 70,2% | +3,3 p.p. | PT 48, UNIÃO 22, PP 17 |
+| Frente Parlamentar Mista pela Reestatização da Eletrobras | 190 | 78,3% | 75,2% | +3,1 p.p. | PT 66, PDT 17, REPUBLICANOS 14 |
+| Frente Parlamentar em Defesa das Universidades Públicas | 204 | 76,0% | 73,0% | +3,1 p.p. | PT 65, MDB 15, PDT 15 |
+| Frente Parlamentar da Economia Popular e Solidária | 214 | 74,6% | 71,6% | +3,0 p.p. | PT 65, UNIÃO 21, REPUBLICANOS 14 |
+| Frente Parlamentar contra os Juros Abusivos | 212 | 73,6% | 70,7% | +2,9 p.p. | PT 56, UNIÃO 22, MDB 17 |
+| Frente Parlamentar Mista em Defesa do Patrimônio Histórico e Cultural Brasileiro | 201 | 71,7% | 68,8% | +2,9 p.p. | PT 37, UNIÃO 28, REPUBLICANOS 17 |
+| Frente Parlamentar Mista em Defesa do Serviço Público | 197 | 76,7% | 74,0% | +2,7 p.p. | PT 65, UNIÃO 17, PDT 14 |
+| Frente Parlamentar Mista em Defesa dos Direitos dos Povos Indígenas | 194 | 77,4% | 74,9% | +2,6 p.p. | PT 55, UNIÃO 19, PDT 16 |
+| Frente Parlamentar Mista em Defesa dos Correios | 184 | 76,6% | 74,1% | +2,5 p.p. | PT 66, UNIÃO 18, PP 12 |
+| Frente Parlamentar em Defesa da Soberania Nacional | 200 | 72,7% | 70,2% | +2,5 p.p. | PT 67, UNIÃO 20, PL 16 |
+| Frente Parlamentar Mista Ambientalista | 186 | 77,7% | 75,3% | +2,4 p.p. | PT 65, REPUBLICANOS 17, UNIÃO 14 |
+| Frente Parlamentar Mista por Cidadania e Direitos LGBTI+ | 180 | 77,9% | 75,5% | +2,4 p.p. | PT 65, PDT 17, PSB 15 |
 
 ## Frentes-chave: membros votam diferente dos colegas de partido no tema da frente?
 
@@ -53,5 +53,5 @@ Diferença, em pontos percentuais, entre a fração de membros e a de não membr
 ## Comunidades multicamada
 
 - 5 comunidades com as camadas juntas (só voto: 6).
-- Semelhança com as comunidades só de voto (ARI): 0,80.
+- Semelhança com as comunidades só de voto (ARI): 0,79.
 - Semelhança com os partidos (ARI): 0,34 (só voto: 0,38).
