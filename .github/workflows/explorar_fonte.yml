@@ -1,0 +1,43 @@
+name: Explorar fonte (amostras)
+
+# Baixa documentação e respostas de exemplo de uma API que não é acessível fora do GitHub Actions
+# e grava no ramo `exploracao` (fora do main). Uso pontual, para desenhar a ingestão.
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "URLs separadas por espaço"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  amostras:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Baixar amostras
+        env:
+          URLS: ${{ github.event.inputs.urls }}
+        run: |
+          mkdir -p amostras
+          i=0
+          for u in $URLS; do
+            i=$((i+1))
+            code=$(curl -sS -L -m 120 -H "Accept: application/json" -A "cenarioPoliticoBR/0.1 (pesquisa)" -o "amostras/$i.raw" -w "%{http_code}" "$u" || echo erro)
+            tam=$(stat -c %s "amostras/$i.raw" 2>/dev/null || echo 0)
+            head -c 600000 "amostras/$i.raw" > "amostras/$i.txt" 2>/dev/null || true
+            rm -f "amostras/$i.raw"
+            echo "$i	$code	$tam	$u" >> amostras/indice.tsv
+          done
+          cat amostras/indice.tsv
+      - name: Gravar no ramo exploracao
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan exploracao
+          git rm -rq --cached . && find . -maxdepth 1 ! -name amostras ! -name .git ! -name . -exec rm -rf {} +
+          git add amostras && git commit -qm "amostras $(date -u +%F-%H%M)"
+          git push -f origin exploracao
