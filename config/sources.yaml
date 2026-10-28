@@ -210,6 +210,7 @@ armazenamento:
     processed_camara: "data/processed/camara"
     staging_senado: "data/staging/senado"
     processed_senado: "data/processed/senado"
+    staging_tse: "data/staging/tse"
 
 # Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
 # `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
@@ -369,3 +370,16 @@ senado:
     modelo:
       min_votos_deputado: 50
       min_votos_votacao: 40
+
+# TSE (Etapa 7c): candidatos, votação por município e receitas de deputado federal e senador.
+tse:
+  cdn: "https://cdn.tse.jus.br/estatistica/sead/odsele"
+  eleicoes: [2018, 2022, 2026]
+  # Eleições reprocessadas toda semana (prestação de contas ainda aberta); as outras ficam como estão.
+  recarregar: [2026]
+  cargos: {senador: 5, deputado_federal: 6}
+  # Eleição -> legislatura que ela elegeu (senadores eleitos servem duas legislaturas).
+  legislatura_da_eleicao: {2018: "56", 2022: "57", 2026: "58"}
+  caminhos:
+    staging: "data/staging/tse"
+    metadata: "data/metadata/tse"
