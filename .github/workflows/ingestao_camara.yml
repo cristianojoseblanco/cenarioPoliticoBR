@@ -107,6 +107,8 @@ jobs:
           # só commita se algum dado mudou (o log de execução sozinho não conta)
           if git diff --cached --name-only | grep -v '_ultima_execucao.json' | grep -q .; then
             git commit -m "dados: ingestão Câmara $(date -u +%F)"
+            # o main pode ter avançado durante a execução (commit de código): integra antes de enviar
+            git pull --rebase -q origin main
             git push
           else
             echo "Nenhum dado novo."

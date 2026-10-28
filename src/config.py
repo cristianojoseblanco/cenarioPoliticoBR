@@ -33,15 +33,16 @@ def por_legislatura(cfg: dict):
     sufixo `leg<N>`; o período de `redes` passa a ser o da legislatura.
     """
     import copy
+    import re
 
     for leg, per in cfg.get("legislaturas", {}).items():
         c = copy.deepcopy(cfg)
         c["redes"]["periodo"] = {"inicio": per["inicio"], "fim": per["fim"]}
         for sec in ("redes", "fatias", "governabilidade"):
             if sec in c:
-                c[sec]["saida"] = c[sec]["saida"].replace("data/marts/camara/", f"data/marts/camara/leg{leg}/")
-                rel = c[sec]["relatorio"]
-                c[sec]["relatorio"] = rel.replace("artifacts/reports/", f"artifacts/reports/leg{leg}/")
+                c[sec]["saida"] = re.sub(r"data/marts/(\w+)/", rf"data/marts/\1/leg{leg}/", c[sec]["saida"], count=1)
+                c[sec]["relatorio"] = re.sub(r"artifacts/reports/((?:senado/)?)", rf"artifacts/reports/\1leg{leg}/",
+                                             c[sec]["relatorio"], count=1)
         c["legislatura_atual"] = leg
         yield leg, c
 
@@ -58,3 +59,31 @@ def legislatura_tem_dados(cfg: dict, minimo: int = 50) -> bool:
             WHERE nominal AND sigla_orgao = 'PLEN' AND data BETWEEN DATE '{per["inicio"]}' AND DATE '{per["fim"]}'"""
     ).fetchone()[0]
     return q >= minimo
+
+
+def _mesclar(base: dict, extra: dict) -> dict:
+    for k, v in extra.items():
+        if isinstance(v, dict) and isinstance(base.get(k), dict):
+            _mesclar(base[k], v)
+        else:
+            base[k] = v
+    return base
+
+
+def para_senado(cfg: dict) -> dict:
+    """Configuração para rodar as análises no Senado: caminhos próprios e parâmetros de `senado.analise`."""
+    import copy
+
+    c = copy.deepcopy(cfg)
+    s = c["senado"]
+    c["caminhos"]["processed"] = s["caminhos"]["processed"]
+    c["caminhos"]["staging"] = s["caminhos"]["staging"]
+    for sec, val in c.items():
+        if isinstance(val, dict):
+            for k in ("saida", "relatorio"):
+                if isinstance(val.get(k), str):
+                    val[k] = val[k].replace("data/marts/camara", "data/marts/senado").replace(
+                        "artifacts/reports/", "artifacts/reports/senado/")
+    _mesclar(c, s.get("analise", {}))
+    c["casa"] = "senado"
+    return c

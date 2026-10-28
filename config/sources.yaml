@@ -208,6 +208,8 @@ armazenamento:
   pacotes:
     staging_camara: "data/staging/camara"
     processed_camara: "data/processed/camara"
+    staging_senado: "data/staging/senado"
+    processed_senado: "data/processed/senado"
 
 # Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
 # `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
@@ -324,3 +326,41 @@ acompanhamento:
   relatorio: "artifacts/reports/acompanhamento.md"
   # "Vota com a bancada" só é medido quando há pelo menos N colegas de partido com voto Sim/Não.
   min_colegas: 3
+
+# Senado Federal (Etapa 7b). Mesmo método da Câmara; os dados são convertidos para o mesmo formato
+# processado e as análises rodam com os parâmetros abaixo sobrepostos aos da Câmara (`analise`).
+senado:
+  api_base: "https://legis.senado.leg.br/dadosabertos"
+  anos_padrao: {desde: 2019}
+  recarregar_anos_recentes: 1
+  pausa_s: 0.5
+  caminhos:
+    staging: "data/staging/senado"
+    processed: "data/processed/senado"
+    metadata: "data/metadata/senado"
+  # Voto do senador -> mesma grafia da Câmara. Outros registros (AP, P-NRV, LS, MIS, NCom, Presidente…) ficam
+  # como vieram e não têm valor na codificação. "Votou" só aparece em votação secreta (excluída).
+  mapa_votos: {"Sim": "Sim", "Não": "Não", "SIM": "Sim", "NÃO": "Não", "Abstenção": "Abstenção", "P-OD": "Obstrução"}
+  mapa_orientacoes: {"SIM": "Sim", "NÃO": "Não", "LIVRE": "Liberado", "OBSTRUÇÃO": "Obstrução", "ABSTENÇÃO": "Abstenção"}
+  apelidos_bancada: {"Republica": "REPUBLICANOS", "Podemos": "PODE", "Cidadania": "CIDADANIA", "PRB": "REPUBLICANOS",
+                     "PR": "PL", "PPS": "CIDADANIA", "União": "UNIÃO", "Rede": "REDE", "Novo": "NOVO"}
+  # Parâmetros das análises que mudam no Senado (81 senadores e cerca de 90 votações nominais por ano).
+  analise:
+    redes:
+      knn: 8
+      min_votos_comuns: 40
+    fatias:
+      janela_votacoes: 60
+      janela_passo: 20
+      min_comuns_piso: 20
+      nucleo_minimo: 6
+    governabilidade:
+      bancada_governo: ["Governo"]
+      participacao_fonte: "aproximacao"
+      blocos: {usar: false}
+      bancadas_nao_partidarias: ["Governo", "Oposição", "Maioria", "Minoria", "Banc Fem", "-"]
+      rice_min_votos: 3
+    mudancas:
+      min_votacoes_mes: 3
+    modelo:
+      min_votos_deputado: 50

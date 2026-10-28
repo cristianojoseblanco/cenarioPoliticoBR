@@ -7,7 +7,16 @@ on:
     inputs:
       urls:
         description: "URLs separadas por espaço"
-        required: true
+        required: false
+        default: ""
+      comando:
+        description: "Comando Python opcional (ex.: python -m src.ingestion.senado)"
+        required: false
+        default: ""
+      pasta:
+        description: "Pasta gerada pelo comando, copiada para amostras/"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -18,11 +27,24 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        if: ${{ github.event.inputs.comando != '' }}
+        with:
+          python-version: "3.12"
+      - name: Rodar comando
+        if: ${{ github.event.inputs.comando != '' }}
+        env:
+          CMD: ${{ github.event.inputs.comando }}
+          PASTA: ${{ github.event.inputs.pasta }}
+        run: |
+          pip install -q -r requirements-ingest.txt
+          $CMD
+          mkdir -p amostras && cp -r "$PASTA" amostras/
       - name: Baixar amostras
         env:
           URLS: ${{ github.event.inputs.urls }}
         run: |
-          mkdir -p amostras
+          mkdir -p amostras && touch amostras/indice.tsv
           i=0
           for u in $URLS; do
             i=$((i+1))
