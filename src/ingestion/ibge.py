@@ -144,6 +144,15 @@ def main() -> int:
         print(info)
     else:
         print("Indicadores do IBGE recentes; mantidos")
+    ipca_p = out / "ipca.parquet"
+    if velho or not ipca_p.exists():
+        try:
+            ip = sidra(g["tabelas"]["ipca"], cfg["http"])
+            ip = pd.DataFrame({"mes": ip["D3C"], "indice": _num(ip["V"])}).dropna()
+            ip.to_parquet(ipca_p, index=False)
+            print(f"IPCA: {len(ip)} meses, até {ip['mes'].max()}")
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning title=ibge::IPCA indisponível ({e})")
     try:
         malhas(cfg, ROOT / g["caminhos"]["geo"])
     except Exception as e:  # noqa: BLE001 — sem malha, o resto segue

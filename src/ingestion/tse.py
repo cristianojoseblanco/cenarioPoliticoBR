@@ -81,6 +81,25 @@ def _ufs(z, prefixo):
             and not Path(m).name.endswith(("_BR.csv",))]
 
 
+def processar_bens(ano: int, t: dict, http: dict, destino: Path) -> None:
+    """Bens declarados (patrimônio) dos candidatos aos cargos de interesse, somados por candidato e tipo de bem."""
+    cand = pd.read_parquet(destino / "candidatos.parquet")
+    alvo = set(cand["SQ_CANDIDATO"])
+    zb = baixar(f"{t['cdn']}/bem_candidato/bem_candidato_{ano}.zip", http)
+    z = zipfile.ZipFile(zb)
+    partes = []
+    for m in _ufs(z, f"bem_candidato_{ano}"):
+        df = _ler(z, m, ["SQ_CANDIDATO", "DS_TIPO_BEM_CANDIDATO", "VR_BEM_CANDIDATO"], lambda d: d[d["SQ_CANDIDATO"].isin(alvo)])
+        df["valor"] = pd.to_numeric(df["VR_BEM_CANDIDATO"].str.replace(".", "", regex=False).str.replace(",", ".", regex=False),
+                                    errors="coerce").fillna(0)
+        partes.append(df.groupby(["SQ_CANDIDATO", "DS_TIPO_BEM_CANDIDATO"], as_index=False)["valor"].agg(["sum", "size"])
+                      .rename(columns={"sum": "valor", "size": "itens"}))
+    zb.unlink()
+    out = pd.concat(partes, ignore_index=True) if partes else pd.DataFrame(columns=["SQ_CANDIDATO", "DS_TIPO_BEM_CANDIDATO", "valor", "itens"])
+    out.to_parquet(destino / "bens.parquet", index=False)
+    print(f"  bens {ano}: {out['SQ_CANDIDATO'].nunique()} candidatos")
+
+
 def processar(ano: int, t: dict, http: dict, destino: Path, mapa: dict) -> dict:
     cargos = {str(c) for c in t["cargos"].values()}
     base = t["cdn"]
@@ -170,13 +189,20 @@ def main() -> int:
             vp.unlink()  # versão anterior gravou vazio (presidente fica no arquivo _BR)
         pronto = all((d / f).exists() for f in ("candidatos.parquet", "votos_municipio.parquet", "votos_presidente.parquet",
                                                   "receitas.parquet"))
+        bens = d / "bens.parquet"
         if pronto and ano not in t.get("recarregar", []):
+            if not bens.exists():  # bens declarados entraram depois: baixa só eles
+                try:
+                    processar_bens(ano, t, cfg["http"], d)
+                except Exception as e:  # noqa: BLE001
+                    print(f"::error title=tse::bens {ano}: {e}")
             print(f"{ano}: já processado, pulado")
             continue
         print(f"{ano}: processando")
         try:
             mapa = mapa if mapa is not None else mapa_camara(cfg)
             info = processar(ano, t, cfg["http"], d, mapa)
+            processar_bens(ano, t, cfg["http"], d)
         except Exception as e:  # noqa: BLE001 — uma eleição com problema não derruba as outras
             print(f"::error title=tse::{ano}: {e}")
             continue

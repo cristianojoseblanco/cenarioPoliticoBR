@@ -214,6 +214,7 @@ armazenamento:
     staging_emendas: "data/staging/emendas"
     staging_ibge: "data/staging/ibge"
     processed_mapa: "data/processed/mapa"
+    staging_cota: "data/staging/cota"
 
 # Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
 # `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
@@ -421,6 +422,7 @@ ibge:
     alfabetizacao: "/t/9543/n6/all/v/2513/p/2022"               # taxa de alfabetização 15+ (Censo 2022)
     situacao_domicilio: "/t/9923/n6/all/v/93/p/2022/c1/all"     # população urbana e rural (Censo 2022)
     pib: "/t/5938/n6/all/v/37/p/last%201"                       # PIB a preços correntes (mil R$)
+    ipca: "/t/1737/n1/all/v/2266/p/all"                         # IPCA, número-índice (dez/1993 = 100), mensal
   geoftp: "https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2024/Brasil"
   malha_municipios: "BR_Municipios_2024.zip"
   malha_ufs: "BR_UF_2024.zip"
@@ -432,3 +434,19 @@ ibge:
   capitais: [1100205, 1200401, 1302603, 1400100, 1501402, 1600303, 1721000, 2111300, 2211001, 2304400, 2408102,
              2507507, 2611606, 2704302, 2800308, 2927408, 3106200, 3205309, 3304557, 3550308, 4106902, 4205407,
              4314902, 5002704, 5103403, 5208707, 5300108]
+
+# Cota parlamentar (Bloco A). Câmara: CEAP (arquivo por ano). Senado: CEAPS (API por ano).
+cota:
+  camara_url: "https://www.camara.leg.br/cotas/Ano-{ano}.csv.zip"
+  senado_url: "https://adm.senado.gov.br/adm-dadosabertos/api/v1/senadores/despesas_ceaps/{ano}"
+  desde: 2019
+  recarregar_anos_recentes: 1
+  caminhos:
+    staging: "data/staging/cota"
+    metadata: "data/metadata/cota"
+  # Categoria de divulgação (texto contém), para o teste do ano eleitoral.
+  divulgacao: "DIVULGA"
+  # Rede de fornecedores: ignora fornecedores que atendem mais desta fração dos parlamentares (companhias aéreas,
+  # postos e grandes redes não dizem nada sobre proximidade).
+  fornecedor_max_frac: 0.05
+  min_parlamentares_fornecedor: 2
