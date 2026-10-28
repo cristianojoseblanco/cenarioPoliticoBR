@@ -211,6 +211,7 @@ armazenamento:
     staging_senado: "data/staging/senado"
     processed_senado: "data/processed/senado"
     staging_tse: "data/staging/tse"
+    staging_emendas: "data/staging/emendas"
 
 # Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
 # `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
@@ -389,3 +390,15 @@ tse:
   caminhos:
     staging: "data/staging/tse"
     metadata: "data/metadata/tse"
+
+# Emendas parlamentares (Etapa 7d). Portal da Transparência, arquivo único com todos os anos.
+emendas:
+  url: "https://portaldatransparencia.gov.br/download-de-dados/emendas-parlamentares/UNICO"
+  caminhos:
+    staging: "data/staging/emendas"
+    metadata: "data/metadata/emendas"
+  # Emendas ao orçamento do ano Y são apresentadas em Y-1: a legislatura L (início no ano A) é dona dos
+  # orçamentos A+1 ... A+4. Revisável.
+  defasagem_ano: 1
+  # Tipos analisados por parlamentar (bancada e comissão não têm autor individual).
+  tipos_individuais: ["Emenda Individual - Transferências com Finalidade Definida", "Emenda Individual - Transferências Especiais"]
