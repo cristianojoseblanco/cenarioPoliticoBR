@@ -12,16 +12,16 @@ Emendas individuais dos orçamentos 2024–2027: 15.293 emendas de 543 parlament
 | --- | --- | --- | --- | --- |
 | pago | apoio_gov | 0,18* | 0,19* | 532 |
 | pago | disciplina | -0,04 | 0,02 | 531 |
-| pago | imprevisibilidade | -0,00 | -0,10 | 532 |
+| pago | imprevisibilidade | 0,00 | -0,09 | 532 |
 | execucao | apoio_gov | 0,24* | 0,24* | 532 |
 | execucao | disciplina | 0,03 | 0,07 | 531 |
-| execucao | imprevisibilidade | -0,04 | -0,11 | 532 |
+| execucao | imprevisibilidade | -0,04 | -0,10 | 532 |
 | conexao | apoio_gov | 0,16* | 0,14* | 463 |
 | conexao | disciplina | 0,10 | 0,09 | 463 |
-| conexao | imprevisibilidade | -0,06 | -0,07 | 463 |
+| conexao | imprevisibilidade | -0,06 | -0,04 | 463 |
 | frac_base | apoio_gov | 0,02 | 0,07 | 532 |
 | frac_base | disciplina | 0,01 | 0,03 | 531 |
-| frac_base | imprevisibilidade | 0,02 | 0,02 | 532 |
+| frac_base | imprevisibilidade | 0,01 | 0,02 | 532 |
 
 \* p < 0,01.
 

@@ -26,7 +26,6 @@ São 50 comparações: com p < 0,01, cerca de 0,5 apareceriam por acaso.
 | peso do maior município | votos imprevisíveis | 0,06 | 0,13* | 494 |
 | custo por voto | disciplina | 0,10 | 0,12* | 494 |
 | municípios com 1%+ dos votos | apoio ao governo | 0,08 | 0,12* | 494 |
-| concentração geográfica | votos imprevisíveis | 0,06 | 0,12* | 494 |
 | peso do maior município | participação | 0,19* | 0,09 | 494 |
 | concentração geográfica | participação | 0,19* | 0,08 | 494 |
 | custo por voto | participação | -0,24* | -0,08 | 494 |
@@ -40,5 +39,5 @@ São 50 comparações: com p < 0,01, cerca de 0,5 apareceriam por acaso.
 
 | | Apoio ao governo | Disciplina | Votos imprevisíveis | Participação |
 | --- | --- | --- | --- | --- |
-| Média (sobras) | 89,4% | 96,6% | 2,1% | 81,6% |
-| Votação própria (QP) | 89,2% | 96,4% | 2,2% | 79,7% |
+| Média (sobras) | 89,4% | 96,6% | 2,2% | 81,6% |
+| Votação própria (QP) | 89,2% | 96,4% | 2,1% | 79,7% |

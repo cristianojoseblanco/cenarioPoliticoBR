@@ -1,12 +1,12 @@
 {
-  "executado_em": "2026-10-28T01:56:11+00:00",
+  "executado_em": "2026-10-28T14:27:33+00:00",
   "anos": [
     2026
   ],
   "resultados": [
     {
       "arquivo": "deputados",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "frentes",
@@ -18,7 +18,7 @@
     },
     {
       "arquivo": "votacoes-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoesVotos-2026",
@@ -26,11 +26,11 @@
     },
     {
       "arquivo": "votacoesOrientacoes-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoesProposicoes-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoes-1991",
@@ -334,7 +334,7 @@
     },
     {
       "arquivo": "proposicoes-2024",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesTemas-2024",
@@ -346,7 +346,7 @@
     },
     {
       "arquivo": "proposicoes-2025",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesTemas-2025",
@@ -358,15 +358,15 @@
     },
     {
       "arquivo": "proposicoes-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesTemas-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesAutores-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     }
   ],
   "erros": []
