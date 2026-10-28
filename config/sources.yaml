@@ -295,6 +295,19 @@ multicamadas:
   # Peso de cada camada nas comunidades multicamada (Leiden multiplex).
   pesos_camadas: {voto: 1.0, frentes: 0.5, coautoria: 0.5}
 
+# Modelo de voto individual (por legislatura).
+modelo:
+  folds: 5                 # validação cruzada por votação
+  iteracoes: 300
+  taxa_aprendizado: 0.1
+  temas: 12                # temas mais frequentes viram variáveis
+  # Voto imprevisível: probabilidade prevista para o voto que ocorreu abaixo disto.
+  limiar_surpresa: 0.2
+  min_votos_deputado: 100  # rankings só com deputados com pelo menos N votos
+  amostra_importancia: 20000
+  top_votacoes: 15
+  top_surpresas: 4000
+
 # Deputados acompanhados (ficha mensal). `id` = identificador da Câmara, quando já existe.
 # Sem id, a identificação é pelo nome parlamentar (sem acento/caixa) em deputados da legislatura
 # `desde_legislatura` em diante, conferida pela UF dos votos.

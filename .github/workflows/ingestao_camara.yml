@@ -78,6 +78,9 @@ jobs:
       - name: Rede em várias camadas (frentes e coautoria)
         run: python -m src.networks.multicamadas
 
+      - name: Modelo de voto individual
+        run: python -m src.models.voto_individual
+
       - name: Deputados acompanhados
         run: python -m src.governance.acompanhamento
 

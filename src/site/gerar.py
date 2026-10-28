@@ -214,11 +214,40 @@ def dados_legislatura(leg: str, c: dict) -> dict:
             multi["frentes_por_dep"] = _r(mem.groupby("deputado_id")["frente_id"].nunique().median(), 1)
             multi["membros_mediana"] = _r(mem.groupby("frente_id")["deputado_id"].nunique().median(), 0)
 
+    # modelo de voto individual
+    base_mo = ROOT / c["redes"]["saida"].replace("/redes", "/modelo")
+    modelo = None
+    if (base_mo / "resumo.json").exists():
+        md = pd.read_parquet(base_mo / "deputados.parquet")
+        minimo = int(c.get("modelo", {}).get("min_votos_deputado", 100))
+        md = md[md["votos"] >= minimo]
+        im = pd.read_parquet(base_mo / "importancias.parquet")
+        tm = pd.read_parquet(base_mo / "temas.parquet")
+        mm = pd.read_parquet(base_mo / "mensal.parquet")
+        vv = pd.read_parquet(base_mo / "votacoes.parquet")
+        uf = d.set_index("deputado_id")["uf"]
+        modelo = {
+            "resumo": json.loads((base_mo / "resumo.json").read_text(encoding="utf-8")),
+            "imp": [{"v": r.variavel, "i": _r(r.importancia, 4)} for r in im.head(8).itertuples()],
+            "mais": [{"n": r.nome, "p": r.partido, "uf": uf.get(r.deputado_id, ""), "i": _r(r.imprevisibilidade, 4),
+                      "ip": _r(r.imprev_partido, 4), "s": int(r.surpresas), "v": int(r.votos)}
+                     for r in md.nlargest(15, "imprevisibilidade").itertuples()],
+            "menos": [{"n": r.nome, "p": r.partido, "uf": uf.get(r.deputado_id, ""), "i": _r(r.imprevisibilidade, 4),
+                       "ip": _r(r.imprev_partido, 4), "s": int(r.surpresas), "v": int(r.votos)}
+                      for r in md.nsmallest(15, "imprevisibilidade").itertuples()],
+            "partidos": [{"p": p_, "i": _r(g.median(), 4), "n": int(len(g))}
+                         for p_, g in md.groupby("partido")["imprevisibilidade"] if len(g) >= 5],
+            "temas": [{"t": r.tema, "i": _r(r.imprevisibilidade, 4), "v": int(r.votos)} for r in tm.itertuples()],
+            "mensal": [{"m": r.mes.strftime("%Y-%m"), "i": _r(r.imprevisibilidade, 4), "v": int(r.votos)} for r in mm.itertuples()],
+            "votacoes": [{"d": str(r.data)[:10], "prop": r.proposicao, "t": r.texto, "s": int(r.surpresas), "v": int(r.votos)}
+                         for r in vv.head(8).itertuples()],
+        }
+
     per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
         "leg": leg, "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
         "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
-        "dim": dim, "din": din, "mud": mud, "multi": multi,
+        "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
         "modularidade": _r(m["modularidade"]), "nmi": _r(m["nmi_com_partido"]),
         "polos": {"a": polos["polo_a"], "b": polos["polo_b"]},

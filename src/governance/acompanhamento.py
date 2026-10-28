@@ -148,7 +148,19 @@ def contexto_legislaturas(cfg, dep_id: str) -> list[dict]:
         pos = pd.read_parquet(ROOT / c["fatias"]["saida"] / "posicoes.parquet")
         pj = pos[(pos["tipo"] == "janela") & (pos["deputado_id"] == dep_id)].dropna(subset=["posicao"])
         validos = gd[gd["votos_gov"] >= 50]
-        out.append({
+        mp = ROOT / c["redes"]["saida"].replace("/redes", "/modelo") / "deputados.parquet"
+        imp = {}
+        if mp.exists():
+            md = pd.read_parquet(mp)
+            minimo = int(cfg.get("modelo", {}).get("min_votos_deputado", 100))
+            if dep_id in set(md["deputado_id"]):
+                r_ = md[md["deputado_id"] == dep_id].iloc[0]
+                base_ = md[md["votos"] >= minimo]
+                imp = {"imprevisibilidade": _f(r_["imprevisibilidade"]), "imprev_partido": _f(r_["imprev_partido"]),
+                       "imprev_surpresas": int(r_["surpresas"]), "imprev_votos": int(r_["votos"]),
+                       "imprev_posicao": int((base_["imprevisibilidade"] > r_["imprevisibilidade"]).sum()) + 1,
+                       "imprev_total": int(len(base_))}
+        out.append({**imp,
             "leg": leg, "governo": c["legislaturas"][leg].get("governo", ""), "partido": linha["partido"],
             "comunidade": linha["comunidade"], "apoio_gov": _f(linha["apoio_gov"]), "disciplina": _f(linha["disciplina"]),
             "participacao": _f(linha["participacao"]),

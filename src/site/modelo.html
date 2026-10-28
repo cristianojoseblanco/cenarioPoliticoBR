@@ -229,7 +229,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     <div class="legbtns" id="legSeg" role="group" aria-label="Legislatura"></div>
     <nav class="secoes" aria-label="Seções" id="nav">
       <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#mudancas">Mudanças</a>
-      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a>
+      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a>
       <a href="#partidos">Partidos</a><a href="#frentes">Frentes</a><a href="#comparacao">Governos</a><a href="#acompanhados">Acompanhados</a><a href="#glossario">Glossário</a>
     </nav>
   </div>
@@ -380,6 +380,25 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
       <p class="lede">Só entram deputados com pelo menos 100 votos medidos no indicador. Toque num nome para abrir a ficha.</p></div>
     <div class="tabs" role="tablist" id="rankTabs"></div>
     <div class="card"><p class="nota" id="rankDesc"></p><ol class="rank" id="rankList"></ol></div>
+  </div>
+</section>
+
+<section class="cap" id="imprevisiveis">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Modelo de voto individual</span><h2>Quem vota fora do roteiro</h2>
+      <p class="lede" id="moLede"></p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
+      <dt>O modelo</dt><dd>Para cada voto Sim ou Não de cada deputado, o modelo estima a chance de Sim usando o que se sabe da votação: orientação do partido e do governo, como votaram os colegas de partido e o resto do Plenário, o histórico do próprio deputado (quanto apoia o governo, quanto segue o partido), o grupo de votação e o tema. Cada votação é prevista por um modelo treinado sem ela.</dd>
+      <dt>Voto imprevisível</dt><dd>Voto ao qual o modelo dava menos de 20% de chance. Não é "voto errado": é o voto que nem o partido, nem os colegas, nem o próprio histórico do deputado anunciavam.</dd>
+      <dt>Imprevisibilidade</dt><dd>Fração dos votos do deputado que foram imprevisíveis. Só deputados com 100 votos ou mais.</dd>
+      <dt>Acerto</dt><dd>Fração dos votos em que a previsão (chance acima ou abaixo de 50%) bateu com o voto real.</dd></dl></div></details>
+    <div class="destaques" id="moDest"></div>
+    <div class="cols">
+      <div class="card"><h3>Mais imprevisíveis</h3><p class="nota">Barra: % de votos imprevisíveis. Traço: mediana do partido.</p><div class="tabs" role="tablist" id="moTabs"></div><ol class="rank" id="moRank"></ol></div>
+      <div class="card" style="align-content:start"><h3>O que mais pesa na previsão</h3><p class="nota">Quanto a previsão piora quando a informação é embaralhada.</p><div id="moImp"></div>
+        <h3 style="margin-top:8px">Temas com mais votos imprevisíveis</h3><div id="moTemas"></div></div>
+    </div>
+    <div class="card"><h3>Votações com mais votos imprevisíveis</h3><ul class="lista-v" id="moVot"></ul></div>
   </div>
 </section>
 
@@ -945,7 +964,7 @@ function acompanhados() {
   box.innerHTML = A.map((f, i) => {
     const cab = `<div class="topo"><div style="display:grid;gap:6px"><span class="eyebrow">${f.uf || ""}${f.partido_eleito ? ` · eleito pelo ${f.partido_eleito}` : ""}</span><div class="nome">${f.nome}</div></div>${f.partido_atual ? `<span class="partido">${f.partido_atual} hoje</span>` : ""}</div>${f.eleicao ? `<p class="nota" style="margin:0">${f.eleicao}</p>` : ""}`;
     if (!f.votos) return `<div class="acomp">${cab}<div class="espera"><b>Aguardando os primeiros votos</b><span>${/aguardando/.test(f.situacao) ? "Ainda sem registro na Câmara." : f.situacao + "."} A 58ª legislatura começa em 1º de fevereiro de 2027; a ficha se preenche sozinha a partir das primeiras votações nominais no Plenário (atualização toda segunda-feira).</span></div></div>`;
-    const legs = (f.legislaturas || []).map(l => `<tr><td>${l.leg}ª · ${l.governo}</td><td>${l.partido}</td><td>${l.comunidade || "—"}</td><td>${pctf(l.apoio_gov)}</td><td>${l.apoio_percentil == null ? "—" : pctf(l.apoio_percentil, 0)}</td><td>${l.posicao_media == null ? "—" : dec(l.posicao_media)}</td><td>${pctf(l.participacao)}</td></tr>`).join("");
+    const legs = (f.legislaturas || []).map(l => `<tr><td>${l.leg}ª · ${l.governo}</td><td>${l.partido}</td><td>${l.comunidade || "—"}</td><td>${pctf(l.apoio_gov)}</td><td>${l.apoio_percentil == null ? "—" : pctf(l.apoio_percentil, 0)}</td><td>${l.posicao_media == null ? "—" : dec(l.posicao_media)}</td><td>${pctf(l.participacao)}</td><td>${l.imprevisibilidade == null ? "—" : `${pctf(l.imprevisibilidade)} <span class="muted">(${l.imprev_posicao}º de ${fmt.format(l.imprev_total)}; partido ${pctf(l.imprev_partido)})</span>`}</td></tr>`).join("");
     const reb = f.rebs.map(r => `<li><b>${new Date(r.d + "T12:00:00").toLocaleDateString("pt-BR")} · ${r.prop || "votação"} · ${r.p}</b><span>Votou <b>${r.v}</b>; o partido orientou <b>${r.op}</b>${r.og ? `; o governo, ${r.og}` : ""}.</span><span class="muted">${r.t || ""}</span></li>`).join("");
     return `<div class="acomp">${cab}
       <div class="cmp">${comp("Segue a orientação do partido", f.segue_partido, f.n_segue_partido, f.partido_segue_partido)}
@@ -956,7 +975,7 @@ function acompanhados() {
       <div class="row"><div class="seg" id="acSeg${i}" role="group" aria-label="Medida"><button aria-pressed="${(acModo[i] || "sp") === "sp"}" data-v="sp">Partido</button><button aria-pressed="${acModo[i] === "cb"}" data-v="cb">Bancada</button><button aria-pressed="${acModo[i] === "ag"}" data-v="ag">Governo</button></div></div>
       <div class="rel"><div class="rolagem dica-rolar"><svg class="chart" id="acSvg${i}" viewBox="0 0 960 280"></svg></div><div class="tip" id="acTip${i}" hidden></div>
         <div class="legend claro"><span class="row" style="gap:6px"><span class="dot" style="background:var(--accent)"></span>${f.nome}</span><span class="row" style="gap:6px"><span style="width:18px;border-top:2px dashed var(--ink-3)"></span>colegas de partido</span><span class="row" style="gap:6px"><span class="dot" style="background:var(--warn)"></span>mês com bancada pequena</span></div></div>
-      ${legs ? `<div class="rolagem"><table class="tab"><tr><th>Legislatura</th><th>Partido</th><th>Grupo</th><th>Apoio ao governo</th><th>Mais governista que</th><th>Posição A↔B</th><th>Participação</th></tr>${legs}</table></div>` : ""}
+      ${legs ? `<div class="rolagem"><table class="tab"><tr><th>Legislatura</th><th>Partido</th><th>Grupo</th><th>Apoio ao governo</th><th>Mais governista que</th><th>Posição A↔B</th><th>Participação</th><th>Votos imprevisíveis</th></tr>${legs}</table></div>` : ""}
       ${reb ? `<details class="ler"><summary>Últimos votos contra a orientação do partido</summary><div class="corpo"><ul class="lista-v">${reb}</ul></div></details>` : ""}
     </div>`; }).join("");
   A.forEach((f, i) => { if (!f.votos) return; acChart(f, i); segOn(`#acSeg${i}`, v => { acModo[i] = v; acChart(f, i); }); });
@@ -1028,6 +1047,32 @@ function frentes() {
     `<p class="nota">${fmt.format(F.frentes_bloco)} de ${fmt.format(F.frentes_analisadas)} frentes acima do percentil 95 dos sorteios.</p>`;
 }
 
+/* ================= modelo de voto individual ================= */
+let moModo = "mais";
+function imprevisiveis() {
+  const M = L.modelo; const sec = $("#imprevisiveis");
+  if (!M) { sec.hidden = true; return; } sec.hidden = false;
+  const r = M.resumo, mt = r.metricas;
+  $("#moLede").innerHTML = `O modelo acerta <b>${pctf(mt.M2.acerto)}</b> dos ${fmt.format(r.votos)} votos Sim ou Não da legislatura, sem nunca ver a votação que está prevendo. Só seguir o partido já acerta ${pctf(mt.M0.acerto)}. Sobram <b>${fmt.format(r.surpresas)} votos imprevisíveis</b> (${pctf(r.imprevisibilidade)}): é ali que aparece quem vota por conta própria.`;
+  const it = M.mais[0];
+  $("#moDest").innerHTML = [
+    [pctf(mt.M2.acerto), `de acerto com o perfil do deputado e o tema (${pctf(mt.M1.acerto)} só com partido, governo e colegas; ${pctf(mt.M0.acerto)} seguindo o partido)`],
+    [pctf(r.surpresas_contra_partido, 0), `dos votos imprevisíveis foram contra a orientação do próprio partido`],
+    it ? [pctf(it.i), `de votos imprevisíveis de ${it.n} (${it.p}-${it.uf}), o mais imprevisível; a mediana do partido é ${pctf(it.ip)}`] : null,
+  ].filter(Boolean).map(([b, t]) => `<div class="destaque"><b>${b}</b><span>${t}</span></div>`).join("");
+  const tabs = $("#moTabs"); tabs.innerHTML = [["mais", "Mais imprevisíveis"], ["menos", "Mais previsíveis"]].map(([k, t]) => `<button role="tab" aria-selected="${k === moModo}" data-k="${k}">${t}</button>`).join("");
+  tabs.onclick = e => { const b = e.target.closest("button"); if (!b) return; moModo = b.dataset.k; imprevisiveis(); };
+  const lista = M[moModo], mx = Math.max(...M.mais.map(x => x.i));
+  $("#moRank").innerHTML = lista.map(x => `<li><span class="q"><b>${x.n}</b><br><span class="muted">${x.p}-${x.uf} · ${fmt.format(x.s)} de ${fmt.format(x.v)} votos</span>
+    <div class="cmp" style="display:block;margin-top:6px"><div style="border:0;padding:0"><div class="duo"><i style="width:${(100 * x.i / mx).toFixed(1)}%"></i><s style="left:calc(${(100 * x.ip / mx).toFixed(1)}% - 1px)"></s></div></div></div></span><span class="num">${pctf(x.i)}</span></li>`).join("");
+  const nomesV = {colegas_sim: "Como votaram os colegas de partido", plenario_sim: "Como votou o resto do Plenário", dep_apoio_gov: "Apoio do deputado ao governo (histórico)", dep_disciplina: "Disciplina do deputado (histórico)", or_governo: "Orientação do governo", dep_sim: "Quanto o deputado vota Sim", or_partido: "Orientação do partido", colegas_n: "Tamanho da bancada na votação", partido_liberou: "Partido liberou o voto", partido_orientou: "Partido orientou", comunidade: "Grupo de votação", dep_votos_treino: "Quantos votos o deputado tem"};
+  const imx = Math.max(...M.imp.map(x => x.i));
+  $("#moImp").innerHTML = M.imp.map(x => `<div class="cmp" style="grid-template-columns:1fr"><div style="border:0;padding:4px 0;gap:4px"><span class="ref">${nomesV[x.v] || x.v.replace("tema: ", "Tema: ")}</span><div class="duo"><i style="width:${(100 * Math.max(0, x.i) / imx).toFixed(1)}%"></i></div></div></div>`).join("");
+  const tmx = Math.max(...M.temas.map(x => x.i));
+  $("#moTemas").innerHTML = M.temas.slice(0, 6).map(x => `<div class="cmp" style="grid-template-columns:1fr"><div style="border:0;padding:4px 0;gap:4px"><span class="ref">${x.t}: <b>${pctf(x.i)}</b> de ${fmt.format(x.v)} votos</span><div class="duo"><i style="width:${(100 * x.i / tmx).toFixed(1)}%;background:var(--warn)"></i></div></div></div>`).join("");
+  $("#moVot").innerHTML = M.votacoes.map(v => `<li><b>${new Date(v.d + "T12:00:00").toLocaleDateString("pt-BR")} · ${v.prop || "votação"}</b><span>${fmt.format(v.s)} votos imprevisíveis em ${fmt.format(v.v)} (${pctf(v.s / v.v)})</span><span class="muted">${v.t || ""}</span></li>`).join("");
+}
+
 function rodape() {
   const dt = new Date(D.atualizado + "T12:00:00").toLocaleDateString("pt-BR");
   $("#rodape").innerHTML = `Dados abertos da Câmara dos Deputados, atualizados em ${dt}. Código, dados e método: <a href="${D.repo}" target="_blank" rel="noopener">${D.repo.replace("https://", "")}</a>.`;
@@ -1036,7 +1081,7 @@ segOn("#redeCor", v => { redeModo = v; rede(); });
 segOn("#tempoMet", v => { tempoModo = v; tempo(); });
 segOn("#temaMet", v => { temaModo = v; temas(); });
 segOn("#mudMet", v => { mudModo = v; mudancas(); });
-function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); }
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); }
 tudo(true);
 // navegação: destaca a seção visível
 const links = [...document.querySelectorAll("#nav a")];
