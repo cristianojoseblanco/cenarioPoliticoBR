@@ -160,6 +160,13 @@ def contexto_legislaturas(cfg, dep_id: str) -> list[dict]:
                        "imprev_surpresas": int(r_["surpresas"]), "imprev_votos": int(r_["votos"]),
                        "imprev_posicao": int((base_["imprevisibilidade"] > r_["imprevisibilidade"]).sum()) + 1,
                        "imprev_total": int(len(base_))}
+        ep = ROOT / c["redes"]["saida"].replace("/redes", "/emendas") / "parlamentares.parquet"
+        if ep.exists():
+            e_ = pd.read_parquet(ep)
+            if dep_id in set(e_["deputado_id"]):
+                r_ = e_[e_["deputado_id"] == dep_id].iloc[0]
+                imp.update({"emendas_pago": _f(r_["pago"]), "emendas_execucao": _f(r_["execucao"]),
+                            "emendas_base": _f(r_.get("frac_base")), "emendas_qtd": int(r_["emendas"])})
         out.append({**imp,
             "leg": leg, "governo": c["legislaturas"][leg].get("governo", ""), "partido": linha["partido"],
             "comunidade": linha["comunidade"], "apoio_gov": _f(linha["apoio_gov"]), "disciplina": _f(linha["disciplina"]),

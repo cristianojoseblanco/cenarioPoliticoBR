@@ -84,7 +84,7 @@ Notas de método e resultados: repositório `cenarioPoliticoBR-notas` (vault do 
 ## Painel (Etapa 6)
 
 `app/Home.py` + `app/pages/`: Streamlit lendo só os arquivos de `data/marts` (nada pesado roda no painel).
-Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças, Acompanhados, Frentes, Imprevisíveis e Campanha (Câmara e Senado). Dependências leves em `app/requirements.txt`.
+Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças, Acompanhados, Frentes, Imprevisíveis, Campanha e Emendas (Câmara e Senado). Dependências leves em `app/requirements.txt`.
 
 - Local: `streamlit run app/Home.py`
 - Nuvem: Streamlit Community Cloud apontando para `app/Home.py` neste repositório; o painel se atualiza
@@ -114,6 +114,17 @@ Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças, Acomp
 - `src/governance/eleicoes.py`: campanha × comportamento por legislatura (`leg<N>/eleicao/`), com correlações em
   todos e dentro do partido, só as com p < `tse.alfa`.
 
+## Emendas, IBGE e mapa (Etapa 7d)
+
+- `src/ingestion/emendas.py`: Portal da Transparência (arquivo único). Guarda a tabela de emendas, os pagamentos
+  por mês e os pagamentos por município do favorecido (destino real do dinheiro).
+- `src/ingestion/ibge.py`: indicadores municipais pelo SIDRA (`apisidra.ibge.gov.br`) e malha de 2024 pelo geoftp,
+  simplificada com mapshaper. O `servicodados.ibge.gov.br` não responde ao GitHub Actions.
+- `src/governance/emendas.py`: emendas × Plenário (execução, conexão eleitoral, tempo com efeitos fixos duplos,
+  necessidade). Resumos em `leg<N>/emendas/`; tabelas por município (grandes) em `data/processed/mapa/` (Release).
+- `src/site/mapa.html`: mapa interativo (canvas + d3), carregado só quando a seção aparece. Arquivos em
+  `site/geo/` e `site/dados/` (um por parlamentar, baixado só quando ele é escolhido).
+
 ## Rodar localmente
 
 ```bash
@@ -137,6 +148,7 @@ python -m src.models.voto_individual
 python -m src.governance.acompanhamento
 python -m src.ingestion.senado && python -m src.processing.senado && python -m src.senado
 python -m src.ingestion.tse && python -m src.governance.eleicoes
+python -m src.ingestion.emendas && python -m src.ingestion.ibge && python -m src.governance.emendas
 python -m src.site.gerar
 ```
 

@@ -7,10 +7,10 @@ pagar pagos depois. Taxa de execução = pago ÷ empenhado (o governo decide o q
 Perguntas:
   1. Emendas e governo: pago e taxa de execução × apoio ao governo, disciplina, votos imprevisíveis
      (Spearman em todos e dentro do partido).
-  2. Tempo: no mesmo parlamentar, meses com mais pagamento têm mais apoio ao governo? (cada série menos a média
-     do próprio parlamentar; Spearman nos meses com votação orientada pelo governo).
-  3. Conexão eleitoral: fração do valor pago que vai para municípios da base (1%+ dos votos do parlamentar) ×
-     fração esperada se distribuísse pelos votos válidos da UF. Índice > 1 = privilegia a própria base.
+  2. Tempo: no mesmo parlamentar, meses com mais pagamento têm mais apoio ao governo? (cada série sem a média
+     do parlamentar e sem a média do mês — efeitos fixos duplos; Spearman nos meses com votação orientada).
+  3. Conexão eleitoral: R$ pago por habitante nos municípios da base (1%+ dos votos do parlamentar) ÷ R$ pago
+     por habitante no resto da UF dele (destino = município do favorecido). Índice > 1 = privilegia a própria base.
   4. Necessidade: valor pago por habitante no município × PIB per capita, alfabetização, população.
 
 Saídas em data/marts/<casa>/leg<N>/emendas/. Uso: python -m src.governance.emendas
@@ -26,7 +26,7 @@ import pandas as pd
 from scipy.stats import spearmanr
 
 from src.config import ROOT, legislatura_tem_dados, load_config, para_senado, path, por_legislatura
-from src.geo.municipios import ibge, norm, tse_para_ibge
+from src.geo.municipios import ibge, nome_para_ibge, norm, tse_para_ibge
 from src.governance.indicadores import base_votos, carregar
 from src.networks.votacao import dec, n
 
@@ -48,6 +48,18 @@ def carregar_emendas(cfg: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
     em["cod_ibge"] = em["codigo_municipio_ibge"].where(em["codigo_municipio_ibge"].str.fullmatch(r"\d{7}", na=False))
     pag = pd.read_parquet(st / "pagamentos.parquet")
     return em, pag
+
+
+def pagamentos_municipio(cfg: dict, lig: pd.DataFrame) -> pd.DataFrame:
+    """Destino real: pagamentos por município do favorecido, das emendas ligadas (deputado_id, cod_ibge, pago)."""
+    p = ROOT / cfg["emendas"]["caminhos"]["staging"] / "pagamentos_municipio.parquet"
+    if not p.exists():  # versão antiga do staging: usa o município declarado na emenda
+        return lig.dropna(subset=["cod_ibge"])[["deputado_id", "cod_ibge", "pago", "codigo_da_emenda"]]
+    pm = pd.read_parquet(p)
+    pm = pm[pm["codigo_emenda"].isin(set(lig["codigo_da_emenda"]))]
+    pm["cod_ibge"] = nome_para_ibge(cfg, pm, "municipio", "uf")
+    pm = pm.merge(lig[["codigo_da_emenda", "deputado_id"]].drop_duplicates(), left_on="codigo_emenda", right_on="codigo_da_emenda")
+    return pm.dropna(subset=["cod_ibge"]).rename(columns={"valor": "pago"})[["deputado_id", "cod_ibge", "pago", "codigo_da_emenda"]]
 
 
 def ligar_autores(em: pd.DataFrame, pool: pd.DataFrame, minimo: float) -> pd.Series:
@@ -106,6 +118,10 @@ def apoio_mensal(c: dict) -> pd.DataFrame:
     return b.groupby(["deputado_id", "mes"]).agg(apoio=("alinhado_gov", "mean"), n=("alinhado_gov", lambda s: s.notna().sum())).reset_index()
 
 
+def mapa_dir(cfg: dict, casa: str, leg: str):
+    return ROOT / cfg["emendas"]["caminhos"]["mapa"] / f"{casa}_leg{leg}"
+
+
 def _sp(x, y):
     s = pd.DataFrame({"x": x, "y": y}).dropna()
     if len(s) < 15 or s["x"].nunique() < 3:
@@ -121,6 +137,9 @@ def rodar(c: dict, casa: str, cfg: dict) -> int:
         return 0
     saida = ROOT / c["redes"]["saida"].replace("/redes", "/emendas")
     saida.mkdir(parents=True, exist_ok=True)
+    # tabelas grandes (mapa) fora do Git: vão no pacote processed_mapa do Release
+    grande = mapa_dir(cfg, casa, leg)
+    grande.mkdir(parents=True, exist_ok=True)
     em, pag = carregar_emendas(cfg)
     a0 = int(c["redes"]["periodo"]["inicio"][:4]) + int(e.get("defasagem_ano", 1))
     anos = list(range(a0, a0 + 4))
@@ -135,20 +154,37 @@ def rodar(c: dict, casa: str, cfg: dict) -> int:
     lig = em.dropna(subset=["deputado_id"])
 
     # ---- por parlamentar
+    geo = pagamentos_municipio(cfg, lig)
     dep = lig.groupby("deputado_id").agg(emendas=("codigo_da_emenda", "nunique"), empenhado=("valor_empenhado", "sum"),
-                                         pago=("pago", "sum"),
-                                         pago_municipio=("pago", lambda s: s[lig.loc[s.index, "cod_ibge"].notna()].sum()))
+                                         pago=("pago", "sum"))
+    dep["pago_municipio"] = geo.groupby("deputado_id")["pago"].sum()
     dep["execucao"] = dep["pago"] / dep["empenhado"].replace(0, np.nan)
     base = base_eleitoral(cfg, casa, leg)
     if len(base):
         lim = float(e.get("base_minima", 0.01))
         b_ = base[base["frac_votos"] >= lim].dropna(subset=["cod_ibge"])
         chave = set(zip(b_["deputado_id"], b_["cod_ibge"]))
-        lm = lig.dropna(subset=["cod_ibge"])
+        lm = geo
         lm = lm.assign(na_base=[(d, m) in chave for d, m in zip(lm["deputado_id"], lm["cod_ibge"])])
         dep["frac_base"] = lm.groupby("deputado_id").apply(lambda x: x.loc[x["na_base"], "pago"].sum() / max(x["pago"].sum(), 1))
-        dep["frac_base_esperada"] = b_.groupby("deputado_id")["frac_uf_votos"].sum()
-        dep["conexao"] = dep["frac_base"] / dep["frac_base_esperada"].replace(0, np.nan)
+        # viés para a base: R$ por habitante nos municípios da base ÷ R$ por habitante no resto da UF dele
+        pop = ibge(cfg).set_index("cod_ibge")["pop_2022"]
+        uf_dep = base.groupby("deputado_id")["SG_UF"].agg(lambda s: s.mode().iat[0])
+        ib_ = ibge(cfg)[["cod_ibge", "uf"]]
+        vies = {}
+        for d_, g_ in lm.groupby("deputado_id"):
+            uf = uf_dep.get(d_)
+            if uf is None:
+                continue
+            muni_uf = ib_.loc[ib_["uf"] == uf, "cod_ibge"]
+            na_base = set(b_.loc[b_["deputado_id"] == d_, "cod_ibge"])
+            pago_m = g_.groupby("cod_ibge")["pago"].sum()
+            pb = pago_m.reindex(list(na_base)).fillna(0).sum() / max(pop.reindex(list(na_base)).sum(), 1)
+            fora = [m_ for m_ in muni_uf if m_ not in na_base]
+            pf = pago_m.reindex(fora).fillna(0).sum() / max(pop.reindex(fora).sum(), 1)
+            if pb > 0 and pf > 0:
+                vies[d_] = pb / pf
+        dep["conexao"] = pd.Series(vies)
     dep = dep.reset_index().merge(g[["deputado_id", "nome", "partido", "comunidade", "apoio_gov", "disciplina", "votos_gov",
                                      *(["imprevisibilidade"] if "imprevisibilidade" in g else [])]], on="deputado_id", how="left")
     dep.to_parquet(saida / "parlamentares.parquet", index=False)
@@ -180,25 +216,28 @@ def rodar(c: dict, casa: str, cfg: dict) -> int:
     tm = am.merge(pg, on=["deputado_id", "mes"], how="left").fillna({"pago_mes": 0})
     tm["lp"] = np.log1p(tm["pago_mes"])
     tm = tm.groupby("deputado_id").filter(lambda q: len(q) >= 6 and q["lp"].nunique() > 1)
-    xd = tm["lp"] - tm.groupby("deputado_id")["lp"].transform("mean")
-    yd = tm["apoio"] - tm.groupby("deputado_id")["apoio"].transform("mean")
+    # efeitos fixos de parlamentar E de mês: tira o calendário (pagamentos se concentram em certos meses)
+    def duplo(col):
+        return (tm[col] - tm.groupby("deputado_id")[col].transform("mean") - tm.groupby("mes")[col].transform("mean")
+                + tm[col].mean())
+    xd, yd = duplo("lp"), duplo("apoio")
     rt, pt, kt = _sp(xd, yd)
-    com = tm[tm["pago_mes"] > 0]["apoio"] - tm[tm["pago_mes"] > 0].groupby("deputado_id")["apoio"].transform("mean")
+    com = yd[tm["pago_mes"] > 0]  # apoio nos meses com pagamento, descontados parlamentar e mês
     mensal_total = pg.groupby("mes")["pago_mes"].sum().reset_index()
     mensal_total.to_parquet(saida / "pagamentos_mes.parquet", index=False)
 
     # ---- 3/4. municípios
     ib = ibge(cfg)
-    mun = lig.dropna(subset=["cod_ibge"]).groupby("cod_ibge").agg(pago=("pago", "sum"), emendas=("codigo_da_emenda", "nunique"),
+    mun = geo.groupby("cod_ibge").agg(pago=("pago", "sum"), emendas=("codigo_da_emenda", "nunique"),
                                                                  autores=("deputado_id", "nunique")).reset_index()
     mun = ib.merge(mun, on="cod_ibge", how="left").fillna({"pago": 0, "emendas": 0, "autores": 0})
     mun["pago_per_capita"] = mun["pago"] / mun["pop_2022"]
-    top = (lig.dropna(subset=["cod_ibge"]).groupby(["cod_ibge", "deputado_id"])["pago"].sum().reset_index()
+    top = (geo.groupby(["cod_ibge", "deputado_id"])["pago"].sum().reset_index()
            .sort_values("pago", ascending=False).groupby("cod_ibge").head(3))
-    top.to_parquet(saida / "municipios_autores.parquet", index=False)
-    lig.dropna(subset=["cod_ibge"]).groupby(["deputado_id", "cod_ibge"])["pago"].sum().reset_index().to_parquet(
-        saida / "dep_municipio.parquet", index=False)
-    mun.to_parquet(saida / "municipios.parquet", index=False)
+    top.to_parquet(grande / "municipios_autores.parquet", index=False)
+    geo.groupby(["deputado_id", "cod_ibge"])["pago"].sum().reset_index().to_parquet(
+        grande / "dep_municipio.parquet", index=False)
+    mun.to_parquet(grande / "municipios.parquet", index=False)
     nec = []
     for x in ("pib_per_capita", "alfabetizacao", "pop_2022", "urbanizacao", "densidade"):
         if x in mun:
@@ -206,7 +245,7 @@ def rodar(c: dict, casa: str, cfg: dict) -> int:
             nec.append({"indicador": x, "spearman": r, "p": p, "n": k})
     nec = pd.DataFrame(nec)
     if len(base):
-        base.to_parquet(saida / "base_eleitoral.parquet", index=False)
+        base.to_parquet(grande / "base_eleitoral.parquet", index=False)
 
     resumo = {"casa": casa, "legislatura": leg, "anos_orcamento": anos, "emendas": int(lig["codigo_da_emenda"].nunique()),
               "autores_ligados": int(lig["deputado_id"].nunique()), "autores_total": int(em["nome_do_autor_da_emenda"].nunique()),
@@ -215,6 +254,8 @@ def rodar(c: dict, casa: str, cfg: dict) -> int:
               "frac_base_mediana": float(dep["frac_base"].median()) if "frac_base" in dep else None,
               "tempo": {"spearman": rt, "p": pt, "n": kt, "apoio_meses_com_pagamento": float(com.mean()) if len(com) else None},
               "necessidade": nec.to_dict("records"),
+              "execucao_apoio_dentro": float(corr.set_index(["emendas", "comportamento"])["spearman_dentro"].get(("execucao", "apoio_gov"), np.nan)) if len(corr) else None,
+              "execucao_apoio_dentro_p": float(corr.set_index(["emendas", "comportamento"])["p_dentro"].get(("execucao", "apoio_gov"), np.nan)) if len(corr) else None,
               "necessidade_pib": float(nec.set_index("indicador")["spearman"].get("pib_per_capita", np.nan)) if len(nec) else None}
     (saida / "resumo.json").write_text(json.dumps(resumo, ensure_ascii=False, indent=2, default=float), encoding="utf-8")
 
@@ -227,7 +268,7 @@ def rodar(c: dict, casa: str, cfg: dict) -> int:
          f"- Taxa de execução (mediana por parlamentar): {dec(100 * (resumo['execucao_mediana'] or 0), 1)}%"]
     if resumo["conexao_mediana"]:
         L.append(f"- Fração do pago para a base eleitoral (mediana): {dec(100 * resumo['frac_base_mediana'], 1)}%; "
-                 f"conexão eleitoral (observado ÷ esperado, mediana): {dec(resumo['conexao_mediana'], 2)}")
+                 f"R$ por habitante na base ÷ resto da UF (mediana): {dec(resumo['conexao_mediana'], 2)}")
     L += ["", "## Emendas × comportamento (Spearman)", "", "| Emendas | Comportamento | Todos | Dentro do partido | n |",
           "| --- | --- | --- | --- | --- |"]
     st_ = lambda v, p_: "—" if v != v else f"{dec(v, 2)}{'*' if p_ < alfa else ''}"  # noqa: E731

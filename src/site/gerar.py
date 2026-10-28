@@ -344,8 +344,9 @@ def gerar_mapa(cfg: dict, legs: list[dict]) -> None:
     for L in legs:
         casa, leg = L.get("casa", "camara"), L["leg"]
         c = confs.get((casa, leg))
-        base = ROOT / c["redes"]["saida"].replace("/redes", "/emendas") if c else None
-        if not base or not (base / "municipios.parquet").exists():
+        resumo_dir = ROOT / c["redes"]["saida"].replace("/redes", "/emendas") if c else None
+        base = ROOT / cfg["emendas"]["caminhos"]["mapa"] / f"{casa}_leg{leg}"
+        if not resumo_dir or not (base / "municipios.parquet").exists():
             continue
         idx = {k: i for i, k in enumerate(L["_ids"])}
         mun = pd.read_parquet(base / "municipios.parquet")
@@ -370,10 +371,11 @@ def gerar_mapa(cfg: dict, legs: list[dict]) -> None:
                                            "e": {k: round(float(x)) for k, x in zip(em_["cod_ibge"], em_["pago"])}},
                                           separators=(",", ":")), encoding="utf-8")
                 n_dep += 1
-        r = json.loads((base / "resumo.json").read_text(encoding="utf-8"))
+        r = json.loads((resumo_dir / "resumo.json").read_text(encoding="utf-8"))
         (destino / "dados" / f"mapa_{casa}_{leg}.json").write_text(json.dumps(
             {"anos": r["anos_orcamento"], "resumo": {k: r.get(k) for k in ("pago", "empenhado", "frac_base_mediana", "conexao_mediana",
-                                                                        "necessidade_pib", "execucao_mediana")},
+                                                                        "necessidade_pib", "execucao_mediana",
+                                                                        "execucao_apoio_dentro", "execucao_apoio_dentro_p")},
              "e": e, "v": v}, ensure_ascii=False, separators=(",", ":"), default=float), encoding="utf-8")
     print(f"mapa: {len(m)} municípios, {n_dep} parlamentares com arquivo próprio")
 

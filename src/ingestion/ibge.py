@@ -68,8 +68,9 @@ def indicadores(cfg: dict) -> pd.DataFrame:
                           "Área da unidade territorial": "area_km2", "Densidade demográfica": "densidade"})
     for c in ("pop_2022", "area_km2", "densidade"):
         m[c] = _num(m[c])
-    m["nome"] = m["nome_uf"].str.replace(r"\s*\([A-Z]{2}\)$", "", regex=True)
-    m["uf"] = m["nome_uf"].str.extract(r"\(([A-Z]{2})\)$")[0]
+    # o SIDRA escreve "Cidade - UF" (consulta nacional) ou "Cidade (UF)" (por município)
+    m["uf"] = m["nome_uf"].str.extract(r"(?:\s-\s|\()([A-Z]{2})\)?$")[0]
+    m["nome"] = m["nome_uf"].str.replace(r"(?:\s-\s[A-Z]{2}|\s*\([A-Z]{2}\))$", "", regex=True)
 
     est = sidra(t["populacao_estimada"], http)
     m = m.merge(est[["D1C", "V", "D3N"]].rename(columns={"D1C": "cod_ibge", "V": "pop_estimada", "D3N": "ano_pop_estimada"}),
@@ -117,10 +118,10 @@ def malhas(cfg: dict, destino: Path) -> None:
             zipfile.ZipFile(z).extractall(tmp)
             shp = next(Path(tmp).rglob("*.shp"))
             # mapshaper: simplifica mantendo todos os polígonos, só o código e o nome, coordenadas quantizadas
-            campos = "CD_MUN,NM_MUN,SIGLA_UF" if nome == "municipios" else "CD_UF,SIGLA_UF,NM_UF"
+            campos = "CD_MUN" if nome == "municipios" else "CD_UF,SIGLA_UF"  # nomes vêm de municipios.json
             cmd = ["npx", "-y", f"mapshaper@{g['mapshaper']}", str(shp), "-proj", "wgs84",
                    "-simplify", simpl, "keep-shapes", "-filter-fields", campos,
-                   "-o", "format=topojson", "quantization=1e5", f"id-field={campos.split(',')[0]}", str(alvo)]
+                   "-o", "format=topojson", f"quantization={g.get('quantizacao', '4e4')}", f"id-field={campos.split(',')[0]}", str(alvo)]
             subprocess.run(cmd, check=True)
         print(f"{alvo.name}: {alvo.stat().st_size / 1e6:.2f} MB")
 

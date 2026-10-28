@@ -42,3 +42,11 @@ def tse_para_ibge(cfg: dict, tse: pd.DataFrame) -> pd.DataFrame:
         if notas.max() >= minimo:
             m.at[i, "cod_ibge"] = cands.loc[notas.idxmax(), "cod_ibge"]
     return m[["CD_MUNICIPIO", "cod_ibge"]]
+
+
+def nome_para_ibge(cfg: dict, df: pd.DataFrame, col_nome: str, col_uf: str) -> pd.Series:
+    """Código IBGE a partir de nome de município + sigla da UF (mesma regra de tse_para_ibge)."""
+    t = df[[col_nome, col_uf]].drop_duplicates().rename(columns={col_nome: "NM_MUNICIPIO", col_uf: "SG_UF"})
+    t["CD_MUNICIPIO"] = t["NM_MUNICIPIO"].astype(str) + "|" + t["SG_UF"].astype(str)
+    cw = tse_para_ibge(cfg, t).set_index("CD_MUNICIPIO")["cod_ibge"]
+    return (df[col_nome].astype(str) + "|" + df[col_uf].astype(str)).map(cw)

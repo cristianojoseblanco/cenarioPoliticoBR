@@ -1,4 +1,4 @@
-name: Ingestão e análises (Câmara, Senado e TSE)
+name: Ingestão e análises (Câmara, Senado, TSE, emendas e IBGE)
 
 on:
   workflow_dispatch:
@@ -102,6 +102,18 @@ jobs:
       - name: Campanha × Plenário
         continue-on-error: true
         run: python -m src.governance.eleicoes
+
+      - name: Emendas · ingestão (Portal da Transparência)
+        continue-on-error: true
+        run: python -m src.ingestion.emendas
+
+      - name: IBGE · indicadores (SIDRA) e malha (geoftp)
+        continue-on-error: true
+        run: python -m src.ingestion.ibge
+
+      - name: Emendas × Plenário (e dados do mapa)
+        continue-on-error: true
+        run: python -m src.governance.emendas
 
       - name: Deputados acompanhados
         run: python -m src.governance.acompanhamento

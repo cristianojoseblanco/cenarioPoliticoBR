@@ -1,0 +1,59 @@
+{
+  "casa": "camara",
+  "legislatura": "56",
+  "anos_orcamento": [
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "emendas": 21448,
+  "autores_ligados": 546,
+  "autores_total": 656,
+  "empenhado": 41136118955.64,
+  "pago": 39091611099.45,
+  "execucao_mediana": 0.9643410104780814,
+  "conexao_mediana": 1.5104290373938334,
+  "frac_base_mediana": 0.1945357559865772,
+  "tempo": {
+    "spearman": -0.05259001827823897,
+    "p": 2.267471565570007e-13,
+    "n": 19413,
+    "apoio_meses_com_pagamento": -0.004090596196432195
+  },
+  "necessidade": [
+    {
+      "indicador": "pib_per_capita",
+      "spearman": -0.0032092459929105133,
+      "p": 0.8107483703960229,
+      "n": 5570
+    },
+    {
+      "indicador": "alfabetizacao",
+      "spearman": -0.05868655976142351,
+      "p": 1.1720930157822706e-05,
+      "n": 5570
+    },
+    {
+      "indicador": "pop_2022",
+      "spearman": -0.46066029158149474,
+      "p": 9.448189764993907e-291,
+      "n": 5570
+    },
+    {
+      "indicador": "urbanizacao",
+      "spearman": -0.24138338041401858,
+      "p": 1.1519747472981885e-74,
+      "n": 5570
+    },
+    {
+      "indicador": "densidade",
+      "spearman": -0.24959962764856594,
+      "p": 7.188475717661826e-80,
+      "n": 5570
+    }
+  ],
+  "execucao_apoio_dentro": 0.018964588668789372,
+  "execucao_apoio_dentro_p": 0.6592557489470091,
+  "necessidade_pib": -0.0032092459929105133
+}

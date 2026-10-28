@@ -30,6 +30,7 @@
 .mp-painel h3{font:850 1.5rem/1.05 var(--f-display);font-stretch:82%;margin:0;color:var(--h-ink)}
 .mp-painel .sub{font:500 .78rem var(--f-data);color:var(--h-ink-3);text-transform:uppercase;letter-spacing:.08em}
 .mp-num{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mp-dest4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .mp-num div{background:var(--h-bg);border:1px solid var(--h-rule);border-radius:12px;padding:9px 10px;display:grid;gap:3px}
 .mp-num span{font:500 .68rem var(--f-data);color:var(--h-ink-3);text-transform:uppercase;letter-spacing:.06em}
 .mp-num b{font:600 1.05rem var(--f-data);color:var(--h-ink);font-variant-numeric:tabular-nums}
@@ -51,10 +52,11 @@
     <div class="head"><span class="eyebrow">Mapa do Brasil · 5.570 municípios</span><h2>Onde o voto nasce e para onde o dinheiro vai</h2>
       <p class="lede" id="mpLede">Emendas parlamentares pagas, voto no 2º turno e indicadores do IBGE, município a município. Escolha um parlamentar para ver, no mesmo mapa, onde ele foi votado e para onde mandou emendas.</p></div>
     <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
-      <dt>Emendas por habitante</dt><dd>Valor pago (no ano e depois, como restos a pagar) das emendas individuais dos orçamentos que a legislatura votou, dividido pela população do Censo 2022. Fonte: Portal da Transparência.</dd>
+      <dt>Emendas por habitante</dt><dd>Valor pago das emendas individuais dos orçamentos que a legislatura votou, no município de quem recebeu o dinheiro (prefeitura, fundo, entidade), dividido pela população do Censo 2022. Pagamentos a órgãos federais aparecem em Brasília. Fonte: Portal da Transparência.</dd>
       <dt>Voto no PT no 2º turno</dt><dd>Fração dos votos válidos do 2º turno presidencial dada ao candidato do PT (Haddad em 2018, Lula em 2022 e 2026). Fonte: TSE.</dd>
       <dt>Indicadores</dt><dd>PIB per capita (PIB municipal ÷ população de 2022), alfabetização (15 anos ou mais) e população: IBGE (SIDRA, Censo 2022).</dd>
       <dt>Base de um parlamentar</dt><dd>Cor: fração dos votos dele que veio de cada município. Círculos: emendas pagas que ele mandou, do tamanho do valor.</dd>
+      <dt>Emendas e governo</dt><dd>O governo decide quais emendas paga e quando. A taxa de execução (pago ÷ empenhado) de cada parlamentar é comparada com o apoio dele ao governo, só entre colegas do mesmo partido. Mês a mês, descontados o parlamentar e o calendário, pagamento e voto não andam juntos: a relação é de mandato inteiro, não de troca mensal.</dd>
       <dt>Cores</dt><dd>Faixas com o mesmo número de municípios (quantis). Cinza: sem dado.</dd></dl></div></details>
     <div class="mp-barra">
       <div class="mp-chips" id="mpCamadas" role="group" aria-label="Camada do mapa"></div>
@@ -156,7 +158,16 @@ function mpMontar() {
   $("#mpBusca").onchange = async e => { const v = e.target.value; const i = L.deputados.findIndex(d => `${d.n} (${d.p}-${d.uf})` === v); if (i < 0) return;
     const d = L.deputados[i]; const k = `${L.casa || "camara"}_${L.leg}_${d.id}`;
     try { if (!MP.dep[k]) MP.dep[k] = await mpJson(`dados/dep/${k}.json`); } catch (er) { MP.dep[k] = {v: {}, e: {}}; }
-    MP.depSel = {d, ...MP.dep[k]}; MP.camada = "base"; mpChips(); mpDesenhar(); mpPainelDep(); };
+    MP.depSel = {d, ...MP.dep[k]}; MP.camada = "base"; mpChips(); mpDesenhar(); mpPainelDep(); mpZoomDep(); };
+}
+// aproxima o mapa da área onde o parlamentar foi votado (municípios com 0,1%+ dos votos dele)
+function mpZoomDep() {
+  const s = MP.depSel; if (!s) return; const cods = Object.entries(s.v || {}).filter(([, x]) => x >= .001).map(([k]) => k);
+  if (!cods.length) return; const gp = d3.geoPath(MP.proj); let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+  cods.forEach(k => { const i = MP.idx.get(k); if (i == null) return; const [[a, b], [c, d]] = gp.bounds(MP.mun[i]); x0 = Math.min(x0, a); y0 = Math.min(y0, b); x1 = Math.max(x1, c); y1 = Math.max(y1, d); });
+  if (x0 > x1) return; const k = Math.min(10, .85 / Math.max((x1 - x0) / MP.W, (y1 - y0) / MP.H));
+  const t = d3.zoomIdentity.translate(MP.W / 2, MP.H / 2).scale(k).translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
+  d3.select("#mpCanvas").transition().duration(650).call(MP.zoom.transform, t);
 }
 function mpPegar(e) {
   const r = $("#mpCanvas").getBoundingClientRect(); const x = Math.round(e.clientX - r.left), y = Math.round(e.clientY - r.top);
@@ -222,6 +233,7 @@ function mpDest() {
   $("#mpDest").innerHTML = [
     [`R$ ${dec(R.pago / 1e9, 1)} bi`, `pagos em emendas individuais dos orçamentos ${MP.L.anos[0]}–${MP.L.anos.slice(-1)[0]} (de R$ ${dec(R.empenhado / 1e9, 1)} bi empenhados)`],
     R.frac_base_mediana != null ? [pctf(R.frac_base_mediana, 0), `do valor pago vai para a base eleitoral do parlamentar (mediana); ${dec(R.conexao_mediana, 1)} vezes o esperado pelo tamanho desses municípios`] : null,
+    R.execucao_apoio_dentro != null ? [dec(R.execucao_apoio_dentro), `correlação, entre colegas do mesmo partido, entre a fração das emendas que o governo pagou e o apoio ao governo no Plenário${R.execucao_apoio_dentro_p < .01 ? "" : " (não significativa)"}`] : null,
     R.necessidade_pib != null ? [dec(R.necessidade_pib), "correlação entre emendas por habitante e PIB per capita do município (negativa = mais dinheiro para municípios mais pobres)"] : null,
   ].filter(Boolean).map(([b, t]) => `<div class="destaque"><b style="color:var(--h-ink)">${b}</b><span style="color:var(--h-ink-2)">${t}</span></div>`).join("");
 }

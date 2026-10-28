@@ -213,6 +213,7 @@ armazenamento:
     staging_tse: "data/staging/tse"
     staging_emendas: "data/staging/emendas"
     staging_ibge: "data/staging/ibge"
+    processed_mapa: "data/processed/mapa"
 
 # Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
 # `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
@@ -398,6 +399,7 @@ emendas:
   caminhos:
     staging: "data/staging/emendas"
     metadata: "data/metadata/emendas"
+    mapa: "data/processed/mapa"      # tabelas por município (grandes, mudam toda semana): fora do Git
   # Emendas ao orçamento do ano Y são apresentadas em Y-1: a legislatura L (início no ano A) é dona dos
   # orçamentos A+1 ... A+4. Revisável.
   defasagem_ano: 1
@@ -423,9 +425,10 @@ ibge:
   malha_municipios: "BR_Municipios_2024.zip"
   malha_ufs: "BR_UF_2024.zip"
   # Fração de vértices mantida pelo mapshaper (equilíbrio entre detalhe e peso da página).
-  simplificacao_municipios: "4%"
-  simplificacao_ufs: "6%"
+  simplificacao_municipios: "1.4%"
+  simplificacao_ufs: "2.4%"
   mapshaper: "0.6"
+  quantizacao: "4e4"
   capitais: [1100205, 1200401, 1302603, 1400100, 1501402, 1600303, 1721000, 2111300, 2211001, 2304400, 2408102,
              2507507, 2611606, 2704302, 2800308, 2927408, 3106200, 3205309, 3304557, 3550308, 4106902, 4205407,
              4314902, 5002704, 5103403, 5208707, 5300108]
