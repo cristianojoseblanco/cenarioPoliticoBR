@@ -403,7 +403,7 @@ def rodar(cfg: dict) -> int:
 
     L += ["", "## Por tema (apoio ao governo)", "",
           "| Tema | Vitória do governo | " + " | ".join(comps) + " |", "| --- | --- | " + " | ".join("---" for _ in comps) + " |"]
-    pt = tem.pivot(index="tema", columns="comunidade", values="apoio")
+    pt = tem.pivot(index="tema", columns="comunidade", values="apoio") if len(tem) else pd.DataFrame(columns=["vitoria_governo"])
     for t in pt.sort_values("vitoria_governo").index:
         L.append(f"| {t} | {dec(100 * pt.loc[t, 'vitoria_governo'], 1)}% | "
                  + " | ".join(f"{dec(100 * pt.loc[t, c], 0)}%" for c in comps) + " |")

@@ -1,0 +1,16 @@
+{
+  "polo_a": "C1",
+  "polo_b": "C3",
+  "composicao": {
+    "C1": "PL 13, PP 5",
+    "C2": "PSD 8, MDB 6",
+    "C3": "PT 9, MDB 5"
+  },
+  "meses": 25,
+  "pontos": 1,
+  "robustos": 0,
+  "penalidade_fator": 1.0,
+  "min_meses": 3,
+  "ari_mediana": 0.6637211892327957,
+  "trocaram_mediana": 0.1375
+}

@@ -11,7 +11,16 @@ import pandas as pd
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
-MARTS = ROOT / "data" / "marts" / "camara"
+MARTS = ROOT / "data" / "marts" / "camara"   # Câmara (comparação e acompanhados são só da Câmara)
+
+
+def casa_atual() -> str:
+    return st.session_state.get("casa", "camara")
+
+
+def marts() -> Path:
+    """Pasta de resultados da casa escolhida (Câmara ou Senado)."""
+    return ROOT / "data" / "marts" / casa_atual()
 META = ROOT / "data" / "metadata" / "camara"
 
 # Paleta categórica de referência (ordem fixa) — a mesma dos gráficos estáticos.
@@ -20,7 +29,7 @@ CINZA = "#b7b5ae"
 
 
 def legislaturas() -> list[str]:
-    return sorted(p.name[3:] for p in MARTS.glob("leg*") if p.is_dir())
+    return sorted(p.name[3:] for p in marts().glob("leg*") if p.is_dir())
 
 
 @st.cache_data(ttl=3600)
@@ -48,7 +57,13 @@ def leg_atual() -> str:
 
 
 def seletor_legislatura():
-    """Seletor no topo da página; a escolha vale para todas as páginas da sessão."""
+    """Seletores no topo da página (casa e legislatura); a escolha vale para todas as páginas da sessão."""
+    if (ROOT / "data" / "marts" / "senado").exists():
+        casas = ["camara", "senado"]
+        c = st.radio("Casa", casas, index=casas.index(casa_atual()), horizontal=True,
+                     format_func={"camara": "Câmara dos Deputados", "senado": "Senado Federal"}.get,
+                     key=f"radio_casa_{st.session_state.get('_pagina', '')}")
+        st.session_state["casa"] = c
     legs = legislaturas()
     atual = leg_atual()
     if len(legs) > 1:
@@ -59,21 +74,21 @@ def seletor_legislatura():
 
 
 @st.cache_data(ttl=3600)
-def _parquet(leg: str, rel: str) -> pd.DataFrame:
-    return pd.read_parquet(MARTS / f"leg{leg}" / rel)
+def _parquet(casa: str, leg: str, rel: str) -> pd.DataFrame:
+    return pd.read_parquet(ROOT / "data" / "marts" / casa / f"leg{leg}" / rel)
 
 
 @st.cache_data(ttl=3600)
-def _json(leg: str, rel: str) -> dict:
-    return json.loads((MARTS / f"leg{leg}" / rel).read_text(encoding="utf-8"))
+def _json(casa: str, leg: str, rel: str) -> dict:
+    return json.loads((ROOT / "data" / "marts" / casa / f"leg{leg}" / rel).read_text(encoding="utf-8"))
 
 
 def parquet(rel: str) -> pd.DataFrame:
-    return _parquet(leg_atual(), rel)
+    return _parquet(casa_atual(), leg_atual(), rel)
 
 
 def json_(rel: str) -> dict:
-    return _json(leg_atual(), rel)
+    return _json(casa_atual(), leg_atual(), rel)
 
 
 @st.cache_data(ttl=3600)
@@ -102,12 +117,12 @@ def ordem_com(cs) -> list[str]:
 
 
 def composicao() -> dict[str, str]:
-    return _composicao(leg_atual())
+    return _composicao(casa_atual(), leg_atual())
 
 
 @st.cache_data(ttl=3600)
-def _composicao(leg: str) -> dict[str, str]:
-    d = _parquet(leg, "redes/deputados_rede.parquet")
+def _composicao(casa: str, leg: str) -> dict[str, str]:
+    d = _parquet(casa, leg, "redes/deputados_rede.parquet")
     return {c: ", ".join(f"{p} {q}" for p, q in d[d["comunidade"] == c]["partido"].value_counts().head(2).items())
             for c in ordem_com(d["comunidade"])}
 

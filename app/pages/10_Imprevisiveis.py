@@ -1,13 +1,13 @@
 import plotly.graph_objects as go
 import streamlit as st
 
-from dados import MARTS, SERIES, json_, leg_atual, n, parquet, rodape, seletor_legislatura
+from dados import marts, SERIES, json_, leg_atual, n, parquet, rodape, seletor_legislatura
 
 st.set_page_config(page_title="Imprevisíveis · Cenário Político BR", page_icon="🏛️", layout="wide")
 st.title("Quem vota fora do roteiro")
 st.session_state["_pagina"] = "10_Imprevisiveis.py"
 seletor_legislatura()
-if not (MARTS / f"leg{leg_atual()}" / "modelo" / "resumo.json").exists():
+if not (marts() / f"leg{leg_atual()}" / "modelo" / "resumo.json").exists():
     st.info("Ainda não calculado para esta legislatura.")
     rodape()
     st.stop()

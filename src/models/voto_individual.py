@@ -155,7 +155,7 @@ def rodar(c: dict) -> int:
     for col, nome in b.attrs["temas"].items():
         s = b[b[col] > 0]
         temas.append({"tema": nome, "votos": int(len(s)), "imprevisibilidade": float(s["surpresa"].mean())})
-    temas = pd.DataFrame(temas).sort_values("imprevisibilidade", ascending=False)
+    temas = pd.DataFrame(temas, columns=["tema", "votos", "imprevisibilidade"]).sort_values("imprevisibilidade", ascending=False)
     temas.to_parquet(saida / "temas.parquet", index=False)
     b["mes"] = pd.to_datetime(b["data"]).dt.to_period("M").dt.to_timestamp()
     mensal = b.groupby("mes").agg(votos=("y", "size"), imprevisibilidade=("surpresa", "mean")).reset_index()
@@ -171,7 +171,7 @@ def rodar(c: dict) -> int:
                            LEFT JOIN {_src(c, 'votacao_proposicao')} vp USING (votacao_id)
                            LEFT JOIN {_src(c, 'proposicoes')} p USING (proposicao_id)
                            GROUP BY 1, 2, 3""").df().set_index("votacao_id")
-    vv = b.groupby("votacao_id").agg(votos=("y", "size"), surpresas=("surpresa", "sum")).query("votos >= 100")
+    vv = b.groupby("votacao_id").agg(votos=("y", "size"), surpresas=("surpresa", "sum")).query(f"votos >= {int(m.get('min_votos_votacao', 100))}")
     vv["frac"] = vv["surpresas"] / vv["votos"]
     vv = vv.sort_values("surpresas", ascending=False).head(int(m.get("top_votacoes", 15))).join(info, how="left")
     vv["texto"] = vv["ementa"].fillna(vv["descricao"]).fillna("").str.split("\n").str[0].str[:200]

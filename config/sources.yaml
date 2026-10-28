@@ -229,6 +229,10 @@ contexto:
     - {nome: "Rodrigo Maia", partido: "DEM-RJ", inicio: "2019-02-01", fim: "2021-02-01"}
     - {nome: "Arthur Lira", partido: "PP-AL", inicio: "2021-02-01", fim: "2025-02-01"}
     - {nome: "Hugo Motta", partido: "Republicanos-PB", inicio: "2025-02-01", fim: null}
+  presidentes_senado:
+    - {nome: "Davi Alcolumbre", partido: "DEM-AP", inicio: "2019-02-01", fim: "2021-02-01"}
+    - {nome: "Rodrigo Pacheco", partido: "PSD-MG", inicio: "2021-02-01", fim: "2025-02-01"}
+    - {nome: "Davi Alcolumbre", partido: "União-AP", inicio: "2025-02-01", fim: null}
   eventos:
     - {data: "2022-10-02", rotulo: "Eleições gerais"}
     - {data: "2024-10-06", rotulo: "Eleições municipais"}
@@ -364,3 +368,4 @@ senado:
       min_votacoes_mes: 3
     modelo:
       min_votos_deputado: 50
+      min_votos_votacao: 40

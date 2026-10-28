@@ -96,6 +96,15 @@ Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças, Acomp
 `src/site/modelo.html`. O workflow gera e publica no GitHub Pages a cada execução
 (requer Settings → Pages → Source: **GitHub Actions**).
 
+## Senado (Etapa 7b)
+
+- Fonte: dados abertos do Senado (`/votacao?ano=` e orientações de bancada por ano), em `src/ingestion/senado.py`.
+- `src/processing/senado.py` converte para o MESMO formato da camada processada da Câmara (`data/processed/senado/`),
+  e `python -m src.senado` roda rede, fatias, governabilidade, dimensões, dinâmica, mudanças e modelo com os
+  parâmetros de `senado.analise` (81 senadores, cerca de 70 votações nominais abertas por ano).
+- Saídas em `data/marts/senado/leg<N>/` e relatórios em `artifacts/reports/senado/leg<N>/`.
+- O Senado não publica temas no padrão da Câmara: análises por tema e agenda ficam de fora.
+
 ## Rodar localmente
 
 ```bash
@@ -117,6 +126,7 @@ python -m src.networks.mudancas
 python -m src.networks.multicamadas
 python -m src.models.voto_individual
 python -m src.governance.acompanhamento
+python -m src.ingestion.senado && python -m src.processing.senado && python -m src.senado
 python -m src.site.gerar
 ```
 

@@ -1,4 +1,4 @@
-name: Ingestão Câmara
+name: Ingestão e análises (Câmara e Senado)
 
 on:
   workflow_dispatch:
@@ -84,12 +84,26 @@ jobs:
       - name: Deputados acompanhados
         run: python -m src.governance.acompanhamento
 
+      - name: Senado · ingestão
+        continue-on-error: true
+        env:
+          ANOS: ${{ github.event.inputs.anos }}
+        run: python -m src.ingestion.senado
+
+      - name: Senado · camada processada
+        continue-on-error: true
+        run: python -m src.processing.senado
+
+      - name: Senado · análises
+        continue-on-error: true
+        run: python -m src.senado
+
       - name: Publicar resumo
         if: always()
         run: |
           cat artifacts/reports/qualidade_camara.md >> "$GITHUB_STEP_SUMMARY" || true
           cat artifacts/reports/processed_camara.md >> "$GITHUB_STEP_SUMMARY" || true
-          for f in artifacts/reports/leg*/*.md artifacts/reports/comparacao.md artifacts/reports/acompanhamento.md; do
+          for f in artifacts/reports/leg*/*.md artifacts/reports/comparacao.md artifacts/reports/acompanhamento.md artifacts/reports/senado/leg*/*.md; do
             [ -f "$f" ] && { echo "## $f"; cat "$f"; } >> "$GITHUB_STEP_SUMMARY"
           done || true
 

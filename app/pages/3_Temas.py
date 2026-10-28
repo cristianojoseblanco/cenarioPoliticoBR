@@ -14,6 +14,10 @@ polos = json_("fatias/polos.json")
 res = parquet("fatias/resumo.parquet")
 meta = parquet("fatias/fatias.parquet")
 tem = res[res["tipo"] == "tema"]
+if tem.empty:
+    st.info("Sem temas oficiais nesta casa: o Senado não publica temas no mesmo padrão da Câmara.")
+    rodape()
+    st.stop()
 gov = parquet("governabilidade/temas.parquet")
 
 coms = ordem_com(tem["comunidade_global"])

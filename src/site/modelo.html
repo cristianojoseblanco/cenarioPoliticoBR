@@ -226,6 +226,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#plenario"><svg width="22" height="12" viewBox="0 0 22 12" aria-hidden="true"><path d="M1 11a10 10 0 0 1 20 0" fill="none" stroke="var(--h-accent)" stroke-width="2.2"/><path d="M6 11a5 5 0 0 1 10 0" fill="none" stroke="var(--h-accent)" stroke-width="2.2" opacity=".55"/></svg>Cenário Político BR</a>
+    <div class="legbtns" id="casaSeg" role="group" aria-label="Casa"></div>
     <div class="legbtns" id="legSeg" role="group" aria-label="Legislatura"></div>
     <nav class="secoes" aria-label="Seções" id="nav">
       <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#mudancas">Mudanças</a>
@@ -396,7 +397,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     <div class="cols">
       <div class="card"><h3>Mais imprevisíveis</h3><p class="nota">Barra: % de votos imprevisíveis. Traço: mediana do partido.</p><div class="tabs" role="tablist" id="moTabs"></div><ol class="rank" id="moRank"></ol></div>
       <div class="card" style="align-content:start"><h3>O que mais pesa na previsão</h3><p class="nota">Quanto a previsão piora quando a informação é embaralhada.</p><div id="moImp"></div>
-        <h3 style="margin-top:8px">Temas com mais votos imprevisíveis</h3><div id="moTemas"></div></div>
+        <h3 style="margin-top:8px" id="moTemasTit">Temas com mais votos imprevisíveis</h3><div id="moTemas"></div></div>
     </div>
     <div class="card"><h3>Votações com mais votos imprevisíveis</h3><ul class="lista-v" id="moVot"></ul></div>
   </div>
@@ -498,10 +499,13 @@ const periodoLeg = l => `${anoF(l.ini)}–${+anoF(l.fim) - 1}`;
 const curtoGov = l => { const g = l.governo || ""; if (/Bolsonaro/.test(g)) return "Bolsonaro"; const k = g.match(/Lula \((\d+)/); return k ? `Lula ${k[1]}` : g; };
 const nomeLeg = l => `${l.leg}ª · ${curtoGov(l)}`;
 
-let L = D.legislaturas[D.legislaturas.length - 1];
+const daCasa = c => D.legislaturas.filter(l => (l.casa || "camara") === c);
+let L = daCasa("camara").slice(-1)[0] || D.legislaturas[D.legislaturas.length - 1];
 let selecionado = null;
 const ocultas = new Set();
-try { const s = localStorage.getItem("cpbr_leg"); const f = D.legislaturas.find(l => l.leg === s); if (f) L = f; } catch (e) {}
+try { const s = localStorage.getItem("cpbr_leg2"); const f = D.legislaturas.find(l => `${l.casa}-${l.leg}` === s); if (f) L = f; } catch (e) {}
+const ehSenado = () => L.casa === "senado";
+const presidentes = () => (D.contexto[ehSenado() ? "presidentes_senado" : "presidentes_camara"] || []);
 
 function composicao(c, k = 2) { const x = L.comunidades.find(q => q.id === c); return x ? x.comp.slice(0, k).map(([p, q]) => `${p} ${q}`).join(", ") : ""; }
 function rotulo(c) { return `${c} · ${composicao(c)}`; }
@@ -509,16 +513,24 @@ function posTip(tip, x, y, w) { tip.style.left = Math.max(4, Math.min(x + 14, w 
 const segOn = (id, fn) => { $(id).onclick = e => { const b = e.target.closest("button"); if (!b) return; [...$(id).children].forEach(x => x.setAttribute("aria-pressed", x === b)); fn(b.dataset.v); }; };
 
 /* ================= topo / abertura ================= */
+function escolher(l) { if (l === L) return; L = l; selecionado = null; ocultas.clear(); try { localStorage.setItem("cpbr_leg2", `${l.casa}-${l.leg}`); } catch (e) {} tudo(true); }
 function topo() {
+  const cs = $("#casaSeg"); cs.innerHTML = "";
+  const casas = [...new Set(D.legislaturas.map(l => l.casa || "camara"))];
+  cs.hidden = casas.length < 2;
+  casas.forEach(c => { const b = document.createElement("button"); b.textContent = c === "senado" ? "Senado" : "Câmara";
+    b.setAttribute("aria-pressed", (L.casa || "camara") === c);
+    b.onclick = () => { if ((L.casa || "camara") === c) return; const mesmo = daCasa(c).find(x => x.leg === L.leg); escolher(mesmo || daCasa(c).slice(-1)[0]); };
+    cs.appendChild(b); });
   const seg = $("#legSeg"); seg.innerHTML = "";
-  D.legislaturas.forEach(l => {
+  daCasa(L.casa || "camara").forEach(l => {
     const b = document.createElement("button"); b.textContent = `${l.leg}ª · ${curtoGov(l)}`; b.title = `${l.nome} · ${l.governo} · ${periodoLeg(l)}`;
     b.setAttribute("aria-pressed", l === L);
-    b.onclick = () => { if (l === L) return; L = l; selecionado = null; ocultas.clear(); try { localStorage.setItem("cpbr_leg", l.leg); } catch (e) {} tudo(true); };
+    b.onclick = () => escolher(l);
     seg.appendChild(b);
   });
-  const pres = (D.contexto.presidentes_camara || []).filter(p => p.inicio < L.fim && (!p.fim || p.fim > L.ini)).map(p => p.nome).join(", ");
-  $("#govLinha").innerHTML = `<b>${L.governo}</b><span>${L.nome} · ${periodoLeg(L)} · presidência da Câmara: ${pres}</span>`;
+  const pres = [...new Set(presidentes().filter(p => p.inicio < L.fim && (!p.fim || p.fim > L.ini)).map(p => p.nome))].join(", ");
+  $("#govLinha").innerHTML = `<b>${ehSenado() ? "Senado Federal · " : ""}${L.governo}</b><span>${L.nome} · ${periodoLeg(L)} · presidência ${ehSenado() ? "do Senado" : "da Câmara"}: ${pres}</span>`;
   const cps = L.janelas.map(j => j.cp).filter(v => v != null);
   const dr = L.din ? L.din.resumo : null;
   const k = [
@@ -678,7 +690,7 @@ function rede() {
 function eixoTempo(svg, W, H, m, t0, t1, rotulos = true) {
   const X = t => m.l + (+new Date(t) - t0) / (t1 - t0 || 1) * (W - m.l - m.r);
   const clip = (a, b) => [Math.max(+new Date(a), t0), Math.min(b ? +new Date(b) : t1, t1)];
-  (D.contexto.presidentes_camara || []).forEach((p, k) => { const [a, b] = clip(p.inicio, p.fim); if (b <= a) return;
+  presidentes().forEach((p, k) => { const [a, b] = clip(p.inicio, p.fim); if (b <= a) return;
     if (k % 2) el("rect", {class: "band", x: X(a), y: m.t, width: X(b) - X(a), height: H - m.t - m.b, opacity: .55}, svg);
     if (rotulos && X(b) - X(a) > 70) txt(svg, X(a) + 6, m.t + 11, `Pres. ${p.nome}`, {class: "ctxlbl"}); });
   (D.marcadores || []).forEach(mk => { const [a, b] = clip(mk.inicio, mk.fim); if (b <= a) return;
@@ -781,7 +793,7 @@ function clima() {
 
 /* ================= agenda (áreas empilhadas) ================= */
 function agenda() {
-  const svg = $("#agSvg"); svg.innerHTML = ""; const A = L.din ? L.din.agenda : null; if (!A) return;
+  const svg = $("#agSvg"); svg.innerHTML = ""; const A = L.din ? L.din.agenda : null; if (!A || !A.length) return;
   const W = 960, H = 360, m = {l: 46, r: 16, t: 16, b: 28};
   const tris = [...new Set(A.map(a => a.t))].sort();
   const tot = {}; A.forEach(a => tot[a.tema] = (tot[a.tema] || 0) + a.n);
@@ -814,7 +826,7 @@ function agenda() {
 /* ================= temas ================= */
 let temaModo = "pos";
 function temas() {
-  const svg = $("#temaChart"); svg.innerHTML = ""; const T = L.temas; const isPos = temaModo === "pos";
+  const svg = $("#temaChart"); svg.innerHTML = ""; const T = L.temas; const isPos = temaModo === "pos"; if (!T.length) return;
   const W = 960, rowH = 46, m = {l: 250, r: 20, t: 26, b: 30}; const H = m.t + m.b + rowH * T.length; svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
   const x0 = isPos ? -1 : 0, x1 = 1; const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
   (isPos ? [-1, -.5, 0, .5, 1] : [0, .25, .5, .75, 1]).forEach(v => { el("line", {class: v === 0 && isPos ? "zero" : "grid", x1: X(v), x2: X(v), y1: m.t - 8, y2: H - m.b}, svg);
@@ -862,8 +874,9 @@ function partidos() {
 /* ================= comparação ================= */
 function comparacao() {
   const box = $("#compBox"); const C = D.comparacao;
-  if (!C || D.legislaturas.length < 2) { box.innerHTML = `<div class="card"><p class="muted">A comparação aparece quando as duas legislaturas estiverem processadas.</p></div>`; return; }
-  const legs = C.legs.map(l => D.legislaturas.find(x => x.leg === l)); const [l0, l1] = C.legs; const [g0, g1] = legs.map(curtoGov);
+  if (!C || daCasa("camara").length < 2) { box.innerHTML = `<div class="card"><p class="muted">A comparação aparece quando as duas legislaturas estiverem processadas.</p></div>`; return; }
+  $("#comparacao").hidden = ehSenado(); if (ehSenado()) return;
+  const legs = C.legs.map(l => D.legislaturas.find(x => x.leg === l && (x.casa || "camara") === "camara")); const [l0, l1] = C.legs; const [g0, g1] = legs.map(curtoGov);
   $("#compTit").textContent = `${g0} e ${g1} no Plenário`;
   const cartao = l => { const cps = l.janelas.map(j => j.cp); const r = l.din ? l.din.resumo : null; const pc = c => l.comunidades.find(x => x.id === c).comp.slice(0, 2).map(x => x.join(" ")).join(", ");
     return `<div class="card"><span class="eyebrow">${l.nome} · ${periodoLeg(l)}</span><h3 style="font-size:1.5rem">${l.governo}</h3>
@@ -1068,9 +1081,24 @@ function imprevisiveis() {
   const nomesV = {colegas_sim: "Como votaram os colegas de partido", plenario_sim: "Como votou o resto do Plenário", dep_apoio_gov: "Apoio do deputado ao governo (histórico)", dep_disciplina: "Disciplina do deputado (histórico)", or_governo: "Orientação do governo", dep_sim: "Quanto o deputado vota Sim", or_partido: "Orientação do partido", colegas_n: "Tamanho da bancada na votação", partido_liberou: "Partido liberou o voto", partido_orientou: "Partido orientou", comunidade: "Grupo de votação", dep_votos_treino: "Quantos votos o deputado tem"};
   const imx = Math.max(...M.imp.map(x => x.i));
   $("#moImp").innerHTML = M.imp.map(x => `<div class="cmp" style="grid-template-columns:1fr"><div style="border:0;padding:4px 0;gap:4px"><span class="ref">${nomesV[x.v] || x.v.replace("tema: ", "Tema: ")}</span><div class="duo"><i style="width:${(100 * Math.max(0, x.i) / imx).toFixed(1)}%"></i></div></div></div>`).join("");
+  $("#moTemasTit").hidden = !M.temas.length; $("#moVot").closest(".card").hidden = !M.votacoes.length;
   const tmx = Math.max(...M.temas.map(x => x.i));
   $("#moTemas").innerHTML = M.temas.slice(0, 6).map(x => `<div class="cmp" style="grid-template-columns:1fr"><div style="border:0;padding:4px 0;gap:4px"><span class="ref">${x.t}: <b>${pctf(x.i)}</b> de ${fmt.format(x.v)} votos</span><div class="duo"><i style="width:${(100 * x.i / tmx).toFixed(1)}%;background:var(--warn)"></i></div></div></div>`).join("");
   $("#moVot").innerHTML = M.votacoes.map(v => `<li><b>${new Date(v.d + "T12:00:00").toLocaleDateString("pt-BR")} · ${v.prop || "votação"}</b><span>${fmt.format(v.s)} votos imprevisíveis em ${fmt.format(v.v)} (${pctf(v.s / v.v)})</span><span class="muted">${v.t || ""}</span></li>`).join("");
+}
+
+/* Senado: troca "deputado" por "senador" nos textos fixos e esconde seções sem dados */
+const originais = new Map();
+function termos() {
+  originais.forEach((t, n) => { if (n.isConnected) n.nodeValue = t; }); originais.clear();
+  $("#temas").hidden = !L.temas.length; $("#agenda").hidden = !(L.din && L.din.agenda && L.din.agenda.length);
+  document.querySelectorAll("#nav a").forEach(a => { const sec = document.querySelector(a.getAttribute("href")); a.hidden = !!(sec && sec.hidden); });
+  if (!ehSenado()) return;
+  const trocas = [[/Câmara dos Deputados/g, "Senado Federal"], [/CÂMARA DOS DEPUTADOS/g, "SENADO FEDERAL"], [/\bDeputadas\b/g, "Senadoras"], [/\bdeputadas\b/g, "senadoras"], [/\bDeputados\b/g, "Senadores"], [/\bdeputados\b/g, "senadores"],
+    [/\bDeputada\b/g, "Senadora"], [/\bdeputada\b/g, "senadora"], [/\bDeputado\b/g, "Senador"], [/\bdeputado\b/g, "senador"], [/da Câmara\b/g, "do Senado"]];
+  document.querySelectorAll("main > section:not(#glossario):not(#acompanhados):not(#comparacao)").forEach(sec => {
+    const w = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT); let n;
+    while ((n = w.nextNode())) { const t = n.nodeValue; if (!/[Dd]eputad|DEPUTAD|da Câmara/.test(t)) continue; let u = t; trocas.forEach(([r, x]) => u = u.replace(r, x)); if (u !== t) { originais.set(n, t); n.nodeValue = u; } } });
 }
 
 function rodape() {
@@ -1081,7 +1109,7 @@ segOn("#redeCor", v => { redeModo = v; rede(); });
 segOn("#tempoMet", v => { tempoModo = v; tempo(); });
 segOn("#temaMet", v => { temaModo = v; temas(); });
 segOn("#mudMet", v => { mudModo = v; mudancas(); });
-function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); }
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
 tudo(true);
 // navegação: destaca a seção visível
 const links = [...document.querySelectorAll("#nav a")];

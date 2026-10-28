@@ -82,7 +82,9 @@ def pelt(X: np.ndarray, fator: float, min_size: int) -> list[int]:
 def eventos_contexto(cfg: dict) -> list[tuple[pd.Timestamp, str]]:
     ctx = cfg.get("contexto", {})
     ev = [(pd.Timestamp(g["inicio"]), f"início do {g['nome']}") for g in ctx.get("governos", [])]
-    ev += [(pd.Timestamp(p["inicio"]), f"{p['nome']} assume a presidência da Câmara") for p in ctx.get("presidentes_camara", [])]
+    casa = "senado" if cfg.get("casa") == "senado" else "camara"
+    nome_casa = "do Senado" if casa == "senado" else "da Câmara"
+    ev += [(pd.Timestamp(p["inicio"]), f"{p['nome']} assume a presidência {nome_casa}") for p in ctx.get(f"presidentes_{casa}", [])]
     ev += [(pd.Timestamp(e["data"]), e["rotulo"]) for e in ctx.get("eventos", [])]
     for mk in cfg.get("marcadores_periodo", []):
         ev += [(pd.Timestamp(mk["inicio"]), f"início: {mk['rotulo']}"), (pd.Timestamp(mk["fim"]), f"fim: {mk['rotulo']}")]

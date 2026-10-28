@@ -302,7 +302,8 @@ def rodar(cfg: dict) -> int:
 
     ordem_temas = [t for t in cont_temas.index if t in set(meta.loc[meta["tipo"] == "tema", "fatia"])]
     grafico_janelas(res, comps, polo_a, polo_b, saida / "posicao_janelas.png")
-    grafico_temas(res, comps, ordem_temas, polo_a, polo_b, saida / "posicao_temas.png")
+    if ordem_temas:  # o Senado não tem temas oficiais
+        grafico_temas(res, comps, ordem_temas, polo_a, polo_b, saida / "posicao_temas.png")
 
     # ---------------- relatório
     cs = list(comps)

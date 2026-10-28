@@ -182,7 +182,10 @@ def partido_modal(votos: pd.DataFrame) -> pd.Series:
 # ---------------------------------------------------------------- relatório
 
 def n(x) -> str:
-    return f"{int(x):,}".replace(",", ".")
+    try:
+        return f"{int(x):,}".replace(",", ".")
+    except (TypeError, ValueError):
+        return "—"
 
 
 def dec(x, d=3) -> str:
@@ -336,7 +339,7 @@ def rodar(cfg: dict) -> int:
     L = [
         "# Rede de votação — Plenário",
         "",
-        "Parâmetros em `config/sources.yaml` → `redes`. Data dos dados: ver `data/metadata/camara`.",
+        f"Parâmetros em `config/sources.yaml` → `redes`. Data dos dados: ver `data/metadata/{cfg.get('casa', 'camara')}`.",
         "",
         "## Dados",
         "",

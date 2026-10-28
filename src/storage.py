@@ -50,14 +50,24 @@ def baixar(pacotes: list[str] | None = None) -> int:
     return 1 if falhas == len(alvo) else 0
 
 
+def _rodar(cmd: list[str]) -> None:
+    """Executa e, se falhar, registra a mensagem como anotação de erro do GitHub Actions (legível pela API)."""
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    print(r.stdout, end="")
+    if r.returncode != 0:
+        msg = (r.stderr or r.stdout or "").strip().replace("\n", " | ")[:900]
+        print(f"::error title=storage::{' '.join(cmd[:3])}: {msg}")
+        raise subprocess.CalledProcessError(r.returncode, cmd, r.stdout, r.stderr)
+
+
 def publicar() -> int:
     a = _cfg()
     tag = a["release_tag"]
     existe = subprocess.run(["gh", "release", "view", tag], capture_output=True).returncode == 0
     # A tag do Release fica sempre no commit atual: uma tag antiga prenderia versões velhas
     # do histórico (e os arquivos grandes de antes) no GitHub.
-    subprocess.run(["git", "tag", "-f", tag], check=True)
-    subprocess.run(["git", "push", "--force", "origin", f"refs/tags/{tag}"], check=True)
+    _rodar(["git", "tag", "-f", tag])
+    _rodar(["git", "push", "--force", "origin", f"refs/tags/{tag}"])
     if not existe:
         subprocess.run(["gh", "release", "create", tag, "--title", "Dados (pacote corrente)",
                         "--notes", "Camadas staging e processed. Substituídas a cada execução do workflow; "
@@ -75,7 +85,7 @@ def publicar() -> int:
             print(f"{nome}: {arq.stat().st_size / 1e6:.1f} MB")
             arquivos.append(str(arq))
         if arquivos:
-            subprocess.run(["gh", "release", "upload", tag, *arquivos, "--clobber"], check=True)
+            _rodar(["gh", "release", "upload", tag, *arquivos, "--clobber"])
     return 0
 
 

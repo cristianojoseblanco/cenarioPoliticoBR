@@ -1,0 +1,18 @@
+{
+  "polo_a": "C2",
+  "polo_b": "C3",
+  "composicao": {
+    "C1": "MDB 10, PSD 10",
+    "C2": "PP 6, MDB 4",
+    "C3": "PT 6, MDB 3",
+    "C4": "PSDB 6, PODE 6"
+  },
+  "nucleo_a": 22,
+  "nucleo_b": 16,
+  "tamanho_nucleos": {
+    "C1": 21,
+    "C2": 22,
+    "C3": 16,
+    "C4": 0
+  }
+}

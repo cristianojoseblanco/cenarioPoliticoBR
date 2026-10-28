@@ -1,13 +1,13 @@
 import plotly.graph_objects as go
 import streamlit as st
 
-from dados import MARTS, SERIES, json_, leg_atual, n, parquet, rodape, seletor_legislatura
+from dados import marts, SERIES, json_, leg_atual, n, parquet, rodape, seletor_legislatura
 
 st.set_page_config(page_title="Frentes · Cenário Político BR", page_icon="🏛️", layout="wide")
 st.title("Frentes parlamentares e coautoria")
 st.session_state["_pagina"] = "9_Frentes.py"
 seletor_legislatura()
-if not (MARTS / f"leg{leg_atual()}" / "multicamadas" / "resumo.json").exists():
+if not (marts() / f"leg{leg_atual()}" / "multicamadas" / "resumo.json").exists():
     st.info("Ainda não calculado para esta legislatura.")
     rodape()
     st.stop()

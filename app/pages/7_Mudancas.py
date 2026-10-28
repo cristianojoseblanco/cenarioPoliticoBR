@@ -2,14 +2,14 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from dados import MARTS, SERIES, json_, leg_atual, marcar_periodos, n, parquet, rodape, rotulo, seletor_legislatura
+from dados import marts, SERIES, json_, leg_atual, marcar_periodos, n, parquet, rodape, rotulo, seletor_legislatura
 
 st.set_page_config(page_title="Mudanças · Cenário Político BR", page_icon="🏛️", layout="wide")
 st.title("Quando o Plenário mudou de comportamento")
 st.session_state["_pagina"] = "7_Mudancas.py"
 seletor_legislatura()
 
-if not (MARTS / f"leg{leg_atual()}" / "mudancas" / "resumo.json").exists():
+if not (marts() / f"leg{leg_atual()}" / "mudancas" / "resumo.json").exists():
     st.info("Ainda não calculado para esta legislatura.")
     rodape()
     st.stop()

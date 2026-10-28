@@ -1,0 +1,82 @@
+{
+  "parametros": {
+    "codificacao": "A",
+    "minoria": 0.025,
+    "k": 8,
+    "min_votos_comuns": 40,
+    "orgaos": [
+      "PLEN"
+    ],
+    "periodo": {
+      "inicio": "2019-02-01",
+      "fim": "2023-01-31"
+    },
+    "leiden": {
+      "resolucao": 1.0,
+      "sementes": 20
+    }
+  },
+  "votacoes": {
+    "votacoes_total": 367,
+    "sem_voto_com_valor": 0,
+    "abaixo_minoria": 167,
+    "incluidas": 200
+  },
+  "deputados_na_matriz": 108,
+  "deputados_no_grafo": 85,
+  "arestas": 512,
+  "comunidades": {
+    "C1": 29,
+    "C2": 25,
+    "C3": 16,
+    "C4": 15
+  },
+  "modularidade": 0.46685814554942623,
+  "estabilidade_sementes_ari": 0.7838438504127557,
+  "ari_com_partido": 0.16097585560159403,
+  "nmi_com_partido": 0.3988547042464465,
+  "sensibilidade": {
+    "codificacao=B": {
+      "ari_vs_principal": 0.9220772606507143,
+      "comunidades": 4,
+      "modularidade": 0.4716372785942922,
+      "deputados": 85,
+      "votacoes": 199
+    },
+    "codificacao=C": {
+      "ari_vs_principal": 0.9011982492645476,
+      "comunidades": 4,
+      "modularidade": 0.4750599158743189,
+      "deputados": 85,
+      "votacoes": 200
+    },
+    "minoria=0.0": {
+      "ari_vs_principal": 0.6538507605701281,
+      "comunidades": 5,
+      "modularidade": 0.45979730583069767,
+      "deputados": 88,
+      "votacoes": 367
+    },
+    "minoria=0.1": {
+      "ari_vs_principal": 0.9782194624050838,
+      "comunidades": 4,
+      "modularidade": 0.48288374696940156,
+      "deputados": 85,
+      "votacoes": 159
+    },
+    "knn=10": {
+      "ari_vs_principal": 0.9307637565056347,
+      "comunidades": 4,
+      "modularidade": 0.44541827910885556,
+      "deputados": 85,
+      "votacoes": 200
+    },
+    "knn=25": {
+      "ari_vs_principal": 0.5503867261884549,
+      "comunidades": 3,
+      "modularidade": 0.2989708219971314,
+      "deputados": 85,
+      "votacoes": 200
+    }
+  }
+}

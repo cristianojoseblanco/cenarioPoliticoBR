@@ -35,7 +35,7 @@ def _ler(c, sec, arq):
     return pd.read_parquet(p)
 
 
-def dados_legislatura(leg: str, c: dict) -> dict:
+def dados_legislatura(leg: str, c: dict, casa: str = "camara") -> dict:
     m = _ler(c, "redes", "metricas.json")
     rede = _ler(c, "redes", "deputados_rede.parquet")
     arestas = _ler(c, "redes", "arestas.parquet")
@@ -96,7 +96,7 @@ def dados_legislatura(leg: str, c: dict) -> dict:
 
     tem = res[res["tipo"] == "tema"]
     mt = meta[meta["tipo"] == "tema"].set_index("fatia")
-    gt = gtem.pivot(index="tema", columns="comunidade", values="apoio")
+    gt = gtem.pivot(index="tema", columns="comunidade", values="apoio") if len(gtem) else pd.DataFrame()
     temas = [{
         "t": t, "nv": int(mt.loc[t, "votacoes"]), "cp": _r(mt.loc[t, "conc_entre_polos"]),
         "pos": {r.comunidade_global: _r(r.posicao_media, 3) for r in tem[tem["fatia"] == t].itertuples()},
@@ -245,7 +245,7 @@ def dados_legislatura(leg: str, c: dict) -> dict:
 
     per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
-        "leg": leg, "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
+        "leg": leg, "casa": casa, "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
         "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
         "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
@@ -302,6 +302,11 @@ def dados_acompanhamento(cfg) -> list | None:
 def main() -> int:
     cfg = load_config()
     legs = [dados_legislatura(leg, c) for leg, c in por_legislatura(cfg) if legislatura_tem_dados(c)]
+    if "senado" in cfg:
+        from src.config import para_senado
+        for leg, c in por_legislatura(para_senado(cfg)):
+            if legislatura_tem_dados(c) and (ROOT / c["governabilidade"]["saida"] / "resumo.json").exists():
+                legs.append(dados_legislatura(leg, c, "senado"))
     try:
         meta = json.loads((ROOT / "data/metadata/camara/_ultima_execucao.json").read_text(encoding="utf-8"))
         atualizado = meta["executado_em"][:10]
