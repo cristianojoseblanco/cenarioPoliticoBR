@@ -67,12 +67,14 @@ def main() -> int:
     em.columns = [_col(c) for c in em.columns]
     em.to_parquet(out / "emendas.parquet", index=False)
     partes = []
-    for ch in _csv(z, "EmendasParlamentares_PorFavorecido.csv", chunksize=500_000,
-                   usecols=["Código da Emenda", "Ano/Mês", "Valor Recebido"]):
-        ch.columns = ["codigo_emenda", "ano_mes", "valor"]
-        ch["valor"] = pd.to_numeric(ch["valor"].str.replace(".", "", regex=False).str.replace(",", ".", regex=False),
-                                    errors="coerce").fillna(0)
-        partes.append(ch.groupby(["codigo_emenda", "ano_mes"], as_index=False)["valor"].sum())
+    membro = next(m for m in z.namelist() if Path(m).name == "EmendasParlamentares_PorFavorecido.csv")
+    with z.open(membro) as f:  # lê em pedaços DENTRO do with (o arquivo precisa ficar aberto)
+        for ch in pd.read_csv(io.TextIOWrapper(f, encoding="latin-1"), sep=";", dtype=str, chunksize=500_000,
+                              usecols=["Código da Emenda", "Ano/Mês", "Valor Recebido"]):
+            ch.columns = ["codigo_emenda", "ano_mes", "valor"]
+            ch["valor"] = pd.to_numeric(ch["valor"].str.replace(".", "", regex=False).str.replace(",", ".", regex=False),
+                                        errors="coerce").fillna(0)
+            partes.append(ch.groupby(["codigo_emenda", "ano_mes"], as_index=False)["valor"].sum())
     pag = pd.concat(partes).groupby(["codigo_emenda", "ano_mes"], as_index=False)["valor"].sum()
     pag.to_parquet(out / "pagamentos.parquet", index=False)
     tmp.unlink()

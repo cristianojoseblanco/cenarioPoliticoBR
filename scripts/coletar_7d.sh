@@ -2,7 +2,8 @@
 # Coleta das fontes da Etapa 7d (emendas, IBGE, TSE com presidente) para inspeção fora do Actions.
 # Cada etapa que falhar deixa a mensagem de erro como anotação (legível pela API do GitHub).
 set -uo pipefail
-for mod in src.ingestion.emendas src.ingestion.ibge src.ingestion.tse; do
+MODS="${*:-src.ingestion.emendas src.ingestion.ibge src.ingestion.tse}"
+for mod in $MODS; do
   if ! python -m "$mod" > "/tmp/$mod.out" 2> "/tmp/$mod.err"; then
     echo "::error title=$mod::$(tail -c 900 "/tmp/$mod.err" | tr '\n' ' ' | tr -s ' ')"
   fi

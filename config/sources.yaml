@@ -412,12 +412,13 @@ ibge:
     metadata: "data/metadata/ibge"
     geo: "data/marts/geo"
   dias_validade: 30
+  # {n} = municípios de uma UF (consulta repetida para as 27 UFs).
   tabelas:
-    censo_area_densidade: "/t/4714/n6/all/v/all/p/2022"        # população residente, área, densidade (Censo 2022)
-    populacao_estimada: "/t/6579/n6/all/v/9324/p/last%201"      # estimativa mais recente
-    alfabetizacao: "/t/9543/n6/all/v/2513/p/2022"               # taxa de alfabetização 15+ (Censo 2022)
-    situacao_domicilio: "/t/9923/n6/all/v/93/p/2022/c1/all"     # população urbana e rural (Censo 2022)
-    pib: "/t/5938/n6/all/v/37/p/last%201"                       # PIB a preços correntes (mil R$)
+    censo_area_densidade: "/t/4714/n6/{n}/v/all/p/2022"        # população residente, área, densidade (Censo 2022)
+    populacao_estimada: "/t/6579/n6/{n}/v/9324/p/last%201"      # estimativa mais recente
+    alfabetizacao: "/t/9543/n6/{n}/v/2513/p/2022"               # taxa de alfabetização 15+ (Censo 2022)
+    situacao_domicilio: "/t/9923/n6/{n}/v/93/p/2022/c1/all"     # população urbana e rural (Censo 2022)
+    pib: "/t/5938/n6/{n}/v/37/p/last%201"                       # PIB a preços correntes (mil R$)
   geoftp: "https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2024/Brasil"
   malha_municipios: "BR_Municipios_2024.zip"
   malha_ufs: "BR_UF_2024.zip"

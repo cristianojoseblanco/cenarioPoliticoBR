@@ -30,7 +30,14 @@ import requests
 from src.config import ROOT, load_config
 
 
+UFS = [11, 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 32, 33, 35, 41, 42, 43, 50, 51, 52, 53]
+
+
 def sidra(caminho: str, http: dict) -> pd.DataFrame:
+    """Consulta o SIDRA. Com `{n}` no caminho, faz uma consulta por UF (municípios da UF) e junta:
+    o SIDRA recusa a consulta de todos os municípios de uma vez."""
+    if "{n}" in caminho:
+        return pd.concat([sidra(caminho.replace("{n}", f"in%20n3%20{uf}"), http) for uf in UFS], ignore_index=True)
     url = f"https://apisidra.ibge.gov.br/values{caminho}"
     for tentativa in range(1, 5):
         try:
