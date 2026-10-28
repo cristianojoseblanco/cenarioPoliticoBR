@@ -1,6 +1,6 @@
 # Dimensões de voto
 
-85 deputados (com valor em 30%+ das votações) × 200 votações.
+85 senadores (com valor em 30%+ das votações) × 200 votações.
 
 | Dimensão | Variância explicada | Corr. com eixo entre polos | Corr. com apoio ao governo | Corr. com participação |
 | --- | --- | --- | --- | --- |

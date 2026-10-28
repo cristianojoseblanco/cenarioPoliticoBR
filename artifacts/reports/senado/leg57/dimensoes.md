@@ -1,6 +1,6 @@
 # Dimensões de voto
 
-80 deputados (com valor em 30%+ das votações) × 109 votações.
+80 senadores (com valor em 30%+ das votações) × 109 votações.
 
 | Dimensão | Variância explicada | Corr. com eixo entre polos | Corr. com apoio ao governo | Corr. com participação |
 | --- | --- | --- | --- | --- |
@@ -38,13 +38,13 @@ Votações em que votar Sim mais aproxima do lado positivo:
 
 - 2025-12-17 · PL 2234/2022 · Dispõe sobre a exploração de jogos e apostas em todo o território nacional; altera a Lei nº 7.291, de 19 de dezembro de 1984; e revoga o Dec
 - 2025-12-17 · RQS 857/2024 · Requer urgência para o Projeto de Lei nº 2234/2022, nos termos dos arts. 336, III, e 338, III, do Regimento Interno do Senado Federal.
-- 2025-06-25 · PLP 177/2023 · Fixa o número de Deputados Federais; estabelece normas para a distribuição das vagas da Câmara dos Deputados entre os Estados e o Distrito F
+- 2025-06-25 · PLP 177/2023 · Fixa o número de Senadores Federais; estabelece normas para a distribuição das vagas do Senado dos Senadores entre os Estados e o Distrito F
 - 2025-06-25 · RQS 451/2025 · Requer urgência para o Projeto de Lei Complementar nº 177/2023, nos termos do art. 336, III, e 338,III, do Regimento Interno do Senado Feder
 - 2025-09-02 · PLP 192/2023 · Altera a Lei Complementar nº 64, de 18 de maio de 1990, e a Lei nº 9.504, de 30 de setembro de 1997 (Lei das Eleições).
 
 Votações em que votar Sim mais aproxima do lado negativo:
 
-- 2025-06-25 · PLP 177/2023 · Fixa o número de Deputados Federais; estabelece normas para a distribuição das vagas da Câmara dos Deputados entre os Estados e o Distrito F
+- 2025-06-25 · PLP 177/2023 · Fixa o número de Senadores Federais; estabelece normas para a distribuição das vagas do Senado dos Senadores entre os Estados e o Distrito F
 - 2026-07-15 · PLP 18/2021 · Altera a Lei Complementar nº 141, de 13 de janeiro de 2012, para permitir que o serviço de atendimento pré-hospitalar dos corpos de bombeiro
 - 2024-02-20 · PL 2253/2022 · Altera a Lei nº 7.210, de 11 de julho de 1984 (Lei de Execução Penal), para dispor sobre a monitoração eletrônica do preso, prever a realiza
 - 2024-11-18 · PLP 175/2024 · Dispõe sobre a proposição e a execução de emendas parlamentares na lei orçamentária anual; e dá outras providências.

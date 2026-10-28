@@ -4,11 +4,11 @@ Parâmetros em `config/sources.yaml` → `fatias`.
 
 ## Eixo de referência
 
-- Polo A = C2 (PP 6, MDB 4); núcleo estável com 22 deputados.
-- Polo B = C3 (PT 6, MDB 3); núcleo estável com 16 deputados.
-- Os polos são as duas comunidades globais com menor concordância entre si, entre as que têm núcleo estável de pelo menos 6 deputados. Sem rótulo ideológico.
+- Polo A = C2 (PP 6, MDB 4); núcleo estável com 22 senadores.
+- Polo B = C3 (PT 6, MDB 3); núcleo estável com 16 senadores.
+- Os polos são as duas comunidades globais com menor concordância entre si, entre as que têm núcleo estável de pelo menos 6 senadores. Sem rótulo ideológico.
 - Núcleo estável por comunidade: C1 21, C2 22, C3 16, C4 0.
-- Posição de um deputado = concordância com o núcleo B − concordância com o núcleo A (−1 a +1).
+- Posição de um senador = concordância com o núcleo B − concordância com o núcleo A (−1 a +1).
 
 Composição das comunidades globais: C1 = MDB 10, PSD 10; C2 = PP 6, MDB 4; C3 = PT 6, MDB 3; C4 = PSDB 6, PODE 6
 
@@ -32,9 +32,9 @@ Composição das comunidades globais: C1 = MDB 10, PSD 10; C2 = PP 6, MDB 4; C3 
 
 ## Quem mais se moveu no eixo
 
-Posição média nas 3 últimas janelas menos a posição média nas 3 primeiras (só deputados presentes nas duas pontas). Positivo = aproximou-se do polo B; negativo = do polo A.
+Posição média nas 3 últimas janelas menos a posição média nas 3 primeiras (só senadores presentes nas duas pontas). Positivo = aproximou-se do polo B; negativo = do polo A.
 
-| Deputado | Partido | Comunidade global | Posição no início | Posição no fim | Deslocamento |
+| Senador | Partido | Comunidade global | Posição no início | Posição no fim | Deslocamento |
 | --- | --- | --- | --- | --- | --- |
 | Tasso Jereissati | PSDB | C4 | -0,25 | 0,27 | +0,52 |
 | Dário Berger | MDB | C1 | -0,15 | 0,23 | +0,39 |
@@ -59,7 +59,7 @@ Posição média nas 3 últimas janelas menos a posição média nas 3 primeiras
 
 ### Deslocamento médio por comunidade global
 
-| Comunidade | Deputados comparáveis | Início | Fim | Deslocamento |
+| Comunidade | Senadores comparáveis | Início | Fim | Deslocamento |
 | --- | --- | --- | --- | --- |
 | C1 (MDB 10, PSD 10) | 25 | -0,20 | -0,04 | +0,16 |
 | C2 (PP 6, MDB 4) | 22 | -0,34 | -0,28 | +0,06 |

@@ -8,7 +8,7 @@ Parâmetros em `config/sources.yaml` → `redes`. Data dos dados: ver `data/meta
   - sem voto com valor (secretas): 0
   - minoria abaixo de 2,5%: 167
   - incluídas: 200 de 367 (54,5%)
-- Deputados na matriz: 108; no grafo: 85 de 108 (78,7%)
+- Senadores na matriz: 108; no grafo: 85 de 108 (78,7%)
 - Arestas (kNN = 8): 512
 
 ## Comunidades (variante principal)
@@ -17,7 +17,7 @@ Parâmetros em `config/sources.yaml` → `redes`. Data dos dados: ver `data/meta
 - Estabilidade entre 20 sementes (ARI médio): 0,784
 - Correspondência com partido: ARI 0,161, NMI 0,399
 
-| Comunidade | Deputados | Partidos principais | Concordância interna média |
+| Comunidade | Senadores | Partidos principais | Concordância interna média |
 | --- | --- | --- | --- |
 | C1 | 29 | MDB 10, PSD 10, DEM 3, PP 2, PL 1, PROS 1 | 82,0% |
 | C2 | 25 | PP 6, MDB 4, DEM 3, PODE 3, PL 2, PSD 2 | 81,0% |
@@ -26,7 +26,7 @@ Parâmetros em `config/sources.yaml` → `redes`. Data dos dados: ver `data/meta
 
 ## Partidos divididos entre comunidades
 
-| Partido | Deputados no grafo | Na comunidade principal do partido | Distribuição |
+| Partido | Senadores no grafo | Na comunidade principal do partido | Distribuição |
 | --- | --- | --- | --- |
 | DEM | 6 | 3 de 6 (50,0%) | C2 3, C1 3 |
 | MDB | 17 | 10 de 17 (58,8%) | C1 10, C2 4, C3 3 |
@@ -37,9 +37,9 @@ Parâmetros em `config/sources.yaml` → `redes`. Data dos dados: ver `data/meta
 
 ## Pontes entre comunidades (maior coeficiente de participação)
 
-Deputados cujas 15 ligações mais fortes se espalham por mais de uma comunidade.
+Senadores cujas 15 ligações mais fortes se espalham por mais de uma comunidade.
 
-| Deputado | Partido | UF | Comunidade | Participação |
+| Senador | Partido | UF | Comunidade | Participação |
 | --- | --- | --- | --- | --- |
 | Alessandro Vieira | CIDADANIA | SE | C4 | 0,64 |
 | Izalci Lucas | PSDB | DF | C4 | 0,64 |
@@ -61,7 +61,7 @@ Deputados cujas 15 ligações mais fortes se espalham por mais de uma comunidade
 
 ARI = 1 significa partição idêntica à principal; perto de 0, sem relação.
 
-| Variante | Votações | Deputados | Comunidades | Modularidade | ARI vs principal |
+| Variante | Votações | Senadores | Comunidades | Modularidade | ARI vs principal |
 | --- | --- | --- | --- | --- | --- |
 | codificacao=B | 199 | 85 | 4 | 0,472 | 0,922 |
 | codificacao=C | 200 | 85 | 4 | 0,475 | 0,901 |

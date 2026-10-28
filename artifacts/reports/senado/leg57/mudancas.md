@@ -17,7 +17,7 @@ Polo A = C1 (PL 13, PP 5); polo B = C3 (PT 9, MDB 5).
 ## Comunidades entre janelas seguidas
 
 - Estabilidade mediana (ARI entre janelas seguidas): 0,66
-- Fração mediana de deputados que trocaram de grupo: 13,8%
+- Fração mediana de senadores que trocaram de grupo: 13,8%
 
 Janelas com maior reorganização:
 

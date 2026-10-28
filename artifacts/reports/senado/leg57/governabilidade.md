@@ -17,9 +17,9 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 | C2 (PSD 8, MDB 6) | 85,9% | 95,7% |
 | C3 (PT 9, MDB 5) | 97,8% | 98,4% |
 
-## Por partido (5+ deputados)
+## Por partido (5+ senadores)
 
-| Partido | Deputados no período | Apoio ao governo | Disciplina | Votos com disciplina medida | Coesão (Rice) |
+| Partido | Senadores no período | Apoio ao governo | Disciplina | Votos com disciplina medida | Coesão (Rice) |
 | --- | --- | --- | --- | --- | --- |
 | PT | 11 | 99,1% | 98,9% | 1.047 de 1.359 (77,0%) | 93,8% |
 | MDB | 13 | 95,6% | 96,0% | 942 de 1.432 (65,8%) | 86,7% |
@@ -43,7 +43,7 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 ## Participação
 
 - Fonte: **aproximacao** (em exercício = votou no Plenário no mesmo mês; superestima a presença)
-- Participação média dos deputados: 97,7%
+- Participação média dos senadores: 97,7%
 - Votos registrados fora de um período de exercício: 0
 
 | Comunidade | Participação média |
@@ -66,9 +66,9 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 | Tema | Vitória do governo | C1 | C2 | C3 |
 | --- | --- | --- | --- | --- |
 
-## Deputados que mais divergem do próprio partido (100+ votos medidos)
+## Senadores que mais divergem do próprio partido (100+ votos medidos)
 
-| Deputado | Partido | Comunidade | Disciplina | Apoio ao governo |
+| Senador | Partido | Comunidade | Disciplina | Apoio ao governo |
 | --- | --- | --- | --- | --- |
 | Lucas Barreto | PSD | C1 | 77,7% | 69,3% |
 | Sergio Moro | UNIÃO | C1 | 78,1% | 57,0% |

@@ -4,11 +4,11 @@ Parâmetros em `config/sources.yaml` → `fatias`.
 
 ## Eixo de referência
 
-- Polo A = C1 (PL 13, PP 5); núcleo estável com 30 deputados.
-- Polo B = C3 (PT 9, MDB 5); núcleo estável com 20 deputados.
-- Os polos são as duas comunidades globais com menor concordância entre si, entre as que têm núcleo estável de pelo menos 6 deputados. Sem rótulo ideológico.
+- Polo A = C1 (PL 13, PP 5); núcleo estável com 30 senadores.
+- Polo B = C3 (PT 9, MDB 5); núcleo estável com 20 senadores.
+- Os polos são as duas comunidades globais com menor concordância entre si, entre as que têm núcleo estável de pelo menos 6 senadores. Sem rótulo ideológico.
 - Núcleo estável por comunidade: C1 30, C2 18, C3 20.
-- Posição de um deputado = concordância com o núcleo B − concordância com o núcleo A (−1 a +1).
+- Posição de um senador = concordância com o núcleo B − concordância com o núcleo A (−1 a +1).
 
 Composição das comunidades globais: C1 = PL 13, PP 5; C2 = PSD 8, MDB 6; C3 = PT 9, MDB 5
 
@@ -28,9 +28,9 @@ Composição das comunidades globais: C1 = PL 13, PP 5; C2 = PSD 8, MDB 6; C3 = 
 
 ## Quem mais se moveu no eixo
 
-Posição média nas 3 últimas janelas menos a posição média nas 3 primeiras (só deputados presentes nas duas pontas). Positivo = aproximou-se do polo B; negativo = do polo A.
+Posição média nas 3 últimas janelas menos a posição média nas 3 primeiras (só senadores presentes nas duas pontas). Positivo = aproximou-se do polo B; negativo = do polo A.
 
-| Deputado | Partido | Comunidade global | Posição no início | Posição no fim | Deslocamento |
+| Senador | Partido | Comunidade global | Posição no início | Posição no fim | Deslocamento |
 | --- | --- | --- | --- | --- | --- |
 | Carlos Viana | PODE | C2 | -0,08 | 0,06 | +0,13 |
 | Zequinha Marinho | PODE | C2 | -0,15 | -0,03 | +0,12 |
@@ -55,7 +55,7 @@ Posição média nas 3 últimas janelas menos a posição média nas 3 primeiras
 
 ### Deslocamento médio por comunidade global
 
-| Comunidade | Deputados comparáveis | Início | Fim | Deslocamento |
+| Comunidade | Senadores comparáveis | Início | Fim | Deslocamento |
 | --- | --- | --- | --- | --- |
 | C1 (PL 13, PP 5) | 30 | -0,46 | -0,42 | +0,04 |
 | C2 (PSD 8, MDB 6) | 28 | 0,16 | 0,15 | -0,01 |

@@ -18,9 +18,9 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 | C3 (PT 6, MDB 3) | 62,5% | 97,8% |
 | C4 (PSDB 6, PODE 6) | 73,8% | 97,1% |
 
-## Por partido (5+ deputados)
+## Por partido (5+ senadores)
 
-| Partido | Deputados no período | Apoio ao governo | Disciplina | Votos com disciplina medida | Coesão (Rice) |
+| Partido | Senadores no período | Apoio ao governo | Disciplina | Votos com disciplina medida | Coesão (Rice) |
 | --- | --- | --- | --- | --- | --- |
 | DEM | 8 | 94,7% | 99,8% | 463 de 1.287 (36,0%) | 96,1% |
 | PL | 10 | 92,8% | 95,4% | 777 de 1.309 (59,4%) | 87,5% |
@@ -47,7 +47,7 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 ## Participação
 
 - Fonte: **aproximacao** (em exercício = votou no Plenário no mesmo mês; superestima a presença)
-- Participação média dos deputados: 94,7%
+- Participação média dos senadores: 94,7%
 - Votos registrados fora de um período de exercício: 0
 
 | Comunidade | Participação média |
@@ -75,9 +75,9 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 | Tema | Vitória do governo | C1 | C2 | C3 | C4 |
 | --- | --- | --- | --- | --- | --- |
 
-## Deputados que mais divergem do próprio partido (100+ votos medidos)
+## Senadores que mais divergem do próprio partido (100+ votos medidos)
 
-| Deputado | Partido | Comunidade | Disciplina | Apoio ao governo |
+| Senador | Partido | Comunidade | Disciplina | Apoio ao governo |
 | --- | --- | --- | --- | --- |
 | Marcio Bittar | MDB | C2 | 87,2% | 87,9% |
 | Reguffe | PODE | C4 | 89,0% | 63,9% |

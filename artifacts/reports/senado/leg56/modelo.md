@@ -6,7 +6,7 @@
 | --- | --- | --- | --- |
 | M0 · segue o partido | 90,6% | 0,915 | 0,261 |
 | M1 · partido, governo e colegas | 88,5% | 0,935 | 0,263 |
-| M2 · + perfil do deputado e tema | 92,1% | 0,963 | 0,192 |
+| M2 · + perfil do senador e tema | 92,1% | 0,963 | 0,192 |
 
 Votos imprevisíveis (probabilidade do voto observado abaixo de 20%): 753 (2,9%); 22,0% deles contra a orientação do partido.
 

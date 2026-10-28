@@ -18,6 +18,28 @@ ETAPAS = [("rede", votacao.rodar), ("fatias", fatias.rodar), ("governabilidade",
           ("modelo", voto_individual.rodar)]
 
 
+TROCAS = [("Deputadas", "Senadoras"), ("deputadas", "senadoras"), ("Deputados", "Senadores"), ("deputados", "senadores"),
+          ("Deputada", "Senadora"), ("deputada", "senadora"), ("Deputado", "Senador"), ("deputado", "senador"),
+          ("da Câmara", "do Senado")]
+
+
+def ajustar_relatorios(cfg: dict) -> int:
+    """Os módulos são da Câmara e escrevem "deputados"; nos relatórios do Senado, troca por "senadores"."""
+    import re
+    from src.config import ROOT
+    n_ = 0
+    for p in (ROOT / "artifacts" / "reports" / "senado").rglob("*.md"):
+        t = p.read_text(encoding="utf-8")
+        u = t
+        for a, b in TROCAS:
+            u = re.sub(rf"\b{a}\b", b, u)
+        u = u.replace("data/metadata/camara", "data/metadata/senado")
+        if u != t:
+            p.write_text(u, encoding="utf-8")
+            n_ += 1
+    return n_
+
+
 def main() -> int:
     cfg = para_senado(load_config())
     falhas = []
@@ -32,6 +54,7 @@ def main() -> int:
             except Exception:
                 traceback.print_exc()
                 falhas.append(f"{leg}/{nome}")
+    print(f"relatórios ajustados: {ajustar_relatorios(cfg)}")
     if falhas:
         print("Falhas:", ", ".join(falhas))
         return 1
