@@ -41,7 +41,9 @@ def sidra(caminho: str, http: dict) -> pd.DataFrame:
     url = f"https://apisidra.ibge.gov.br/values{caminho}"
     for tentativa in range(1, 5):
         try:
-            r = requests.get(url, timeout=300, headers={"User-Agent": http["user_agent"]})
+            # cabeçalho só com ASCII: o filtro do SIDRA responde 403 a cabeçalhos com acento
+            ua = http["user_agent"].encode("ascii", "ignore").decode()
+            r = requests.get(url, timeout=300, headers={"User-Agent": ua})
             if r.status_code != 200:
                 raise requests.HTTPError(f"HTTP {r.status_code}: {r.text[:300]}")
             d = r.json()
