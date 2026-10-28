@@ -122,6 +122,17 @@ def processar(ano: int, t: dict, http: dict, destino: Path, mapa: dict) -> dict:
                                 "SG_PARTIDO"], as_index=False)["votos"].sum())
         df = df[(df["NR_TURNO"] == "1") & (df["CD_CARGO"] != pres_cod)]
         partes.append(df.groupby(["SQ_CANDIDATO", "SG_UF", "CD_MUNICIPIO", "NM_MUNICIPIO"], as_index=False)["votos"].sum())
+    # presidente: o TSE põe a votação de abrangência nacional no arquivo _BR
+    br = [m for m in z.namelist() if Path(m).name == f"votacao_candidato_munzona_{ano}_BR.csv"]
+    for m in br:
+        df = _ler(z, m, ["CD_CARGO", "SG_UF", "CD_MUNICIPIO", "NM_MUNICIPIO", "NR_TURNO", "CD_TIPO_ELEICAO", "NR_CANDIDATO",
+                         "NM_URNA_CANDIDATO", "SG_PARTIDO", *col_votos], lambda d: d[d["CD_CARGO"] == pres_cod])
+        if "CD_TIPO_ELEICAO" in df:
+            df = df[df["CD_TIPO_ELEICAO"] == "2"]
+        vc = next(c for c in col_votos if c in df.columns)
+        df["votos"] = pd.to_numeric(df[vc], errors="coerce").fillna(0)
+        pres.append(df.groupby(["NR_TURNO", "SG_UF", "CD_MUNICIPIO", "NM_MUNICIPIO", "NR_CANDIDATO", "NM_URNA_CANDIDATO",
+                                "SG_PARTIDO"], as_index=False)["votos"].sum())
     zv.unlink()
     votos = pd.concat(partes, ignore_index=True)
     votos.to_parquet(destino / "votos_municipio.parquet", index=False)
@@ -154,6 +165,9 @@ def main() -> int:
     mapa = None
     for ano in t["eleicoes"]:
         d = out / str(ano)
+        vp = d / "votos_presidente.parquet"
+        if vp.exists() and len(pd.read_parquet(vp)) == 0:
+            vp.unlink()  # versão anterior gravou vazio (presidente fica no arquivo _BR)
         pronto = all((d / f).exists() for f in ("candidatos.parquet", "votos_municipio.parquet", "votos_presidente.parquet",
                                                   "receitas.parquet"))
         if pronto and ano not in t.get("recarregar", []):

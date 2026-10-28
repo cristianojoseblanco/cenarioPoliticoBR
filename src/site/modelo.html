@@ -221,6 +221,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
 .cmp .duo i{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
 .cmp .duo s{position:absolute;top:-4px;width:2px;height:16px;background:var(--ink);text-decoration:none}
 .aviso{font-size:.84rem;padding:10px 12px;border-radius:var(--r);background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--ink)}
+/*__MAPA_CSS__*/
 </style>
 
 <header class="top">
@@ -230,7 +231,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     <div class="legbtns" id="legSeg" role="group" aria-label="Legislatura"></div>
     <nav class="secoes" aria-label="Seções" id="nav">
       <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#mudancas">Mudanças</a>
-      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a><a href="#campanha">Campanha</a>
+      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a><a href="#campanha">Campanha</a><a href="#brasil">Brasil</a>
       <a href="#partidos">Partidos</a><a href="#frentes">Frentes</a><a href="#comparacao">Governos</a><a href="#acompanhados">Acompanhados</a><a href="#glossario">Glossário</a>
     </nav>
   </div>
@@ -423,6 +424,8 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     </div>
   </div>
 </section>
+
+<!--__MAPA_HTML__-->
 
 <section class="cap" id="partidos">
   <div class="wrap">
@@ -1170,6 +1173,8 @@ function campanha() {
 segOn("#caX", v => { caX = +v; campanha(); });
 segOn("#caY", v => { caY = v; campanha(); });
 
+/*__MAPA_JS__*/
+
 function rodape() {
   const dt = new Date(D.atualizado + "T12:00:00").toLocaleDateString("pt-BR");
   $("#rodape").innerHTML = `Dados abertos da Câmara dos Deputados, atualizados em ${dt}. Código, dados e método: <a href="${D.repo}" target="_blank" rel="noopener">${D.repo.replace("https://", "")}</a>.`;
@@ -1178,7 +1183,7 @@ segOn("#redeCor", v => { redeModo = v; rede(); });
 segOn("#tempoMet", v => { tempoModo = v; tempo(); });
 segOn("#temaMet", v => { temaModo = v; temas(); });
 segOn("#mudMet", v => { mudModo = v; mudancas(); });
-function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); campanha(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); campanha(); mapaBrasil(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
 tudo(true);
 // navegação: destaca a seção visível
 const links = [...document.querySelectorAll("#nav a")];

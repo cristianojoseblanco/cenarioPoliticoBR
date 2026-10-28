@@ -196,6 +196,8 @@ def rodar(c: dict, casa: str, cfg: dict) -> int:
     top = (lig.dropna(subset=["cod_ibge"]).groupby(["cod_ibge", "deputado_id"])["pago"].sum().reset_index()
            .sort_values("pago", ascending=False).groupby("cod_ibge").head(3))
     top.to_parquet(saida / "municipios_autores.parquet", index=False)
+    lig.dropna(subset=["cod_ibge"]).groupby(["deputado_id", "cod_ibge"])["pago"].sum().reset_index().to_parquet(
+        saida / "dep_municipio.parquet", index=False)
     mun.to_parquet(saida / "municipios.parquet", index=False)
     nec = []
     for x in ("pib_per_capita", "alfabetizacao", "pop_2022", "urbanizacao", "densidade"):
@@ -212,7 +214,8 @@ def rodar(c: dict, casa: str, cfg: dict) -> int:
               "execucao_mediana": float(dep["execucao"].median()), "conexao_mediana": float(dep["conexao"].median()) if "conexao" in dep else None,
               "frac_base_mediana": float(dep["frac_base"].median()) if "frac_base" in dep else None,
               "tempo": {"spearman": rt, "p": pt, "n": kt, "apoio_meses_com_pagamento": float(com.mean()) if len(com) else None},
-              "necessidade": nec.to_dict("records")}
+              "necessidade": nec.to_dict("records"),
+              "necessidade_pib": float(nec.set_index("indicador")["spearman"].get("pib_per_capita", np.nan)) if len(nec) else None}
     (saida / "resumo.json").write_text(json.dumps(resumo, ensure_ascii=False, indent=2, default=float), encoding="utf-8")
 
     alfa = float(cfg["tse"].get("alfa", 0.01))

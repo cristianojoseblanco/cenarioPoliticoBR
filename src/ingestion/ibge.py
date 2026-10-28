@@ -42,7 +42,8 @@ def sidra(caminho: str, http: dict) -> pd.DataFrame:
     for tentativa in range(1, 5):
         try:
             r = requests.get(url, timeout=300, headers={"User-Agent": http["user_agent"]})
-            r.raise_for_status()
+            if r.status_code != 200:
+                raise requests.HTTPError(f"HTTP {r.status_code}: {r.text[:300]}")
             d = r.json()
             return pd.DataFrame(d[1:])
         except (requests.RequestException, ValueError) as e:

@@ -268,7 +268,7 @@ def dados_legislatura(leg: str, c: dict, casa: str = "camara") -> dict:
 
     per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
-        "leg": leg, "casa": casa, "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
+        "leg": leg, "casa": casa, "_ids": list(d["deputado_id"]), "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
         "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
         "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo, "eleicao": eleicao,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
@@ -296,6 +296,86 @@ def dados_comparacao() -> dict | None:
                       for r in re.itertuples()],
         "partidos": [{"p": i, "a0": _r(r[l0]), "a1": _r(r[l1])} for i, r in pv.sort_values(l1).iterrows()],
     }
+
+
+def gerar_mapa(cfg: dict, legs: list[dict]) -> None:
+    """Arquivos do mapa do Brasil, carregados pela página só quando a seção aparece (site/geo, site/dados)."""
+    import shutil
+    from src.config import para_senado
+    from src.geo.municipios import tse_para_ibge
+
+    destino = SAIDA.parent
+    geo = ROOT / cfg["ibge"]["caminhos"]["geo"]
+    ib_p = ROOT / cfg["ibge"]["caminhos"]["staging"] / "municipios.parquet"
+    if not (geo / "municipios.topo.json").exists() or not ib_p.exists():
+        print("mapa: malha ou indicadores do IBGE ausentes; seção do mapa sem dados")
+        return
+    (destino / "geo").mkdir(parents=True, exist_ok=True)
+    for f in ("municipios.topo.json", "ufs.topo.json"):
+        shutil.copy(geo / f, destino / "geo" / f)
+    ib = pd.read_parquet(ib_p)
+    # voto no PT no 2º turno presidencial, por município
+    pt_anos, pt = [], {}
+    for ano in cfg["tse"]["eleicoes"]:
+        p = ROOT / cfg["tse"]["caminhos"]["staging"] / str(ano) / "votos_presidente.parquet"
+        if not p.exists():
+            continue
+        vp = pd.read_parquet(p)
+        vp = vp[vp["NR_TURNO"] == "2"]
+        if vp.empty:
+            continue
+        vp = vp.merge(tse_para_ibge(cfg, vp), on="CD_MUNICIPIO", how="left").dropna(subset=["cod_ibge"])
+        tot = vp.groupby("cod_ibge")["votos"].sum()
+        pt[int(ano)] = (vp[vp["NR_CANDIDATO"] == "13"].groupby("cod_ibge")["votos"].sum() / tot).to_dict()
+        pt_anos.append(int(ano))
+    cols = ["nome", "uf", "pop", "pib_pc", "alf", "urb", "dens", "cap", *[f"pt_{a}" for a in pt_anos]]
+    m = {}
+    for r in ib.itertuples():
+        m[r.cod_ibge] = [r.nome, r.uf, _r(r.pop_2022, 0), _r(r.pib_per_capita, 0), _r(r.alfabetizacao, 4), _r(r.urbanizacao, 4),
+                         _r(r.densidade, 2), bool(r.capital), *[_r(pt[a].get(r.cod_ibge), 4) for a in pt_anos]]
+    (destino / "dados").mkdir(parents=True, exist_ok=True)
+    (destino / "dados" / "municipios.json").write_text(json.dumps({"c": cols, "m": m, "pt_anos": pt_anos}, ensure_ascii=False,
+                                                                  separators=(",", ":")), encoding="utf-8")
+    confs = {("camara", leg): c for leg, c in por_legislatura(cfg)}
+    if "senado" in cfg:
+        confs.update({("senado", leg): c for leg, c in por_legislatura(para_senado(cfg))})
+    (destino / "dados" / "dep").mkdir(parents=True, exist_ok=True)
+    n_dep = 0
+    for L in legs:
+        casa, leg = L.get("casa", "camara"), L["leg"]
+        c = confs.get((casa, leg))
+        base = ROOT / c["redes"]["saida"].replace("/redes", "/emendas") if c else None
+        if not base or not (base / "municipios.parquet").exists():
+            continue
+        idx = {k: i for i, k in enumerate(L["_ids"])}
+        mun = pd.read_parquet(base / "municipios.parquet")
+        aut = pd.read_parquet(base / "municipios_autores.parquet")
+        aut = aut[aut["deputado_id"].isin(idx)]
+        top_aut = {k: [[idx[d], round(float(v))] for d, v in zip(g["deputado_id"], g["pago"])] for k, g in aut.groupby("cod_ibge")}
+        e = {r.cod_ibge: [round(float(r.pago)), _r(r.pago_per_capita, 3), top_aut.get(r.cod_ibge, [])]
+             for r in mun.itertuples() if r.pago > 0}
+        v = {}
+        be = base / "base_eleitoral.parquet"
+        if be.exists():
+            b = pd.read_parquet(be).dropna(subset=["cod_ibge"])
+            b = b[b["deputado_id"].isin(idx)]
+            for k, g in b.sort_values("votos", ascending=False).groupby("cod_ibge"):
+                v[k] = [[idx[d], int(x)] for d, x in zip(g["deputado_id"].head(3), g["votos"].head(3))]
+            dm = pd.read_parquet(base / "dep_municipio.parquet")
+            for dep_id, g in b.groupby("deputado_id"):
+                g = g[g["frac_votos"] >= float(cfg.get("geo", {}).get("frac_minima_mapa", 0.0005))]
+                em_ = dm[dm["deputado_id"] == dep_id]
+                arq = destino / "dados" / "dep" / f"{casa}_{leg}_{dep_id}.json"
+                arq.write_text(json.dumps({"v": {k: round(float(x), 5) for k, x in zip(g["cod_ibge"], g["frac_votos"])},
+                                           "e": {k: round(float(x)) for k, x in zip(em_["cod_ibge"], em_["pago"])}},
+                                          separators=(",", ":")), encoding="utf-8")
+                n_dep += 1
+        r = json.loads((base / "resumo.json").read_text(encoding="utf-8"))
+        (destino / "dados" / f"mapa_{casa}_{leg}.json").write_text(json.dumps(
+            {"anos": r["anos_orcamento"], "resumo": {k: r.get(k) for k in ("pago", "empenhado", "frac_base_mediana", "conexao_mediana",
+                                                                        "necessidade_pib", "execucao_mediana")},
+             "e": e, "v": v}, ensure_ascii=False, separators=(",", ":"), default=float), encoding="utf-8")
+    print(f"mapa: {len(m)} municípios, {n_dep} parlamentares com arquivo próprio")
 
 
 def dados_acompanhamento(cfg) -> list | None:
@@ -353,8 +433,18 @@ def main() -> int:
              "acompanhamento": dados_acompanhamento(cfg),
              "marcadores": cfg.get("marcadores_periodo", []), "contexto": cfg.get("contexto", {}),
              "repo": f"https://github.com/{cfg['armazenamento']['repositorio']}"}
+    try:
+        gerar_mapa(cfg, legs)
+    except Exception as e:  # noqa: BLE001 — o mapa não derruba a página
+        print(f"::warning title=mapa::{e}")
+    for L in legs:
+        L.pop("_ids", None)
     js = json.dumps(dados, ensure_ascii=False, separators=(",", ":"))
     corpo = MODELO.read_text(encoding="utf-8").replace("/*__DADOS__*/null", js.replace("</", "<\\/"))
+    partes = (ROOT / "src" / "site" / "mapa.html").read_text(encoding="utf-8")
+    css, resto = partes.split("<!--CSS-->", 1)[1].split("<!--HTML-->", 1)
+    html_, js_mapa = resto.split("<!--JS-->", 1)
+    corpo = corpo.replace("/*__MAPA_CSS__*/", css).replace("<!--__MAPA_HTML__-->", html_).replace("/*__MAPA_JS__*/", js_mapa)
     SAIDA.parent.mkdir(parents=True, exist_ok=True)
     # fragmento (para publicar como artifact, que já envolve o documento)
     (SAIDA.parent / "fragmento.html").write_text(corpo, encoding="utf-8")

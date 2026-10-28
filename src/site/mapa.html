@@ -1,0 +1,233 @@
+<!--CSS-->
+/* ================= mapa do Brasil ================= */
+#brasil{background:var(--h-bg);color:var(--h-ink)}
+#brasil .eyebrow{color:var(--h-accent)}
+#brasil .lede,#brasil .nota{color:var(--h-ink-2)}
+#brasil details.ler{background:var(--h-bg-2);border-color:var(--h-rule);color:var(--h-ink)}
+#brasil details.ler dd{color:var(--h-ink-2)}
+.mp-barra{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mp-chips{display:flex;gap:6px;flex-wrap:wrap}
+.mp-chips button{all:unset;cursor:pointer;font:600 .76rem/1 var(--f-data);padding:9px 13px;border-radius:999px;border:1px solid var(--h-rule);color:var(--h-ink-2);background:var(--h-bg-2);white-space:nowrap}
+.mp-chips button[aria-pressed="true"]{background:var(--h-accent);color:var(--h-bg);border-color:var(--h-accent)}
+.mp-chips button:focus-visible{outline:2px solid var(--h-accent)}
+.mp-busca{display:flex;gap:6px;align-items:center;flex:1 1 240px;min-width:0}
+.mp-busca input{all:unset;flex:1;min-width:0;font:500 .86rem var(--f-body);padding:10px 14px;border-radius:999px;background:var(--h-bg-2);border:1px solid var(--h-rule);color:var(--h-ink)}
+.mp-busca input::placeholder{color:var(--h-ink-3)}
+.mp-palco{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:14px;align-items:start}
+.mp-quadro{position:relative;border-radius:18px;overflow:hidden;background:radial-gradient(120% 90% at 30% 20%,#123024 0%,var(--h-bg) 62%);border:1px solid var(--h-rule);min-height:320px;touch-action:none}
+.mp-quadro canvas{display:block;width:100%;cursor:grab}
+.mp-quadro canvas:active{cursor:grabbing}
+.mp-carregando{position:absolute;inset:0;display:grid;place-items:center;font:500 .85rem var(--f-data);color:var(--h-ink-3)}
+.mp-ctrl{position:absolute;right:12px;top:12px;display:grid;gap:6px}
+.mp-ctrl button{all:unset;cursor:pointer;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:rgb(8 17 13/.78);border:1px solid var(--h-rule);color:var(--h-ink);font:600 1rem var(--f-data);backdrop-filter:blur(6px)}
+.mp-legenda{position:absolute;left:12px;bottom:12px;right:60px;max-width:420px;background:rgb(8 17 13/.78);backdrop-filter:blur(8px);border:1px solid var(--h-rule);border-radius:12px;padding:10px 12px;display:grid;gap:6px}
+.mp-legenda b{font:600 .76rem var(--f-data);color:var(--h-ink)}
+.mp-escala{display:flex;height:9px;border-radius:99px;overflow:hidden}
+.mp-escala i{flex:1}
+.mp-rot{display:flex;justify-content:space-between;font:500 .68rem var(--f-data);color:var(--h-ink-3)}
+.mp-tip{position:absolute;pointer-events:none;background:rgb(238 244 240/.97);color:#0b140f;font:12px/1.45 var(--f-data);padding:8px 10px;border-radius:10px;max-width:240px;z-index:4;box-shadow:0 12px 30px rgb(0 0 0/.35)}
+.mp-painel{background:var(--h-bg-2);border:1px solid var(--h-rule);border-radius:18px;padding:16px;display:grid;gap:12px;align-content:start;max-height:640px;overflow:auto}
+.mp-painel h3{font:850 1.5rem/1.05 var(--f-display);font-stretch:82%;margin:0;color:var(--h-ink)}
+.mp-painel .sub{font:500 .78rem var(--f-data);color:var(--h-ink-3);text-transform:uppercase;letter-spacing:.08em}
+.mp-num{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mp-num div{background:var(--h-bg);border:1px solid var(--h-rule);border-radius:12px;padding:9px 10px;display:grid;gap:3px}
+.mp-num span{font:500 .68rem var(--f-data);color:var(--h-ink-3);text-transform:uppercase;letter-spacing:.06em}
+.mp-num b{font:600 1.05rem var(--f-data);color:var(--h-ink);font-variant-numeric:tabular-nums}
+.mp-lista{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.mp-lista li{display:flex;justify-content:space-between;gap:8px;font-size:.86rem;color:var(--h-ink-2);border-bottom:1px solid var(--h-rule);padding-bottom:6px}
+.mp-lista li b{color:var(--h-ink);font-weight:600}
+.mp-vazio{color:var(--h-ink-3);font-size:.9rem}
+.mp-fecha{display:none}
+@media (max-width:900px){
+  .mp-palco{grid-template-columns:minmax(0,1fr)}
+  .mp-painel{position:fixed;left:8px;right:8px;bottom:8px;max-height:62vh;z-index:40;transform:translateY(110%);transition:transform .28s ease;box-shadow:0 -12px 40px rgb(0 0 0/.45)}
+  .mp-painel.aberto{transform:none}
+  .mp-fecha{display:block;all:unset;cursor:pointer;justify-self:end;font:600 .78rem var(--f-data);color:var(--h-ink-2);padding:6px 10px;border:1px solid var(--h-rule);border-radius:99px}
+  .mp-legenda{right:12px}
+}
+<!--HTML-->
+<section class="cap" id="brasil">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Mapa do Brasil · 5.570 municípios</span><h2>Onde o voto nasce e para onde o dinheiro vai</h2>
+      <p class="lede" id="mpLede">Emendas parlamentares pagas, voto no 2º turno e indicadores do IBGE, município a município. Escolha um parlamentar para ver, no mesmo mapa, onde ele foi votado e para onde mandou emendas.</p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
+      <dt>Emendas por habitante</dt><dd>Valor pago (no ano e depois, como restos a pagar) das emendas individuais dos orçamentos que a legislatura votou, dividido pela população do Censo 2022. Fonte: Portal da Transparência.</dd>
+      <dt>Voto no PT no 2º turno</dt><dd>Fração dos votos válidos do 2º turno presidencial dada ao candidato do PT (Haddad em 2018, Lula em 2022 e 2026). Fonte: TSE.</dd>
+      <dt>Indicadores</dt><dd>PIB per capita (PIB municipal ÷ população de 2022), alfabetização (15 anos ou mais) e população: IBGE (SIDRA, Censo 2022).</dd>
+      <dt>Base de um parlamentar</dt><dd>Cor: fração dos votos dele que veio de cada município. Círculos: emendas pagas que ele mandou, do tamanho do valor.</dd>
+      <dt>Cores</dt><dd>Faixas com o mesmo número de municípios (quantis). Cinza: sem dado.</dd></dl></div></details>
+    <div class="mp-barra">
+      <div class="mp-chips" id="mpCamadas" role="group" aria-label="Camada do mapa"></div>
+      <div class="mp-busca"><input id="mpBusca" list="mpLista" placeholder="Parlamentar: digite um nome" autocomplete="off"><datalist id="mpLista"></datalist></div>
+    </div>
+    <div class="mp-palco">
+      <div class="mp-quadro" id="mpQuadro"><canvas id="mpCanvas" aria-label="Mapa dos municípios do Brasil"></canvas>
+        <div class="mp-carregando" id="mpCarregando">carregando o mapa…</div>
+        <div class="mp-ctrl"><button id="mpMais" aria-label="Aproximar">+</button><button id="mpMenos" aria-label="Afastar">−</button><button id="mpBR" aria-label="Brasil inteiro">⤢</button></div>
+        <div class="mp-legenda" id="mpLegenda" hidden></div>
+        <div class="mp-tip" id="mpTip" hidden></div></div>
+      <aside class="mp-painel" id="mpPainel"><button class="mp-fecha" id="mpFecha">Fechar</button><div id="mpPainelCorpo"><p class="mp-vazio">Toque num município para ver o perfil: indicadores do IBGE, voto, emendas recebidas e os mais votados.</p></div></aside>
+    </div>
+    <div class="destaques" id="mpDest"></div>
+  </div>
+</section>
+<!--JS-->
+/* ================= mapa do Brasil ================= */
+const MP = {topo: null, ufs: null, info: null, leg: {}, dep: {}, camada: "emendas", sel: null, depSel: null, t: null, carregado: false};
+const MP_CAMADAS = [["emendas", "Emendas por habitante"], ["pt", "Voto no PT · 2º turno"], ["pib", "PIB per capita"], ["alf", "Alfabetização"], ["pop", "População"], ["base", "Base do parlamentar"]];
+const MP_ESC = {seq: ["#0f2a20", "#14503a", "#1b7a55", "#33a06f", "#6cc08f", "#b5e3c4", "#effbf2"], div: ["#2b5fb8", "#5a8bd6", "#a7c3ec", "#eef0f0", "#f2c48c", "#e48f3a", "#b9561a"], base: ["#1a1840", "#36307a", "#5a4bb5", "#8a6fe0", "#b59bf0", "#dccdfb", "#f6f0ff"]};
+const mpUrl = p => new URL(p, location.href).toString();
+async function mpJson(p) { const r = await fetch(mpUrl(p)); if (!r.ok) throw new Error(p); return r.json(); }
+function mpScript(src) { return new Promise((ok, erro) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = erro; document.head.appendChild(s); }); }
+async function mpCarregar() {
+  if (MP.carregado) return; MP.carregado = true;
+  try {
+    if (!window.d3) await mpScript("https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js");
+    if (!window.topojson) await mpScript("https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js");
+    const [tm, tu, info] = await Promise.all([mpJson("geo/municipios.topo.json"), mpJson("geo/ufs.topo.json"), mpJson("dados/municipios.json")]);
+    MP.mun = topojson.feature(tm, tm.objects[Object.keys(tm.objects)[0]]).features;
+    MP.ufBorda = topojson.mesh(tu, tu.objects[Object.keys(tu.objects)[0]], (a, b) => a !== b);
+    MP.ufContorno = topojson.mesh(tu, tu.objects[Object.keys(tu.objects)[0]], (a, b) => a === b);
+    MP.info = info; MP.idx = new Map(MP.mun.map((f, i) => [String(f.id || f.properties.CD_MUN), i]));
+    $("#mpCarregando").hidden = true;
+    mpMontar(); await mpLeg(); mpDesenhar();
+  } catch (e) { $("#mpCarregando").textContent = "Mapa indisponível nesta versão da página."; console.warn(e); }
+}
+async function mpLeg() {
+  const k = `${L.casa || "camara"}_${L.leg}`;
+  if (!(k in MP.leg)) { try { MP.leg[k] = await mpJson(`dados/mapa_${k}.json`); } catch (e) { MP.leg[k] = null; } }
+  MP.L = MP.leg[k];
+  const dl = $("#mpLista"); dl.innerHTML = L.deputados.map(d => `<option value="${d.n} (${d.p}-${d.uf})">`).join("");
+  MP.depSel = null; $("#mpBusca").value = "";
+  if (MP.camada === "base") MP.camada = "emendas";
+  mpChips(); mpDest();
+}
+function mpChips() {
+  const box = $("#mpCamadas");
+  box.innerHTML = MP_CAMADAS.filter(([k]) => k !== "base" || MP.depSel).map(([k, t]) => `<button data-k="${k}" aria-pressed="${k === MP.camada}">${k === "base" && MP.depSel ? "Base de " + MP.depSel.d.n.split(" ")[0] : t}</button>`).join("");
+  box.onclick = e => { const b = e.target.closest("button"); if (!b) return; MP.camada = b.dataset.k; mpChips(); mpDesenhar(); };
+}
+function mpValor(i) {
+  const cod = String(MP.mun[i].id || MP.mun[i].properties.CD_MUN), r = MP.info.m[cod];
+  const c = MP.info.c;
+  if (MP.camada === "emendas") { const e = MP.L && MP.L.e[cod]; return e ? e[1] : (r ? 0 : null); }
+  if (MP.camada === "base") { return MP.depSel ? (MP.depSel.v[cod] || 0) : null; }
+  if (!r) return null;
+  if (MP.camada === "pt") { const k = c.indexOf("pt_" + (MP.anoPT || mpAnoPT())); return r[k]; }
+  return r[c.indexOf({pib: "pib_pc", alf: "alf", pop: "pop"}[MP.camada])];
+}
+// eleição que elegeu a legislatura (ano anterior ao início); se não houver, a mais recente antes dela
+function mpAnoPT() { const anos = MP.info.pt_anos || []; const alvo = +String(L.ini).slice(0, 4) - 1; return anos.includes(alvo) ? alvo : (anos.filter(a => a <= alvo).slice(-1)[0] || anos[0]); }
+function mpEscala(vals) {
+  const v = vals.filter(x => x != null && !isNaN(x)).sort((a, b) => a - b);
+  if (MP.camada === "pt") { const lim = [.2, .35, .45, .5, .55, .65, .8]; return {cores: MP_ESC.div, lim: lim.slice(0, 6), rot: ["20%", "50%", "80%"], f: x => MP_ESC.div[lim.findIndex(l => x < l) < 0 ? 6 : lim.findIndex(l => x < l)]}; }
+  const pos = MP.camada === "emendas" || MP.camada === "base" ? v.filter(x => x > 0) : v;
+  const q = [1, 2, 3, 4, 5, 6].map(k => pos[Math.floor(k / 7 * (pos.length - 1))]);
+  const cores = MP.camada === "base" ? MP_ESC.base : MP_ESC.seq;
+  return {cores, lim: q, f: x => x === 0 && (MP.camada === "emendas" || MP.camada === "base") ? "#16231d" : cores[q.findIndex(l => x < l) < 0 ? 6 : q.findIndex(l => x < l)]};
+}
+const mpFmt = {emendas: v => `R$ ${dec(v, v < 10 ? 2 : 0)}/hab.`, pt: v => pctf(v), pib: v => `R$ ${fmt.format(Math.round(v))}`, alf: v => pctf(v), pop: v => fmt.format(Math.round(v)), base: v => pctf(v, 2) + " dos votos"};
+function mpMontar() {
+  const cv = $("#mpCanvas"), quadro = $("#mpQuadro");
+  const W = quadro.clientWidth, H = Math.round(Math.min(760, Math.max(360, W * (W < 640 ? 1.08 : .82))));
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = W * dpr; cv.height = H * dpr; cv.style.height = H + "px";
+  MP.W = W; MP.H = H; MP.dpr = dpr;
+  MP.proj = d3.geoMercator().fitExtent([[12, 12], [W - 12, H - 12]], {type: "FeatureCollection", features: MP.mun});
+  MP.path2d = MP.mun.map(f => new Path2D(d3.geoPath(MP.proj)(f) || ""));
+  MP.centro = MP.mun.map(f => d3.geoPath(MP.proj).centroid(f));
+  MP.ufP = new Path2D(d3.geoPath(MP.proj)(MP.ufBorda)); MP.contP = new Path2D(d3.geoPath(MP.proj)(MP.ufContorno));
+  MP.pick = document.createElement("canvas"); MP.pick.width = W; MP.pick.height = H;
+  MP.t = d3.zoomIdentity;
+  const zoom = d3.zoom().scaleExtent([1, 60]).translateExtent([[-W * .2, -H * .2], [W * 1.2, H * 1.2]])
+    .on("zoom", ev => { MP.t = ev.transform; mpDesenhar(true); }).on("end", () => mpDesenhar());
+  MP.zoom = zoom; d3.select(cv).call(zoom).on("dblclick.zoom", null);
+  $("#mpMais").onclick = () => d3.select(cv).transition().duration(300).call(zoom.scaleBy, 1.8);
+  $("#mpMenos").onclick = () => d3.select(cv).transition().duration(300).call(zoom.scaleBy, 1 / 1.8);
+  $("#mpBR").onclick = () => d3.select(cv).transition().duration(450).call(zoom.transform, d3.zoomIdentity);
+  const tip = $("#mpTip");
+  cv.onpointermove = e => { if (e.buttons) { tip.hidden = true; return; } const i = mpPegar(e); if (i == null) { tip.hidden = true; return; }
+    const f = MP.mun[i], cod = String(f.id || f.properties.CD_MUN), r = MP.info.m[cod]; const v = mpValor(i);
+    tip.innerHTML = `<b>${r ? r[0] : f.properties.NM_MUN}</b> · ${r ? r[1] : f.properties.SIGLA_UF}<br>${v == null ? "sem dado" : mpFmt[MP.camada](v)}`;
+    const rb = quadro.getBoundingClientRect(); tip.hidden = false; tip.style.left = Math.min(e.clientX - rb.left + 14, rb.width - 250) + "px"; tip.style.top = (e.clientY - rb.top + 14) + "px"; };
+  cv.onpointerleave = () => tip.hidden = true;
+  cv.onclick = e => { const i = mpPegar(e); if (i == null) return; MP.sel = i; mpPainel(i); mpDesenhar(); };
+  $("#mpFecha").onclick = () => $("#mpPainel").classList.remove("aberto");
+  $("#mpBusca").onchange = async e => { const v = e.target.value; const i = L.deputados.findIndex(d => `${d.n} (${d.p}-${d.uf})` === v); if (i < 0) return;
+    const d = L.deputados[i]; const k = `${L.casa || "camara"}_${L.leg}_${d.id}`;
+    try { if (!MP.dep[k]) MP.dep[k] = await mpJson(`dados/dep/${k}.json`); } catch (er) { MP.dep[k] = {v: {}, e: {}}; }
+    MP.depSel = {d, ...MP.dep[k]}; MP.camada = "base"; mpChips(); mpDesenhar(); mpPainelDep(); };
+}
+function mpPegar(e) {
+  const r = $("#mpCanvas").getBoundingClientRect(); const x = Math.round(e.clientX - r.left), y = Math.round(e.clientY - r.top);
+  const px = MP.pick.getContext("2d", {willReadFrequently: true}).getImageData(x, y, 1, 1).data;
+  if (px[3] < 255) return null; const i = (px[0] << 16 | px[1] << 8 | px[2]) - 1; return i >= 0 && i < MP.mun.length ? i : null;
+}
+function mpDesenhar(rapido) {
+  if (!MP.mun || !MP.proj) return;
+  const cv = $("#mpCanvas"), ctx = cv.getContext("2d"), t = MP.t, dpr = MP.dpr;
+  const vals = MP.mun.map((f, i) => mpValor(i)); const esc = mpEscala(vals);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+  ctx.setTransform(dpr * t.k, 0, 0, dpr * t.k, dpr * t.x, dpr * t.y);
+  MP.mun.forEach((f, i) => { const v = vals[i]; ctx.fillStyle = v == null ? "#2a332f" : esc.f(v); ctx.fill(MP.path2d[i]); });
+  if (t.k > 2.2 && !rapido) { ctx.lineWidth = .35 / t.k; ctx.strokeStyle = "rgb(8 17 13/.55)"; MP.mun.forEach((f, i) => ctx.stroke(MP.path2d[i])); }
+  ctx.lineWidth = 1 / t.k; ctx.strokeStyle = "rgb(238 244 240/.38)"; ctx.stroke(MP.ufP);
+  ctx.lineWidth = 1.3 / t.k; ctx.strokeStyle = "rgb(238 244 240/.6)"; ctx.stroke(MP.contP);
+  if (MP.camada === "base" && MP.depSel) {
+    const e = MP.depSel.e || {}; const mx = Math.max(1, ...Object.values(e));
+    Object.entries(e).forEach(([cod, val]) => { const i = MP.idx.get(cod); if (i == null) return; const [x, y] = MP.centro[i];
+      ctx.beginPath(); ctx.arc(x, y, (2 + 14 * Math.sqrt(val / mx)) / Math.sqrt(t.k), 0, 6.283); ctx.fillStyle = "rgb(255 196 87/.55)"; ctx.fill();
+      ctx.lineWidth = 1 / t.k; ctx.strokeStyle = "#ffc457"; ctx.stroke(); });
+  }
+  if (MP.sel != null) { ctx.lineWidth = 2.4 / t.k; ctx.strokeStyle = "#fff"; ctx.stroke(MP.path2d[MP.sel]); }
+  if (!rapido) { const p = MP.pick.getContext("2d", {willReadFrequently: true}); p.setTransform(1, 0, 0, 1, 0, 0); p.clearRect(0, 0, MP.W, MP.H);
+    p.setTransform(t.k, 0, 0, t.k, t.x, t.y); p.imageSmoothingEnabled = false;
+    MP.mun.forEach((f, i) => { const k = i + 1; p.fillStyle = `rgb(${k >> 16 & 255},${k >> 8 & 255},${k & 255})`; p.fill(MP.path2d[i]); }); }
+  mpLegenda(esc);
+}
+function mpLegenda(esc) {
+  const box = $("#mpLegenda"); box.hidden = false;
+  const tit = {emendas: `Emendas pagas por habitante · orçamentos ${MP.L ? MP.L.anos[0] + "–" + MP.L.anos.slice(-1)[0] : ""}`, pt: `Voto no PT no 2º turno · ${MP.anoPT || mpAnoPT()}`, pib: "PIB per capita (R$)", alf: "Alfabetização (15 anos ou mais)", pop: "População (Censo 2022)", base: MP.depSel ? `Votos de ${MP.depSel.d.n} · círculos: emendas pagas` : ""}[MP.camada];
+  const rot = MP.camada === "pt" ? esc.rot : [esc.lim[0], esc.lim[3], esc.lim[5]].map(v => v == null ? "" : mpFmt[MP.camada](v).replace("/hab.", "").replace(" dos votos", ""));
+  box.innerHTML = `<b>${tit}</b><div class="mp-escala">${esc.cores.map(c => `<i style="background:${c}"></i>`).join("")}</div><div class="mp-rot"><span>${rot[0]}</span><span>${rot[1]}</span><span>${rot[2]}</span></div>`;
+}
+function mpPainel(i) {
+  const f = MP.mun[i], cod = String(f.id || f.properties.CD_MUN), r = MP.info.m[cod] || [], c = MP.info.c;
+  const g = k => r[c.indexOf(k)];
+  const e = MP.L && MP.L.e[cod]; const top = MP.L && MP.L.v[cod] || [];
+  const nomeDep = j => { const d = L.deputados[j]; return d ? `${d.n} <span class="muted">${d.p}</span>` : "—"; };
+  const pts = (MP.info.pt_anos || []).map(a => `<div><span>PT 2º turno ${a}</span><b>${pctf(g("pt_" + a))}</b></div>`).join("");
+  $("#mpPainelCorpo").innerHTML = `<span class="sub">${g("uf") || f.properties.SIGLA_UF}${g("cap") ? " · capital" : ""}</span><h3>${g("nome") || f.properties.NM_MUN}</h3>
+    <div class="mp-num"><div><span>População (2022)</span><b>${g("pop") ? fmt.format(g("pop")) : "—"}</b></div><div><span>PIB per capita</span><b>${g("pib_pc") ? "R$ " + fmt.format(Math.round(g("pib_pc"))) : "—"}</b></div>
+    <div><span>Alfabetização</span><b>${pctf(g("alf"))}</b></div><div><span>Urbana</span><b>${pctf(g("urb"))}</b></div>${pts}</div>
+    <div><span class="sub">Emendas pagas · orçamentos ${MP.L ? MP.L.anos[0] + "–" + MP.L.anos.slice(-1)[0] : ""}</span>
+      ${e ? `<div class="mp-num" style="margin-top:6px"><div><span>Total</span><b>R$ ${fmt.format(Math.round(e[0]))}</b></div><div><span>Por habitante</span><b>R$ ${dec(e[1], 2)}</b></div></div>
+      <ul class="mp-lista" style="margin-top:8px">${(e[2] || []).map(([j, val]) => `<li><span>${nomeDep(j)}</span><b>R$ ${fmt.format(Math.round(val))}</b></li>`).join("")}</ul>` : `<p class="mp-vazio">Nenhuma emenda individual paga com este município como destino.</p>`}</div>
+    <div><span class="sub">Mais votados aqui (eleitos)</span><ul class="mp-lista" style="margin-top:6px">${top.length ? top.map(([j, vv]) => `<li><span>${nomeDep(j)}</span><b>${fmt.format(vv)} votos</b></li>`).join("") : '<li class="mp-vazio">Sem dado</li>'}</ul></div>`;
+  $("#mpPainel").classList.add("aberto");
+}
+function mpPainelDep() {
+  const s = MP.depSel; if (!s) return; const d = s.d;
+  const v = Object.entries(s.v || {}).sort((a, b) => b[1] - a[1]).slice(0, 6), e = Object.entries(s.e || {}).sort((a, b) => b[1] - a[1]).slice(0, 6);
+  const nm = cod => { const r = MP.info.m[cod]; return r ? `${r[0]} (${r[1]})` : cod; };
+  const tot = Object.values(s.e || {}).reduce((a, b) => a + b, 0), naBase = Object.entries(s.e || {}).filter(([k]) => (s.v || {})[k] >= .01).reduce((a, [, b]) => a + b, 0);
+  $("#mpPainelCorpo").innerHTML = `<span class="sub">${d.p}-${d.uf} · ${L.nome}</span><h3>${d.n}</h3>
+    <div class="mp-num"><div><span>Emendas pagas</span><b>R$ ${fmt.format(Math.round(tot))}</b></div><div><span>Para a base (1%+ dos votos)</span><b>${tot ? pctf(naBase / tot, 0) : "—"}</b></div></div>
+    <div><span class="sub">Onde foi mais votado</span><ul class="mp-lista" style="margin-top:6px">${v.map(([k, x]) => `<li><span>${nm(k)}</span><b>${pctf(x, 1)}</b></li>`).join("") || '<li class="mp-vazio">Sem dado do TSE</li>'}</ul></div>
+    <div><span class="sub">Para onde mandou mais emendas</span><ul class="mp-lista" style="margin-top:6px">${e.map(([k, x]) => `<li><span>${nm(k)}</span><b>R$ ${fmt.format(Math.round(x))}</b></li>`).join("") || '<li class="mp-vazio">Nenhuma emenda individual paga</li>'}</ul></div>`;
+  $("#mpPainel").classList.add("aberto");
+}
+function mpDest() {
+  const R = MP.L && MP.L.resumo; if (!R) { $("#mpDest").innerHTML = ""; return; }
+  $("#mpDest").innerHTML = [
+    [`R$ ${dec(R.pago / 1e9, 1)} bi`, `pagos em emendas individuais dos orçamentos ${MP.L.anos[0]}–${MP.L.anos.slice(-1)[0]} (de R$ ${dec(R.empenhado / 1e9, 1)} bi empenhados)`],
+    R.frac_base_mediana != null ? [pctf(R.frac_base_mediana, 0), `do valor pago vai para a base eleitoral do parlamentar (mediana); ${dec(R.conexao_mediana, 1)} vezes o esperado pelo tamanho desses municípios`] : null,
+    R.necessidade_pib != null ? [dec(R.necessidade_pib), "correlação entre emendas por habitante e PIB per capita do município (negativa = mais dinheiro para municípios mais pobres)"] : null,
+  ].filter(Boolean).map(([b, t]) => `<div class="destaque"><b style="color:var(--h-ink)">${b}</b><span style="color:var(--h-ink-2)">${t}</span></div>`).join("");
+}
+function mapaBrasil() {
+  const sec = $("#brasil"); if (!sec) return;
+  if (!MP.carregado) { if ("IntersectionObserver" in window) { const io = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) { io.disconnect(); mpCarregar(); } }, {rootMargin: "300px"}); io.observe(sec); } else mpCarregar(); return; }
+  if (MP.mun) { mpLeg().then(() => { MP.sel = null; mpDesenhar(); $("#mpPainelCorpo").innerHTML = '<p class="mp-vazio">Toque num município para ver o perfil.</p>'; }); }
+}
+addEventListener("resize", () => { clearTimeout(MP.rz); MP.rz = setTimeout(() => { if (MP.mun) { mpMontar(); mpDesenhar(); } }, 250); });

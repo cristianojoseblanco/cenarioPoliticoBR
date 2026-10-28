@@ -5,7 +5,7 @@ set -uo pipefail
 MODS="${*:-src.ingestion.emendas src.ingestion.ibge src.ingestion.tse}"
 for mod in $MODS; do
   if ! python -m "$mod" > "/tmp/$mod.out" 2> "/tmp/$mod.err"; then
-    echo "::error title=$mod::$(tail -c 900 "/tmp/$mod.err" | tr '\n' ' ' | tr -s ' ')"
+    echo "::error title=$mod::$( (grep -m3 -i 'tentativa\|Error:' "/tmp/$mod.err"; tail -c 300 "/tmp/$mod.err") | tr '\n' ' ' | tr -s ' ' | cut -c1-950)"
   fi
   tail -5 "/tmp/$mod.out"
 done
