@@ -216,6 +216,8 @@ armazenamento:
     processed_mapa: "data/processed/mapa"
     staging_cota: "data/staging/cota"
     staging_comissoes: "data/staging/comissoes"
+    staging_agendas: "data/staging/agendas"
+    staging_atencao: "data/staging/atencao"
 
 # Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
 # `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
@@ -459,5 +461,21 @@ comissoes:
   caminhos: {staging: "data/staging/comissoes"}
   # Comissões permanentes de maior peso (presidência disputada).
   chave: [CCJC, CFT, CMO]
-  # Votação apertada: diferença entre Sim e Não até esta fração dos votos dados.
-  margem_apertada: 0.05
+  # Votação apertada: até N votos de o resultado virar.
+  margem_votos: 20
+  # Quórum fixo de aprovação (Sim necessários) na deliberação principal.
+  quorum: {PEC: 308, PLP: 257, urgencia: 257}
+
+# e-Agendas da CGU (Bloco C): compromissos do Executivo que citam parlamentares.
+agendas:
+  url: "https://dadosabertos-download.cgu.gov.br/dados_e-agendas/dados_e-agendas.zip"
+  caminhos: {staging: "data/staging/agendas"}
+
+# Atenção pública e fala (Bloco C): Wikipédia e discursos.
+atencao:
+  caminhos: {staging: "data/staging/atencao"}
+  wiki_desde: "201901"
+  discursos_desde: "2019-02-01"
+  recarregar_dias: 60
+  # Opcional: parquet com parlamentar_id, nome, nome_civil, nascimento de senadores.
+  senadores_nascimento: "data/staging/atencao/senadores.parquet"

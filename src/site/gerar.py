@@ -278,11 +278,31 @@ def dados_legislatura(leg: str, c: dict, casa: str = "camara") -> dict:
                 "menos": [{"i": idx[r.deputado_id], "m": _r(r.por_mes_real, 0), "d": _r(r.frac_divulgacao, 3)}
                           for r in cp_.nsmallest(12, "por_mes_real").itertuples() if r.deputado_id in idx]}
 
+    # comissões, relatorias, urgência e pivôs (só Câmara)
+    base_cm = ROOT / c["redes"]["saida"].replace("/redes", "/comissoes")
+    bast = None
+    if (base_cm / "resumo.json").exists():
+        rs = json.loads((base_cm / "resumo.json").read_text(encoding="utf-8"))
+        pv = pd.read_parquet(base_cm / "pivos.parquet")
+        pv = pv[(pv["apertadas"] >= 5) & pv["deputado_id"].isin(idx)]
+        bast = {"resumo": rs,
+                "pivos": [{"i": idx[r.deputado_id], "a": int(r.apertadas), "dv": int(r.dissid_venc), "dd": int(r.dissid_decisiva),
+                           "ga": _r(r.apoio_gov_apertadas, 3), "gt": _r(r.apoio_gov_todas, 3)}
+                          for r in pv.sort_values(["dissid_venc", "dissid_decisiva"], ascending=False).head(10).itertuples()]}
+        if (base_cm / "relatores.parquet").exists():
+            rl = pd.read_parquet(base_cm / "relatores.parquet")
+            rl = rl[rl["deputado_id"].isin(idx)]
+            bast["relatores"] = [{"i": idx[r.deputado_id], "n": int(r.relatorias), "u": _r(r.urgencia, 2)}
+                                 for r in rl.nlargest(12, "relatorias").itertuples()]
+            rp = pd.read_parquet(base_cm / "relatorias_partido.parquet").dropna(subset=["deputados"])
+            bast["relatorias_partido"] = [{"p": r.partido, "r": _r(r.frac_relatorias, 3), "c": _r(r.frac_deputados, 3), "n": int(r.relatorias)}
+                                          for r in rp.sort_values("relatorias", ascending=False).head(12).itertuples()]
+
     per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
         "leg": leg, "casa": casa, "_ids": list(d["deputado_id"]), "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
         "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
-        "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo, "eleicao": eleicao, "cota": cota,
+        "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo, "eleicao": eleicao, "cota": cota, "bastidores": bast,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
         "modularidade": _r(m["modularidade"]), "nmi": _r(m["nmi_com_partido"]),
         "polos": {"a": polos["polo_a"], "b": polos["polo_b"]},

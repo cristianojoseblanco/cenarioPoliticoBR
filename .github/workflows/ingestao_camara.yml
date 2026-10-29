@@ -123,6 +123,14 @@ jobs:
         continue-on-error: true
         run: python -m src.governance.cota
 
+      - name: Comissões e tramitação · ingestão
+        continue-on-error: true
+        run: python -m src.ingestion.comissoes
+
+      - name: Comissões, relatorias, urgência e pivôs
+        continue-on-error: true
+        run: python -m src.governance.comissoes
+
       - name: Deputados acompanhados
         run: python -m src.governance.acompanhamento
 

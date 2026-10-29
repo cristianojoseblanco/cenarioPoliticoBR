@@ -153,6 +153,7 @@ canvas#redeCanvas{width:100%;height:auto;aspect-ratio:4/3;display:block;border-r
 .lista-v{display:grid;gap:10px;margin:0;padding:0;list-style:none}
 .lista-v li{display:grid;gap:2px;padding-bottom:10px;border-bottom:1px solid var(--rule);font-size:.88rem}
 .lista-v li b{font:500 .78rem var(--f-data);color:var(--ink-3)}
+.barra-dupla{display:grid;gap:2px;margin-top:4px}.barra-dupla i{display:block;height:5px;border-radius:3px;background:var(--accent)}.barra-dupla i+i{background:var(--cx)}
 .pill{display:inline-block;font:600 .7rem/1 var(--f-data);padding:5px 8px;border-radius:999px;background:var(--soft);color:var(--accent-2);letter-spacing:.04em}
 
 /* rankings */
@@ -231,7 +232,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     <div class="legbtns" id="legSeg" role="group" aria-label="Legislatura"></div>
     <nav class="secoes" aria-label="Seções" id="nav">
       <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#mudancas">Mudanças</a>
-      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a><a href="#campanha">Campanha</a><a href="#brasil">Brasil</a><a href="#dinheiro">Dinheiro</a>
+      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a><a href="#campanha">Campanha</a><a href="#brasil">Brasil</a><a href="#dinheiro">Dinheiro</a><a href="#bastidores">Bastidores</a>
       <a href="#partidos">Partidos</a><a href="#frentes">Frentes</a><a href="#comparacao">Governos</a><a href="#acompanhados">Acompanhados</a><a href="#glossario">Glossário</a>
     </nav>
   </div>
@@ -426,6 +427,26 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
 </section>
 
 <!--__MAPA_HTML__-->
+
+<section class="cap" id="bastidores">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Comissões, relatorias, urgência e pivôs</span><h2>Onde o jogo se decide</h2>
+      <p class="lede" id="baLede"></p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
+      <dt>Votação apertada</dt><dd>Até 20 votos de o resultado virar: diferença entre Sim e Não, ou entre os Sim e o quórum exigido (308 em PEC; 257 em lei complementar e requerimento de urgência).</dd>
+      <dt>Dissidência vencedora</dt><dd>Votou contra a orientação do próprio partido e ficou do lado que ganhou. Em uma votação <b>decisiva</b>, essas dissidências somam mais que a margem: sem elas, o resultado seria outro.</dd>
+      <dt>Urgência</dt><dd>Regime que leva a proposição direto ao Plenário, pulando prazos de comissão. O requerimento de urgência é votado antes.</dd>
+      <dt>Relator</dt><dd>Quem dá o parecer em Plenário; escreve o texto que vai a voto. Último relator registrado na tramitação até a votação.</dd>
+      <dt>Fonte</dt><dd>Câmara (votações, tramitação, composição das comissões). Só Câmara.</dd></dl></div></details>
+    <div class="destaques" id="baDest"></div>
+    <div class="cols">
+      <div class="card" style="align-content:start"><h3>Pivôs: dissidências que ganharam</h3><p class="nota">Votações apertadas da legislatura. Entre parênteses, quantas foram decisivas.</p><ol class="rank" id="baPiv"></ol></div>
+      <div class="card" style="align-content:start"><h3>Urgência por ano</h3><div class="rolagem"><table class="tab" id="baUrg"></table></div><div id="baTempo"></div>
+        <h3 style="margin-top:6px">Relatorias de Plenário por partido</h3><p class="nota">Fatia das relatorias × fatia das cadeiras.</p><div id="baRelP"></div></div>
+    </div>
+    <div class="cols" id="baCom"></div>
+  </div>
+</section>
 
 <section class="cap" id="dinheiro">
   <div class="wrap">
@@ -1193,6 +1214,30 @@ function campanha() {
 segOn("#caX", v => { caX = +v; campanha(); });
 segOn("#caY", v => { caY = v; campanha(); });
 
+/* ================= bastidores ================= */
+function bastidores() {
+  const B = L.bastidores; const sec = $("#bastidores");
+  if (!B) { sec.hidden = true; return; } sec.hidden = false;
+  const r = B.resumo, p = r.pivos, u = r.urgencia;
+  const reqs = u.req_urgencia_ano.reduce((a, x) => a + x.req, 0);
+  $("#baLede").innerHTML = `Na ${L.nome}, ${fmt.format(p.apertadas)} das ${fmt.format(p.votacoes)} votações nominais ficaram a até ${p.margem_votos} votos de virar. O governo venceu ${pctf(p.gov_venceu_apertadas, 0)} delas (${pctf(p.gov_venceu_todas, 0)} de todas).`;
+  const rl = u.relatorias;
+  $("#baDest").innerHTML = [
+    [fmt.format(p.decisivas), `votações apertadas decididas por quem votou contra o próprio partido`],
+    [fmt.format(reqs), `requerimentos de urgência em votação nominal`],
+    rl ? [`${pctf(rl.apoio_gov_relatores, 0)}`, `apoio médio ao governo dos relatores de Plenário (média da Câmara: ${pctf(rl.apoio_gov_plenario, 0)})`] : null,
+  ].filter(Boolean).map(([b, t]) => `<div class="destaque"><b>${b}</b><span>${t}</span></div>`).join("");
+  $("#baPiv").innerHTML = B.pivos.map(x => { const d = L.deputados[x.i]; return `<li><span class="q"><b>${d.n}</b><br><span class="muted">${d.p}-${d.uf} · apoio ao governo ${pctf(x.ga, 0)} nas apertadas, ${pctf(x.gt, 0)} em todas</span></span><span class="num">${x.dv} <span class="muted">(${x.dd})</span></span></li>`; }).join("");
+  const mu = Object.fromEntries((u.merito_urgencia_ano || []).map(x => [x.ano, x]));
+  $("#baUrg").innerHTML = `<tr><th>Ano</th><th>Req. de urgência</th>${u.merito_urgencia_ano ? "<th>Mérito em urgência</th>" : ""}</tr>` + u.req_urgencia_ano.map(x => `<tr><td>${x.ano}</td><td>${x.req} <span class="muted">de ${x.votacoes}</span></td>${u.merito_urgencia_ano ? `<td>${mu[x.ano] ? pctn(mu[x.ano].urgencia, mu[x.ano].merito, 0) : "—"}</td>` : ""}</tr>`).join("");
+  $("#baTempo").innerHTML = u.tempo_ate_votar ? `<p class="nota">Da apresentação à 1ª votação nominal (mediana): ${u.tempo_ate_votar.map(x => `<b>${x.grupo.toLowerCase()}</b> ${fmt.format(x.mediana_dias)} dias`).join(" · ")}.</p>` : "";
+  $("#baRelP").innerHTML = B.relatorias_partido ? `<ul class="lista-v">${B.relatorias_partido.map(x => `<li><b>${x.p}</b><span>${pctf(x.r, 0)} das relatorias (${x.n}) · ${pctf(x.c, 0)} das cadeiras <span class="barra-dupla"><i style="width:${Math.min(100, x.r * 300)}%"></i><i style="width:${Math.min(100, x.c * 300)}%"></i></span></span></li>`).join("")}</ul>` : '<p class="muted">Tramitação ainda não coletada.</p>';
+  const cm = r.comissoes;
+  $("#baCom").innerHTML = cm ? `<div class="card" style="align-content:start"><h3>Presidências de comissões permanentes</h3><p class="nota">Mandatos de presidente na legislatura, por partido.</p><ul class="lista-v">${cm.presidencias.slice(0, 10).map(x => `<li><b>${x.partido}</b><span>${x.n} presidência${x.n > 1 ? "s" : ""}${x.deputados ? ` · ${x.deputados} deputados` : ""}</span></li>`).join("")}</ul>
+      <h3 style="margin-top:6px">Comissões-chave</h3><ul class="lista-v">${cm.chave.filter(x => x.presidentes.length).map(x => `<li><b>${x.sigla}</b><span>${x.presidentes.map(p => `${p.nome} (${p.partido}, ${p.inicio.slice(0, 4)})`).join(" → ")}</span></li>`).join("")}</ul></div>
+    <div class="card" style="align-content:start"><h3>Comissões × Plenário</h3><p class="nota">Apoio médio ao governo dos titulares, menos o da Câmara (${pctf(cm.apoio_gov_plenario, 0)}).</p><div class="rolagem"><table class="tab" style="min-width:340px"><tr><th>Comissão</th><th>Titulares</th><th>Apoio</th><th>Diferença</th></tr>${[...cm.comissoes.slice(0, 5), ...cm.comissoes.slice(-5)].map(x => `<tr><td title="${x.nome}">${x.sigla}</td><td>${x.titulares}</td><td>${pctf(x.apoio_gov, 0)}</td><td>${x.diferenca > 0 ? "+" : ""}${dec(x.diferenca * 100, 1)} pp</td></tr>`).join("")}</table></div></div>` : "";
+}
+
 /* ================= cota e patrimônio ================= */
 let diModo = "top";
 function dinheiro() {
@@ -1240,7 +1285,7 @@ segOn("#redeCor", v => { redeModo = v; rede(); });
 segOn("#tempoMet", v => { tempoModo = v; tempo(); });
 segOn("#temaMet", v => { temaModo = v; temas(); });
 segOn("#mudMet", v => { mudModo = v; mudancas(); });
-function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); campanha(); mapaBrasil(); dinheiro(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); campanha(); mapaBrasil(); bastidores(); dinheiro(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
 tudo(true);
 // navegação: destaca a seção visível
 const links = [...document.querySelectorAll("#nav a")];

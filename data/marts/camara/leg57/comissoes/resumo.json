@@ -1,0 +1,486 @@
+{
+  "legislatura": "57",
+  "pivos": {
+    "votacoes": 1128,
+    "apertadas": 61,
+    "decisivas": 16,
+    "gov_venceu_apertadas": 0.8605,
+    "gov_venceu_todas": 0.8542,
+    "margem_votos": 20
+  },
+  "urgencia": {
+    "req_urgencia_ano": [
+      {
+        "ano": 2023,
+        "req": 64,
+        "votacoes": 300
+      },
+      {
+        "ano": 2024,
+        "req": 59,
+        "votacoes": 273
+      },
+      {
+        "ano": 2025,
+        "req": 48,
+        "votacoes": 429
+      },
+      {
+        "ano": 2026,
+        "req": 33,
+        "votacoes": 126
+      }
+    ],
+    "merito_urgencia_ano": [
+      {
+        "ano": 2023,
+        "urgencia": 192,
+        "merito": 235
+      },
+      {
+        "ano": 2024,
+        "urgencia": 189,
+        "merito": 214
+      },
+      {
+        "ano": 2025,
+        "urgencia": 338,
+        "merito": 380
+      },
+      {
+        "ano": 2026,
+        "urgencia": 74,
+        "merito": 93
+      }
+    ],
+    "tempo_ate_votar": [
+      {
+        "grupo": "Urgência",
+        "proposicoes": 271,
+        "mediana_dias": 174.0
+      },
+      {
+        "grupo": "Sem urgência",
+        "proposicoes": 33,
+        "mediana_dias": 813.0
+      }
+    ],
+    "tempo_por_tipo": [
+      {
+        "tipo": "MPV",
+        "urgencia": 1.0,
+        "proposicoes": 28,
+        "mediana_dias": 114.0
+      },
+      {
+        "tipo": "PDL",
+        "urgencia": 0.8667,
+        "proposicoes": 15,
+        "mediana_dias": 265.0
+      },
+      {
+        "tipo": "PEC",
+        "urgencia": 0.0,
+        "proposicoes": 17,
+        "mediana_dias": 1553.0
+      },
+      {
+        "tipo": "PL",
+        "urgencia": 0.9451,
+        "proposicoes": 182,
+        "mediana_dias": 314.0
+      },
+      {
+        "tipo": "PLP",
+        "urgencia": 0.9808,
+        "proposicoes": 52,
+        "mediana_dias": 155.0
+      }
+    ],
+    "relatorias": {
+      "proposicoes_com_relator": 285,
+      "proposicoes_merito": 307,
+      "apoio_gov_relatores": 0.7845,
+      "apoio_gov_plenario": 0.7151,
+      "relatores": 181
+    }
+  },
+  "comissoes": {
+    "comissoes_permanentes": 32,
+    "presidencias": [
+      {
+        "partido": "PL",
+        "n": 20,
+        "deputados": 108.0
+      },
+      {
+        "partido": "PT",
+        "n": 16,
+        "deputados": 75.0
+      },
+      {
+        "partido": "UNIÃO",
+        "n": 13,
+        "deputados": 73.0
+      },
+      {
+        "partido": "PP",
+        "n": 9,
+        "deputados": 64.0
+      },
+      {
+        "partido": "PSD",
+        "n": 8,
+        "deputados": 57.0
+      },
+      {
+        "partido": "MDB",
+        "n": 8,
+        "deputados": 52.0
+      },
+      {
+        "partido": "REPUBLICANOS",
+        "n": 8,
+        "deputados": 59.0
+      },
+      {
+        "partido": "AVANTE",
+        "n": 5,
+        "deputados": 8.0
+      },
+      {
+        "partido": "PDT",
+        "n": 5,
+        "deputados": 21.0
+      },
+      {
+        "partido": "PSDB",
+        "n": 5,
+        "deputados": 13.0
+      },
+      {
+        "partido": "PCdoB",
+        "n": 4,
+        "deputados": 10.0
+      },
+      {
+        "partido": "PSOL",
+        "n": 4,
+        "deputados": 15.0
+      },
+      {
+        "partido": "PV",
+        "n": 4,
+        "deputados": 5.0
+      },
+      {
+        "partido": "PSB",
+        "n": 4,
+        "deputados": 17.0
+      },
+      {
+        "partido": "SOLIDARIEDADE",
+        "n": 4,
+        "deputados": 7.0
+      },
+      {
+        "partido": "PODE",
+        "n": 3,
+        "deputados": 23.0
+      },
+      {
+        "partido": "PRD",
+        "n": 3,
+        "deputados": 7.0
+      },
+      {
+        "partido": "PSC",
+        "n": 1,
+        "deputados": null
+      }
+    ],
+    "chave": [
+      {
+        "sigla": "CCJC",
+        "presidentes": [
+          {
+            "nome": "Rui Falcão",
+            "partido": "PT",
+            "inicio": "2023-03-15"
+          },
+          {
+            "nome": "Caroline de Toni",
+            "partido": "PL",
+            "inicio": "2024-03-06"
+          },
+          {
+            "nome": "Paulo Azi",
+            "partido": "UNIÃO",
+            "inicio": "2025-03-19"
+          },
+          {
+            "nome": "Leur Lomanto Júnior",
+            "partido": "UNIÃO",
+            "inicio": "2026-02-10"
+          }
+        ]
+      },
+      {
+        "sigla": "CFT",
+        "presidentes": [
+          {
+            "nome": "Paulo Guedes",
+            "partido": "PT",
+            "inicio": "2023-03-15"
+          },
+          {
+            "nome": "Mário Negromonte Jr.",
+            "partido": "PP",
+            "inicio": "2024-03-06"
+          },
+          {
+            "nome": "Rogério Correia",
+            "partido": "PT",
+            "inicio": "2025-03-19"
+          },
+          {
+            "nome": "Merlong Solano",
+            "partido": "PT",
+            "inicio": "2026-03-19"
+          }
+        ]
+      },
+      {
+        "sigla": "CMO",
+        "presidentes": []
+      }
+    ],
+    "apoio_gov_plenario": 0.7151,
+    "comissoes": [
+      {
+        "sigla": "CSPCCO",
+        "nome": "Comissão de Segurança Pública e Combate ao Crime Organizado",
+        "titulares": 83,
+        "apoio_gov": 0.5301,
+        "diferenca": -0.185
+      },
+      {
+        "sigla": "CAPADR",
+        "nome": "Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural",
+        "titulares": 104,
+        "apoio_gov": 0.5967,
+        "diferenca": -0.1183
+      },
+      {
+        "sigla": "CREDN",
+        "nome": "Comissão de Relações Exteriores e de Defesa Nacional",
+        "titulares": 89,
+        "apoio_gov": 0.633,
+        "diferenca": -0.0821
+      },
+      {
+        "sigla": "CPASF",
+        "nome": "Comissão de Previdência, Assistência Social, Infância, Adolescência e Família",
+        "titulares": 48,
+        "apoio_gov": 0.6432,
+        "diferenca": -0.0719
+      },
+      {
+        "sigla": "CCJC",
+        "nome": "Comissão de Constituição e Justiça e de Cidadania",
+        "titulares": 153,
+        "apoio_gov": 0.6812,
+        "diferenca": -0.0338
+      },
+      {
+        "sigla": "CSAUDE",
+        "nome": "Comissão de Saúde",
+        "titulares": 118,
+        "apoio_gov": 0.6948,
+        "diferenca": -0.0203
+      },
+      {
+        "sigla": "CDHMIR",
+        "nome": "Comissão de Direitos Humanos, Minorias e Igualdade Racial",
+        "titulares": 45,
+        "apoio_gov": 0.6982,
+        "diferenca": -0.0168
+      },
+      {
+        "sigla": "MERCOSUL",
+        "nome": "Representação Brasileira no Parlamento do Mercosul",
+        "titulares": 42,
+        "apoio_gov": 0.71,
+        "diferenca": -0.005
+      },
+      {
+        "sigla": "CESPO",
+        "nome": "Comissão do Esporte",
+        "titulares": 57,
+        "apoio_gov": 0.7106,
+        "diferenca": -0.0045
+      },
+      {
+        "sigla": "CCOM",
+        "nome": "Comissão de Comunicação",
+        "titulares": 86,
+        "apoio_gov": 0.7173,
+        "diferenca": 0.0022
+      },
+      {
+        "sigla": "CPD",
+        "nome": "Comissão de Defesa dos Direitos das Pessoas com Deficiência",
+        "titulares": 52,
+        "apoio_gov": 0.7206,
+        "diferenca": 0.0056
+      },
+      {
+        "sigla": "CMULHER",
+        "nome": "Comissão de Defesa dos Direitos da Mulher",
+        "titulares": 55,
+        "apoio_gov": 0.7217,
+        "diferenca": 0.0066
+      },
+      {
+        "sigla": "CDE",
+        "nome": "Comissão de Desenvolvimento Econômico",
+        "titulares": 45,
+        "apoio_gov": 0.727,
+        "diferenca": 0.0119
+      },
+      {
+        "sigla": "CIDOSO",
+        "nome": "Comissão de Defesa dos Direitos da Pessoa Idosa",
+        "titulares": 50,
+        "apoio_gov": 0.7281,
+        "diferenca": 0.013
+      },
+      {
+        "sigla": "CFFC",
+        "nome": "Comissão de Fiscalização Financeira e Controle",
+        "titulares": 55,
+        "apoio_gov": 0.7328,
+        "diferenca": 0.0177
+      },
+      {
+        "sigla": "CASP",
+        "nome": "Comissão de Administração e Serviço Público",
+        "titulares": 53,
+        "apoio_gov": 0.7409,
+        "diferenca": 0.0258
+      },
+      {
+        "sigla": "CVT",
+        "nome": "Comissão de Viação e Transportes",
+        "titulares": 63,
+        "apoio_gov": 0.7413,
+        "diferenca": 0.0262
+      },
+      {
+        "sigla": "CME",
+        "nome": "Comissão de Minas e Energia",
+        "titulares": 91,
+        "apoio_gov": 0.7452,
+        "diferenca": 0.0302
+      },
+      {
+        "sigla": "CE",
+        "nome": "Comissão de Educação",
+        "titulares": 85,
+        "apoio_gov": 0.7456,
+        "diferenca": 0.0306
+      },
+      {
+        "sigla": "CFT",
+        "nome": "Comissão de Finanças e Tributação",
+        "titulares": 71,
+        "apoio_gov": 0.7458,
+        "diferenca": 0.0307
+      },
+      {
+        "sigla": "CDU",
+        "nome": "Comissão de Desenvolvimento Urbano",
+        "titulares": 43,
+        "apoio_gov": 0.7463,
+        "diferenca": 0.0313
+      },
+      {
+        "sigla": "CTUR",
+        "nome": "Comissão de Turismo",
+        "titulares": 55,
+        "apoio_gov": 0.7491,
+        "diferenca": 0.034
+      },
+      {
+        "sigla": "CICS",
+        "nome": "Comissão de Indústria, Comércio e Serviços",
+        "titulares": 36,
+        "apoio_gov": 0.7612,
+        "diferenca": 0.0462
+      },
+      {
+        "sigla": "CCTI",
+        "nome": "Comissão de Ciência, Tecnologia e Inovação",
+        "titulares": 48,
+        "apoio_gov": 0.7645,
+        "diferenca": 0.0495
+      },
+      {
+        "sigla": "CMADS",
+        "nome": "Comissão de Meio Ambiente e Desenvolvimento Sustentável",
+        "titulares": 42,
+        "apoio_gov": 0.7847,
+        "diferenca": 0.0697
+      },
+      {
+        "sigla": "CINDRE",
+        "nome": "Comissão de Integração Nacional e Desenvolvimento Regional",
+        "titulares": 54,
+        "apoio_gov": 0.7898,
+        "diferenca": 0.0747
+      },
+      {
+        "sigla": "CMO",
+        "nome": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização",
+        "titulares": 135,
+        "apoio_gov": 0.7908,
+        "diferenca": 0.0758
+      },
+      {
+        "sigla": "CCULT",
+        "nome": "Comissão de Cultura",
+        "titulares": 40,
+        "apoio_gov": 0.7915,
+        "diferenca": 0.0764
+      },
+      {
+        "sigla": "CDC",
+        "nome": "Comissão de Defesa do Consumidor",
+        "titulares": 26,
+        "apoio_gov": 0.7939,
+        "diferenca": 0.0788
+      },
+      {
+        "sigla": "CTRAB",
+        "nome": "Comissão de Trabalho",
+        "titulares": 39,
+        "apoio_gov": 0.8092,
+        "diferenca": 0.0941
+      },
+      {
+        "sigla": "CLP",
+        "nome": "Comissão de Legislação Participativa",
+        "titulares": 34,
+        "apoio_gov": 0.8224,
+        "diferenca": 0.1074
+      },
+      {
+        "sigla": "CPOVOS",
+        "nome": "Comissão da Amazônia e dos Povos Originários e Tradicionais",
+        "titulares": 38,
+        "apoio_gov": 0.8319,
+        "diferenca": 0.1168
+      }
+    ]
+  }
+}
