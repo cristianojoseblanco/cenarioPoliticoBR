@@ -129,4 +129,4 @@ Apoio ao governo dos titulares × Plenário (comissões mais distantes):
 | CDC | 26 | 79% | +7,9 pp |
 | CTRAB | 39 | 81% | +9,4 pp |
 | CLP | 34 | 82% | +10,7 pp |
-| CPOVOS | 38 | 83% | +11,7 pp |
+| CPOVOS | 39 | 82% | +11,0 pp |

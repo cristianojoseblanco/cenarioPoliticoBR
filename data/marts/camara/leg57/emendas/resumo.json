@@ -7,53 +7,53 @@
     2026,
     2027
   ],
-  "emendas": 15293,
+  "emendas": 15298,
   "autores_ligados": 543,
   "autores_total": 647,
-  "empenhado": 54946510660.84,
-  "pago": 47198841165.84,
+  "empenhado": 54953331876.31,
+  "pago": 47199147321.590004,
   "execucao_mediana": 0.8712953162045425,
   "conexao_mediana": 1.4295713621396209,
   "frac_base_mediana": 0.3780558380659067,
   "tempo": {
-    "spearman": 0.0008762266903426604,
-    "p": 0.9051444432063184,
-    "n": 18498,
-    "apoio_meses_com_pagamento": -0.0013103424531559077
+    "spearman": 0.0008109376234888006,
+    "p": 0.9121801604467746,
+    "n": 18499,
+    "apoio_meses_com_pagamento": -0.0013159485962451977
   },
   "necessidade": [
     {
       "indicador": "pib_per_capita",
-      "spearman": -0.12092180394608659,
-      "p": 1.3543404390106679e-19,
+      "spearman": -0.12092141292395328,
+      "p": 1.3547066172010906e-19,
       "n": 5570
     },
     {
       "indicador": "alfabetizacao",
-      "spearman": -0.1953056223155445,
-      "p": 5.181492615264096e-49,
+      "spearman": -0.19530513869374588,
+      "p": 5.184339224434844e-49,
       "n": 5570
     },
     {
       "indicador": "pop_2022",
-      "spearman": -0.5728473564146687,
+      "spearman": -0.5728469421298041,
       "p": 0.0,
       "n": 5570
     },
     {
       "indicador": "urbanizacao",
-      "spearman": -0.31380014204789075,
-      "p": 1.5697383985278964e-127,
+      "spearman": -0.31379973953323786,
+      "p": 1.570965446928071e-127,
       "n": 5570
     },
     {
       "indicador": "densidade",
-      "spearman": -0.283044478957724,
-      "p": 4.0885997959935975e-103,
+      "spearman": -0.28304399783590134,
+      "p": 4.091978259944536e-103,
       "n": 5570
     }
   ],
-  "execucao_apoio_dentro": 0.23629671880756445,
-  "execucao_apoio_dentro_p": 3.578532039462798e-08,
-  "necessidade_pib": -0.12092180394608659
+  "execucao_apoio_dentro": 0.23595090997336501,
+  "execucao_apoio_dentro_p": 3.7512023825180076e-08,
+  "necessidade_pib": -0.12092141292395328
 }

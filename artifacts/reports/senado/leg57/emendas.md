@@ -1,8 +1,8 @@
 # Emendas parlamentares × Plenário — Senado, legislatura 57
 
-Emendas individuais dos orçamentos 2024–2027: 2.795 emendas de 82 parlamentares ligados (de 647 autores).
+Emendas individuais dos orçamentos 2024–2027: 2.796 emendas de 82 parlamentares ligados (de 647 autores).
 
-- Empenhado: R$ 16.225.573.241; pago: R$ 14.144.749.313
+- Empenhado: R$ 16.228.013.277; pago: R$ 14.144.779.737
 - Taxa de execução (mediana por parlamentar): 88,4%
 - Fração do pago para a base eleitoral (mediana): 27,2%; R$ por habitante na base ÷ resto da UF (mediana): 0,41
 
@@ -13,9 +13,9 @@ Emendas individuais dos orçamentos 2024–2027: 2.795 emendas de 82 parlamentar
 | pago | apoio_gov | 0,45* | 0,32* | 79 |
 | pago | disciplina | 0,18 | 0,17 | 79 |
 | pago | imprevisibilidade | -0,08 | -0,16 | 79 |
-| execucao | apoio_gov | 0,52* | 0,26 | 79 |
+| execucao | apoio_gov | 0,52* | 0,25 | 79 |
 | execucao | disciplina | 0,13 | 0,20 | 79 |
-| execucao | imprevisibilidade | 0,05 | -0,00 | 79 |
+| execucao | imprevisibilidade | 0,04 | -0,00 | 79 |
 | conexao | apoio_gov | -0,19 | -0,23 | 61 |
 | conexao | disciplina | -0,39* | -0,49* | 61 |
 | conexao | imprevisibilidade | 0,44* | 0,36* | 61 |

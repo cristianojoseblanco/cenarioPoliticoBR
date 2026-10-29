@@ -15,13 +15,13 @@ Emendas individuais dos orçamentos 2020–2023: 21.448 emendas de 546 parlament
 | pago | imprevisibilidade | 0,06 | 0,01 | 545 |
 | execucao | apoio_gov | 0,13* | 0,02 | 545 |
 | execucao | disciplina | -0,08 | -0,03 | 544 |
-| execucao | imprevisibilidade | 0,08 | 0,00 | 545 |
+| execucao | imprevisibilidade | 0,07 | -0,01 | 545 |
 | conexao | apoio_gov | -0,21* | -0,02 | 477 |
 | conexao | disciplina | 0,07 | 0,00 | 477 |
 | conexao | imprevisibilidade | -0,06 | 0,01 | 477 |
 | frac_base | apoio_gov | -0,15* | -0,00 | 545 |
 | frac_base | disciplina | 0,06 | 0,02 | 544 |
-| frac_base | imprevisibilidade | -0,07 | -0,04 | 545 |
+| frac_base | imprevisibilidade | -0,07 | -0,03 | 545 |
 
 \* p < 0,01.
 

@@ -3,12 +3,12 @@
   "dataset": "proposicoes",
   "ano": 2025,
   "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoes/csv/proposicoes-2025.csv",
-  "coletado_em": "2026-10-28T14:27:17+00:00",
-  "sha256": "d6d5532741e649af421cdf58970cf91b76137df634d952c730aabe6a1b84b3ae",
+  "coletado_em": "2026-10-29T04:34:48+00:00",
+  "sha256": "e85fe56950b4aae3f3b994aea38ec84a6bccb41b4cea6e4c044485912342251a",
   "linhas": 107587,
-  "bytes_csv": 90199367,
-  "bytes_parquet": 6229711,
-  "segundos": 6.3,
+  "bytes_csv": 90195702,
+  "bytes_parquet": 6229904,
+  "segundos": 8.4,
   "versao_esquema": 1,
   "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
 }

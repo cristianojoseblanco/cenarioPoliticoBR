@@ -384,18 +384,18 @@
         "diferenca": 0.0302
       },
       {
-        "sigla": "CE",
-        "nome": "Comissão de Educação",
-        "titulares": 85,
-        "apoio_gov": 0.7456,
-        "diferenca": 0.0306
-      },
-      {
         "sigla": "CFT",
         "nome": "Comissão de Finanças e Tributação",
         "titulares": 71,
         "apoio_gov": 0.7458,
         "diferenca": 0.0307
+      },
+      {
+        "sigla": "CE",
+        "nome": "Comissão de Educação",
+        "titulares": 85,
+        "apoio_gov": 0.7462,
+        "diferenca": 0.0311
       },
       {
         "sigla": "CDU",
@@ -477,9 +477,9 @@
       {
         "sigla": "CPOVOS",
         "nome": "Comissão da Amazônia e dos Povos Originários e Tradicionais",
-        "titulares": 38,
-        "apoio_gov": 0.8319,
-        "diferenca": 0.1168
+        "titulares": 39,
+        "apoio_gov": 0.8249,
+        "diferenca": 0.1098
       }
     ]
   }

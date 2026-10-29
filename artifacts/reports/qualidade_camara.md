@@ -83,7 +83,7 @@ Problemas encontrados: 0
 
 ## proposicoes
 
-- Linhas: 846.998
+- Linhas: 847.314
   - 1991: 4.436
   - 1995: 4.780
   - 1997: 4.122
@@ -111,7 +111,7 @@ Problemas encontrados: 0
   - 2023: 62.437
   - 2024: 61.536
   - 2025: 107.587
-  - 2026: 47.089
+  - 2026: 47.405
 - Colunas (30): `id`, `uri`, `siglaTipo`, `numero`, `codTipo`, `descricaoTipo`, `ementa`, `ementaDetalhada`, `keywords`, `dataApresentacao`, `uriOrgaoNumerador`, `uriPropAnterior`, `uriPropPrincipal`, `uriPropPosterior`, `urlInteiroTeor`, `urnFinal`, `ultimoStatus_dataHora`, `ultimoStatus_sequencia`, `ultimoStatus_uriRelator`, `ultimoStatus_idOrgao`, `ultimoStatus_siglaOrgao`, `ultimoStatus_uriOrgao`, `ultimoStatus_regime`, `ultimoStatus_descricaoTramitacao`, `ultimoStatus_idTipoTramitacao`, `ultimoStatus_descricaoSituacao`, `ultimoStatus_idSituacao`, `ultimoStatus_despacho`, `ultimoStatus_apreciacao`, `ultimoStatus_url`
 
 ## proposicoesTemas
