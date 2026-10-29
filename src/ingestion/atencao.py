@@ -82,22 +82,35 @@ def wikidata(cfg, gente: pd.DataFrame) -> pd.DataFrame:
 def visitas(cfg, mapa: pd.DataFrame) -> pd.DataFrame:
     a = cfg["atencao"]
     fim = datetime.now().strftime("%Y%m01")
-    linhas = []
+    linhas, status = [], {}
     for r in mapa.itertuples():
         url = (f"https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/pt.wikipedia/all-access/user/"
                f"{quote(r.artigo, safe='')}/monthly/{a['wiki_desde']}0100/{fim}00")
-        try:
-            x = requests.get(url, headers=_ua(cfg), timeout=60)
-            if x.status_code == 404:
+        x = None
+        for tentativa in range(4):
+            try:
+                x = requests.get(url, headers=_ua(cfg), timeout=60)
+            except requests.RequestException as e:
+                status[type(e).__name__] = status.get(type(e).__name__, 0) + 1
+                x = None
+                time.sleep(2 ** tentativa)
                 continue
-            x.raise_for_status()
-        except requests.RequestException as e:
-            print(f"  {r.artigo}: {e}", file=sys.stderr)
+            if x.status_code == 429 or x.status_code >= 500:
+                time.sleep(2 ** tentativa)
+                continue
+            break
+        if x is None:
+            continue
+        status[x.status_code] = status.get(x.status_code, 0) + 1
+        if x.status_code != 200:
+            if len(status) < 6 and x.status_code != 404:
+                print(f"  {url}: {x.status_code} {x.text[:200]}")
             continue
         for it in x.json().get("items", []):
             linhas.append({"casa": r.casa, "parlamentar_id": r.parlamentar_id, "mes": it["timestamp"][:6],
                            "visitas": int(it["views"])})
-        time.sleep(0.05)
+        time.sleep(0.1)
+    print(f"wikipédia: respostas {status}")
     return pd.DataFrame(linhas)
 
 
