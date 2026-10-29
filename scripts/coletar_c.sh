@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Coleta do Bloco C para inspeção fora do Actions. Uso: bash scripts/coletar_c.sh "agendas wiki" | "discursos"
 set -uo pipefail
-PARTES="${1:-agendas wiki}"
+PARTES="${*:-agendas wiki}"
 python -m src.storage baixar processed_camara processed_senado > /dev/null 2>&1 || true
 rodar() {
   if ! timeout 2400 python -m "$@" > /tmp/out.txt 2> /tmp/err.txt; then
