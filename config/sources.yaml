@@ -215,6 +215,7 @@ armazenamento:
     staging_ibge: "data/staging/ibge"
     processed_mapa: "data/processed/mapa"
     staging_cota: "data/staging/cota"
+    staging_comissoes: "data/staging/comissoes"
 
 # Análises por legislatura (Etapa 7a). Cada uma roda com os MESMOS parâmetros de `redes`,
 # `fatias` e `governabilidade`; resultados em data/marts/camara/leg<N>/.
@@ -450,3 +451,13 @@ cota:
   # postos e grandes redes não dizem nada sobre proximidade).
   fornecedor_max_frac: 0.05
   min_parlamentares_fornecedor: 2
+
+# Comissões, relatorias e urgência (Bloco B).
+comissoes:
+  legislaturas: [56, 57, 58]
+  recarregar_dias: 120
+  caminhos: {staging: "data/staging/comissoes"}
+  # Comissões permanentes de maior peso (presidência disputada).
+  chave: [CCJC, CFT, CMO]
+  # Votação apertada: diferença entre Sim e Não até esta fração dos votos dados.
+  margem_apertada: 0.05
