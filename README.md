@@ -125,6 +125,13 @@ Páginas: Rede, Tempo, Temas, Partidos, Deputado, Comparação, Mudanças, Acomp
 - `src/site/mapa.html`: mapa interativo (canvas + d3), carregado só quando a seção aparece. Arquivos em
   `site/geo/` e `site/dados/` (um por parlamentar, baixado só quando ele é escolhido).
 
+## Dinheiro, bastidores e atenção (v2)
+
+- **Cota e patrimônio** (`src/ingestion/cota.py`, `src/governance/cota.py`): CEAP/CEAPS desde 2019 e bens declarados ao TSE, em reais de hoje (IPCA). Fornecedor pessoa física vira "PESSOA FÍSICA". Seção **Dinheiro**.
+- **Comissões, relatorias, urgência e pivôs** (`src/ingestion/comissoes.py`, `src/governance/comissoes.py`): composição das comissões, tramitação das proposições votadas, votações apertadas (até 20 votos de virar, com quórum). Seção **Bastidores**.
+- **Influência e atenção** (`src/ingestion/agendas.py`, `src/ingestion/atencao.py`, `src/governance/atencao.py`): agendas do Executivo (e-Agendas/CGU, desde out/2022), visitas na Wikipédia e discursos. Seção **Atenção**.
+  - A API de visitas da Wikimedia limita pedidos da nuvem: são 250 verbetes por execução, e a série completa se forma em poucas semanas.
+
 ## Rodar localmente
 
 ```bash
