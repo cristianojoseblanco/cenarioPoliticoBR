@@ -15,25 +15,25 @@ Camadas: voto, coautoria, frentes. Pares de coautoria: 12.933; de frentes: 155.8
 
 ## Frentes: votam como bloco além da composição partidária? (352 frentes com 10+ membros com voto)
 
-6 frentes acima do percentil 95 dos sorteios com a mesma composição partidária.
+7 frentes acima do percentil 95 dos sorteios com a mesma composição partidária.
 
 | Frente | Membros | Coesão | Esperada pela composição | Excesso | Maiores partidos |
 | --- | --- | --- | --- | --- | --- |
-| Frente Parlamentar em Defesa do Homeschooling | 235 | 79,2% | 78,0% | +1,2 p.p. | PSL 38, PL 29, REPUBLICANOS 25 |
-| Frente Parlamentar dos Transplantes | 235 | 73,7% | 72,7% | +1,1 p.p. | PP 32, PSL 26, REPUBLICANOS 20 |
-| Frente Parlamentar em Apoio ao Produtor de Leite | 203 | 74,1% | 73,0% | +1,0 p.p. | PSL 43, PP 20, PSDB 16 |
-| Frente Parlamentar de Enfrentamento às Drogas | 202 | 75,7% | 74,6% | +1,0 p.p. | PSL 47, PL 17, PP 14 |
-| Frente Parlamentar Mista Pelo Fortalecimento do SUS | 187 | 62,4% | 61,5% | +1,0 p.p. | PT 48, PDT 23, PSB 21 |
-| Frente Parlamentar em Defesa da Desoneração da Folha de Pagamento | 195 | 69,8% | 68,9% | +0,9 p.p. | PSD 19, PT 19, REPUBLICANOS 18 |
-| Frente Parlamentar Mista pela Contagem Pública dos Votos (escrutínio público do  | 187 | 71,0% | 70,1% | +0,9 p.p. | PSD 23, PSL 22, REPUBLICANOS 20 |
-| Frente Parlamentar Mista do Rodeio, da Vaquejada e das Provas Equestres | 237 | 75,6% | 74,7% | +0,9 p.p. | PSL 35, PP 25, PL 24 |
+| Frente Parlamentar em Defesa do Homeschooling | 235 | 79,2% | 78,1% | +1,1 p.p. | PSL 38, PL 29, REPUBLICANOS 25 |
+| Frente Parlamentar de Enfrentamento às Drogas | 202 | 75,7% | 74,6% | +1,1 p.p. | PSL 47, PL 17, PP 14 |
+| Frente Parlamentar em Apoio ao Produtor de Leite | 203 | 74,1% | 73,1% | +1,0 p.p. | PSL 43, PP 20, PSDB 16 |
+| Frente Parlamentar dos Transplantes | 235 | 73,7% | 72,7% | +1,0 p.p. | PP 32, PSL 26, REPUBLICANOS 20 |
+| Frente Parlamentar em Defesa da Desoneração da Folha de Pagamento | 195 | 69,8% | 68,9% | +1,0 p.p. | PT 19, PSD 19, REPUBLICANOS 18 |
+| Frente Parlamentar Mista do Empreendedorismo | 202 | 76,1% | 75,1% | +1,0 p.p. | PSD 30, PP 23, PL 19 |
+| Frente Parlamentar Mista pela Contagem Pública dos Votos (escrutínio público do  | 187 | 71,0% | 70,1% | +1,0 p.p. | PSD 23, PSL 22, REPUBLICANOS 20 |
+| Frente Parlamentar Mista do Rodeio, da Vaquejada e das Provas Equestres | 237 | 75,6% | 74,6% | +0,9 p.p. | PSL 35, PP 25, PL 24 |
+| Frente Parlamentar Mista Pelo Fortalecimento do SUS | 187 | 62,4% | 61,5% | +0,9 p.p. | PT 48, PDT 23, PSB 21 |
 | Frente Parlamentar da Agropecuária - FPA | 251 | 76,1% | 75,2% | +0,9 p.p. | PP 34, PSL 26, MDB 24 |
-| Frente Parlamentar de Apoio ao Ensino Militar no Brasil - FPAEMB | 199 | 77,7% | 76,8% | +0,9 p.p. | PSL 39, PSD 21, REPUBLICANOS 18 |
 | Frente Parlamentar Mista em Defesa da Reforma Urbana e dos Movimentos de Luta po | 204 | 62,7% | 61,8% | +0,8 p.p. | PT 54, PDT 27, PSB 23 |
-| Frente Parlamentar Mista em Defesa da Prisão em Segunda Instância | 184 | 77,9% | 77,1% | +0,8 p.p. | PSL 38, PSDB 19, REPUBLICANOS 15 |
-| Frente Parlamentar em Defesa da Vida e da Família | 220 | 75,3% | 74,5% | +0,8 p.p. | PSL 38, REPUBLICANOS 27, PSD 18 |
 | Frente Parlamentar Evangélica do Congresso Nacional | 203 | 79,7% | 78,9% | +0,8 p.p. | PSL 29, PSD 28, REPUBLICANOS 25 |
+| Frente Parlamentar de Apoio ao Ensino Militar no Brasil - FPAEMB | 199 | 77,7% | 76,8% | +0,8 p.p. | PSL 39, PSD 21, REPUBLICANOS 18 |
 | Frente Parlamentar Armamentista - FPAR | 205 | 79,1% | 78,3% | +0,8 p.p. | PSL 49, REPUBLICANOS 19, PL 17 |
+| Frente Parlamentar em Apoio ao Bambu - Frente do Bambu | 215 | 66,7% | 66,0% | +0,7 p.p. | PT 28, PL 18, REPUBLICANOS 17 |
 
 ## Frentes-chave: membros votam diferente dos colegas de partido no tema da frente?
 
@@ -53,5 +53,5 @@ Diferença, em pontos percentuais, entre a fração de membros e a de não membr
 ## Comunidades multicamada
 
 - 8 comunidades com as camadas juntas (só voto: 8).
-- Semelhança com as comunidades só de voto (ARI): 0,75.
+- Semelhança com as comunidades só de voto (ARI): 0,72.
 - Semelhança com os partidos (ARI): 0,32 (só voto: 0,30).

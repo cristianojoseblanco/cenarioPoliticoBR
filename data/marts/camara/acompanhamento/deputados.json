@@ -136,11 +136,11 @@
     "bancada_pequena_atual": true,
     "legislaturas": [
       {
-        "imprevisibilidade": 0.0493,
-        "imprev_partido": 0.0242,
-        "imprev_surpresas": 71,
+        "imprevisibilidade": 0.0466,
+        "imprev_partido": 0.0247,
+        "imprev_surpresas": 67,
         "imprev_votos": 1439,
-        "imprev_posicao": 61,
+        "imprev_posicao": 70,
         "imprev_total": 579,
         "emendas_pago": 75024804.76,
         "emendas_execucao": 0.9177,
@@ -293,11 +293,11 @@
         ]
       },
       {
-        "imprevisibilidade": 0.0979,
-        "imprev_partido": 0.0383,
-        "imprev_surpresas": 87,
+        "imprevisibilidade": 0.09,
+        "imprev_partido": 0.0387,
+        "imprev_surpresas": 80,
         "imprev_votos": 889,
-        "imprev_posicao": 3,
+        "imprev_posicao": 4,
         "imprev_total": 576,
         "emendas_pago": 85733381.39,
         "emendas_execucao": 0.7795,

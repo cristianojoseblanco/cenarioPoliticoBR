@@ -17,13 +17,13 @@
     "0.0": {
       "apoio_gov": 0.8937984496124031,
       "disciplina": 0.9655990510083037,
-      "imprevisibilidade": 0.021408839779005526,
+      "imprevisibilidade": 0.02109375,
       "participacao": 0.8158295281582952
     },
     "1.0": {
       "apoio_gov": 0.8923444976076556,
       "disciplina": 0.9636591478696742,
-      "imprevisibilidade": 0.020948180815876516,
+      "imprevisibilidade": 0.021224984839296544,
       "participacao": 0.7965499746321664
     }
   }
