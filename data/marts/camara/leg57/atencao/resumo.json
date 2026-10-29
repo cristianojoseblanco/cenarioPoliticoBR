@@ -142,6 +142,45 @@
       }
     ]
   },
+  "discursos": {
+    "discursos": 52398,
+    "palavras": 18206898,
+    "por_tipo": [
+      {
+        "tipo": "PELA ORDEM",
+        "n": 24197
+      },
+      {
+        "tipo": "BREVES COMUNICAÇÕES",
+        "n": 14565
+      },
+      {
+        "tipo": "DISCUSSÃO",
+        "n": 3260
+      },
+      {
+        "tipo": "DISCURSO ENCAMINHADO",
+        "n": 2810
+      },
+      {
+        "tipo": "COMO LÍDER",
+        "n": 2250
+      },
+      {
+        "tipo": "ENCAMINHAMENTO DE VOTAÇÃO",
+        "n": 2004
+      },
+      {
+        "tipo": "PARECER",
+        "n": 1016
+      },
+      {
+        "tipo": "QUESTÃO DE ORDEM",
+        "n": 647
+      }
+    ],
+    "mediana_deputado": 27.0
+  },
   "correlacoes": [
     {
       "atencao": "encontros",
@@ -184,6 +223,116 @@
       "n": 543,
       "spearman_dentro": 0.213,
       "p_dentro": 1e-06,
+      "relevante": true,
+      "relevante_dentro": true
+    },
+    {
+      "atencao": "discursos",
+      "comportamento": "apoio_gov",
+      "spearman": 0.015,
+      "p": 0.711663,
+      "n": 629,
+      "spearman_dentro": -0.187,
+      "p_dentro": 2e-06,
+      "relevante": false,
+      "relevante_dentro": true
+    },
+    {
+      "atencao": "discursos",
+      "comportamento": "disciplina",
+      "spearman": 0.06,
+      "p": 0.140119,
+      "n": 616,
+      "spearman_dentro": -0.096,
+      "p_dentro": 0.016988,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "discursos",
+      "comportamento": "extremidade",
+      "spearman": 0.411,
+      "p": 0.0,
+      "n": 522,
+      "spearman_dentro": 0.243,
+      "p_dentro": 0.0,
+      "relevante": true,
+      "relevante_dentro": true
+    },
+    {
+      "atencao": "discursos",
+      "comportamento": "pago",
+      "spearman": -0.096,
+      "p": 0.024675,
+      "n": 543,
+      "spearman_dentro": -0.028,
+      "p_dentro": 0.520697,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "palavras",
+      "comportamento": "apoio_gov",
+      "spearman": 0.027,
+      "p": 0.495149,
+      "n": 629,
+      "spearman_dentro": -0.179,
+      "p_dentro": 7e-06,
+      "relevante": false,
+      "relevante_dentro": true
+    },
+    {
+      "atencao": "palavras",
+      "comportamento": "disciplina",
+      "spearman": 0.058,
+      "p": 0.151979,
+      "n": 616,
+      "spearman_dentro": -0.1,
+      "p_dentro": 0.012658,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "palavras",
+      "comportamento": "extremidade",
+      "spearman": 0.383,
+      "p": 0.0,
+      "n": 522,
+      "spearman_dentro": 0.219,
+      "p_dentro": 0.0,
+      "relevante": true,
+      "relevante_dentro": true
+    },
+    {
+      "atencao": "palavras",
+      "comportamento": "pago",
+      "spearman": -0.095,
+      "p": 0.027289,
+      "n": 543,
+      "spearman_dentro": -0.035,
+      "p_dentro": 0.412417,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "encontros",
+      "comportamento": "discursos",
+      "spearman": 0.326,
+      "p": 0.0,
+      "n": 629,
+      "spearman_dentro": 0.284,
+      "p_dentro": 0.0,
+      "relevante": true,
+      "relevante_dentro": true
+    },
+    {
+      "atencao": "encontros",
+      "comportamento": "palavras",
+      "spearman": 0.337,
+      "p": 0.0,
+      "n": 629,
+      "spearman_dentro": 0.297,
+      "p_dentro": 0.0,
       "relevante": true,
       "relevante_dentro": true
     }

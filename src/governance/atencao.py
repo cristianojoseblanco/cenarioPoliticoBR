@@ -82,7 +82,6 @@ def rodar(c: dict, cfg: dict) -> int:
             "por_partido": [{"partido": k, "media": _f(v, 2)} for k, v in
                             base.groupby("partido")["encontros"].mean().sort_values(ascending=False).items()
                             if (base["partido"] == k).sum() >= 8]}
-        a.to_parquet(saida / "encontros.parquet", index=False)
 
     wv = st / "wikipedia_visitas.parquet"
     if wv.exists():
@@ -117,7 +116,8 @@ def rodar(c: dict, cfg: dict) -> int:
     att = [x for x in ("encontros", "visitas_mes", "discursos", "palavras") if x in base.columns]
     comp = [x for x in ("apoio_gov", "disciplina", "extremidade", "pago") if x in base.columns]
     cor = [r for a_ in att for b_ in comp if (r := _corr(base, a_, b_, alfa))]
-    cor += [r for i, a_ in enumerate(att) for b_ in att[i + 1:] if (r := _corr(base, a_, b_, alfa))]
+    cor += [r for i, a_ in enumerate(att) for b_ in att[i + 1:]
+            if {a_, b_} != {"discursos", "palavras"} and (r := _corr(base, a_, b_, alfa))]
     resumo["correlacoes"] = cor
     base.to_parquet(saida / "deputados.parquet", index=False)
     (saida / "resumo.json").write_text(json.dumps(resumo, ensure_ascii=False, indent=2), encoding="utf-8")

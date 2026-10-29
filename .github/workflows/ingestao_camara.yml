@@ -1,4 +1,4 @@
-name: Ingestão e análises (Câmara, Senado, TSE, emendas, IBGE e cota)
+name: Ingestão e análises (Câmara, Senado, TSE, emendas, IBGE, cota, comissões e atenção)
 
 on:
   workflow_dispatch:
@@ -130,6 +130,18 @@ jobs:
       - name: Comissões, relatorias, urgência e pivôs
         continue-on-error: true
         run: python -m src.governance.comissoes
+
+      - name: e-Agendas · ingestão (CGU)
+        continue-on-error: true
+        run: python -m src.ingestion.agendas
+
+      - name: Wikipédia e discursos · ingestão
+        continue-on-error: true
+        run: python -m src.ingestion.atencao
+
+      - name: Influência e atenção
+        continue-on-error: true
+        run: python -m src.governance.atencao
 
       - name: Deputados acompanhados
         run: python -m src.governance.acompanhamento

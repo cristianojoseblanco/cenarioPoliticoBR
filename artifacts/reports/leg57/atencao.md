@@ -54,6 +54,28 @@ Média de encontros por deputado, por partido (8+ deputados):
 - PODE: 31,4
 - PL: 19,9
 
+## Discursos
+
+- 52.398 discursos; mediana de 27 por deputado.
+
+| Deputado | Partido | Discursos | Palavras |
+| --- | --- | --- | --- |
+| Cabo Gilberto Silva | PL | 1819 | 465.698 |
+| Erika Kokay | PT | 1235 | 417.863 |
+| Luiz Lima | PL | 1183 | 395.936 |
+| Chico Alencar | PSOL | 1112 | 322.415 |
+| Adriana Ventura | NOVO | 1042 | 333.584 |
+| Marcel van Hattem | NOVO | 995 | 348.467 |
+| Gilson Marques | NOVO | 851 | 220.742 |
+| Bibo Nunes | PL | 833 | 176.888 |
+| Pompeo de Mattos | PDT | 737 | 261.539 |
+| Bohn Gass | PT | 682 | 214.976 |
+| Otoni de Paula | MDB | 665 | 186.678 |
+| Duarte Jr. | PSB | 653 | 286.544 |
+| Helder Salomão | PT | 637 | 180.850 |
+| Laura Carneiro | PSD | 595 | 229.464 |
+| Bia Kicis | PL | 581 | 204.204 |
+
 ## Correlações (Spearman; dentro = descontada a mediana do partido)
 
 | Atenção | Com | Todos | Dentro do partido | n |
@@ -62,5 +84,15 @@ Média de encontros por deputado, por partido (8+ deputados):
 | encontros | disciplina | 0,23* | 0,03 | 616 |
 | encontros | extremidade | -0,14* | -0,04 | 522 |
 | encontros | pago | 0,27* | 0,21* | 543 |
+| discursos | apoio_gov | 0,01 | -0,19* | 629 |
+| discursos | disciplina | 0,06 | -0,10 | 616 |
+| discursos | extremidade | 0,41* | 0,24* | 522 |
+| discursos | pago | -0,10 | -0,03 | 543 |
+| palavras | apoio_gov | 0,03 | -0,18* | 629 |
+| palavras | disciplina | 0,06 | -0,10 | 616 |
+| palavras | extremidade | 0,38* | 0,22* | 522 |
+| palavras | pago | -0,10 | -0,04 | 543 |
+| encontros | discursos | 0,33* | 0,28* | 629 |
+| encontros | palavras | 0,34* | 0,30* | 629 |
 
 \* p < 0,01.

@@ -144,7 +144,10 @@ def discursos(cfg) -> pd.DataFrame:
     legs = [int(x) for x in a["discursos_legislaturas"]]
     if len(velho) and "legislatura" in velho.columns:
         feitas = set(velho["legislatura"].unique())
-        legs = [x for x in legs if x not in feitas] + [max(legs)]
+        hoje = pd.Timestamp.now()
+        correntes = [x for x in legs if str(x) in cfg.get("legislaturas", {})
+                     and pd.Timestamp(cfg["legislaturas"][str(x)]["fim"]) >= hoje] or [max(legs)]
+        legs = sorted(set([x for x in legs if x not in feitas] + correntes))
         velho = velho[~velho["legislatura"].isin(legs)]
     tarefas = [(r.deputado_id, leg) for r in d.itertuples() for leg in sorted(set(legs))
                if r.ini <= leg <= r.fim]
