@@ -1200,7 +1200,9 @@ function dinheiro() {
   if (!C) { sec.hidden = true; return; } sec.hidden = false;
   const r = C.resumo, e = r.eleitoral; const brlM = v => v == null ? "—" : v >= 1e9 ? `R$ ${dec(v / 1e9, 2)} bilhões` : `R$ ${dec(v / 1e6, 1)} milhões`;
   const div = r.categorias.find(x => /DIVULGA/i.test(x.categoria));
-  $("#diLede").innerHTML = `${L.nome} (${ehSenado() ? "Senado" : "Câmara"}): ${brlM(r.total_real)} da cota, em reais de hoje. ${div ? `A maior fatia foi para <b>divulgação da atividade parlamentar</b> (${brlM(div.valor_real)}, ${pctf(div.valor_real / r.total_real, 0)} do total).` : ""}`;
+  $("#diLede").innerHTML = `${L.nome} (${ehSenado() ? "Senado" : "Câmara"}): ${brlM(r.total_real)} da cota, em reais de hoje. ${(() => { const top = [...r.categorias].sort((x, y) => y.valor_real - x.valor_real)[0]; const nome = c => c.categoria.split(",")[0].split("(")[0].trim().toLowerCase();
+    return top === div ? `A maior fatia foi para <b>divulgação da atividade parlamentar</b> (${brlM(div.valor_real)}, ${pctf(div.valor_real / r.total_real, 0)} do total).`
+      : `A maior fatia foi para <b>${nome(top)}</b> (${pctf(top.valor_real / r.total_real, 0)}); divulgação ficou com ${div ? `${brlM(div.valor_real)} (${pctf(div.valor_real / r.total_real, 0)})` : "—"}.`; })()}`;
   const pat = Object.entries(r.patrimonio || {});
   $("#diDest").innerHTML = [
     [`R$ ${fmt.format(Math.round(r.mediana_por_mes_real))}`, `por mês, na mediana de cada parlamentar`],
