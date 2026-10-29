@@ -34,11 +34,12 @@ São 50 comparações: com p < 0,01, cerca de 0,5 apareceriam por acaso.
 | receita total | apoio ao governo | 0,16* | 0,11 | 481 |
 | receita total | posição no eixo (A → B) | 0,15* | 0,09 | 481 |
 | % de pessoas físicas | posição no eixo (A → B) | -0,15* | -0,07 | 481 |
+| custo por voto | votos imprevisíveis | 0,14* | 0,06 | 481 |
 | % de pessoas físicas | apoio ao governo | -0,15* | -0,06 | 481 |
 | % do fundo eleitoral | posição no eixo (A → B) | 0,39* | 0,04 | 481 |
 | % do fundo eleitoral | apoio ao governo | 0,37* | 0,04 | 481 |
 | % do fundo eleitoral | disciplina | 0,18* | 0,04 | 480 |
-| % do fundo eleitoral | votos imprevisíveis | -0,13* | -0,01 | 481 |
+| % do fundo eleitoral | votos imprevisíveis | -0,12* | -0,00 | 481 |
 
 \* p < 0,01.
 
@@ -47,4 +48,4 @@ São 50 comparações: com p < 0,01, cerca de 0,5 apareceriam por acaso.
 | | Apoio ao governo | Disciplina | Votos imprevisíveis | Participação |
 | --- | --- | --- | --- | --- |
 | Média (sobras) | 80,4% | 94,5% | 2,7% | 82,4% |
-| Votação própria (QP) | 82,4% | 95,8% | 2,4% | 80,7% |
+| Votação própria (QP) | 82,4% | 95,8% | 2,5% | 80,7% |

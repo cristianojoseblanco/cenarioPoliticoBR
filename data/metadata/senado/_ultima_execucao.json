@@ -1,4 +1,13 @@
 {
-  "executado_em": "2026-10-28T14:46:33+00:00",
-  "anos": []
+  "executado_em": "2026-10-29T00:33:18+00:00",
+  "anos": [
+    {
+      "ano": 2026,
+      "sha256": "b535cf0af5ede9ebc29da55a6d7c53d7abc206cf026cf23f81ab12acc9c888cc",
+      "votacoes": 27,
+      "votos": 2187,
+      "orientacoes": 136,
+      "baixado_em": "2026-10-29T00:33:17+00:00"
+    }
+  ]
 }

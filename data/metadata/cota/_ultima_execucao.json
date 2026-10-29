@@ -1,0 +1,101 @@
+{
+  "executado_em": "2026-10-29T00:37:55+00:00",
+  "anos": [
+    {
+      "casa": "camara",
+      "ano": 2019,
+      "linhas": 288924,
+      "valor": 210007310.85
+    },
+    {
+      "casa": "camara",
+      "ano": 2020,
+      "linhas": 166740,
+      "valor": 172884291.91000003
+    },
+    {
+      "casa": "camara",
+      "ano": 2021,
+      "linhas": 217901,
+      "valor": 209155523.06
+    },
+    {
+      "casa": "camara",
+      "ano": 2022,
+      "linhas": 208925,
+      "valor": 218579745.31
+    },
+    {
+      "casa": "camara",
+      "ano": 2023,
+      "linhas": 231899,
+      "valor": 244571365.45
+    },
+    {
+      "casa": "camara",
+      "ano": 2024,
+      "linhas": 232015,
+      "valor": 249366211.47
+    },
+    {
+      "casa": "camara",
+      "ano": 2025,
+      "linhas": 208144,
+      "valor": 239208957.97
+    },
+    {
+      "casa": "camara",
+      "ano": 2026,
+      "linhas": 118744,
+      "valor": 142075772.79999998
+    },
+    {
+      "casa": "senado",
+      "ano": 2019,
+      "linhas": 21634,
+      "valor": 25247728.61
+    },
+    {
+      "casa": "senado",
+      "ano": 2020,
+      "linhas": 14088,
+      "valor": 20414601.9
+    },
+    {
+      "casa": "senado",
+      "ano": 2021,
+      "linhas": 16827,
+      "valor": 25020323.84
+    },
+    {
+      "casa": "senado",
+      "ano": 2022,
+      "linhas": 16804,
+      "valor": 27323307.63
+    },
+    {
+      "casa": "senado",
+      "ano": 2023,
+      "linhas": 18822,
+      "valor": 29024400.29
+    },
+    {
+      "casa": "senado",
+      "ano": 2024,
+      "linhas": 21431,
+      "valor": 32236755.439999998
+    },
+    {
+      "casa": "senado",
+      "ano": 2025,
+      "linhas": 23826,
+      "valor": 37326063.92
+    },
+    {
+      "casa": "senado",
+      "ano": 2026,
+      "linhas": 15933,
+      "valor": 25725737.520000003
+    }
+  ]
+}

@@ -9,10 +9,10 @@
     "coautoria": 0.5,
     "frentes": 0.5
   },
-  "comunidades_multi": 6,
+  "comunidades_multi": 5,
   "comunidades_voto": 6,
-  "ari_multi_voto": 0.8506715553957404,
-  "ari_multi_partido": 0.3713960668200691,
+  "ari_multi_voto": 0.8037752170741471,
+  "ari_multi_partido": 0.3371959756803998,
   "ari_voto_partido": 0.38469695770037343,
   "pares_coautoria": 13928,
   "pares_frentes": 166175,
@@ -22,5 +22,5 @@
     "Evangélica",
     "Segurança Pública"
   ],
-  "frentes_bloco": 46
+  "frentes_bloco": 48
 }

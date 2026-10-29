@@ -22,6 +22,6 @@ Segue o partido = voto igual à orientação do próprio partido. Com a bancada 
 
   - 2026-03-03 · PL 3879/2024 · votou Sim, partido orientou Não · Altera a Lei nº 13.316, de 20 de julho de 2016, que dispõe sobre as carreiras dos servidores do Ministério Púb
   - 2026-03-02 · PL 6240/2013 · votou Não, partido orientou Sim · Acrescenta art. 149-A ao Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), para tipificar o crime
-  - 2026-03-02 · PL 6240/2013 · votou Não, partido orientou Sim · Acrescenta art. 149-A ao Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), para tipificar o crime
-  - 2026-03-02 · PL 6240/2013 · votou Sim, partido orientou Não · Acrescenta art. 149-A ao Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), para tipificar o crime
   - 2026-03-02 · PL 6139/2023 · votou Não, partido orientou Sim · Estabelece o sistema brasileiro de apoio oficial ao crédito à exportação e altera a Lei nº 12.712, de 30 de ag
+  - 2026-03-02 · PL 6240/2013 · votou Sim, partido orientou Não · Acrescenta art. 149-A ao Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), para tipificar o crime
+  - 2026-03-02 · PL 6240/2013 · votou Não, partido orientou Sim · Acrescenta art. 149-A ao Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), para tipificar o crime
