@@ -67,7 +67,12 @@ def publicar() -> int:
     # A tag do Release fica sempre no commit atual: uma tag antiga prenderia versões velhas
     # do histórico (e os arquivos grandes de antes) no GitHub.
     _rodar(["git", "tag", "-f", tag])
-    _rodar(["git", "push", "--force", "origin", f"refs/tags/{tag}"])
+    try:
+        _rodar(["git", "push", "--force", "origin", f"refs/tags/{tag}"])
+    except subprocess.CalledProcessError:
+        # o token do Actions não pode mover a tag para um commit que altera workflows; os pacotes
+        # independem da posição da tag, então segue (a tag anda na próxima execução sem essa mudança)
+        print("::warning title=storage::tag do Release não foi movida; pacotes enviados mesmo assim")
     if not existe:
         subprocess.run(["gh", "release", "create", tag, "--title", "Dados (pacote corrente)",
                         "--notes", "Camadas staging e processed. Substituídas a cada execução do workflow; "
