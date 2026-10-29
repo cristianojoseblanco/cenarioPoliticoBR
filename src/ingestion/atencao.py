@@ -14,7 +14,7 @@ from __future__ import annotations
 import sys
 import time
 from datetime import datetime
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 import pandas as pd
 import requests
@@ -59,7 +59,7 @@ def wikidata(cfg, gente: pd.DataFrame) -> pd.DataFrame:
         for b in r.json()["results"]["bindings"]:
             achados.append({"qid": b["p"]["value"].rsplit("/", 1)[-1], "nascimento": b["nasc"]["value"][:10],
                             "rotulo": b.get("rotulo", {}).get("value", ""),
-                            "artigo": b["artigo"]["value"].rsplit("/", 1)[-1]})
+                            "artigo": unquote(b["artigo"]["value"].rsplit("/", 1)[-1])})
         time.sleep(1)
     w = pd.DataFrame(achados).drop_duplicates(["qid", "artigo"])
     print(f"wikidata: {len(w)} candidatos")
