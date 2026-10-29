@@ -1,9 +1,31 @@
 # Influência e atenção — legislatura 56
 
 
+## Wikipédia
+
+- 21 de 593 deputados com verbete identificado.
+
+| Deputado | Partido | Visitas por mês |
+| --- | --- | --- |
+| Aécio Neves | PSDB | 8.211 |
+| Alexandre Padilha | PT | 2.806 |
+| Aguinaldo Ribeiro | PP | 790 |
+| Alex Manente | CIDADANIA | 490 |
+| Alice Portugal | PCdoB | 426 |
+| Alexandre Leite | DEM | 405 |
+| Adriana Ventura | NOVO | 399 |
+| Aliel Machado | PSB | 387 |
+| Altineu Côrtes | PL | 355 |
+| Alceu Moreira | MDB | 316 |
+| Amaro Neto | REPUBLICANOS | 275 |
+| Alencar Santana | PT | 243 |
+| Afonso Motta | PDT | 186 |
+| Afonso Florence | PT | 180 |
+| Adolfo Viana | PSDB | 176 |
+
 ## Discursos
 
-- 68.100 discursos; mediana de 42 por deputado.
+- 68.163 discursos; mediana de 42 por deputado.
 
 | Deputado | Partido | Discursos | Palavras |
 | --- | --- | --- | --- |
@@ -32,8 +54,8 @@
 | discursos | extremidade | 0,30* | 0,06 | 520 |
 | discursos | pago | -0,06 | 0,05 | 546 |
 | palavras | apoio_gov | -0,36* | -0,12* | 593 |
-| palavras | disciplina | 0,02 | -0,08 | 591 |
+| palavras | disciplina | 0,02 | -0,07 | 591 |
 | palavras | extremidade | 0,30* | 0,04 | 520 |
-| palavras | pago | -0,06 | 0,04 | 546 |
+| palavras | pago | -0,05 | 0,04 | 546 |
 
 \* p < 0,01.

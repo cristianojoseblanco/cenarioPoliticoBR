@@ -1,20 +1,270 @@
 {
   "legislatura": "56",
+  "wikipedia": {
+    "com_verbete": 21,
+    "deputados": 593,
+    "serie": [
+      {
+        "mes": "2019-02",
+        "v": 18251
+      },
+      {
+        "mes": "2019-03",
+        "v": 18568
+      },
+      {
+        "mes": "2019-04",
+        "v": 19239
+      },
+      {
+        "mes": "2019-05",
+        "v": 21289
+      },
+      {
+        "mes": "2019-06",
+        "v": 19520
+      },
+      {
+        "mes": "2019-07",
+        "v": 20141
+      },
+      {
+        "mes": "2019-08",
+        "v": 16098
+      },
+      {
+        "mes": "2019-09",
+        "v": 16217
+      },
+      {
+        "mes": "2019-10",
+        "v": 16248
+      },
+      {
+        "mes": "2019-11",
+        "v": 16913
+      },
+      {
+        "mes": "2019-12",
+        "v": 11847
+      },
+      {
+        "mes": "2020-01",
+        "v": 14933
+      },
+      {
+        "mes": "2020-02",
+        "v": 11454
+      },
+      {
+        "mes": "2020-03",
+        "v": 20867
+      },
+      {
+        "mes": "2020-04",
+        "v": 30132
+      },
+      {
+        "mes": "2020-05",
+        "v": 32887
+      },
+      {
+        "mes": "2020-06",
+        "v": 20450
+      },
+      {
+        "mes": "2020-07",
+        "v": 17630
+      },
+      {
+        "mes": "2020-08",
+        "v": 12384
+      },
+      {
+        "mes": "2020-09",
+        "v": 13874
+      },
+      {
+        "mes": "2020-10",
+        "v": 18152
+      },
+      {
+        "mes": "2020-11",
+        "v": 27234
+      },
+      {
+        "mes": "2020-12",
+        "v": 18052
+      },
+      {
+        "mes": "2021-01",
+        "v": 15397
+      },
+      {
+        "mes": "2021-02",
+        "v": 16461
+      },
+      {
+        "mes": "2021-03",
+        "v": 19512
+      },
+      {
+        "mes": "2021-04",
+        "v": 13293
+      },
+      {
+        "mes": "2021-05",
+        "v": 17811
+      },
+      {
+        "mes": "2021-06",
+        "v": 15188
+      },
+      {
+        "mes": "2021-07",
+        "v": 13420
+      },
+      {
+        "mes": "2021-08",
+        "v": 12313
+      },
+      {
+        "mes": "2021-09",
+        "v": 13238
+      },
+      {
+        "mes": "2021-10",
+        "v": 9563
+      },
+      {
+        "mes": "2021-11",
+        "v": 10326
+      },
+      {
+        "mes": "2021-12",
+        "v": 9683
+      },
+      {
+        "mes": "2022-01",
+        "v": 8412
+      },
+      {
+        "mes": "2022-02",
+        "v": 9417
+      },
+      {
+        "mes": "2022-03",
+        "v": 14325
+      },
+      {
+        "mes": "2022-04",
+        "v": 17543
+      },
+      {
+        "mes": "2022-05",
+        "v": 15755
+      },
+      {
+        "mes": "2022-06",
+        "v": 10863
+      },
+      {
+        "mes": "2022-07",
+        "v": 11994
+      },
+      {
+        "mes": "2022-08",
+        "v": 19439
+      },
+      {
+        "mes": "2022-09",
+        "v": 41665
+      },
+      {
+        "mes": "2022-10",
+        "v": 60628
+      },
+      {
+        "mes": "2022-11",
+        "v": 29869
+      },
+      {
+        "mes": "2022-12",
+        "v": 19030
+      },
+      {
+        "mes": "2023-01",
+        "v": 33530
+      }
+    ],
+    "picos": [
+      {
+        "deputado_id": "74646",
+        "mes": "2022-10",
+        "v": 27580
+      },
+      {
+        "deputado_id": "204503",
+        "mes": "2023-01",
+        "v": 16621
+      },
+      {
+        "deputado_id": "74696",
+        "mes": "2020-11",
+        "v": 4508
+      },
+      {
+        "deputado_id": "160527",
+        "mes": "2020-12",
+        "v": 4013
+      },
+      {
+        "deputado_id": "204528",
+        "mes": "2022-10",
+        "v": 3736
+      },
+      {
+        "deputado_id": "73579",
+        "mes": "2020-01",
+        "v": 3442
+      },
+      {
+        "deputado_id": "221328",
+        "mes": "2021-06",
+        "v": 3116
+      },
+      {
+        "deputado_id": "178972",
+        "mes": "2022-10",
+        "v": 2321
+      },
+      {
+        "deputado_id": "178927",
+        "mes": "2022-10",
+        "v": 1974
+      },
+      {
+        "deputado_id": "160545",
+        "mes": "2022-09",
+        "v": 1884
+      }
+    ]
+  },
   "discursos": {
-    "discursos": 68100,
-    "palavras": 22316635,
+    "discursos": 68163,
+    "palavras": 22346836,
     "por_tipo": [
       {
         "tipo": "PELA ORDEM",
-        "n": 37910
+        "n": 37951
       },
       {
         "tipo": "BREVES COMUNICAÇÕES",
-        "n": 11761
+        "n": 11765
       },
       {
         "tipo": "COMO LÍDER",
-        "n": 5119
+        "n": 5122
       },
       {
         "tipo": "ENCAMINHAMENTO DE VOTAÇÃO",
@@ -22,11 +272,11 @@
       },
       {
         "tipo": "DISCUSSÃO",
-        "n": 2770
+        "n": 2773
       },
       {
         "tipo": "PEQUENO EXPEDIENTE",
-        "n": 2108
+        "n": 2109
       },
       {
         "tipo": "DISCURSO ENCAMINHADO",
@@ -34,7 +284,7 @@
       },
       {
         "tipo": "PARECER",
-        "n": 952
+        "n": 959
       }
     ],
     "mediana_deputado": 42.0
@@ -47,84 +297,84 @@
       "p": 0.0,
       "n": 593,
       "spearman_dentro": -0.142,
-      "p_dentro": 0.000525,
+      "p_dentro": 0.000528,
       "relevante": true,
       "relevante_dentro": true
     },
     {
       "atencao": "discursos",
       "comportamento": "disciplina",
-      "spearman": 0.007,
-      "p": 0.868452,
+      "spearman": 0.012,
+      "p": 0.775845,
       "n": 591,
-      "spearman_dentro": -0.073,
-      "p_dentro": 0.075526,
+      "spearman_dentro": -0.069,
+      "p_dentro": 0.094339,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "discursos",
       "comportamento": "extremidade",
-      "spearman": 0.297,
+      "spearman": 0.296,
       "p": 0.0,
       "n": 520,
       "spearman_dentro": 0.061,
-      "p_dentro": 0.166244,
+      "p_dentro": 0.165707,
       "relevante": true,
       "relevante_dentro": false
     },
     {
       "atencao": "discursos",
       "comportamento": "pago",
-      "spearman": -0.061,
-      "p": 0.152168,
+      "spearman": -0.056,
+      "p": 0.189893,
       "n": 546,
-      "spearman_dentro": 0.049,
-      "p_dentro": 0.250605,
+      "spearman_dentro": 0.053,
+      "p_dentro": 0.214717,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "palavras",
       "comportamento": "apoio_gov",
-      "spearman": -0.361,
+      "spearman": -0.362,
       "p": 0.0,
       "n": 593,
-      "spearman_dentro": -0.121,
-      "p_dentro": 0.003161,
+      "spearman_dentro": -0.122,
+      "p_dentro": 0.003009,
       "relevante": true,
       "relevante_dentro": true
     },
     {
       "atencao": "palavras",
       "comportamento": "disciplina",
-      "spearman": 0.017,
-      "p": 0.686505,
+      "spearman": 0.022,
+      "p": 0.590884,
       "n": 591,
-      "spearman_dentro": -0.079,
-      "p_dentro": 0.055433,
+      "spearman_dentro": -0.074,
+      "p_dentro": 0.072729,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "palavras",
       "comportamento": "extremidade",
-      "spearman": 0.3,
+      "spearman": 0.299,
       "p": 0.0,
       "n": 520,
-      "spearman_dentro": 0.045,
-      "p_dentro": 0.304297,
+      "spearman_dentro": 0.044,
+      "p_dentro": 0.316079,
       "relevante": true,
       "relevante_dentro": false
     },
     {
       "atencao": "palavras",
       "comportamento": "pago",
-      "spearman": -0.058,
-      "p": 0.174514,
+      "spearman": -0.052,
+      "p": 0.223113,
       "n": 546,
-      "spearman_dentro": 0.039,
-      "p_dentro": 0.367952,
+      "spearman_dentro": 0.043,
+      "p_dentro": 0.314325,
       "relevante": false,
       "relevante_dentro": false
     }

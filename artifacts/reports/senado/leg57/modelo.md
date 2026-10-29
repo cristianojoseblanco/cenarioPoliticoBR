@@ -12,14 +12,14 @@ Votos imprevisíveis (probabilidade do voto observado abaixo de 20%): 468 (4,0%)
 
 ## O que mais pesa na previsão (M2)
 
-- or_partido: 0,3570
-- plenario_sim: 0,2500
-- colegas_sim: 0,1026
-- dep_disciplina: 0,0511
-- or_governo: 0,0437
-- dep_apoio_gov: 0,0367
-- dep_sim: 0,0235
-- colegas_n: 0,0159
+- or_partido: 0,3592
+- plenario_sim: 0,2637
+- colegas_sim: 0,1123
+- dep_disciplina: 0,0482
+- or_governo: 0,0461
+- dep_apoio_gov: 0,0308
+- dep_sim: 0,0222
+- colegas_n: 0,0143
 
 ## Mais imprevisíveis (100+ votos)
 

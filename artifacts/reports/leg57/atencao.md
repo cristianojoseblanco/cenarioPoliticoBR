@@ -54,15 +54,36 @@ Média de encontros por deputado, por partido (8+ deputados):
 - PODE: 31,4
 - PL: 19,9
 
+## Wikipédia
+
+- 32 de 629 deputados com verbete identificado.
+
+| Deputado | Partido | Visitas por mês |
+| --- | --- | --- |
+| Aécio Neves | PSDB | 6.159 |
+| Alfredo Gaspar | UNIÃO | 3.770 |
+| Amália Barros | PL | 1.931 |
+| Abilio Brunini | PL | 1.350 |
+| Alex Manente | CIDADANIA | 791 |
+| Aguinaldo Ribeiro | PP | 729 |
+| Altineu Côrtes | PL | 598 |
+| Alberto Mourão | MDB | 566 |
+| Adolfo Viana | PSDB | 563 |
+| Adriana Ventura | NOVO | 544 |
+| Adilson Barroso | PL | 496 |
+| Alberto Fraga | PL | 417 |
+| Alexandre Leite | UNIÃO | 383 |
+| Alceu Moreira | MDB | 372 |
+| Alencar Santana | PT | 363 |
+
 ## Discursos
 
-- 52.398 discursos; mediana de 27 por deputado.
+- 51.829 discursos; mediana de 27 por deputado.
 
 | Deputado | Partido | Discursos | Palavras |
 | --- | --- | --- | --- |
 | Cabo Gilberto Silva | PL | 1819 | 465.698 |
 | Erika Kokay | PT | 1235 | 417.863 |
-| Luiz Lima | PL | 1183 | 395.936 |
 | Chico Alencar | PSOL | 1112 | 322.415 |
 | Adriana Ventura | NOVO | 1042 | 333.584 |
 | Marcel van Hattem | NOVO | 995 | 348.467 |
@@ -73,6 +94,7 @@ Média de encontros por deputado, por partido (8+ deputados):
 | Otoni de Paula | MDB | 665 | 186.678 |
 | Duarte Jr. | PSB | 653 | 286.544 |
 | Helder Salomão | PT | 637 | 180.850 |
+| Luiz Lima | PL | 614 | 172.435 |
 | Laura Carneiro | PSD | 595 | 229.464 |
 | Bia Kicis | PL | 581 | 204.204 |
 
@@ -84,6 +106,9 @@ Média de encontros por deputado, por partido (8+ deputados):
 | encontros | disciplina | 0,23* | 0,03 | 616 |
 | encontros | extremidade | -0,14* | -0,04 | 522 |
 | encontros | pago | 0,27* | 0,21* | 543 |
+| visitas_mes | apoio_gov | -0,54* | -0,12 | 32 |
+| visitas_mes | disciplina | -0,46* | -0,31 | 32 |
+| visitas_mes | pago | -0,01 | -0,01 | 31 |
 | discursos | apoio_gov | 0,01 | -0,19* | 629 |
 | discursos | disciplina | 0,06 | -0,10 | 616 |
 | discursos | extremidade | 0,41* | 0,24* | 522 |
@@ -92,7 +117,10 @@ Média de encontros por deputado, por partido (8+ deputados):
 | palavras | disciplina | 0,06 | -0,10 | 616 |
 | palavras | extremidade | 0,38* | 0,22* | 522 |
 | palavras | pago | -0,10 | -0,04 | 543 |
+| encontros | visitas_mes | -0,30 | -0,07 | 32 |
 | encontros | discursos | 0,33* | 0,28* | 629 |
 | encontros | palavras | 0,34* | 0,30* | 629 |
+| visitas_mes | discursos | 0,23 | 0,12 | 32 |
+| visitas_mes | palavras | 0,29 | 0,27 | 32 |
 
 \* p < 0,01.

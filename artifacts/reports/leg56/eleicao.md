@@ -16,15 +16,14 @@ São 50 comparações: com p < 0,01, cerca de 0,5 apareceriam por acaso.
 | --- | --- | --- | --- | --- |
 | municípios com 1%+ dos votos | disciplina | 0,11 | 0,20* | 494 |
 | peso do maior município | disciplina | -0,15* | -0,20* | 494 |
-| municípios com 1%+ dos votos | votos imprevisíveis | -0,05 | -0,18* | 494 |
 | concentração geográfica | disciplina | -0,13* | -0,18* | 494 |
+| municípios com 1%+ dos votos | votos imprevisíveis | -0,05 | -0,18* | 494 |
 | receita total | participação | -0,32* | -0,16* | 494 |
 | municípios com 1%+ dos votos | participação | -0,27* | -0,16* | 494 |
 | peso do maior município | apoio ao governo | -0,07 | -0,14* | 494 |
-| peso do maior município | votos imprevisíveis | 0,06 | 0,14* | 494 |
 | concentração geográfica | apoio ao governo | -0,06 | -0,13* | 494 |
 | % de pessoas físicas | participação | 0,19* | 0,13* | 494 |
-| concentração geográfica | votos imprevisíveis | 0,06 | 0,13* | 494 |
+| peso do maior município | votos imprevisíveis | 0,07 | 0,13* | 494 |
 | custo por voto | disciplina | 0,10 | 0,12* | 494 |
 | municípios com 1%+ dos votos | apoio ao governo | 0,08 | 0,12* | 494 |
 | peso do maior município | participação | 0,19* | 0,09 | 494 |

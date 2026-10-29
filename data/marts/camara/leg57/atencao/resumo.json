@@ -142,41 +142,279 @@
       }
     ]
   },
+  "wikipedia": {
+    "com_verbete": 32,
+    "deputados": 629,
+    "serie": [
+      {
+        "mes": "2023-02",
+        "v": 20152
+      },
+      {
+        "mes": "2023-03",
+        "v": 23248
+      },
+      {
+        "mes": "2023-04",
+        "v": 16864
+      },
+      {
+        "mes": "2023-05",
+        "v": 17796
+      },
+      {
+        "mes": "2023-06",
+        "v": 16352
+      },
+      {
+        "mes": "2023-07",
+        "v": 19072
+      },
+      {
+        "mes": "2023-08",
+        "v": 15964
+      },
+      {
+        "mes": "2023-09",
+        "v": 15048
+      },
+      {
+        "mes": "2023-10",
+        "v": 13900
+      },
+      {
+        "mes": "2023-11",
+        "v": 13380
+      },
+      {
+        "mes": "2023-12",
+        "v": 15385
+      },
+      {
+        "mes": "2024-01",
+        "v": 11687
+      },
+      {
+        "mes": "2024-02",
+        "v": 13812
+      },
+      {
+        "mes": "2024-03",
+        "v": 15386
+      },
+      {
+        "mes": "2024-04",
+        "v": 18779
+      },
+      {
+        "mes": "2024-05",
+        "v": 72922
+      },
+      {
+        "mes": "2024-06",
+        "v": 17149
+      },
+      {
+        "mes": "2024-07",
+        "v": 14166
+      },
+      {
+        "mes": "2024-08",
+        "v": 17021
+      },
+      {
+        "mes": "2024-09",
+        "v": 24677
+      },
+      {
+        "mes": "2024-10",
+        "v": 46498
+      },
+      {
+        "mes": "2024-11",
+        "v": 21034
+      },
+      {
+        "mes": "2024-12",
+        "v": 16541
+      },
+      {
+        "mes": "2025-01",
+        "v": 21470
+      },
+      {
+        "mes": "2025-02",
+        "v": 47284
+      },
+      {
+        "mes": "2025-03",
+        "v": 27964
+      },
+      {
+        "mes": "2025-04",
+        "v": 23253
+      },
+      {
+        "mes": "2025-05",
+        "v": 17224
+      },
+      {
+        "mes": "2025-06",
+        "v": 14977
+      },
+      {
+        "mes": "2025-07",
+        "v": 19005
+      },
+      {
+        "mes": "2025-08",
+        "v": 33855
+      },
+      {
+        "mes": "2025-09",
+        "v": 42200
+      },
+      {
+        "mes": "2025-10",
+        "v": 31853
+      },
+      {
+        "mes": "2025-11",
+        "v": 21561
+      },
+      {
+        "mes": "2025-12",
+        "v": 22896
+      },
+      {
+        "mes": "2026-01",
+        "v": 18617
+      },
+      {
+        "mes": "2026-02",
+        "v": 20480
+      },
+      {
+        "mes": "2026-03",
+        "v": 39542
+      },
+      {
+        "mes": "2026-04",
+        "v": 24845
+      },
+      {
+        "mes": "2026-05",
+        "v": 25398
+      },
+      {
+        "mes": "2026-06",
+        "v": 17500
+      },
+      {
+        "mes": "2026-07",
+        "v": 18793
+      },
+      {
+        "mes": "2026-08",
+        "v": 139889
+      },
+      {
+        "mes": "2026-09",
+        "v": 74168
+      },
+      {
+        "mes": "2026-10",
+        "v": 5501
+      }
+    ],
+    "picos": [
+      {
+        "deputado_id": "220576",
+        "mes": "2026-08",
+        "v": 106422
+      },
+      {
+        "deputado_id": "220596",
+        "mes": "2024-05",
+        "v": 55537
+      },
+      {
+        "deputado_id": "204503",
+        "mes": "2025-02",
+        "v": 26633
+      },
+      {
+        "deputado_id": "74646",
+        "mes": "2026-09",
+        "v": 15798
+      },
+      {
+        "deputado_id": "220593",
+        "mes": "2024-10",
+        "v": 9580
+      },
+      {
+        "deputado_id": "178972",
+        "mes": "2024-10",
+        "v": 7678
+      },
+      {
+        "deputado_id": "221328",
+        "mes": "2026-03",
+        "v": 4557
+      },
+      {
+        "deputado_id": "160545",
+        "mes": "2026-09",
+        "v": 4194
+      },
+      {
+        "deputado_id": "178835",
+        "mes": "2025-02",
+        "v": 3510
+      },
+      {
+        "deputado_id": "221148",
+        "mes": "2024-11",
+        "v": 3483
+      }
+    ]
+  },
   "discursos": {
-    "discursos": 52398,
-    "palavras": 18206898,
+    "discursos": 51829,
+    "palavras": 17983397,
     "por_tipo": [
       {
         "tipo": "PELA ORDEM",
-        "n": 24197
+        "n": 24059
       },
       {
         "tipo": "BREVES COMUNICAÇÕES",
-        "n": 14565
+        "n": 14377
       },
       {
         "tipo": "DISCUSSÃO",
-        "n": 3260
+        "n": 3255
       },
       {
         "tipo": "DISCURSO ENCAMINHADO",
-        "n": 2810
+        "n": 2587
       },
       {
         "tipo": "COMO LÍDER",
-        "n": 2250
+        "n": 2249
       },
       {
         "tipo": "ENCAMINHAMENTO DE VOTAÇÃO",
-        "n": 2004
+        "n": 1998
       },
       {
         "tipo": "PARECER",
-        "n": 1016
+        "n": 1015
       },
       {
         "tipo": "QUESTÃO DE ORDEM",
-        "n": 647
+        "n": 646
       }
     ],
     "mediana_deputado": 27.0
@@ -227,10 +465,43 @@
       "relevante_dentro": true
     },
     {
+      "atencao": "visitas_mes",
+      "comportamento": "apoio_gov",
+      "spearman": -0.539,
+      "p": 0.00145,
+      "n": 32,
+      "spearman_dentro": -0.122,
+      "p_dentro": 0.50652,
+      "relevante": true,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "visitas_mes",
+      "comportamento": "disciplina",
+      "spearman": -0.463,
+      "p": 0.007562,
+      "n": 32,
+      "spearman_dentro": -0.308,
+      "p_dentro": 0.086467,
+      "relevante": true,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "visitas_mes",
+      "comportamento": "pago",
+      "spearman": -0.014,
+      "p": 0.939935,
+      "n": 31,
+      "spearman_dentro": -0.014,
+      "p_dentro": 0.941959,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
       "atencao": "discursos",
       "comportamento": "apoio_gov",
       "spearman": 0.015,
-      "p": 0.711663,
+      "p": 0.709572,
       "n": 629,
       "spearman_dentro": -0.187,
       "p_dentro": 2e-06,
@@ -241,10 +512,10 @@
       "atencao": "discursos",
       "comportamento": "disciplina",
       "spearman": 0.06,
-      "p": 0.140119,
+      "p": 0.139935,
       "n": 616,
       "spearman_dentro": -0.096,
-      "p_dentro": 0.016988,
+      "p_dentro": 0.016881,
       "relevante": false,
       "relevante_dentro": false
     },
@@ -263,10 +534,10 @@
       "atencao": "discursos",
       "comportamento": "pago",
       "spearman": -0.096,
-      "p": 0.024675,
+      "p": 0.024678,
       "n": 543,
       "spearman_dentro": -0.028,
-      "p_dentro": 0.520697,
+      "p_dentro": 0.520572,
       "relevante": false,
       "relevante_dentro": false
     },
@@ -274,9 +545,9 @@
       "atencao": "palavras",
       "comportamento": "apoio_gov",
       "spearman": 0.027,
-      "p": 0.495149,
+      "p": 0.492134,
       "n": 629,
-      "spearman_dentro": -0.179,
+      "spearman_dentro": -0.178,
       "p_dentro": 7e-06,
       "relevante": false,
       "relevante_dentro": true
@@ -285,10 +556,10 @@
       "atencao": "palavras",
       "comportamento": "disciplina",
       "spearman": 0.058,
-      "p": 0.151979,
+      "p": 0.152034,
       "n": 616,
-      "spearman_dentro": -0.1,
-      "p_dentro": 0.012658,
+      "spearman_dentro": -0.101,
+      "p_dentro": 0.012486,
       "relevante": false,
       "relevante_dentro": false
     },
@@ -307,10 +578,21 @@
       "atencao": "palavras",
       "comportamento": "pago",
       "spearman": -0.095,
-      "p": 0.027289,
+      "p": 0.027381,
       "n": 543,
       "spearman_dentro": -0.035,
-      "p_dentro": 0.412417,
+      "p_dentro": 0.412662,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "encontros",
+      "comportamento": "visitas_mes",
+      "spearman": -0.305,
+      "p": 0.090089,
+      "n": 32,
+      "spearman_dentro": -0.068,
+      "p_dentro": 0.709873,
       "relevante": false,
       "relevante_dentro": false
     },
@@ -335,6 +617,28 @@
       "p_dentro": 0.0,
       "relevante": true,
       "relevante_dentro": true
+    },
+    {
+      "atencao": "visitas_mes",
+      "comportamento": "discursos",
+      "spearman": 0.226,
+      "p": 0.213778,
+      "n": 32,
+      "spearman_dentro": 0.124,
+      "p_dentro": 0.498658,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "visitas_mes",
+      "comportamento": "palavras",
+      "spearman": 0.291,
+      "p": 0.106026,
+      "n": 32,
+      "spearman_dentro": 0.274,
+      "p_dentro": 0.12871,
+      "relevante": false,
+      "relevante_dentro": false
     }
   ]
 }
