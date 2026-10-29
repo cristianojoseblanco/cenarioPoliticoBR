@@ -478,7 +478,7 @@ atencao:
   # A API de visitas limita pedidos de servidores de nuvem: poucos verbetes por execução, devagar.
   wiki_max_por_execucao: 250
   wiki_pausa_s: 3
-  discursos_desde: "2019-02-01"
-  recarregar_dias: 60
+  discursos_legislaturas: [56, 57, 58]
+  paralelo: 6
   # Opcional: parquet com parlamentar_id, nome, nome_civil, nascimento de senadores.
   senadores_nascimento: "data/staging/atencao/senadores.parquet"

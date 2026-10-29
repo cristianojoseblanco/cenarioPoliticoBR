@@ -298,11 +298,27 @@ def dados_legislatura(leg: str, c: dict, casa: str = "camara") -> dict:
             bast["relatorias_partido"] = [{"p": r.partido, "r": _r(r.frac_relatorias, 3), "c": _r(r.frac_deputados, 3), "n": int(r.relatorias)}
                                           for r in rp.sort_values("relatorias", ascending=False).head(12).itertuples()]
 
+    # influência e atenção (só Câmara)
+    base_at = ROOT / c["redes"]["saida"].replace("/redes", "/atencao")
+    aten = None
+    if (base_at / "resumo.json").exists():
+        ra = json.loads((base_at / "resumo.json").read_text(encoding="utf-8"))
+        da = pd.read_parquet(base_at / "deputados.parquet")
+        da = da[da["deputado_id"].isin(idx)]
+        aten = {"resumo": {k: v for k, v in ra.items() if k != "wikipedia"}}
+        if "wikipedia" in ra:
+            aten["resumo"]["wikipedia"] = {k: v for k, v in ra["wikipedia"].items() if k != "picos"}
+        for col, chave in (("encontros", "enc"), ("visitas_mes", "vis"), ("discursos", "dis")):
+            if col in da.columns and da[col].notna().sum() >= 30:
+                aten[chave] = [{"i": idx[r.deputado_id], "v": _r(getattr(r, col), 0)} for r in da.nlargest(10, col).itertuples()]
+        if not any(k in aten for k in ("enc", "vis", "dis")):
+            aten = None
+
     per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
         "leg": leg, "casa": casa, "_ids": list(d["deputado_id"]), "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
         "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
-        "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo, "eleicao": eleicao, "cota": cota, "bastidores": bast,
+        "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo, "eleicao": eleicao, "cota": cota, "bastidores": bast, "atencao": aten,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
         "modularidade": _r(m["modularidade"]), "nmi": _r(m["nmi_com_partido"]),
         "polos": {"a": polos["polo_a"], "b": polos["polo_b"]},

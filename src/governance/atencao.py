@@ -64,9 +64,11 @@ def rodar(c: dict, cfg: dict) -> int:
     meses_leg = max(1, (min(fim, pd.Timestamp.now()) - ini).days / 30.44)
 
     ag = sa / "compromissos.parquet"
-    if ag.exists():
-        a = pd.read_parquet(ag)
-        a = a[(a["casa"] == "camara") & (a["data"] >= ini) & (a["data"] <= fim)]
+    a = pd.read_parquet(ag) if ag.exists() else pd.DataFrame(columns=["casa", "data"])
+    a = a[(a["casa"] == "camara") & (a["data"] >= ini) & (a["data"] <= fim)]
+    if len(a) and a["data"].min() > ini + pd.Timedelta(days=365):
+        a = a.iloc[0:0]  # o e-Agendas começa em out/2022: cobertura parcial demais nesta legislatura
+    if len(a):
         a = a.drop_duplicates(["parlamentar_id", "data", "autoridade", "assunto"])
         cnt = a.groupby("parlamentar_id").size().rename("encontros")
         base = base.merge(cnt, left_on="deputado_id", right_index=True, how="left")

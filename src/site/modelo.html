@@ -232,7 +232,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     <div class="legbtns" id="legSeg" role="group" aria-label="Legislatura"></div>
     <nav class="secoes" aria-label="Seções" id="nav">
       <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#mudancas">Mudanças</a>
-      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a><a href="#campanha">Campanha</a><a href="#brasil">Brasil</a><a href="#dinheiro">Dinheiro</a><a href="#bastidores">Bastidores</a>
+      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a><a href="#campanha">Campanha</a><a href="#brasil">Brasil</a><a href="#dinheiro">Dinheiro</a><a href="#bastidores">Bastidores</a><a href="#atencao">Atenção</a>
       <a href="#partidos">Partidos</a><a href="#frentes">Frentes</a><a href="#comparacao">Governos</a><a href="#acompanhados">Acompanhados</a><a href="#glossario">Glossário</a>
     </nav>
   </div>
@@ -445,6 +445,21 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
         <h3 style="margin-top:6px">Relatorias de Plenário por partido</h3><p class="nota">Fatia das relatorias × fatia das cadeiras.</p><div id="baRelP"></div></div>
     </div>
     <div class="cols" id="baCom"></div>
+  </div>
+</section>
+
+<section class="cap" id="atencao">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Influência e atenção</span><h2>Quem tem acesso, quem é visto, quem fala</h2>
+      <p class="lede" id="atLede"></p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
+      <dt>Encontros com o Executivo</dt><dd>Compromissos nas agendas públicas de ministros e outras autoridades federais (e-Agendas, CGU) que citam o deputado pelo nome ("Deputado Fulano"). Só a partir de out/2022, quando o sistema começou; reuniões com bancadas inteiras sem nomes não entram.</dd>
+      <dt>Visitas na Wikipédia</dt><dd>Média mensal de visitas ao verbete em português, sem robôs. Medida de atenção do público.</dd>
+      <dt>Discursos</dt><dd>Discursos registrados pela Câmara (Plenário e sessões), de qualquer tipo.</dd>
+      <dt>Correlação dentro do partido</dt><dd>Compara cada deputado com a mediana do seu partido, para não confundir efeito de partido com efeito individual. Só aparecem as relações com p &lt; 0,01.</dd></dl></div></details>
+    <div class="destaques" id="atDest"></div>
+    <div class="cols" id="atCols"></div>
+    <div class="card" id="atCorr" style="align-content:start"></div>
   </div>
 </section>
 
@@ -1238,6 +1253,27 @@ function bastidores() {
     <div class="card" style="align-content:start"><h3>Comissões × Plenário</h3><p class="nota">Apoio médio ao governo dos titulares, menos o da Câmara (${pctf(cm.apoio_gov_plenario, 0)}).</p><div class="rolagem"><table class="tab" style="min-width:340px"><tr><th>Comissão</th><th>Titulares</th><th>Apoio</th><th>Diferença</th></tr>${[...cm.comissoes.slice(0, 5), ...cm.comissoes.slice(-5)].map(x => `<tr><td title="${x.nome}">${x.sigla}</td><td>${x.titulares}</td><td>${pctf(x.apoio_gov, 0)}</td><td>${x.diferenca > 0 ? "+" : ""}${dec(x.diferenca * 100, 1)} pp</td></tr>`).join("")}</table></div></div>` : "";
 }
 
+/* ================= atenção ================= */
+function atencao() {
+  const A = L.atencao; const sec = $("#atencao");
+  if (!A) { sec.hidden = true; return; } sec.hidden = false;
+  const r = A.resumo, ag = r.agendas;
+  const nomes = {encontros: "encontros com o Executivo", visitas_mes: "visitas na Wikipédia", discursos: "discursos", palavras: "palavras em discursos",
+    apoio_gov: "apoio ao governo", disciplina: "disciplina partidária", extremidade: "posição extrema no eixo principal de voto", pago: "emendas pagas"};
+  $("#atLede").innerHTML = ag ? `${fmt.format(ag.encontros)} compromissos de ministros e outras autoridades do Executivo citam ${fmt.format(ag.deputados)} deputados desta legislatura.` : "";
+  const mp = ag ? ag.por_partido : [];
+  if (mp.length) $("#atLede").innerHTML += ` Por deputado, o ${mp[0].partido} lidera (${dec(mp[0].media, 0)} encontros em média); o ${mp[mp.length - 1].partido} é o que menos aparece (${dec(mp[mp.length - 1].media, 0)}).`;
+  $("#atDest").innerHTML = [
+    mp.length ? [`${dec(mp[0].media, 0)} × ${dec(mp[mp.length - 1].media, 0)}`, `encontros por deputado: ${mp[0].partido} × ${mp[mp.length - 1].partido}`] : null,
+    ag ? [ag.orgaos[0].orgao.replace("Ministério d", "M. d"), `órgão com mais encontros com deputados (${fmt.format(ag.orgaos[0].encontros)})`] : null,
+    r.wikipedia ? [`${fmt.format(r.wikipedia.com_verbete)}`, `deputados com verbete identificado na Wikipédia`] : null,
+  ].filter(Boolean).map(([b, t]) => `<div class="destaque"><b>${b}</b><span>${t}</span></div>`).join("");
+  const lista = (t, xs, un) => `<div class="card" style="align-content:start"><h3>${t}</h3><ol class="rank">${xs.map(x => { const d = L.deputados[x.i]; return `<li><span class="q"><b>${d.n}</b><br><span class="muted">${d.p}-${d.uf}</span></span><span class="num">${fmt.format(x.v)}${un}</span></li>`; }).join("")}</ol></div>`;
+  $("#atCols").innerHTML = [A.enc && lista("Mais encontros com o Executivo", A.enc, ""), A.vis && lista("Mais visitas na Wikipédia", A.vis, "/mês"), A.dis && lista("Mais discursos", A.dis, "")].filter(Boolean).join("");
+  const cs = (r.correlacoes || []).filter(x => x.relevante_dentro);
+  $("#atCorr").innerHTML = `<h3>O que anda junto, dentro do mesmo partido</h3>` + (cs.length ? `<ul class="lista-v">${cs.map(x => `<li><b>${nomes[x.atencao] || x.atencao} × ${nomes[x.comportamento] || x.comportamento}</b><span>Quanto mais ${nomes[x.atencao]}, ${x.spearman_dentro > 0 ? "mais" : "menos"} ${nomes[x.comportamento]} (Spearman ${dec(x.spearman_dentro, 2)}; ${dec(x.spearman, 2)} sem descontar o partido)</span></li>`).join("")}</ul>` : '<p class="muted">Nenhuma relação clara.</p>');
+}
+
 /* ================= cota e patrimônio ================= */
 let diModo = "top";
 function dinheiro() {
@@ -1285,7 +1321,7 @@ segOn("#redeCor", v => { redeModo = v; rede(); });
 segOn("#tempoMet", v => { tempoModo = v; tempo(); });
 segOn("#temaMet", v => { temaModo = v; temas(); });
 segOn("#mudMet", v => { mudModo = v; mudancas(); });
-function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); campanha(); mapaBrasil(); bastidores(); dinheiro(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); campanha(); mapaBrasil(); bastidores(); atencao(); dinheiro(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
 tudo(true);
 // navegação: destaca a seção visível
 const links = [...document.querySelectorAll("#nav a")];

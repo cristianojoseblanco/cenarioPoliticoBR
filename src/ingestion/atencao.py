@@ -130,46 +130,68 @@ def visitas(cfg, mapa: pd.DataFrame, velho: pd.DataFrame) -> pd.DataFrame:
 
 
 def discursos(cfg) -> pd.DataFrame:
+    """Por deputado e legislatura (a API não aceita intervalos de mais de 4 anos; `idLegislatura` resolve).
+
+    Na primeira vez baixa as legislaturas de `atencao.discursos_legislaturas`; depois, só a mais recente.
+    """
     c, a = cfg["camara"], cfg["atencao"]
     destino = ROOT / a["caminhos"]["staging"] / "discursos.parquet"
     velho = pd.read_parquet(destino) if destino.exists() else pd.DataFrame()
     P = path(cfg, "processed")
-    d = pd.read_parquet(P / "deputados", columns=["deputado_id", "idLegislaturaFinal"])
-    ids = sorted(d.loc[pd.to_numeric(d["idLegislaturaFinal"], errors="coerce") >= 56, "deputado_id"], key=int)
-    inicio = a["discursos_desde"]
-    if len(velho):
-        # só o período recente é baixado de novo
-        inicio = (pd.Timestamp.now() - pd.Timedelta(days=int(a["recarregar_dias"]))).strftime("%Y-%m-%d")
-        velho = velho[velho["data"] < inicio]
-    def um(dep):
-        linhas = []
-        pagina = 1
+    d = pd.read_parquet(P / "deputados", columns=["deputado_id", "idLegislaturaInicial", "idLegislaturaFinal"])
+    d["ini"] = pd.to_numeric(d["idLegislaturaInicial"], errors="coerce")
+    d["fim"] = pd.to_numeric(d["idLegislaturaFinal"], errors="coerce")
+    legs = [int(x) for x in a["discursos_legislaturas"]]
+    if len(velho) and "legislatura" in velho.columns:
+        feitas = set(velho["legislatura"].unique())
+        legs = [x for x in legs if x not in feitas] + [max(legs)]
+        velho = velho[~velho["legislatura"].isin(legs)]
+    tarefas = [(r.deputado_id, leg) for r in d.itertuples() for leg in sorted(set(legs))
+               if r.ini <= leg <= r.fim]
+    print(f"discursos: {len(tarefas)} pares deputado × legislatura ({sorted(set(legs))})")
+    headers = {"User-Agent": cfg["http"]["user_agent"], "Accept": "application/json"}
+
+    def um(tarefa):
+        dep, leg = tarefa
+        linhas, pagina = [], 1
         while True:
-            try:
-                js = _get(f"{c['api_base']}/deputados/{dep}/discursos", cfg["http"],
-                          {"dataInicio": inicio, "dataFim": datetime.now().strftime("%Y-%m-%d"),
-                           "itens": 100, "pagina": pagina, "ordenarPor": "dataHoraInicio", "ordem": "ASC"})
-            except RuntimeError:
+            js = None
+            for tentativa in range(3):
+                try:
+                    r = requests.get(f"{c['api_base']}/deputados/{dep}/discursos", headers=headers, timeout=90,
+                                     params={"idLegislatura": leg, "itens": 100, "pagina": pagina})
+                except requests.RequestException:
+                    time.sleep(2 ** tentativa)
+                    continue
+                if r.status_code == 429 or r.status_code >= 500:
+                    time.sleep(2 ** tentativa)
+                    continue
+                if r.status_code == 200:
+                    js = r.json()
                 break
+            if js is None:
+                return linhas, 1
             dados = js.get("dados", [])
             for x in dados:
-                linhas.append({"deputado_id": dep, "data": str(x.get("dataHoraInicio") or "")[:10],
+                linhas.append({"deputado_id": dep, "legislatura": leg, "data": str(x.get("dataHoraInicio") or "")[:10],
                                "hora": str(x.get("dataHoraInicio") or "")[11:16],
                                "tipo": x.get("tipoDiscurso"), "fase": (x.get("faseEvento") or {}).get("titulo"),
                                "sumario": (x.get("sumario") or "")[:600], "keywords": (x.get("keywords") or "")[:300],
                                "palavras": len((x.get("transcricao") or "").split())})
             if len(dados) < 100:
-                break
+                return linhas, 0
             pagina += 1
-        return linhas
 
     from concurrent.futures import ThreadPoolExecutor
-    linhas = []
+    linhas, falhas = [], 0
     with ThreadPoolExecutor(int(a.get("paralelo", 6))) as ex:
-        for k, ls in enumerate(ex.map(um, ids), 1):
+        for k, (ls, f) in enumerate(ex.map(um, tarefas), 1):
             linhas += ls
-            if k % 100 == 0:
-                print(f"  discursos: {k}/{len(ids)} deputados, {len(linhas)} discursos", flush=True)
+            falhas += f
+            if k % 200 == 0:
+                print(f"  discursos: {k}/{len(tarefas)}, {len(linhas)} discursos, {falhas} falhas", flush=True)
+    if falhas:
+        print(f"::warning title=discursos::{falhas} pares sem resposta")
     return pd.concat([velho, pd.DataFrame(linhas)], ignore_index=True)
 
 
