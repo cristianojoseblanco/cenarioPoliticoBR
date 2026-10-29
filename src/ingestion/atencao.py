@@ -113,8 +113,8 @@ def discursos(cfg) -> pd.DataFrame:
         # só o período recente é baixado de novo
         inicio = (pd.Timestamp.now() - pd.Timedelta(days=int(a["recarregar_dias"]))).strftime("%Y-%m-%d")
         velho = velho[velho["data"] < inicio]
-    linhas = []
-    for k, dep in enumerate(ids, 1):
+    def um(dep):
+        linhas = []
         pagina = 1
         while True:
             try:
@@ -133,33 +133,45 @@ def discursos(cfg) -> pd.DataFrame:
             if len(dados) < 100:
                 break
             pagina += 1
-            time.sleep(c["api_pausa_s"])
-        if k % 100 == 0:
-            print(f"  discursos: {k}/{len(ids)} deputados, {len(linhas)} discursos")
-        time.sleep(c["api_pausa_s"])
+        return linhas
+
+    from concurrent.futures import ThreadPoolExecutor
+    linhas = []
+    with ThreadPoolExecutor(int(a.get("paralelo", 6))) as ex:
+        for k, ls in enumerate(ex.map(um, ids), 1):
+            linhas += ls
+            if k % 100 == 0:
+                print(f"  discursos: {k}/{len(ids)} deputados, {len(linhas)} discursos", flush=True)
     return pd.concat([velho, pd.DataFrame(linhas)], ignore_index=True)
+
+
+def _wiki(cfg, base) -> None:
+    g = pessoas(cfg)
+    mp = wikidata(cfg, g)
+    mp.to_parquet(base / "wikipedia_mapa.parquet", index=False)
+    print(f"wikipédia: {len(mp)} de {len(g)} parlamentares com verbete identificado")
+    v = visitas(cfg, mp)
+    v.to_parquet(base / "wikipedia_visitas.parquet", index=False)
+    print(f"wikipédia: {len(v)} meses × parlamentar")
+
+
+def _discursos(cfg, base) -> None:
+    d = discursos(cfg)
+    d.to_parquet(base / "discursos.parquet", index=False)
+    print(f"discursos: {len(d)}")
 
 
 def main() -> int:
     cfg = load_config()
     base = ROOT / cfg["atencao"]["caminhos"]["staging"]
     base.mkdir(parents=True, exist_ok=True)
-    try:
-        g = pessoas(cfg)
-        mp = wikidata(cfg, g)
-        mp.to_parquet(base / "wikipedia_mapa.parquet", index=False)
-        print(f"wikipédia: {len(mp)} de {len(g)} parlamentares com verbete identificado")
-        v = visitas(cfg, mp)
-        v.to_parquet(base / "wikipedia_visitas.parquet", index=False)
-        print(f"wikipédia: {len(v)} meses × parlamentar")
-    except Exception as e:  # noqa: BLE001
-        print(f"::error title=atenção::wikipédia: {e}")
-    try:
-        d = discursos(cfg)
-        d.to_parquet(base / "discursos.parquet", index=False)
-        print(f"discursos: {len(d)}")
-    except Exception as e:  # noqa: BLE001
-        print(f"::error title=atenção::discursos: {e}")
+    partes = sys.argv[1:] or ["wiki", "discursos"]
+    for nome, fn in (("wiki", _wiki), ("discursos", _discursos)):
+        if nome in partes:
+            try:
+                fn(cfg, base)
+            except Exception as e:  # noqa: BLE001 — uma fonte fora do ar não derruba a outra
+                print(f"::error title=atenção::{nome}: {e}")
     return 0
 
 
