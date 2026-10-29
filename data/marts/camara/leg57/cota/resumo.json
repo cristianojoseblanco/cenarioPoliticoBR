@@ -1,0 +1,115 @@
+{
+  "casa": "camara",
+  "legislatura": "57",
+  "parlamentares": 642,
+  "total_real": 935593292.0284742,
+  "mediana_por_mes_real": 41277.18250560426,
+  "categorias": [
+    {
+      "categoria": "DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.",
+      "valor_real": 376169547.2847573
+    },
+    {
+      "categoria": "LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES",
+      "valor_real": 168525985.49516028
+    },
+    {
+      "categoria": "MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR",
+      "valor_real": 129563318.9976158
+    },
+    {
+      "categoria": "PASSAGEM AÉREA - SIGEPA",
+      "valor_real": 119293597.16741487
+    },
+    {
+      "categoria": "COMBUSTÍVEIS E LUBRIFICANTES.",
+      "valor_real": 89223209.51994738
+    },
+    {
+      "categoria": "HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.",
+      "valor_real": 15079480.602927849
+    },
+    {
+      "categoria": "TELEFONIA",
+      "valor_real": 11606451.341594568
+    },
+    {
+      "categoria": "LOCAÇÃO OU FRETAMENTO DE AERONAVES",
+      "valor_real": 9145139.998301936
+    }
+  ],
+  "eleitoral": {
+    "ano_eleicao": 2026,
+    "parlamentares": 552,
+    "total_antes": 50541457.47635072,
+    "total_eleicao": 51613699.04955627,
+    "aumentaram": 269,
+    "mediana_razao": 0.9390208329710675
+  },
+  "reeleicao": [
+    {
+      "quartil": "1º (menos)",
+      "candidatos": 125,
+      "reeleitos": 84,
+      "gasto_mes": 6108.776990249602,
+      "taxa": 0.672
+    },
+    {
+      "quartil": "2º",
+      "candidatos": 124,
+      "reeleitos": 72,
+      "gasto_mes": 12518.551859295017,
+      "taxa": 0.5806451612903226
+    },
+    {
+      "quartil": "3º",
+      "candidatos": 124,
+      "reeleitos": 73,
+      "gasto_mes": 19115.301804807117,
+      "taxa": 0.5887096774193549
+    },
+    {
+      "quartil": "4º (mais)",
+      "candidatos": 124,
+      "reeleitos": 75,
+      "gasto_mes": 26680.71989973952,
+      "taxa": 0.6048387096774194
+    }
+  ],
+  "rede": {
+    "todos": {
+      "pares": 175747,
+      "ligados": 47422,
+      "conc_com": 0.6539248824119568,
+      "conc_sem": 0.6591708064079285,
+      "spearman": -0.006983758420411494
+    },
+    "mesmo partido": {
+      "pares": 16974,
+      "ligados": 5266,
+      "conc_com": 0.8437276482582092,
+      "conc_sem": 0.8134297132492065,
+      "spearman": 0.09342754500572195
+    },
+    "partidos diferentes": {
+      "pares": 158773,
+      "ligados": 42156,
+      "conc_com": 0.6302152872085571,
+      "conc_sem": 0.6436836123466492,
+      "spearman": -0.02855176285546437
+    }
+  },
+  "patrimonio": {
+    "2018-2022": {
+      "n": 345,
+      "mediana_razao_real": 0.9827301783322141,
+      "aumentaram": 170
+    },
+    "2022-2026": {
+      "n": 514,
+      "mediana_razao_real": 1.180282051126702,
+      "aumentaram": 324
+    }
+  },
+  "ipca_ate": "202609"
+}

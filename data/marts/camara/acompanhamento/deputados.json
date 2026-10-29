@@ -23,7 +23,8 @@
         "custo_por_voto": 1.0144,
         "frac_fundo_eleitoral": 0.4218,
         "frac_pessoas_fisicas": 0.0664,
-        "frac_recursos_proprios": 0.0016
+        "frac_recursos_proprios": 0.0016,
+        "bens": 43661.77
       }
     ]
   },
@@ -51,7 +52,8 @@
         "custo_por_voto": 5.1117,
         "frac_fundo_eleitoral": 0.4909,
         "frac_pessoas_fisicas": 0.006,
-        "frac_recursos_proprios": 0.0005
+        "frac_recursos_proprios": 0.0005,
+        "bens": 170790.43
       }
     ]
   },
@@ -79,7 +81,8 @@
         "custo_por_voto": 0.6565,
         "frac_fundo_eleitoral": 0.0,
         "frac_pessoas_fisicas": 0.7383,
-        "frac_recursos_proprios": 0.0
+        "frac_recursos_proprios": 0.0,
+        "bens": 102317.46
       },
       {
         "ano": 2022,
@@ -96,7 +99,8 @@
         "custo_por_voto": 5.5007,
         "frac_fundo_eleitoral": 0.0,
         "frac_pessoas_fisicas": 0.165,
-        "frac_recursos_proprios": 0.0005
+        "frac_recursos_proprios": 0.0005,
+        "bens": 325896.01
       },
       {
         "ano": 2026,
@@ -113,7 +117,8 @@
         "custo_por_voto": 0.9741,
         "frac_fundo_eleitoral": 0.0,
         "frac_pessoas_fisicas": 0.4139,
-        "frac_recursos_proprios": 0.0
+        "frac_recursos_proprios": 0.0,
+        "bens": 1109702.79
       }
     ],
     "primeiro_voto": "2019-02-12",
@@ -141,6 +146,8 @@
         "emendas_execucao": 0.9177,
         "emendas_base": 0.1998,
         "emendas_qtd": 29,
+        "cota_mes_real": 24111.9271,
+        "cota_divulgacao": 0.0027,
         "leg": "56",
         "governo": "Governo Bolsonaro",
         "partido": "DEM",
@@ -296,6 +303,8 @@
         "emendas_execucao": 0.7795,
         "emendas_base": 0.4729,
         "emendas_qtd": 30,
+        "cota_mes_real": 15073.1073,
+        "cota_divulgacao": 0.0,
         "leg": "57",
         "governo": "Governo Lula (3º mandato)",
         "partido": "UNIÃO",

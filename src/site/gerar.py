@@ -266,11 +266,23 @@ def dados_legislatura(leg: str, c: dict, casa: str = "camara") -> dict:
                      for r in sig.sort_values("spearman_dentro_partido", key=abs, ascending=False).itertuples()] if len(sig) else [],
         }
 
+    # cota parlamentar e patrimônio
+    base_co = ROOT / c["redes"]["saida"].replace("/redes", "/cota")
+    cota = None
+    if (base_co / "resumo.json").exists():
+        cp_ = pd.read_parquet(base_co / "parlamentares.parquet")
+        cp_ = cp_[cp_["meses"] >= 6]
+        cota = {"resumo": json.loads((base_co / "resumo.json").read_text(encoding="utf-8")),
+                "top": [{"i": idx[r.deputado_id], "m": _r(r.por_mes_real, 0), "d": _r(r.frac_divulgacao, 3)}
+                        for r in cp_.nlargest(12, "por_mes_real").itertuples() if r.deputado_id in idx],
+                "menos": [{"i": idx[r.deputado_id], "m": _r(r.por_mes_real, 0), "d": _r(r.frac_divulgacao, 3)}
+                          for r in cp_.nsmallest(12, "por_mes_real").itertuples() if r.deputado_id in idx]}
+
     per = c["legislaturas"][leg] if "legislaturas" in c else {}
     return {
         "leg": leg, "casa": casa, "_ids": list(d["deputado_id"]), "ini": c["redes"]["periodo"]["inicio"], "fim": c["redes"]["periodo"]["fim"],
         "nome": per.get("nome", f"{leg}ª legislatura"), "governo": per.get("governo", ""),
-        "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo, "eleicao": eleicao,
+        "dim": dim, "din": din, "mud": mud, "multi": multi, "modelo": modelo, "eleicao": eleicao, "cota": cota,
         "votacoes": m["votacoes"]["votacoes_total"], "analisadas": m["votacoes"]["incluidas"],
         "modularidade": _r(m["modularidade"]), "nmi": _r(m["nmi_com_partido"]),
         "polos": {"a": polos["polo_a"], "b": polos["polo_b"]},
@@ -431,7 +443,22 @@ def main() -> int:
                 tend.append({"casa": casa, "leg": leg, "eleicoes": r["eleicoes"], "votos": r["mediana_votos"],
                              "receita": r["mediana_receita"], "custo": r["mediana_custo_por_voto"],
                              "fundo": r["mediana_frac_fundo_eleitoral"]})
-    dados = {"atualizado": atualizado, "campanha_tendencia": tend, "legislaturas": legs, "comparacao": dados_comparacao(),
+    sem = []
+    for casa, base_ in (("camara", cfg), ("senado", None)):
+        if casa == "senado":
+            from src.config import para_senado
+            base_ = para_senado(cfg)
+        partes = []
+        for leg, c in por_legislatura(base_):
+            p_ = ROOT / c["redes"]["saida"].replace("/redes", "/cota") / "mensal.parquet"
+            if p_.exists():
+                partes.append(pd.read_parquet(p_))
+        if partes:
+            m_ = pd.concat(partes)
+            m_["s"] = m_["data_mes"].dt.year.astype(str) + "-" + np.where(m_["data_mes"].dt.month <= 6, "1", "2")
+            g_ = m_.groupby("s")[["divulgacao_real", "total_real"]].sum()
+            sem.append({"casa": casa, "s": [{"s": k, "d": _r(r.divulgacao_real, 0), "t": _r(r.total_real, 0)} for k, r in g_.iterrows()]})
+    dados = {"atualizado": atualizado, "campanha_tendencia": tend, "cota_semestres": sem, "legislaturas": legs, "comparacao": dados_comparacao(),
              "acompanhamento": dados_acompanhamento(cfg),
              "marcadores": cfg.get("marcadores_periodo", []), "contexto": cfg.get("contexto", {}),
              "repo": f"https://github.com/{cfg['armazenamento']['repositorio']}"}

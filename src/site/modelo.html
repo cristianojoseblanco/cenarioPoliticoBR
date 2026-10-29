@@ -231,7 +231,7 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
     <div class="legbtns" id="legSeg" role="group" aria-label="Legislatura"></div>
     <nav class="secoes" aria-label="Seções" id="nav">
       <a href="#plenario">Plenário</a><a href="#contexto">Contexto</a><a href="#mapa">Mapa</a><a href="#rede">Rede</a><a href="#tempo">Tempo</a><a href="#mudancas">Mudanças</a>
-      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a><a href="#campanha">Campanha</a><a href="#brasil">Brasil</a>
+      <a href="#clima">Polarização</a><a href="#agenda">Agenda</a><a href="#temas">Temas</a><a href="#rankings">Rankings</a><a href="#imprevisiveis">Imprevisíveis</a><a href="#campanha">Campanha</a><a href="#brasil">Brasil</a><a href="#dinheiro">Dinheiro</a>
       <a href="#partidos">Partidos</a><a href="#frentes">Frentes</a><a href="#comparacao">Governos</a><a href="#acompanhados">Acompanhados</a><a href="#glossario">Glossário</a>
     </nav>
   </div>
@@ -426,6 +426,26 @@ footer{padding-block:44px 64px;color:var(--ink-3);font-size:.86rem}
 </section>
 
 <!--__MAPA_HTML__-->
+
+<section class="cap" id="dinheiro">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Cota parlamentar e patrimônio</span><h2>Quanto custa o mandato</h2>
+      <p class="lede" id="diLede"></p></div>
+    <details class="ler"><summary>Como ler</summary><div class="corpo"><dl>
+      <dt>Cota parlamentar</dt><dd>Verba mensal para despesas do mandato (passagens, divulgação, escritório, combustível, consultorias), reembolsada mediante nota. Câmara: CEAP; Senado: CEAPS. Fonte: Câmara e Senado.</dd>
+      <dt>Valores reais</dt><dd>Todos os valores em reais do último mês do IPCA (IBGE), para comparar anos diferentes.</dd>
+      <dt>Divulgação no ano eleitoral</dt><dd>A lei proíbe gastar a cota com divulgação nos 120 dias antes da eleição: por isso o 2º semestre dos anos de eleição despenca.</dd>
+      <dt>Patrimônio</dt><dd>Bens declarados ao TSE no registro da candidatura, somados e corrigidos pela inflação. É o valor declarado (muitas vezes o de compra), não o de mercado.</dd>
+      <dt>Privacidade</dt><dd>Fornecedores pessoa física aparecem só como "pessoa física", sem nome nem CPF.</dd></dl></div></details>
+    <div class="destaques" id="diDest"></div>
+    <div class="card rel"><h3>Gasto da cota por semestre</h3><p class="nota">Barra inteira: gasto total. Parte escura: divulgação da atividade parlamentar. Em reais de hoje.</p><div class="rolagem dica-rolar"><svg class="chart" id="diSvg" viewBox="0 0 960 300"></svg></div><div class="tip" id="diTip" hidden></div></div>
+    <div class="cols">
+      <div class="card" style="align-content:start"><h3>Gasto mensal da cota</h3><div class="tabs" role="tablist" id="diTabs"></div><ol class="rank" id="diRank"></ol></div>
+      <div class="card" style="align-content:start"><h3>Reeleição × gasto com divulgação</h3><p class="nota">Só quem se candidatou de novo à Câmara, em quartis de gasto mensal com divulgação.</p><div class="rolagem"><table class="tab" id="diReel" style="min-width:380px"></table></div>
+        <h3 style="margin-top:6px">Patrimônio declarado</h3><div id="diPat"></div></div>
+    </div>
+  </div>
+</section>
 
 <section class="cap" id="partidos">
   <div class="wrap">
@@ -993,7 +1013,7 @@ function mudancas() {
 /* ================= deputados acompanhados ================= */
 const acModo = {};
 const titulo = s => s ? s.toLowerCase().replace(/(^|\s)\S/g, x => x.toUpperCase()) : "—";
-const campTab = f => (f.campanhas || []).length ? `<div class="rolagem"><table class="tab"><tr><th>Eleição (TSE)</th><th>Votos</th><th>Na UF</th><th>Maior município</th><th>Receita</th><th>Por voto</th><th>Fundo eleitoral</th></tr>${f.campanhas.map(c => `<tr><td>${c.ano} · ${c.partido} · ${(c.situacao || "").toLowerCase()}</td><td>${fmt.format(c.votos)}</td><td>${c.posicao_uf}º · ${pctf(c.frac_uf)}</td><td>${titulo(c.municipio_principal)} (${pctf(c.maior_municipio, 0)})</td><td>${brl(c.receita_total)}</td><td>${brl(c.custo_por_voto)}</td><td>${pctf(c.frac_fundo_eleitoral, 0)}</td></tr>`).join("")}</table></div>` : "";
+const campTab = f => (f.campanhas || []).length ? `<div class="rolagem"><table class="tab"><tr><th>Eleição (TSE)</th><th>Votos</th><th>Na UF</th><th>Maior município</th><th>Receita</th><th>Por voto</th><th>Fundo eleitoral</th><th>Bens declarados</th></tr>${f.campanhas.map(c => `<tr><td>${c.ano} · ${c.partido} · ${(c.situacao || "").toLowerCase()}</td><td>${fmt.format(c.votos)}</td><td>${c.posicao_uf}º · ${pctf(c.frac_uf)}</td><td>${titulo(c.municipio_principal)} (${pctf(c.maior_municipio, 0)})</td><td>${brl(c.receita_total)}</td><td>${brl(c.custo_por_voto)}</td><td>${pctf(c.frac_fundo_eleitoral, 0)}</td><td>${brl(c.bens)}</td></tr>`).join("")}</table></div>` : "";
 function acompanhados() {
   const A = D.acompanhamento || []; const box = $("#acompBox");
   if (!A.length) { $("#acompanhados").hidden = true; return; }
@@ -1003,7 +1023,7 @@ function acompanhados() {
   box.innerHTML = A.map((f, i) => {
     const cab = `<div class="topo"><div style="display:grid;gap:6px"><span class="eyebrow">${f.uf || ""}${f.partido_eleito ? ` · eleito pelo ${f.partido_eleito}` : ""}</span><div class="nome">${f.nome}</div></div>${f.partido_atual ? `<span class="partido">${f.partido_atual} hoje</span>` : ""}</div>${f.eleicao ? `<p class="nota" style="margin:0">${f.eleicao}</p>` : ""}`;
     if (!f.votos) return `<div class="acomp">${cab}<div class="espera"><b>Aguardando os primeiros votos</b><span>${/aguardando/.test(f.situacao) ? "Ainda sem registro na Câmara." : f.situacao + "."} A 58ª legislatura começa em 1º de fevereiro de 2027; a ficha se preenche sozinha a partir das primeiras votações nominais no Plenário (atualização toda segunda-feira).</span></div>${campTab(f)}</div>`;
-    const legs = (f.legislaturas || []).map(l => `<tr><td>${l.leg}ª · ${l.governo}</td><td>${l.partido}</td><td>${l.comunidade || "—"}</td><td>${pctf(l.apoio_gov)}</td><td>${l.apoio_percentil == null ? "—" : pctf(l.apoio_percentil, 0)}</td><td>${l.posicao_media == null ? "—" : dec(l.posicao_media)}</td><td>${pctf(l.participacao)}</td><td>${l.imprevisibilidade == null ? "—" : `${pctf(l.imprevisibilidade)} <span class="muted">(${l.imprev_posicao}º de ${fmt.format(l.imprev_total)}; partido ${pctf(l.imprev_partido)})</span>`}</td><td>${l.emendas_pago == null ? "—" : `${brl(l.emendas_pago)} <span class="muted">(${pctf(l.emendas_execucao, 0)} do empenhado; ${pctf(l.emendas_base, 0)} na base)</span>`}</td></tr>`).join("");
+    const legs = (f.legislaturas || []).map(l => `<tr><td>${l.leg}ª · ${l.governo}</td><td>${l.partido}</td><td>${l.comunidade || "—"}</td><td>${pctf(l.apoio_gov)}</td><td>${l.apoio_percentil == null ? "—" : pctf(l.apoio_percentil, 0)}</td><td>${l.posicao_media == null ? "—" : dec(l.posicao_media)}</td><td>${pctf(l.participacao)}</td><td>${l.imprevisibilidade == null ? "—" : `${pctf(l.imprevisibilidade)} <span class="muted">(${l.imprev_posicao}º de ${fmt.format(l.imprev_total)}; partido ${pctf(l.imprev_partido)})</span>`}</td><td>${l.emendas_pago == null ? "—" : `${brl(l.emendas_pago)} <span class="muted">(${pctf(l.emendas_execucao, 0)} do empenhado; ${pctf(l.emendas_base, 0)} na base)</span>`}</td><td>${l.cota_mes_real == null ? "—" : `R$ ${fmt.format(Math.round(l.cota_mes_real))} <span class="muted">(${pctf(l.cota_divulgacao, 0)} divulgação)</span>`}</td></tr>`).join("");
     const reb = f.rebs.map(r => `<li><b>${new Date(r.d + "T12:00:00").toLocaleDateString("pt-BR")} · ${r.prop || "votação"} · ${r.p}</b><span>Votou <b>${r.v}</b>; o partido orientou <b>${r.op}</b>${r.og ? `; o governo, ${r.og}` : ""}.</span><span class="muted">${r.t || ""}</span></li>`).join("");
     return `<div class="acomp">${cab}
       <div class="cmp">${comp("Segue a orientação do partido", f.segue_partido, f.n_segue_partido, f.partido_segue_partido)}
@@ -1014,7 +1034,7 @@ function acompanhados() {
       <div class="row"><div class="seg" id="acSeg${i}" role="group" aria-label="Medida"><button aria-pressed="${(acModo[i] || "sp") === "sp"}" data-v="sp">Partido</button><button aria-pressed="${acModo[i] === "cb"}" data-v="cb">Bancada</button><button aria-pressed="${acModo[i] === "ag"}" data-v="ag">Governo</button></div></div>
       <div class="rel"><div class="rolagem dica-rolar"><svg class="chart" id="acSvg${i}" viewBox="0 0 960 280"></svg></div><div class="tip" id="acTip${i}" hidden></div>
         <div class="legend claro"><span class="row" style="gap:6px"><span class="dot" style="background:var(--accent)"></span>${f.nome}</span><span class="row" style="gap:6px"><span style="width:18px;border-top:2px dashed var(--ink-3)"></span>colegas de partido</span><span class="row" style="gap:6px"><span class="dot" style="background:var(--warn)"></span>mês com bancada pequena</span></div></div>
-      ${legs ? `<div class="rolagem"><table class="tab"><tr><th>Legislatura</th><th>Partido</th><th>Grupo</th><th>Apoio ao governo</th><th>Mais governista que</th><th>Posição A↔B</th><th>Participação</th><th>Votos imprevisíveis</th><th>Emendas pagas</th></tr>${legs}</table></div>` : ""}
+      ${legs ? `<div class="rolagem"><table class="tab"><tr><th>Legislatura</th><th>Partido</th><th>Grupo</th><th>Apoio ao governo</th><th>Mais governista que</th><th>Posição A↔B</th><th>Participação</th><th>Votos imprevisíveis</th><th>Emendas pagas</th><th>Cota por mês</th></tr>${legs}</table></div>` : ""}
       ${campTab(f)}
       
       ${reb ? `<details class="ler"><summary>Últimos votos contra a orientação do partido</summary><div class="corpo"><ul class="lista-v">${reb}</ul></div></details>` : ""}
@@ -1173,6 +1193,41 @@ function campanha() {
 segOn("#caX", v => { caX = +v; campanha(); });
 segOn("#caY", v => { caY = v; campanha(); });
 
+/* ================= cota e patrimônio ================= */
+let diModo = "top";
+function dinheiro() {
+  const C = L.cota; const sec = $("#dinheiro");
+  if (!C) { sec.hidden = true; return; } sec.hidden = false;
+  const r = C.resumo, e = r.eleitoral; const brlM = v => v == null ? "—" : v >= 1e9 ? `R$ ${dec(v / 1e9, 2)} bilhões` : `R$ ${dec(v / 1e6, 1)} milhões`;
+  const div = r.categorias.find(x => /DIVULGA/i.test(x.categoria));
+  $("#diLede").innerHTML = `${L.nome} (${ehSenado() ? "Senado" : "Câmara"}): ${brlM(r.total_real)} da cota, em reais de hoje. ${div ? `A maior fatia foi para <b>divulgação da atividade parlamentar</b> (${brlM(div.valor_real)}, ${pctf(div.valor_real / r.total_real, 0)} do total).` : ""}`;
+  const pat = Object.entries(r.patrimonio || {});
+  $("#diDest").innerHTML = [
+    [`R$ ${fmt.format(Math.round(r.mediana_por_mes_real))}`, `por mês, na mediana de cada parlamentar`],
+    [`${fmt.format(e.aumentaram)} de ${fmt.format(e.parlamentares)}`, `gastaram mais com divulgação no 1º semestre de ${e.ano_eleicao} (ano eleitoral) que no de ${e.ano_eleicao - 1}; no total, ${brlM(e.total_antes)} → ${brlM(e.total_eleicao)}`],
+    pat.length ? [`${dec(pat[pat.length - 1][1].mediana_razao_real, 2)}×`, `variação real mediana do patrimônio declarado de ${pat[pat.length - 1][0].replace("-", " para ")} (${fmt.format(pat[pat.length - 1][1].aumentaram)} de ${fmt.format(pat[pat.length - 1][1].n)} aumentaram)`] : null,
+  ].filter(Boolean).map(([b, t]) => `<div class="destaque"><b>${b}</b><span>${t}</span></div>`).join("");
+  // semestres
+  const S = ((D.cota_semestres || []).find(x => x.casa === (L.casa || "camara")) || {}).s || [];
+  const svg = $("#diSvg"); svg.innerHTML = ""; const W = 960, H = 300, m = {l: 64, r: 12, t: 14, b: 34};
+  if (S.length) { const mx = Math.max(...S.map(x => x.t)); const bw = (W - m.l - m.r) / S.length; const Y = v => m.t + (1 - v / mx) * (H - m.t - m.b);
+    [0, .5, 1].forEach(f => { el("line", {class: "grid", x1: m.l, x2: W - m.r, y1: Y(mx * f), y2: Y(mx * f)}, svg); txt(svg, m.l - 8, Y(mx * f) + 4, `${dec(mx * f / 1e6, 0)} mi`, {"text-anchor": "end"}); });
+    S.forEach((x, k) => { const x0 = m.l + k * bw + bw * .15, w = bw * .7; const leg0 = L.ini.slice(0, 4) <= x.s.slice(0, 4) && x.s.slice(0, 4) < L.fim.slice(0, 4);
+      el("rect", {x: x0, y: Y(x.t), width: w, height: Y(0) - Y(x.t), rx: 3, fill: cssv("--cx"), opacity: leg0 ? 1 : .45}, svg);
+      el("rect", {x: x0, y: Y(x.d), width: w, height: Y(0) - Y(x.d), rx: 3, fill: cssv("--accent"), opacity: leg0 ? 1 : .45}, svg);
+      if (x.s.endsWith("1")) txt(svg, x0 + w, H - 12, x.s.slice(0, 4), {"text-anchor": "middle"}); });
+    const tip = $("#diTip"), bx = svg.closest(".rel");
+    svg.onpointermove = ev => { const rr = svg.getBoundingClientRect(); const k = Math.floor(((ev.clientX - rr.left) * W / rr.width - m.l) / bw); const x = S[k]; if (!x) { tip.hidden = true; return; }
+      tip.innerHTML = `<b>${x.s.endsWith("1") ? "1º" : "2º"} semestre de ${x.s.slice(0, 4)}</b><br>Total: R$ ${fmt.format(x.t)}<br>Divulgação: R$ ${fmt.format(x.d)} (${pctf(x.d / x.t, 0)})`; const rb = bx.getBoundingClientRect(); tip.hidden = false; posTip(tip, ev.clientX - rb.left, ev.clientY - rb.top, rb.width); };
+    svg.onpointerleave = () => tip.hidden = true; }
+  const tabs = $("#diTabs"); tabs.innerHTML = [["top", "Mais gastam"], ["menos", "Menos gastam"]].map(([k, t]) => `<button role="tab" aria-selected="${k === diModo}" data-k="${k}">${t}</button>`).join("");
+  tabs.onclick = ev => { const b = ev.target.closest("button"); if (!b) return; diModo = b.dataset.k; dinheiro(); };
+  $("#diRank").innerHTML = C[diModo].map(x => { const d = L.deputados[x.i]; return `<li><span class="q"><b>${d.n}</b><br><span class="muted">${d.p}-${d.uf} · ${pctf(x.d, 0)} em divulgação</span></span><span class="num">R$ ${fmt.format(x.m)}</span></li>`; }).join("");
+  const R = r.reeleicao;
+  $("#diReel").innerHTML = R ? `<tr><th>Quartil</th><th>Gasto/mês</th><th>Reeleitos</th></tr>` + R.map(q => `<tr><td>${q.quartil}</td><td>R$ ${fmt.format(Math.round(q.gasto_mes))}</td><td>${pctn(q.reeleitos, q.candidatos, 0)}</td></tr>`).join("") : `<tr><td class="muted">Sem dado de reeleição para esta casa.</td></tr>`;
+  $("#diPat").innerHTML = pat.length ? `<ul class="lista-v">${pat.map(([k, v]) => `<li><b>${k.replace("-", " → ")}</b><span>Variação real mediana: <b>${dec(v.mediana_razao_real, 2)}×</b> · ${pctn(v.aumentaram, v.n, 0)} aumentaram</span></li>`).join("")}</ul>` : '<p class="muted">Sem dado.</p>';
+}
+
 /*__MAPA_JS__*/
 
 function rodape() {
@@ -1183,7 +1238,7 @@ segOn("#redeCor", v => { redeModo = v; rede(); });
 segOn("#tempoMet", v => { tempoModo = v; tempo(); });
 segOn("#temaMet", v => { temaModo = v; temas(); });
 segOn("#mudMet", v => { mudModo = v; mudancas(); });
-function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); campanha(); mapaBrasil(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
+function tudo(animar) { topo(); hemiciclo(animar); busca(); $("#ficha").hidden = true; contexto(); mapa(); rede(); tempo(); mudancas(); clima(); agenda(); temas(); rankings(); imprevisiveis(); campanha(); mapaBrasil(); dinheiro(); partidos(); frentes(); comparacao(); acompanhados(); rodape(); termos(); }
 tudo(true);
 // navegação: destaca a seção visível
 const links = [...document.querySelectorAll("#nav a")];

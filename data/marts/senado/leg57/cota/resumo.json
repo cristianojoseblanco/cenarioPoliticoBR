@@ -1,0 +1,71 @@
+{
+  "casa": "senado",
+  "legislatura": "57",
+  "parlamentares": 101,
+  "total_real": 132420167.10982965,
+  "mediana_por_mes_real": 38808.54468868563,
+  "categorias": [
+    {
+      "categoria": "Locomoção, hospedagem, alimentação, combustíveis e lubrificantes",
+      "valor_real": 31573298.83283898
+    },
+    {
+      "categoria": "Contratação de consultorias, assessorias, pesquisas, trabalhos técnicos e outros serviços de apoio ao exercício do mandato parlamentar",
+      "valor_real": 27955250.10513865
+    },
+    {
+      "categoria": "Passagens aéreas, aquáticas e terrestres nacionais",
+      "valor_real": 24704217.63429828
+    },
+    {
+      "categoria": "Divulgação da atividade parlamentar",
+      "valor_real": 22317839.033840213
+    },
+    {
+      "categoria": "Aluguel de imóveis para escritório político, compreendendo despesas concernentes a eles.",
+      "valor_real": 20072498.126440715
+    },
+    {
+      "categoria": "Aquisição de material de consumo para uso no escritório político, inclusive aquisição ou locação de software, despesas postais, aquisição de publicações, locação de móveis e de equipamentos. ",
+      "valor_real": 4790366.911342881
+    },
+    {
+      "categoria": "Serviços de Segurança Privada",
+      "valor_real": 22476.12515301534
+    }
+  ],
+  "eleitoral": {
+    "ano_eleicao": 2026,
+    "parlamentares": 59,
+    "total_antes": 3448592.523185066,
+    "total_eleicao": 2864320.099043649,
+    "aumentaram": 26,
+    "mediana_razao": 0.8200564560624306
+  },
+  "reeleicao": null,
+  "rede": {
+    "todos": {
+      "pares": 3084,
+      "ligados": 487,
+      "conc_com": 0.6378182172775269,
+      "conc_sem": 0.6228500008583069,
+      "spearman": 0.022565801082844963
+    },
+    "mesmo partido": {
+      "pares": 322,
+      "ligados": 61,
+      "conc_com": 0.830656886100769,
+      "conc_sem": 0.8204238414764404,
+      "spearman": 0.037726053301802426
+    },
+    "partidos diferentes": {
+      "pares": 2762,
+      "ligados": 426,
+      "conc_com": 0.6102052330970764,
+      "conc_sem": 0.6007751822471619,
+      "spearman": 0.01273882989873859
+    }
+  },
+  "patrimonio": {},
+  "ipca_ate": "202609"
+}

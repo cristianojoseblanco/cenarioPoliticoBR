@@ -167,6 +167,12 @@ def contexto_legislaturas(cfg, dep_id: str) -> list[dict]:
                 r_ = e_[e_["deputado_id"] == dep_id].iloc[0]
                 imp.update({"emendas_pago": _f(r_["pago"]), "emendas_execucao": _f(r_["execucao"]),
                             "emendas_base": _f(r_.get("frac_base")), "emendas_qtd": int(r_["emendas"])})
+        cp_ = ROOT / c["redes"]["saida"].replace("/redes", "/cota") / "parlamentares.parquet"
+        if cp_.exists():
+            k_ = pd.read_parquet(cp_)
+            if dep_id in set(k_["deputado_id"]):
+                r_ = k_[k_["deputado_id"] == dep_id].iloc[0]
+                imp.update({"cota_mes_real": _f(r_["por_mes_real"]), "cota_divulgacao": _f(r_["frac_divulgacao"])})
         out.append({**imp,
             "leg": leg, "governo": c["legislaturas"][leg].get("governo", ""), "partido": linha["partido"],
             "comunidade": linha["comunidade"], "apoio_gov": _f(linha["apoio_gov"]), "disciplina": _f(linha["disciplina"]),
@@ -176,6 +182,14 @@ def contexto_legislaturas(cfg, dep_id: str) -> list[dict]:
             "posicoes": [{"fim": f.split(" a ")[-1], "posicao": _f(p)} for f, p in zip(pj["fatia"], pj["posicao"])],
         })
     return out
+
+
+def _bens(cfg, ano: int, sq) -> float | None:
+    p = ROOT / cfg["tse"]["caminhos"]["staging"] / str(ano) / "bens.parquet"
+    if not p.exists():
+        return None
+    b = pd.read_parquet(p)
+    return _f(b.loc[b["SQ_CANDIDATO"] == sq, "valor"].sum())
 
 
 def campanhas(cfg, alvo: dict, dep_id: str | None) -> list[dict]:
@@ -208,7 +222,8 @@ def campanhas(cfg, alvo: dict, dep_id: str | None) -> list[dict]:
                     "receita_total": _f(r.get("receita_total")), "custo_por_voto": _f(r.get("custo_por_voto")),
                     "frac_fundo_eleitoral": _f(r.get("frac_fundo_eleitoral")),
                     "frac_pessoas_fisicas": _f(r.get("frac_pessoas_fisicas")),
-                    "frac_recursos_proprios": _f(r.get("frac_recursos_proprios"))})
+                    "frac_recursos_proprios": _f(r.get("frac_recursos_proprios")),
+                    "bens": _bens(cfg, int(ano), r["SQ_CANDIDATO"])})
     return out
 
 

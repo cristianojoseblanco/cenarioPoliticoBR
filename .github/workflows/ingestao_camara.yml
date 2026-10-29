@@ -1,4 +1,4 @@
-name: Ingestão e análises (Câmara, Senado, TSE, emendas e IBGE)
+name: Ingestão e análises (Câmara, Senado, TSE, emendas, IBGE e cota)
 
 on:
   workflow_dispatch:
@@ -114,6 +114,14 @@ jobs:
       - name: Emendas × Plenário (e dados do mapa)
         continue-on-error: true
         run: python -m src.governance.emendas
+
+      - name: Cota parlamentar · ingestão (Câmara e Senado)
+        continue-on-error: true
+        run: python -m src.ingestion.cota
+
+      - name: Cota e patrimônio
+        continue-on-error: true
+        run: python -m src.governance.cota
 
       - name: Deputados acompanhados
         run: python -m src.governance.acompanhamento
