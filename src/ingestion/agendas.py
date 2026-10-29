@@ -9,6 +9,7 @@ Uso: python -m src.ingestion.agendas
 """
 from __future__ import annotations
 
+import csv
 import io
 import re
 import sys
@@ -33,6 +34,20 @@ def _col(cols, *chaves):
         nc = norm(c)
         if all(k in nc for k in chaves):
             return c
+    return None
+
+
+def _ler(bruto: bytes) -> pd.DataFrame | None:
+    """CSV da CGU: separador ';' ou ','; há aspas sem fechamento em alguns meses."""
+    for sep in (";", ","):
+        for kw in ({}, {"engine": "python"}, {"quoting": csv.QUOTE_NONE}):
+            try:
+                df = pd.read_csv(io.BytesIO(bruto), sep=sep, dtype=str, encoding="utf-8-sig", on_bad_lines="skip",
+                                 encoding_errors="replace", **kw)
+            except (pd.errors.ParserError, ValueError):
+                continue
+            if df.shape[1] > 3:
+                return df
     return None
 
 
@@ -79,10 +94,10 @@ def main() -> int:
         membros = [m for m in z.namelist() if m.lower().endswith(".csv")]
         print(f"{len(membros)} arquivos no zip")
         for m in membros:
-            bruto = z.read(m)
-            df = pd.read_csv(io.BytesIO(bruto), sep=";", dtype=str, encoding="utf-8-sig", on_bad_lines="skip", encoding_errors="replace")
-            if df.shape[1] == 1:
-                df = pd.read_csv(io.BytesIO(bruto), sep=",", dtype=str, encoding="utf-8-sig", on_bad_lines="skip", encoding_errors="replace")
+            df = _ler(z.read(m))
+            if df is None:
+                print(f"::warning title=e-Agendas::{m} ilegível")
+                continue
             if total == 0:
                 print("colunas:", list(df.columns))
             total += len(df)
