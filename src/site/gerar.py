@@ -309,7 +309,8 @@ def dados_legislatura(leg: str, c: dict, casa: str = "camara") -> dict:
         if "wikipedia" in ra:
             aten["resumo"]["wikipedia"] = {k: v for k, v in ra["wikipedia"].items() if k != "picos"}
         for col, chave in (("encontros", "enc"), ("visitas_mes", "vis"), ("discursos", "dis")):
-            if col in da.columns and da[col].notna().sum() >= 30:
+            # visitas só aparecem quando a série cobre a maior parte dos deputados (a coleta é gradual)
+            if col in da.columns and da[col].notna().sum() >= (300 if col == "visitas_mes" else 30):
                 aten[chave] = [{"i": idx[r.deputado_id], "v": _r(getattr(r, col), 0)} for r in da.nlargest(10, col).itertuples()]
         if not any(k in aten for k in ("enc", "vis", "dis")):
             aten = None
