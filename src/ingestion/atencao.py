@@ -79,39 +79,54 @@ def wikidata(cfg, gente: pd.DataFrame) -> pd.DataFrame:
     return m.drop_duplicates(["casa", "parlamentar_id"])[["casa", "parlamentar_id", "qid", "artigo"]]
 
 
-def visitas(cfg, mapa: pd.DataFrame) -> pd.DataFrame:
+def visitas(cfg, mapa: pd.DataFrame, velho: pd.DataFrame) -> pd.DataFrame:
+    """Incremental e devagar: a API da Wikimedia limita pedidos vindos de servidores de nuvem.
+
+    Cada execução pede no máximo `wiki_max_por_execucao` verbetes, primeiro os nunca baixados e depois os mais
+    desatualizados, só a partir do último mês já guardado. Num 429 espera e tenta uma vez; no segundo, para.
+    """
     a = cfg["atencao"]
-    fim = datetime.now().strftime("%Y%m01")
-    linhas, status = [], {}
+    hoje = pd.Timestamp.now()
+    fim = hoje.strftime("%Y%m01")
+    mes_fechado = (hoje.replace(day=1) - pd.Timedelta(days=1)).strftime("%Y%m")
+    ult = velho.groupby(["casa", "parlamentar_id"])["mes"].max() if len(velho) else pd.Series(dtype=str)
+    feitos = set(velho[["casa", "parlamentar_id"]].itertuples(index=False, name=None)) if len(velho) else set()
+    fila = []
     for r in mapa.itertuples():
+        k = (r.casa, r.parlamentar_id)
+        u = ult.get(k) if k in ult.index else None
+        if u is not None and u >= mes_fechado:
+            continue
+        fila.append((0 if k not in feitos else 1, u or "", r))
+    fila.sort(key=lambda x: (x[0], x[1]))
+    fila = fila[: int(a["wiki_max_por_execucao"])]
+    linhas, status, bloqueios = [], {}, 0
+    for _, u, r in fila:
+        desde = (u or a["wiki_desde"])
         url = (f"https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/pt.wikipedia/all-access/user/"
-               f"{quote(r.artigo, safe='')}/monthly/{a['wiki_desde']}0100/{fim}00")
-        x = None
-        for tentativa in range(4):
-            try:
-                x = requests.get(url, headers=_ua(cfg), timeout=60)
-            except requests.RequestException as e:
-                status[type(e).__name__] = status.get(type(e).__name__, 0) + 1
-                x = None
-                time.sleep(2 ** tentativa)
-                continue
-            if x.status_code == 429 or x.status_code >= 500:
-                time.sleep(2 ** tentativa)
-                continue
-            break
-        if x is None:
+               f"{quote(r.artigo, safe='')}/monthly/{desde}0100/{fim}00")
+        try:
+            x = requests.get(url, headers=_ua(cfg), timeout=60)
+        except requests.RequestException as e:
+            status[type(e).__name__] = status.get(type(e).__name__, 0) + 1
             continue
+        if x.status_code == 429:
+            bloqueios += 1
+            if bloqueios >= 2:
+                print("wikipédia: limite da API atingido; o resto fica para a próxima execução")
+                break
+            time.sleep(60)
+            x = requests.get(url, headers=_ua(cfg), timeout=60)
         status[x.status_code] = status.get(x.status_code, 0) + 1
-        if x.status_code != 200:
-            if len(status) < 6 and x.status_code != 404:
-                print(f"  {url}: {x.status_code} {x.text[:200]}")
-            continue
-        for it in x.json().get("items", []):
-            linhas.append({"casa": r.casa, "parlamentar_id": r.parlamentar_id, "mes": it["timestamp"][:6],
-                           "visitas": int(it["views"])})
-        time.sleep(0.1)
-    print(f"wikipédia: respostas {status}")
-    return pd.DataFrame(linhas)
+        if x.status_code == 200:
+            for it in x.json().get("items", []):
+                linhas.append({"casa": r.casa, "parlamentar_id": r.parlamentar_id, "mes": it["timestamp"][:6],
+                               "visitas": int(it["views"])})
+        time.sleep(float(a["wiki_pausa_s"]))
+    print(f"wikipédia: {len(fila)} verbetes na fila; respostas {status}")
+    novo = pd.DataFrame(linhas, columns=["casa", "parlamentar_id", "mes", "visitas"])
+    tudo = pd.concat([velho, novo], ignore_index=True)
+    return tudo.drop_duplicates(["casa", "parlamentar_id", "mes"], keep="last")
 
 
 def discursos(cfg) -> pd.DataFrame:
@@ -163,7 +178,8 @@ def _wiki(cfg, base) -> None:
     mp = wikidata(cfg, g)
     mp.to_parquet(base / "wikipedia_mapa.parquet", index=False)
     print(f"wikipédia: {len(mp)} de {len(g)} parlamentares com verbete identificado")
-    v = visitas(cfg, mp)
+    vp = base / "wikipedia_visitas.parquet"
+    v = visitas(cfg, mp, pd.read_parquet(vp) if vp.exists() else pd.DataFrame())
     v.to_parquet(base / "wikipedia_visitas.parquet", index=False)
     print(f"wikipédia: {len(v)} meses × parlamentar")
 

@@ -135,7 +135,7 @@ def relatorio(c, r, base):
         L += ["", "| Deputado | Partido | Encontros |", "| --- | --- | --- |"]
         L += [f"| {x.nome} | {x.partido} | {int(x.encontros)} |" for x in base.nlargest(15, "encontros").itertuples()]
         L += ["", "Média de encontros por deputado, por partido (8+ deputados):", ""]
-        L += [f"- {x['partido']}: {x['media']}".replace(".", ",") for x in a["por_partido"]]
+        L += [f"- {x['partido']}: {x['media']:.1f}".replace(".", ",") for x in a["por_partido"]]
     if "wikipedia" in r:
         w = r["wikipedia"]
         L += ["", "## Wikipédia", "", f"- {n(w['com_verbete'])} de {n(w['deputados'])} deputados com verbete identificado.", "",
@@ -149,8 +149,8 @@ def relatorio(c, r, base):
     L += ["", "## Correlações (Spearman; dentro = descontada a mediana do partido)", "",
           "| Atenção | Com | Todos | Dentro do partido | n |", "| --- | --- | --- | --- | --- |"]
     for x in r["correlacoes"]:
-        L.append(f"| {x['atencao']} | {x['comportamento']} | {x['spearman']}{'*' if x['relevante'] else ''} | "
-                 f"{x['spearman_dentro']}{'*' if x['relevante_dentro'] else ''} | {x['n']} |")
+        L.append((f"| {x['atencao']} | {x['comportamento']} | {x['spearman']:.2f}{'*' if x['relevante'] else ''} | "
+                  f"{x['spearman_dentro']:.2f}{'*' if x['relevante_dentro'] else ''} | {x['n']} |").replace(".", ","))
     L += ["", "\\* p < 0,01."]
     dest = ROOT / c["governabilidade"]["relatorio"].replace("governabilidade.md", "atencao.md")
     dest.write_text("\n".join(L) + "\n", encoding="utf-8")

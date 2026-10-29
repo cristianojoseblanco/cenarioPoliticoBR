@@ -1,0 +1,211 @@
+{
+  "legislatura": "56",
+  "agendas": {
+    "encontros": 695,
+    "deputados": 242,
+    "por_ano": [
+      {
+        "ano": 2022,
+        "n": 553
+      },
+      {
+        "ano": 2023,
+        "n": 142
+      }
+    ],
+    "orgaos": [
+      {
+        "orgao": "Ministério da Cidadania",
+        "encontros": 57,
+        "deputados": 42
+      },
+      {
+        "orgao": "Ministério da Infraestrutura",
+        "encontros": 57,
+        "deputados": 13
+      },
+      {
+        "orgao": "Ministério do Desenvolvimento Regional",
+        "encontros": 57,
+        "deputados": 27
+      },
+      {
+        "orgao": "Ministério do Turismo",
+        "encontros": 56,
+        "deputados": 25
+      },
+      {
+        "orgao": "Fundo Nacional de Desenvolvimento da Educação",
+        "encontros": 51,
+        "deputados": 37
+      },
+      {
+        "orgao": "Departamento Nacional de Infraestrutura de Transportes",
+        "encontros": 37,
+        "deputados": 20
+      },
+      {
+        "orgao": "Ministério da Saúde",
+        "encontros": 31,
+        "deputados": 13
+      },
+      {
+        "orgao": "Ministério da Agricultura, Pecuária e Abastecimento",
+        "encontros": 26,
+        "deputados": 16
+      },
+      {
+        "orgao": "Agência Nacional de Transportes Terrestres",
+        "encontros": 22,
+        "deputados": 8
+      },
+      {
+        "orgao": "Ministério da Economia",
+        "encontros": 22,
+        "deputados": 15
+      },
+      {
+        "orgao": "Agência Nacional de Mineração",
+        "encontros": 21,
+        "deputados": 6
+      },
+      {
+        "orgao": "Fundação Nacional de Saúde",
+        "encontros": 21,
+        "deputados": 20
+      }
+    ],
+    "por_partido": [
+      {
+        "partido": "AVANTE",
+        "media": 2.78
+      },
+      {
+        "partido": "REPUBLICANOS",
+        "media": 2.23
+      },
+      {
+        "partido": "SOLIDARIEDADE",
+        "media": 1.64
+      },
+      {
+        "partido": "PP",
+        "media": 1.54
+      },
+      {
+        "partido": "CIDADANIA",
+        "media": 1.3
+      },
+      {
+        "partido": "PSD",
+        "media": 1.22
+      },
+      {
+        "partido": "PT",
+        "media": 1.17
+      },
+      {
+        "partido": "PL",
+        "media": 1.17
+      },
+      {
+        "partido": "PROS",
+        "media": 1.08
+      },
+      {
+        "partido": "MDB",
+        "media": 1.05
+      },
+      {
+        "partido": "PSC",
+        "media": 1.0
+      },
+      {
+        "partido": "PSB",
+        "media": 1.0
+      },
+      {
+        "partido": "PODE",
+        "media": 1.0
+      },
+      {
+        "partido": "PSL",
+        "media": 0.89
+      },
+      {
+        "partido": "PDT",
+        "media": 0.86
+      },
+      {
+        "partido": "PSDB",
+        "media": 0.64
+      },
+      {
+        "partido": "PCdoB",
+        "media": 0.56
+      },
+      {
+        "partido": "NOVO",
+        "media": 0.5
+      },
+      {
+        "partido": "PSOL",
+        "media": 0.45
+      },
+      {
+        "partido": "DEM",
+        "media": 0.42
+      },
+      {
+        "partido": "PTB",
+        "media": 0.42
+      }
+    ]
+  },
+  "correlacoes": [
+    {
+      "atencao": "encontros",
+      "comportamento": "apoio_gov",
+      "spearman": 0.024,
+      "p": 0.558826,
+      "n": 593,
+      "spearman_dentro": 0.093,
+      "p_dentro": 0.023344,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "encontros",
+      "comportamento": "disciplina",
+      "spearman": -0.019,
+      "p": 0.64066,
+      "n": 591,
+      "spearman_dentro": -0.044,
+      "p_dentro": 0.283482,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "encontros",
+      "comportamento": "extremidade",
+      "spearman": 0.078,
+      "p": 0.074384,
+      "n": 520,
+      "spearman_dentro": 0.025,
+      "p_dentro": 0.568104,
+      "relevante": false,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "encontros",
+      "comportamento": "pago",
+      "spearman": 0.154,
+      "p": 0.000318,
+      "n": 546,
+      "spearman_dentro": 0.125,
+      "p_dentro": 0.003523,
+      "relevante": true,
+      "relevante_dentro": true
+    }
+  ]
+}

@@ -475,6 +475,9 @@ agendas:
 atencao:
   caminhos: {staging: "data/staging/atencao"}
   wiki_desde: "201901"
+  # A API de visitas limita pedidos de servidores de nuvem: poucos verbetes por execução, devagar.
+  wiki_max_por_execucao: 250
+  wiki_pausa_s: 3
   discursos_desde: "2019-02-01"
   recarregar_dias: 60
   # Opcional: parquet com parlamentar_id, nome, nome_civil, nascimento de senadores.

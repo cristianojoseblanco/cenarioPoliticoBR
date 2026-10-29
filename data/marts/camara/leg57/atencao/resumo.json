@@ -1,0 +1,191 @@
+{
+  "legislatura": "57",
+  "agendas": {
+    "encontros": 35608,
+    "deputados": 690,
+    "por_ano": [
+      {
+        "ano": 2023,
+        "n": 11510
+      },
+      {
+        "ano": 2024,
+        "n": 9430
+      },
+      {
+        "ano": 2025,
+        "n": 10157
+      },
+      {
+        "ano": 2026,
+        "n": 4511
+      }
+    ],
+    "orgaos": [
+      {
+        "orgao": "Ministério do Turismo",
+        "encontros": 3317,
+        "deputados": 358
+      },
+      {
+        "orgao": "Ministério da Saúde",
+        "encontros": 3045,
+        "deputados": 353
+      },
+      {
+        "orgao": "Secretaria de Relações Institucionais da Presidência da República",
+        "encontros": 2756,
+        "deputados": 344
+      },
+      {
+        "orgao": "Ministério dos Transportes",
+        "encontros": 2504,
+        "deputados": 324
+      },
+      {
+        "orgao": "Ministério da Fazenda",
+        "encontros": 1753,
+        "deputados": 234
+      },
+      {
+        "orgao": "Ministério da Educação",
+        "encontros": 1357,
+        "deputados": 238
+      },
+      {
+        "orgao": "Ministério do Esporte",
+        "encontros": 1205,
+        "deputados": 365
+      },
+      {
+        "orgao": "Ministério das Cidades",
+        "encontros": 984,
+        "deputados": 246
+      },
+      {
+        "orgao": "Agência Nacional de Transportes Terrestres",
+        "encontros": 923,
+        "deputados": 193
+      },
+      {
+        "orgao": "Ministério da Agricultura e Pecuária",
+        "encontros": 885,
+        "deputados": 203
+      },
+      {
+        "orgao": "Departamento Nacional de Infraestrutura de Transportes",
+        "encontros": 859,
+        "deputados": 286
+      },
+      {
+        "orgao": "Ministério da Gestão e da Inovação em Serviços Públicos",
+        "encontros": 843,
+        "deputados": 154
+      }
+    ],
+    "por_partido": [
+      {
+        "partido": "PT",
+        "media": 138.56
+      },
+      {
+        "partido": "PCdoB",
+        "media": 85.2
+      },
+      {
+        "partido": "PSB",
+        "media": 84.0
+      },
+      {
+        "partido": "PDT",
+        "media": 69.86
+      },
+      {
+        "partido": "PSDB",
+        "media": 67.54
+      },
+      {
+        "partido": "PSOL",
+        "media": 56.33
+      },
+      {
+        "partido": "MDB",
+        "media": 55.21
+      },
+      {
+        "partido": "PSD",
+        "media": 53.74
+      },
+      {
+        "partido": "UNIÃO",
+        "media": 49.22
+      },
+      {
+        "partido": "PP",
+        "media": 42.8
+      },
+      {
+        "partido": "REPUBLICANOS",
+        "media": 40.54
+      },
+      {
+        "partido": "AVANTE",
+        "media": 35.38
+      },
+      {
+        "partido": "PODE",
+        "media": 31.35
+      },
+      {
+        "partido": "PL",
+        "media": 19.87
+      }
+    ]
+  },
+  "correlacoes": [
+    {
+      "atencao": "encontros",
+      "comportamento": "apoio_gov",
+      "spearman": 0.482,
+      "p": 0.0,
+      "n": 629,
+      "spearman_dentro": 0.14,
+      "p_dentro": 0.000438,
+      "relevante": true,
+      "relevante_dentro": true
+    },
+    {
+      "atencao": "encontros",
+      "comportamento": "disciplina",
+      "spearman": 0.229,
+      "p": 0.0,
+      "n": 616,
+      "spearman_dentro": 0.027,
+      "p_dentro": 0.49963,
+      "relevante": true,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "encontros",
+      "comportamento": "extremidade",
+      "spearman": -0.141,
+      "p": 0.001286,
+      "n": 522,
+      "spearman_dentro": -0.044,
+      "p_dentro": 0.320226,
+      "relevante": true,
+      "relevante_dentro": false
+    },
+    {
+      "atencao": "encontros",
+      "comportamento": "pago",
+      "spearman": 0.27,
+      "p": 0.0,
+      "n": 543,
+      "spearman_dentro": 0.213,
+      "p_dentro": 1e-06,
+      "relevante": true,
+      "relevante_dentro": true
+    }
+  ]
+}
