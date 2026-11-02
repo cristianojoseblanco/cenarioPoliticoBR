@@ -1,17 +1,17 @@
 # Camada processada — Câmara
 
-Gerado em 2026-10-29T04:48:22+00:00
+Gerado em 2026-11-02T19:41:28+00:00
 
 ## Tabelas
 
 - `deputados`: 7.889 linhas
-- `votacoes`: 68.321 linhas
+- `votacoes`: 68.433 linhas
 - `votos`: 1.273.413 linhas
 - `orientacoes`: 68.838 linhas
-- `votacao_proposicao`: 51.901 linhas
-- `proposicoes`: 847.314 linhas
-- `proposicao_autor`: 1.730.490 linhas
-- `proposicao_tema`: 1.068.815 linhas
+- `votacao_proposicao`: 52.004 linhas
+- `proposicoes`: 847.521 linhas
+- `proposicao_autor`: 1.731.102 linhas
+- `proposicao_tema`: 1.069.233 linhas
 - `partido_observado`: 1.489 linhas
 - `frentes`: 1.443 linhas
 - `frente_membro`: 262.014 linhas
@@ -32,7 +32,7 @@ Gerado em 2026-10-29T04:48:22+00:00
 - 2023: 447 de 10.851 (4,1%) votações
 - 2024: 448 de 10.373 (4,3%) votações
 - 2025: 550 de 13.827 (4,0%) votações
-- 2026: 155 de 7.469 (2,1%) votações
+- 2026: 155 de 7.581 (2,0%) votações
 
 ## Partido observado
 

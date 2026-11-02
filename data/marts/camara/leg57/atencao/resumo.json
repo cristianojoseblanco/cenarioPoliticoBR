@@ -1,12 +1,12 @@
 {
   "legislatura": "57",
   "agendas": {
-    "encontros": 35608,
+    "encontros": 35729,
     "deputados": 690,
     "por_ano": [
       {
         "ano": 2023,
-        "n": 11510
+        "n": 11513
       },
       {
         "ano": 2024,
@@ -14,27 +14,27 @@
       },
       {
         "ano": 2025,
-        "n": 10157
+        "n": 10159
       },
       {
         "ano": 2026,
-        "n": 4511
+        "n": 4627
       }
     ],
     "orgaos": [
       {
         "orgao": "Ministério do Turismo",
-        "encontros": 3317,
+        "encontros": 3332,
         "deputados": 358
       },
       {
         "orgao": "Ministério da Saúde",
-        "encontros": 3045,
+        "encontros": 3049,
         "deputados": 353
       },
       {
         "orgao": "Secretaria de Relações Institucionais da Presidência da República",
-        "encontros": 2756,
+        "encontros": 2780,
         "deputados": 344
       },
       {
@@ -44,38 +44,38 @@
       },
       {
         "orgao": "Ministério da Fazenda",
-        "encontros": 1753,
-        "deputados": 234
+        "encontros": 1755,
+        "deputados": 235
       },
       {
         "orgao": "Ministério da Educação",
-        "encontros": 1357,
+        "encontros": 1358,
         "deputados": 238
       },
       {
         "orgao": "Ministério do Esporte",
-        "encontros": 1205,
+        "encontros": 1207,
         "deputados": 365
       },
       {
         "orgao": "Ministério das Cidades",
-        "encontros": 984,
+        "encontros": 990,
         "deputados": 246
       },
       {
         "orgao": "Agência Nacional de Transportes Terrestres",
-        "encontros": 923,
+        "encontros": 924,
         "deputados": 193
       },
       {
         "orgao": "Ministério da Agricultura e Pecuária",
-        "encontros": 885,
-        "deputados": 203
+        "encontros": 894,
+        "deputados": 205
       },
       {
         "orgao": "Departamento Nacional de Infraestrutura de Transportes",
-        "encontros": 859,
-        "deputados": 286
+        "encontros": 860,
+        "deputados": 287
       },
       {
         "orgao": "Ministério da Gestão e da Inovação em Serviços Públicos",
@@ -86,7 +86,7 @@
     "por_partido": [
       {
         "partido": "PT",
-        "media": 138.56
+        "media": 139.28
       },
       {
         "partido": "PCdoB",
@@ -94,237 +94,241 @@
       },
       {
         "partido": "PSB",
-        "media": 84.0
+        "media": 84.12
       },
       {
         "partido": "PDT",
-        "media": 69.86
+        "media": 69.95
       },
       {
         "partido": "PSDB",
-        "media": 67.54
+        "media": 67.62
       },
       {
         "partido": "PSOL",
-        "media": 56.33
+        "media": 56.47
       },
       {
         "partido": "MDB",
-        "media": 55.21
+        "media": 55.4
       },
       {
         "partido": "PSD",
-        "media": 53.74
+        "media": 53.86
       },
       {
         "partido": "UNIÃO",
-        "media": 49.22
+        "media": 49.38
       },
       {
         "partido": "PP",
-        "media": 42.8
+        "media": 42.91
       },
       {
         "partido": "REPUBLICANOS",
-        "media": 40.54
+        "media": 40.73
       },
       {
         "partido": "AVANTE",
-        "media": 35.38
+        "media": 35.62
       },
       {
         "partido": "PODE",
-        "media": 31.35
+        "media": 31.57
       },
       {
         "partido": "PL",
-        "media": 19.87
+        "media": 19.92
       }
     ]
   },
   "wikipedia": {
-    "com_verbete": 61,
+    "com_verbete": 90,
     "deputados": 629,
     "serie": [
       {
         "mes": "2023-02",
-        "v": 50839
+        "v": 81389
       },
       {
         "mes": "2023-03",
-        "v": 49983
+        "v": 68095
       },
       {
         "mes": "2023-04",
-        "v": 42464
+        "v": 61745
       },
       {
         "mes": "2023-05",
-        "v": 53701
+        "v": 78812
       },
       {
         "mes": "2023-06",
-        "v": 50212
+        "v": 74953
       },
       {
         "mes": "2023-07",
-        "v": 46317
+        "v": 67098
       },
       {
         "mes": "2023-08",
-        "v": 45267
+        "v": 82929
       },
       {
         "mes": "2023-09",
-        "v": 51238
+        "v": 70922
       },
       {
         "mes": "2023-10",
-        "v": 37898
+        "v": 54338
       },
       {
         "mes": "2023-11",
-        "v": 44628
+        "v": 59311
       },
       {
         "mes": "2023-12",
-        "v": 42215
+        "v": 55630
       },
       {
         "mes": "2024-01",
-        "v": 36701
+        "v": 59330
       },
       {
         "mes": "2024-02",
-        "v": 38360
+        "v": 57143
       },
       {
         "mes": "2024-03",
-        "v": 42871
+        "v": 73965
       },
       {
         "mes": "2024-04",
-        "v": 45158
+        "v": 66647
       },
       {
         "mes": "2024-05",
-        "v": 100688
+        "v": 121449
       },
       {
         "mes": "2024-06",
-        "v": 61824
+        "v": 81220
       },
       {
         "mes": "2024-07",
-        "v": 41583
+        "v": 57905
       },
       {
         "mes": "2024-08",
-        "v": 52934
+        "v": 72763
       },
       {
         "mes": "2024-09",
-        "v": 79074
+        "v": 107770
       },
       {
         "mes": "2024-10",
-        "v": 140263
+        "v": 180393
       },
       {
         "mes": "2024-11",
-        "v": 54948
+        "v": 75859
       },
       {
         "mes": "2024-12",
-        "v": 44919
+        "v": 65503
       },
       {
         "mes": "2025-01",
-        "v": 50160
+        "v": 75635
       },
       {
         "mes": "2025-02",
-        "v": 76797
+        "v": 101115
       },
       {
         "mes": "2025-03",
-        "v": 54031
+        "v": 93038
       },
       {
         "mes": "2025-04",
-        "v": 52207
+        "v": 76271
       },
       {
         "mes": "2025-05",
-        "v": 38299
+        "v": 74073
       },
       {
         "mes": "2025-06",
-        "v": 34172
+        "v": 151935
       },
       {
         "mes": "2025-07",
-        "v": 52385
+        "v": 117504
       },
       {
         "mes": "2025-08",
-        "v": 67121
+        "v": 133149
       },
       {
         "mes": "2025-09",
-        "v": 71710
+        "v": 105832
       },
       {
         "mes": "2025-10",
-        "v": 61752
+        "v": 92017
       },
       {
         "mes": "2025-11",
-        "v": 46148
+        "v": 72164
       },
       {
         "mes": "2025-12",
-        "v": 58507
+        "v": 102568
       },
       {
         "mes": "2026-01",
-        "v": 41332
+        "v": 61462
       },
       {
         "mes": "2026-02",
-        "v": 38892
+        "v": 61696
       },
       {
         "mes": "2026-03",
-        "v": 64736
+        "v": 87132
       },
       {
         "mes": "2026-04",
-        "v": 55673
+        "v": 76115
       },
       {
         "mes": "2026-05",
-        "v": 59922
+        "v": 84948
       },
       {
         "mes": "2026-06",
-        "v": 40708
+        "v": 56111
       },
       {
         "mes": "2026-07",
-        "v": 40432
+        "v": 55324
       },
       {
         "mes": "2026-08",
-        "v": 180509
+        "v": 209207
       },
       {
         "mes": "2026-09",
-        "v": 146808
+        "v": 217652
       },
       {
         "mes": "2026-10",
-        "v": 10118
+        "v": 123773
+      },
+      {
+        "mes": "2026-11",
+        "v": 1671
       }
     ],
     "picos": [
@@ -332,6 +336,11 @@
         "deputado_id": "220576",
         "mes": "2026-08",
         "v": 106422
+      },
+      {
+        "deputado_id": "204507",
+        "mes": "2025-06",
+        "v": 99668
       },
       {
         "deputado_id": "220596",
@@ -349,6 +358,21 @@
         "v": 26633
       },
       {
+        "deputado_id": "204369",
+        "mes": "2026-10",
+        "v": 25385
+      },
+      {
+        "deputado_id": "204460",
+        "mes": "2026-10",
+        "v": 20784
+      },
+      {
+        "deputado_id": "220548",
+        "mes": "2025-08",
+        "v": 17668
+      },
+      {
         "deputado_id": "74646",
         "mes": "2026-09",
         "v": 15798
@@ -357,26 +381,6 @@
         "deputado_id": "160541",
         "mes": "2024-06",
         "v": 14528
-      },
-      {
-        "deputado_id": "204515",
-        "mes": "2023-11",
-        "v": 12972
-      },
-      {
-        "deputado_id": "178882",
-        "mes": "2023-09",
-        "v": 12813
-      },
-      {
-        "deputado_id": "220715",
-        "mes": "2024-10",
-        "v": 10774
-      },
-      {
-        "deputado_id": "220593",
-        "mes": "2024-10",
-        "v": 9580
       }
     ]
   },
@@ -423,40 +427,40 @@
     {
       "atencao": "encontros",
       "comportamento": "apoio_gov",
-      "spearman": 0.482,
+      "spearman": 0.483,
       "p": 0.0,
       "n": 629,
       "spearman_dentro": 0.14,
-      "p_dentro": 0.000438,
+      "p_dentro": 0.000421,
       "relevante": true,
       "relevante_dentro": true
     },
     {
       "atencao": "encontros",
       "comportamento": "disciplina",
-      "spearman": 0.229,
+      "spearman": 0.23,
       "p": 0.0,
       "n": 616,
       "spearman_dentro": 0.027,
-      "p_dentro": 0.49963,
+      "p_dentro": 0.497308,
       "relevante": true,
       "relevante_dentro": false
     },
     {
       "atencao": "encontros",
       "comportamento": "extremidade",
-      "spearman": -0.141,
-      "p": 0.001286,
+      "spearman": -0.14,
+      "p": 0.001295,
       "n": 522,
-      "spearman_dentro": -0.044,
-      "p_dentro": 0.320226,
+      "spearman_dentro": -0.045,
+      "p_dentro": 0.309144,
       "relevante": true,
       "relevante_dentro": false
     },
     {
       "atencao": "encontros",
       "comportamento": "pago",
-      "spearman": 0.27,
+      "spearman": 0.271,
       "p": 0.0,
       "n": 543,
       "spearman_dentro": 0.213,
@@ -467,44 +471,44 @@
     {
       "atencao": "visitas_mes",
       "comportamento": "apoio_gov",
-      "spearman": -0.334,
-      "p": 0.00861,
-      "n": 61,
-      "spearman_dentro": -0.163,
-      "p_dentro": 0.208907,
-      "relevante": true,
+      "spearman": -0.197,
+      "p": 0.062105,
+      "n": 90,
+      "spearman_dentro": -0.035,
+      "p_dentro": 0.74326,
+      "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "visitas_mes",
       "comportamento": "disciplina",
-      "spearman": -0.327,
-      "p": 0.01019,
-      "n": 61,
-      "spearman_dentro": -0.119,
-      "p_dentro": 0.35985,
+      "spearman": -0.141,
+      "p": 0.186198,
+      "n": 90,
+      "spearman_dentro": 0.001,
+      "p_dentro": 0.992918,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "visitas_mes",
       "comportamento": "extremidade",
-      "spearman": 0.191,
-      "p": 0.167022,
-      "n": 54,
-      "spearman_dentro": 0.225,
-      "p_dentro": 0.101664,
+      "spearman": 0.218,
+      "p": 0.054992,
+      "n": 78,
+      "spearman_dentro": 0.288,
+      "p_dentro": 0.010608,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "visitas_mes",
       "comportamento": "pago",
-      "spearman": -0.081,
-      "p": 0.538565,
-      "n": 60,
-      "spearman_dentro": -0.099,
-      "p_dentro": 0.453013,
+      "spearman": -0.128,
+      "p": 0.238398,
+      "n": 86,
+      "spearman_dentro": -0.004,
+      "p_dentro": 0.970073,
       "relevante": false,
       "relevante_dentro": false
     },
@@ -545,10 +549,10 @@
       "atencao": "discursos",
       "comportamento": "pago",
       "spearman": -0.096,
-      "p": 0.02485,
+      "p": 0.024795,
       "n": 543,
       "spearman_dentro": -0.028,
-      "p_dentro": 0.52181,
+      "p_dentro": 0.521515,
       "relevante": false,
       "relevante_dentro": false
     },
@@ -589,21 +593,21 @@
       "atencao": "palavras",
       "comportamento": "pago",
       "spearman": -0.095,
-      "p": 0.027475,
+      "p": 0.027438,
       "n": 543,
       "spearman_dentro": -0.035,
-      "p_dentro": 0.413308,
+      "p_dentro": 0.413078,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "encontros",
       "comportamento": "visitas_mes",
-      "spearman": -0.191,
-      "p": 0.140921,
-      "n": 61,
-      "spearman_dentro": -0.117,
-      "p_dentro": 0.368894,
+      "spearman": -0.087,
+      "p": 0.416945,
+      "n": 90,
+      "spearman_dentro": 0.035,
+      "p_dentro": 0.743097,
       "relevante": false,
       "relevante_dentro": false
     },
@@ -613,7 +617,7 @@
       "spearman": 0.326,
       "p": 0.0,
       "n": 629,
-      "spearman_dentro": 0.284,
+      "spearman_dentro": 0.283,
       "p_dentro": 0.0,
       "relevante": true,
       "relevante_dentro": true
@@ -624,7 +628,7 @@
       "spearman": 0.337,
       "p": 0.0,
       "n": 629,
-      "spearman_dentro": 0.297,
+      "spearman_dentro": 0.295,
       "p_dentro": 0.0,
       "relevante": true,
       "relevante_dentro": true
@@ -632,22 +636,22 @@
     {
       "atencao": "visitas_mes",
       "comportamento": "discursos",
-      "spearman": 0.07,
-      "p": 0.591044,
-      "n": 61,
-      "spearman_dentro": 0.089,
-      "p_dentro": 0.4949,
+      "spearman": 0.125,
+      "p": 0.240172,
+      "n": 90,
+      "spearman_dentro": -0.028,
+      "p_dentro": 0.793018,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "visitas_mes",
       "comportamento": "palavras",
-      "spearman": 0.153,
-      "p": 0.237592,
-      "n": 61,
-      "spearman_dentro": 0.186,
-      "p_dentro": 0.150528,
+      "spearman": 0.172,
+      "p": 0.10481,
+      "n": 90,
+      "spearman_dentro": 0.032,
+      "p_dentro": 0.767773,
       "relevante": false,
       "relevante_dentro": false
     }

@@ -2,20 +2,20 @@
   "casa": "camara",
   "legislatura": "57",
   "parlamentares": 642,
-  "total_real": 935593292.0284742,
-  "mediana_por_mes_real": 41277.18250560426,
+  "total_real": 938400860.6348358,
+  "mediana_por_mes_real": 41307.76979405036,
   "categorias": [
     {
       "categoria": "DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.",
-      "valor_real": 376169547.2847573
+      "valor_real": 377441428.23475736
     },
     {
       "categoria": "LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES",
-      "valor_real": 168525985.49516028
+      "valor_real": 168943348.4915071
     },
     {
       "categoria": "MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR",
-      "valor_real": 129563318.9976158
+      "valor_real": 130362474.36568224
     },
     {
       "categoria": "PASSAGEM AÉREA - SIGEPA",
@@ -23,15 +23,15 @@
     },
     {
       "categoria": "COMBUSTÍVEIS E LUBRIFICANTES.",
-      "valor_real": 89223209.51994738
+      "valor_real": 89447881.64712466
     },
     {
       "categoria": "HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.",
-      "valor_real": 15079480.602927849
+      "valor_real": 15107792.50261617
     },
     {
       "categoria": "TELEFONIA",
-      "valor_real": 11606451.341594568
+      "valor_real": 11632757.5635973
     },
     {
       "categoria": "LOCAÇÃO OU FRETAMENTO DE AERONAVES",
@@ -51,22 +51,22 @@
       "quartil": "1º (menos)",
       "candidatos": 125,
       "reeleitos": 84,
-      "gasto_mes": 6108.776990249602,
+      "gasto_mes": 6156.331564847946,
       "taxa": 0.672
     },
     {
       "quartil": "2º",
       "candidatos": 124,
-      "reeleitos": 72,
-      "gasto_mes": 12518.551859295017,
-      "taxa": 0.5806451612903226
+      "reeleitos": 73,
+      "gasto_mes": 12597.936084505778,
+      "taxa": 0.5887096774193549
     },
     {
       "quartil": "3º",
       "candidatos": 124,
-      "reeleitos": 73,
+      "reeleitos": 72,
       "gasto_mes": 19115.301804807117,
-      "taxa": 0.5887096774193549
+      "taxa": 0.5806451612903226
     },
     {
       "quartil": "4º (mais)",
@@ -79,24 +79,24 @@
   "rede": {
     "todos": {
       "pares": 175747,
-      "ligados": 47422,
-      "conc_com": 0.6539248824119568,
-      "conc_sem": 0.6591708064079285,
-      "spearman": -0.006983758420411494
+      "ligados": 47499,
+      "conc_com": 0.6538493633270264,
+      "conc_sem": 0.6592019200325012,
+      "spearman": -0.007129283107412897
     },
     "mesmo partido": {
       "pares": 16974,
-      "ligados": 5266,
-      "conc_com": 0.8437276482582092,
-      "conc_sem": 0.8134297132492065,
-      "spearman": 0.09342754500572195
+      "ligados": 5279,
+      "conc_com": 0.8438134789466858,
+      "conc_sem": 0.8133572340011597,
+      "spearman": 0.09372838186867995
     },
     "partidos diferentes": {
       "pares": 158773,
-      "ligados": 42156,
-      "conc_com": 0.6302152872085571,
-      "conc_sem": 0.6436836123466492,
-      "spearman": -0.02855176285546437
+      "ligados": 42220,
+      "conc_com": 0.6300970911979675,
+      "conc_sem": 0.6437339782714844,
+      "spearman": -0.02883668975366766
     }
   },
   "patrimonio": {

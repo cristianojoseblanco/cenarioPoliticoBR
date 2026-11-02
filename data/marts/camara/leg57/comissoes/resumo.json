@@ -296,8 +296,8 @@
         "sigla": "CSAUDE",
         "nome": "Comissão de Saúde",
         "titulares": 118,
-        "apoio_gov": 0.6948,
-        "diferenca": -0.0203
+        "apoio_gov": 0.6956,
+        "diferenca": -0.0195
       },
       {
         "sigla": "CDHMIR",
@@ -433,6 +433,13 @@
         "diferenca": 0.0697
       },
       {
+        "sigla": "CCULT",
+        "nome": "Comissão de Cultura",
+        "titulares": 42,
+        "apoio_gov": 0.7895,
+        "diferenca": 0.0744
+      },
+      {
         "sigla": "CINDRE",
         "nome": "Comissão de Integração Nacional e Desenvolvimento Regional",
         "titulares": 54,
@@ -447,18 +454,11 @@
         "diferenca": 0.0758
       },
       {
-        "sigla": "CCULT",
-        "nome": "Comissão de Cultura",
-        "titulares": 40,
-        "apoio_gov": 0.7915,
-        "diferenca": 0.0764
-      },
-      {
         "sigla": "CDC",
         "nome": "Comissão de Defesa do Consumidor",
         "titulares": 26,
-        "apoio_gov": 0.7939,
-        "diferenca": 0.0788
+        "apoio_gov": 0.797,
+        "diferenca": 0.082
       },
       {
         "sigla": "CTRAB",

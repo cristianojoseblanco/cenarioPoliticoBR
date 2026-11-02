@@ -1,6 +1,13 @@
 {
-  "executado_em": "2026-10-29T04:35:02+00:00",
+  "executado_em": "2026-11-02T19:30:30+00:00",
   "anos": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
     2026
   ],
   "resultados": [
@@ -17,8 +24,120 @@
       "status": "sem_mudanca"
     },
     {
-      "arquivo": "votacoes-2026",
+      "arquivo": "votacoes-2019",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesVotos-2019",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2019",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2019",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoes-2020",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesVotos-2020",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2020",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2020",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoes-2021",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesVotos-2021",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2021",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2021",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoes-2022",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesVotos-2022",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2022",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2022",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoes-2023",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesVotos-2023",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2023",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2023",
+      "status": "consolidado"
+    },
+    {
+      "arquivo": "votacoes-2024",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesVotos-2024",
       "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2024",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2024",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoes-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesVotos-2025",
+      "status": "sem_mudanca"
+    },
+    {
+      "arquivo": "votacoesOrientacoes-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoesProposicoes-2025",
+      "status": "atualizado"
+    },
+    {
+      "arquivo": "votacoes-2026",
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoesVotos-2026",
@@ -26,11 +145,11 @@
     },
     {
       "arquivo": "votacoesOrientacoes-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoesProposicoes-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoes-1991",
@@ -338,7 +457,7 @@
     },
     {
       "arquivo": "proposicoesTemas-2024",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesAutores-2024",
@@ -350,7 +469,7 @@
     },
     {
       "arquivo": "proposicoesTemas-2025",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesAutores-2025",
@@ -362,11 +481,11 @@
     },
     {
       "arquivo": "proposicoesTemas-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "proposicoesAutores-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     }
   ],
   "erros": []

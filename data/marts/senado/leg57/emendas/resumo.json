@@ -7,11 +7,11 @@
     2026,
     2027
   ],
-  "emendas": 2796,
+  "emendas": 2797,
   "autores_ligados": 82,
   "autores_total": 647,
-  "empenhado": 16228013277.539999,
-  "pago": 14144779737.84,
+  "empenhado": 16232223075.64,
+  "pago": 14144790622.630001,
   "execucao_mediana": 0.8838584953994206,
   "conexao_mediana": 0.41209947398070457,
   "frac_base_mediana": 0.2723835975853902,
@@ -53,7 +53,7 @@
       "n": 5570
     }
   ],
-  "execucao_apoio_dentro": 0.25357004322141363,
-  "execucao_apoio_dentro_p": 0.026069323170470608,
+  "execucao_apoio_dentro": 0.2552276217140672,
+  "execucao_apoio_dentro_p": 0.02507642793968258,
   "necessidade_pib": -0.07360208166433832
 }

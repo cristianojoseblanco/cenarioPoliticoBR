@@ -3,25 +3,25 @@
 
 ## Wikipédia
 
-- 38 de 593 deputados com verbete identificado.
+- 56 de 593 deputados com verbete identificado.
 
 | Deputado | Partido | Visitas por mês |
 | --- | --- | --- |
+| Carla Zambelli | PSL | 13.557 |
 | Aécio Neves | PSDB | 8.211 |
 | Arthur Lira | PP | 7.589 |
+| Celso Russomanno | REPUBLICANOS | 7.120 |
 | André Janones | AVANTE | 6.947 |
 | Bia Kicis | PSL | 4.231 |
 | Baleia Rossi | MDB | 3.756 |
 | Alexandre Padilha | PT | 2.806 |
+| Carlos Jordy | PSL | 1.294 |
+| Bibo Nunes | PSL | 974 |
+| Caroline de Toni | PSL | 961 |
 | Aguinaldo Ribeiro | PP | 790 |
 | Arlindo Chinaglia | PT | 687 |
+| Carlos Zarattini | PT | 589 |
 | André Figueiredo | PDT | 497 |
-| Alex Manente | CIDADANIA | 490 |
-| Alice Portugal | PCdoB | 426 |
-| Alexandre Leite | DEM | 405 |
-| Adriana Ventura | NOVO | 399 |
-| Arthur Oliveira Maia | DEM | 391 |
-| Aliel Machado | PSB | 387 |
 
 ## Discursos
 
@@ -49,10 +49,10 @@
 
 | Atenção | Com | Todos | Dentro do partido | n |
 | --- | --- | --- | --- | --- |
-| visitas_mes | apoio_gov | -0,32 | -0,64* | 38 |
-| visitas_mes | disciplina | -0,03 | 0,37 | 38 |
-| visitas_mes | extremidade | 0,01 | -0,04 | 37 |
-| visitas_mes | pago | -0,21 | -0,30 | 38 |
+| visitas_mes | apoio_gov | -0,09 | -0,32 | 56 |
+| visitas_mes | disciplina | -0,02 | 0,20 | 56 |
+| visitas_mes | extremidade | 0,14 | 0,14 | 55 |
+| visitas_mes | pago | -0,17 | -0,16 | 56 |
 | discursos | apoio_gov | -0,36* | -0,14* | 593 |
 | discursos | disciplina | 0,01 | -0,07 | 591 |
 | discursos | extremidade | 0,30* | 0,06 | 520 |
@@ -61,7 +61,7 @@
 | palavras | disciplina | 0,02 | -0,07 | 591 |
 | palavras | extremidade | 0,30* | 0,04 | 520 |
 | palavras | pago | -0,05 | 0,04 | 546 |
-| visitas_mes | discursos | 0,25 | 0,17 | 38 |
-| visitas_mes | palavras | 0,23 | 0,09 | 38 |
+| visitas_mes | discursos | 0,23 | 0,01 | 56 |
+| visitas_mes | palavras | 0,22 | 0,07 | 56 |
 
 \* p < 0,01.

@@ -7,53 +7,53 @@
     2026,
     2027
   ],
-  "emendas": 15298,
+  "emendas": 15305,
   "autores_ligados": 543,
   "autores_total": 647,
-  "empenhado": 54953331876.31,
-  "pago": 47199147321.590004,
-  "execucao_mediana": 0.8712953162045425,
+  "empenhado": 54961214909.259995,
+  "pago": 47199652038.26,
+  "execucao_mediana": 0.8709294024820557,
   "conexao_mediana": 1.4295713621396209,
   "frac_base_mediana": 0.3780558380659067,
   "tempo": {
-    "spearman": 0.0008109376234888006,
-    "p": 0.9121801604467746,
+    "spearman": 0.0008553796181882765,
+    "p": 0.9073884571991832,
     "n": 18499,
-    "apoio_meses_com_pagamento": -0.0013159485962451977
+    "apoio_meses_com_pagamento": -0.0013118007511315388
   },
   "necessidade": [
     {
       "indicador": "pib_per_capita",
-      "spearman": -0.12092141292395328,
-      "p": 1.3547066172010906e-19,
+      "spearman": -0.12092126119542174,
+      "p": 1.354848731863409e-19,
       "n": 5570
     },
     {
       "indicador": "alfabetizacao",
-      "spearman": -0.19530513869374588,
-      "p": 5.184339224434844e-49,
+      "spearman": -0.19530459010989792,
+      "p": 5.187570085725983e-49,
       "n": 5570
     },
     {
       "indicador": "pop_2022",
-      "spearman": -0.5728469421298041,
+      "spearman": -0.5728462078609208,
       "p": 0.0,
       "n": 5570
     },
     {
       "indicador": "urbanizacao",
-      "spearman": -0.31379973953323786,
-      "p": 1.570965446928071e-127,
+      "spearman": -0.31379922733655374,
+      "p": 1.5725282403879225e-127,
       "n": 5570
     },
     {
       "indicador": "densidade",
-      "spearman": -0.28304399783590134,
-      "p": 4.091978259944536e-103,
+      "spearman": -0.28304340185869953,
+      "p": 4.0961671064991685e-103,
       "n": 5570
     }
   ],
-  "execucao_apoio_dentro": 0.23595090997336501,
-  "execucao_apoio_dentro_p": 3.7512023825180076e-08,
-  "necessidade_pib": -0.12092141292395328
+  "execucao_apoio_dentro": 0.2353822429948866,
+  "execucao_apoio_dentro_p": 4.052809755090606e-08,
+  "necessidade_pib": -0.12092126119542174
 }

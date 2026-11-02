@@ -5,12 +5,12 @@
     2026
   ],
   "eleitos": 513,
-  "ligados": 332,
+  "ligados": 333,
   "com_comportamento": false,
   "mediana_votos": 107232.0,
-  "mediana_receita": 2472151.635,
-  "mediana_custo_por_voto": 21.715552315980915,
-  "mediana_frac_fundo_eleitoral": 0.8938586688008692,
+  "mediana_receita": 2497692.5,
+  "mediana_custo_por_voto": 21.78451096877398,
+  "mediana_frac_fundo_eleitoral": 0.8853841958325184,
   "eleitos_qp": 385,
   "eleitos_media": 128,
   "qp_vs_media": null

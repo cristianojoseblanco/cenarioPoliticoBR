@@ -123,10 +123,10 @@ Apoio ao governo dos titulares × Plenário (comissões mais distantes):
 | CREDN | 89 | 63% | -8,2 pp |
 | CPASF | 48 | 64% | -7,2 pp |
 | CCJC | 153 | 68% | -3,4 pp |
-| CSAUDE | 118 | 69% | -2,0 pp |
+| CSAUDE | 118 | 70% | -1,9 pp |
+| CINDRE | 54 | 79% | +7,5 pp |
 | CMO | 135 | 79% | +7,6 pp |
-| CCULT | 40 | 79% | +7,6 pp |
-| CDC | 26 | 79% | +7,9 pp |
+| CDC | 26 | 80% | +8,2 pp |
 | CTRAB | 39 | 81% | +9,4 pp |
 | CLP | 34 | 82% | +10,7 pp |
 | CPOVOS | 39 | 82% | +11,0 pp |

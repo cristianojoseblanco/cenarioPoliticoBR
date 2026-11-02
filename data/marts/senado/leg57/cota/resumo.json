@@ -1,33 +1,33 @@
 {
   "casa": "senado",
   "legislatura": "57",
-  "parlamentares": 101,
-  "total_real": 132420167.10982965,
-  "mediana_por_mes_real": 38808.54468868563,
+  "parlamentares": 102,
+  "total_real": 132683603.37399209,
+  "mediana_por_mes_real": 38507.354441708616,
   "categorias": [
     {
       "categoria": "Locomoção, hospedagem, alimentação, combustíveis e lubrificantes",
-      "valor_real": 31573298.83283898
+      "valor_real": 31624478.582295373
     },
     {
       "categoria": "Contratação de consultorias, assessorias, pesquisas, trabalhos técnicos e outros serviços de apoio ao exercício do mandato parlamentar",
-      "valor_real": 27955250.10513865
+      "valor_real": 28078367.941330716
     },
     {
       "categoria": "Passagens aéreas, aquáticas e terrestres nacionais",
-      "valor_real": 24704217.63429828
+      "valor_real": 24705611.45272663
     },
     {
       "categoria": "Divulgação da atividade parlamentar",
-      "valor_real": 22317839.033840213
+      "valor_real": 22346528.473840214
     },
     {
       "categoria": "Aluguel de imóveis para escritório político, compreendendo despesas concernentes a eles.",
-      "valor_real": 20072498.126440715
+      "valor_real": 20112337.395531833
     },
     {
       "categoria": "Aquisição de material de consumo para uso no escritório político, inclusive aquisição ou locação de software, despesas postais, aquisição de publicações, locação de móveis e de equipamentos. ",
-      "valor_real": 4790366.911342881
+      "valor_real": 4794768.69134288
     },
     {
       "categoria": "Serviços de Segurança Privada",
