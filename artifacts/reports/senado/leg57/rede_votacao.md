@@ -4,24 +4,24 @@ Parâmetros em `config/sources.yaml` → `redes`. Data dos dados: ver `data/meta
 
 ## Dados
 
-- Votações nominais no Plenário: 177
+- Votações nominais no Plenário: 181
   - sem voto com valor (secretas): 0
-  - minoria abaixo de 2,5%: 68
-  - incluídas: 109 de 177 (61,6%)
-- Senadores na matriz: 102; no grafo: 80 de 102 (78,4%)
+  - minoria abaixo de 2,5%: 71
+  - incluídas: 110 de 181 (60,8%)
+- Senadores na matriz: 104; no grafo: 80 de 104 (76,9%)
 - Arestas (kNN = 8): 466
 
 ## Comunidades (variante principal)
 
-- Modularidade: 0,550
-- Estabilidade entre 20 sementes (ARI médio): 0,925
+- Modularidade: 0,547
+- Estabilidade entre 20 sementes (ARI médio): 0,951
 - Correspondência com partido: ARI 0,186, NMI 0,383
 
 | Comunidade | Senadores | Partidos principais | Concordância interna média |
 | --- | --- | --- | --- |
-| C1 | 30 | PL 13, PP 5, REPUBLICANOS 4, UNIÃO 3, PODE 2, PSDB 1 | 79,8% |
-| C2 | 28 | PSD 8, MDB 6, PODE 5, UNIÃO 4, PSB 3, PP 1 | 79,3% |
-| C3 | 22 | PT 9, MDB 5, PSD 5, PDT 2, PSB 1 | 88,0% |
+| C1 | 30 | PL 13, PP 5, REPUBLICANOS 4, UNIÃO 3, PODE 2, PSDB 1 | 79,9% |
+| C2 | 28 | PSD 8, MDB 6, PODE 5, UNIÃO 4, PSB 3, PP 1 | 79,0% |
+| C3 | 22 | PT 9, MDB 5, PSD 5, PDT 2, PSB 1 | 88,1% |
 
 ## Partidos divididos entre comunidades
 
@@ -39,21 +39,21 @@ Senadores cujas 15 ligações mais fortes se espalham por mais de uma comunidade
 
 | Senador | Partido | UF | Comunidade | Participação |
 | --- | --- | --- | --- | --- |
-| Jader Barbalho | MDB | PA | C3 | 0,50 |
 | Otto Alencar | PSD | BA | C3 | 0,50 |
 | Veneziano Vital do Rêgo | MDB | PB | C2 | 0,49 |
+| Jader Barbalho | MDB | PA | C3 | 0,49 |
 | Eduardo Braga | MDB | AM | C2 | 0,49 |
 | Marcelo Castro | MDB | PI | C3 | 0,48 |
 | Margareth Buzetti | PSD | MT | C2 | 0,47 |
-| Ana Paula Lobato | PDT | MA | C3 | 0,47 |
+| Ana Paula Lobato | PDT | MA | C3 | 0,44 |
+| Alan Rick | UNIÃO | AC | C1 | 0,44 |
 | Sérgio Petecão | PSD | AC | C2 | 0,43 |
+| Laércio Oliveira | PP | SE | C2 | 0,42 |
+| Zequinha Marinho | PODE | PA | C2 | 0,40 |
 | Jussara Lima | PSD | PI | C3 | 0,39 |
 | Omar Aziz | PSD | AM | C2 | 0,39 |
-| Alan Rick | UNIÃO | AC | C1 | 0,39 |
 | Flávio Arns | PSB | PR | C2 | 0,38 |
-| Angelo Coronel | PSD | BA | C2 | 0,38 |
-| Rodrigo Cunha | PODE | AL | C2 | 0,37 |
-| Irajá | PSD | TO | C2 | 0,37 |
+| Styvenson Valentim | PODE | RN | C2 | 0,38 |
 
 ## Sensibilidade
 
@@ -61,9 +61,9 @@ ARI = 1 significa partição idêntica à principal; perto de 0, sem relação.
 
 | Variante | Votações | Senadores | Comunidades | Modularidade | ARI vs principal |
 | --- | --- | --- | --- | --- | --- |
-| codificacao=B | 109 | 80 | 3 | 0,550 | 1,000 |
-| codificacao=C | 109 | 80 | 3 | 0,543 | 0,965 |
-| minoria=0.0 | 177 | 82 | 3 | 0,540 | 0,931 |
-| minoria=0.1 | 88 | 80 | 3 | 0,552 | 0,861 |
-| knn=10 | 109 | 80 | 3 | 0,541 | 1,000 |
-| knn=25 | 109 | 80 | 3 | 0,438 | 0,761 |
+| codificacao=B | 110 | 80 | 3 | 0,547 | 1,000 |
+| codificacao=C | 110 | 80 | 3 | 0,538 | 0,965 |
+| minoria=0.0 | 181 | 82 | 3 | 0,537 | 0,931 |
+| minoria=0.1 | 89 | 80 | 3 | 0,547 | 0,861 |
+| knn=10 | 110 | 80 | 3 | 0,535 | 1,000 |
+| knn=25 | 110 | 80 | 3 | 0,438 | 0,761 |

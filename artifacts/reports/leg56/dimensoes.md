@@ -4,7 +4,7 @@
 
 | Dimensão | Variância explicada | Corr. com eixo entre polos | Corr. com apoio ao governo | Corr. com participação |
 | --- | --- | --- | --- | --- |
-| 1 | 60,1% | 1,00 | 1,00 | -0,14 |
+| 1 | 60,1% | 1,00 | 1,00 | -0,15 |
 | 2 | 5,3% | -0,03 | 0,04 | -0,34 |
 | 3 | 2,9% | 0,01 | 0,00 | 0,05 |
 

@@ -4,7 +4,7 @@ Problemas encontrados: 0
 
 ## deputados
 
-- Linhas: 7.889
+- Linhas: 7.890
 - Colunas (13): `uri`, `nome`, `idLegislaturaInicial`, `idLegislaturaFinal`, `nomeCivil`, `cpf`, `siglaSexo`, `urlRedeSocial`, `urlWebsite`, `dataNascimento`, `dataFalecimento`, `ufNascimento`, `municipioNascimento`
 - Chave (uri) única
 
@@ -20,7 +20,7 @@ Problemas encontrados: 0
 
 ## votacoes
 
-- Linhas: 68.433
+- Linhas: 68.842
   - 2019: 8.730
   - 2020: 1.493
   - 2021: 9.998
@@ -28,13 +28,13 @@ Problemas encontrados: 0
   - 2023: 10.851
   - 2024: 10.373
   - 2025: 13.827
-  - 2026: 7.581
+  - 2026: 7.990
 - Colunas (20): `id`, `uri`, `data`, `dataHoraRegistro`, `idOrgao`, `uriOrgao`, `siglaOrgao`, `idEvento`, `uriEvento`, `aprovacao`, `votosSim`, `votosNao`, `votosOutros`, `descricao`, `ultimaAberturaVotacao_dataHoraRegistro`, `ultimaAberturaVotacao_descricao`, `ultimaApresentacaoProposicao_dataHoraRegistro`, `ultimaApresentacaoProposicao_descricao`, `ultimaApresentacaoProposicao_idProposicao`, `ultimaApresentacaoProposicao_uriProposicao`
 - Chave (id) única
 
 ## votacoesVotos
 
-- Linhas: 1.273.413
+- Linhas: 1.273.464
   - 2019: 120.998
   - 2020: 159.717
   - 2021: 322.237
@@ -42,20 +42,20 @@ Problemas encontrados: 0
   - 2023: 128.679
   - 2024: 116.400
   - 2025: 175.067
-  - 2026: 53.126
+  - 2026: 53.177
 - Colunas (12): `idVotacao`, `uriVotacao`, `dataHoraVoto`, `voto`, `deputado_id`, `deputado_uri`, `deputado_nome`, `deputado_siglaPartido`, `deputado_uriPartido`, `deputado_siglaUf`, `deputado_idLegislatura`, `deputado_urlFoto`
 - Chave (idVotacao, deputado_id) única
 - Valores de `voto`:
-  - `Sim`: 697.973 de 1.273.413 (54,8%)
-  - `Não`: 549.659 de 1.273.413 (43,2%)
-  - `Obstrução`: 18.938 de 1.273.413 (1,5%)
-  - `Abstenção`: 2.809 de 1.273.413 (0,2%)
-  - `Artigo 17`: 2.799 de 1.273.413 (0,2%)
-  - `None`: 1.235 de 1.273.413 (0,1%)
+  - `Sim`: 697.987 de 1.273.464 (54,8%)
+  - `Não`: 549.696 de 1.273.464 (43,2%)
+  - `Obstrução`: 18.938 de 1.273.464 (1,5%)
+  - `Abstenção`: 2.809 de 1.273.464 (0,2%)
+  - `Artigo 17`: 2.799 de 1.273.464 (0,2%)
+  - `None`: 1.235 de 1.273.464 (0,1%)
 
 ## votacoesOrientacoes
 
-- Linhas: 68.838
+- Linhas: 68.867
   - 2019: 7.085
   - 2020: 9.352
   - 2021: 22.415
@@ -63,13 +63,13 @@ Problemas encontrados: 0
   - 2023: 4.359
   - 2024: 4.361
   - 2025: 4.947
-  - 2026: 1.904
+  - 2026: 1.933
 - Colunas (7): `idVotacao`, `uriVotacao`, `siglaOrgao`, `descricao`, `siglaBancada`, `uriBancada`, `orientacao`
 - Chave (idVotacao, siglaBancada) única
 
 ## votacoesProposicoes
 
-- Linhas: 52.004
+- Linhas: 52.368
   - 2019: 5.880
   - 2020: 1.434
   - 2021: 7.936
@@ -77,13 +77,13 @@ Problemas encontrados: 0
   - 2023: 8.811
   - 2024: 7.459
   - 2025: 10.332
-  - 2026: 5.858
+  - 2026: 6.222
 - Colunas (12): `idVotacao`, `uriVotacao`, `data`, `descricao`, `proposicao_id`, `proposicao_uri`, `proposicao_titulo`, `proposicao_ementa`, `proposicao_codTipo`, `proposicao_siglaTipo`, `proposicao_numero`, `proposicao_ano`
 - Chave (idVotacao, proposicao_id) única
 
 ## proposicoes
 
-- Linhas: 847.521
+- Linhas: 849.139
   - 1991: 4.436
   - 1995: 4.780
   - 1997: 4.122
@@ -111,12 +111,12 @@ Problemas encontrados: 0
   - 2023: 62.437
   - 2024: 61.536
   - 2025: 107.587
-  - 2026: 47.612
+  - 2026: 49.230
 - Colunas (30): `id`, `uri`, `siglaTipo`, `numero`, `codTipo`, `descricaoTipo`, `ementa`, `ementaDetalhada`, `keywords`, `dataApresentacao`, `uriOrgaoNumerador`, `uriPropAnterior`, `uriPropPrincipal`, `uriPropPosterior`, `urlInteiroTeor`, `urnFinal`, `ultimoStatus_dataHora`, `ultimoStatus_sequencia`, `ultimoStatus_uriRelator`, `ultimoStatus_idOrgao`, `ultimoStatus_siglaOrgao`, `ultimoStatus_uriOrgao`, `ultimoStatus_regime`, `ultimoStatus_descricaoTramitacao`, `ultimoStatus_idTipoTramitacao`, `ultimoStatus_descricaoSituacao`, `ultimoStatus_idSituacao`, `ultimoStatus_despacho`, `ultimoStatus_apreciacao`, `ultimoStatus_url`
 
 ## proposicoesTemas
 
-- Linhas: 295.779
+- Linhas: 296.273
   - 1991: 1.472
   - 1995: 1.415
   - 1997: 2.424
@@ -144,12 +144,12 @@ Problemas encontrados: 0
   - 2023: 22.917
   - 2024: 23.732
   - 2025: 40.909
-  - 2026: 25.840
+  - 2026: 26.334
 - Colunas (6): `uriProposicao`, `siglaTipo`, `numero`, `codTema`, `tema`, `relevancia`
 
 ## proposicoesAutores
 
-- Linhas: 1.731.102
+- Linhas: 1.732.787
   - 1991: 4.629
   - 1995: 5.217
   - 1997: 4.559
@@ -177,7 +177,7 @@ Problemas encontrados: 0
   - 2023: 164.953
   - 2024: 97.124
   - 2025: 154.579
-  - 2026: 59.810
+  - 2026: 61.495
 - Colunas (12): `idProposicao`, `uriProposicao`, `idDeputadoAutor`, `uriAutor`, `codTipoAutor`, `tipoAutor`, `nomeAutor`, `siglaPartidoAutor`, `uriPartidoAutor`, `siglaUFAutor`, `ordemAssinatura`, `proponente`
 
 ## Cobertura das proposições com votação nominal
@@ -189,5 +189,5 @@ Problemas encontrados: 0
 - 2023: com tema 182 de 229 (79,5%); com cadastro 229 de 229 (100,0%)
 - 2024: com tema 186 de 235 (79,1%); com cadastro 235 de 235 (100,0%)
 - 2025: com tema 216 de 241 (89,6%); com cadastro 241 de 241 (100,0%)
-- 2026: com tema 99 de 112 (88,4%); com cadastro 112 de 112 (100,0%)
-- Total: com tema 1.265 de 1.492 (84,8%); com cadastro 1.492 de 1.492 (100,0%)
+- 2026: com tema 103 de 116 (88,8%); com cadastro 116 de 116 (100,0%)
+- Total: com tema 1.269 de 1.496 (84,8%); com cadastro 1.496 de 1.496 (100,0%)

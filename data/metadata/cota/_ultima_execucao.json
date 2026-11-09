@@ -1,5 +1,5 @@
 {
-  "executado_em": "2026-11-02T19:57:58+00:00",
+  "executado_em": "2026-11-09T20:39:12+00:00",
   "anos": [
     {
       "casa": "camara",
@@ -10,20 +10,20 @@
     {
       "casa": "camara",
       "ano": 2026,
-      "linhas": 120189,
-      "valor": 144882827.42000002
+      "linhas": 122533,
+      "valor": 149041162.48000002
     },
     {
       "casa": "senado",
       "ano": 2025,
-      "linhas": 23850,
-      "valor": 37295033.239999995
+      "linhas": 23866,
+      "valor": 37279316.3
     },
     {
       "casa": "senado",
       "ano": 2026,
-      "linhas": 16077,
-      "valor": 26021263.1
+      "linhas": 16274,
+      "valor": 26582428.19
     }
   ]
 }

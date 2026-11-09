@@ -1,5 +1,5 @@
 {
-  "executado_em": "2026-11-02T19:30:30+00:00",
+  "executado_em": "2026-11-09T19:49:10+00:00",
   "anos": [
     2019,
     2020,
@@ -113,7 +113,7 @@
     },
     {
       "arquivo": "votacoesOrientacoes-2024",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoesProposicoes-2024",
@@ -133,7 +133,7 @@
     },
     {
       "arquivo": "votacoesProposicoes-2025",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "votacoes-2026",
@@ -141,7 +141,7 @@
     },
     {
       "arquivo": "votacoesVotos-2026",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoesOrientacoes-2026",

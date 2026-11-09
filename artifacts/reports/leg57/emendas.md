@@ -1,9 +1,9 @@
 # Emendas parlamentares × Plenário — Câmara, legislatura 57
 
-Emendas individuais dos orçamentos 2024–2027: 15.305 emendas de 543 parlamentares ligados (de 647 autores).
+Emendas individuais dos orçamentos 2024–2027: 15.361 emendas de 543 parlamentares ligados (de 647 autores).
 
-- Empenhado: R$ 54.961.214.909; pago: R$ 47.199.652.038
-- Taxa de execução (mediana por parlamentar): 87,1%
+- Empenhado: R$ 55.091.047.453; pago: R$ 47.207.413.255
+- Taxa de execução (mediana por parlamentar): 87,0%
 - Fração do pago para a base eleitoral (mediana): 37,8%; R$ por habitante na base ÷ resto da UF (mediana): 1,43
 
 ## Emendas × comportamento (Spearman)
@@ -12,16 +12,16 @@ Emendas individuais dos orçamentos 2024–2027: 15.305 emendas de 543 parlament
 | --- | --- | --- | --- | --- |
 | pago | apoio_gov | 0,18* | 0,19* | 532 |
 | pago | disciplina | -0,04 | 0,02 | 531 |
-| pago | imprevisibilidade | -0,00 | -0,10 | 532 |
-| execucao | apoio_gov | 0,24* | 0,24* | 532 |
-| execucao | disciplina | 0,02 | 0,07 | 531 |
-| execucao | imprevisibilidade | -0,03 | -0,11 | 532 |
+| pago | imprevisibilidade | -0,01 | -0,10 | 532 |
+| execucao | apoio_gov | 0,23* | 0,24* | 532 |
+| execucao | disciplina | 0,02 | 0,08 | 531 |
+| execucao | imprevisibilidade | -0,04 | -0,11 | 532 |
 | conexao | apoio_gov | 0,16* | 0,14* | 463 |
 | conexao | disciplina | 0,10 | 0,09 | 463 |
-| conexao | imprevisibilidade | -0,06 | -0,06 | 463 |
+| conexao | imprevisibilidade | -0,07 | -0,06 | 463 |
 | frac_base | apoio_gov | 0,02 | 0,07 | 532 |
 | frac_base | disciplina | 0,01 | 0,03 | 531 |
-| frac_base | imprevisibilidade | 0,03 | 0,04 | 532 |
+| frac_base | imprevisibilidade | 0,01 | 0,01 | 532 |
 
 \* p < 0,01.
 

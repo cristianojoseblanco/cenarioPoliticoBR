@@ -2,10 +2,10 @@
 
 Polo A = C1; polo B = C3; polo mais governista = C3. Fora dos polos = demais comunidades.
 
-- Votações polarizadas (maiorias dos polos em lados opostos): 78 de 177 (44,1%)
-- Votações apertadas (margem abaixo de 10%): 7 de 177 (4,0%)
-- Folga do governo nas vitórias (mediana): 29 votos precisariam mudar de lado, ou 100,0% dos votos de fora dos polos que estavam com o governo
-- Parcela média dos votos do lado do governo vinda de fora dos polos: 36,0%
+- Votações polarizadas (maiorias dos polos em lados opostos): 79 de 181 (43,6%)
+- Votações apertadas (margem abaixo de 10%): 8 de 181 (4,4%)
+- Folga do governo nas vitórias (mediana): 30 votos precisariam mudar de lado, ou 100,0% dos votos de fora dos polos que estavam com o governo
+- Parcela média dos votos do lado do governo vinda de fora dos polos: 35,9%
 
 ## Por semestre
 
@@ -18,4 +18,4 @@ Polo A = C1; polo B = C3; polo mais governista = C3. Fora dos polos = demais com
 | 2025-1 | 17 | 6 de 17 (35,3%) | 0 de 17 (0,0%) | 9 de 9 (100,0%) | 33 |
 | 2025-2 | 35 | 12 de 35 (34,3%) | 0 de 35 (0,0%) | 22 de 26 (84,6%) | 29 |
 | 2026-1 | 10 | 1 de 10 (10,0%) | 0 de 10 (0,0%) | 7 de 7 (100,0%) | 32 |
-| 2026-2 | 12 | 3 de 12 (25,0%) | 0 de 12 (0,0%) | 2 de 3 (66,7%) | 38 |
+| 2026-2 | 16 | 4 de 16 (25,0%) | 1 de 16 (6,2%) | 5 de 6 (83,3%) | 38 |

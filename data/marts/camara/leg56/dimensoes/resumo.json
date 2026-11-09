@@ -12,19 +12,19 @@
       "posicao_eixo": 0.998747312242376,
       "apoio_gov": 0.997263692564328,
       "disciplina": 0.05353958700158966,
-      "participacao": -0.14480581487577238
+      "participacao": -0.14764207089450282
     },
     "d2": {
       "posicao_eixo": -0.03234862989375214,
       "apoio_gov": 0.03894261929788652,
       "disciplina": 0.2064909485535004,
-      "participacao": -0.34018036633612253
+      "participacao": -0.34096695759230633
     },
     "d3": {
       "posicao_eixo": 0.007258074993602794,
       "apoio_gov": 0.0024566875519860774,
       "disciplina": 0.3450777360268217,
-      "participacao": 0.0511791812508264
+      "participacao": 0.05196980649789474
     }
   },
   "temas_principais": {

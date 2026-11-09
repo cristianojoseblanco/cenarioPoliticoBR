@@ -310,8 +310,8 @@
         "sigla": "MERCOSUL",
         "nome": "Representação Brasileira no Parlamento do Mercosul",
         "titulares": 42,
-        "apoio_gov": 0.71,
-        "diferenca": -0.005
+        "apoio_gov": 0.7043,
+        "diferenca": -0.0108
       },
       {
         "sigla": "CESPO",
@@ -363,18 +363,18 @@
         "diferenca": 0.0177
       },
       {
+        "sigla": "CVT",
+        "nome": "Comissão de Viação e Transportes",
+        "titulares": 64,
+        "apoio_gov": 0.7393,
+        "diferenca": 0.0242
+      },
+      {
         "sigla": "CASP",
         "nome": "Comissão de Administração e Serviço Público",
         "titulares": 53,
         "apoio_gov": 0.7409,
         "diferenca": 0.0258
-      },
-      {
-        "sigla": "CVT",
-        "nome": "Comissão de Viação e Transportes",
-        "titulares": 63,
-        "apoio_gov": 0.7413,
-        "diferenca": 0.0262
       },
       {
         "sigla": "CME",
@@ -435,9 +435,9 @@
       {
         "sigla": "CCULT",
         "nome": "Comissão de Cultura",
-        "titulares": 42,
-        "apoio_gov": 0.7895,
-        "diferenca": 0.0744
+        "titulares": 43,
+        "apoio_gov": 0.7848,
+        "diferenca": 0.0697
       },
       {
         "sigla": "CINDRE",

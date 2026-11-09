@@ -69,17 +69,17 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 
 - Fonte: **historico** (períodos oficiais de exercício, API da Câmara)
 - Participação média dos deputados: 78,0%
-- Votos registrados fora de um período de exercício: 16
+- Votos registrados fora de um período de exercício: 3.542
 
 | Comunidade | Participação média |
 | --- | --- |
 | C1 (PL 40, PP 40) | 74,3% |
 | C2 (PT 58, PSB 30) | 80,1% |
-| C3 (PSL 49, PSD 9) | 83,4% |
+| C3 (PSL 49, PSD 9) | 83,3% |
 | C4 (PSDB 33, NOVO 8) | 79,8% |
 | C5 (REPUBLICANOS 34, SOLIDARIEDADE 3) | 76,7% |
 | C6 (MDB 32, REPUBLICANOS 1) | 73,6% |
-| C7 (DEM 23, PTB 1) | 71,5% |
+| C7 (DEM 23, PTB 1) | 70,5% |
 | C8 (PDT 21, CIDADANIA 1) | 80,8% |
 
 ## No tempo
@@ -169,6 +169,6 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 | 2022-11-30 | 2334043-43 | Sim | 14 Sim × 291 Não |
 | 2022-11-09 | 2335844-30 | Não | 210 Sim × 71 Não |
 | 2022-07-06 | 2208682-147 | Não | 398 Sim × 13 Não |
-| 2022-05-17 | 2313735-55 | Não | 262 Sim × 141 Não |
-| 2022-05-17 | 2313735-59 | Não | 262 Sim × 141 Não |
 | 2022-05-17 | 2313735-62 | Não | 262 Sim × 141 Não |
+| 2022-05-17 | 2313735-59 | Não | 262 Sim × 141 Não |
+| 2022-05-17 | 2313735-50 | Sim | 24 Sim × 369 Não |

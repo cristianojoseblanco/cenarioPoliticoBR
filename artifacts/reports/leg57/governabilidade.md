@@ -58,11 +58,11 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 
 - Fonte: **historico** (períodos oficiais de exercício, API da Câmara)
 - Participação média dos deputados: 79,2%
-- Votos registrados fora de um período de exercício: 38
+- Votos registrados fora de um período de exercício: 4.823
 
 | Comunidade | Participação média |
 | --- | --- |
-| C1 (PL 100, UNIÃO 21) | 81,5% |
+| C1 (PL 100, UNIÃO 21) | 81,3% |
 | C2 (UNIÃO 46, PP 42) | 75,1% |
 | C3 (PSD 49, MDB 36) | 76,3% |
 | C4 (PT 75, PSB 14) | 83,0% |
@@ -139,4 +139,4 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 | 2026-05-28 | 2433663-44 | Sim | 99 Sim × 277 Não |
 | 2026-05-21 | 2586587-30 | Sim | 94 Sim × 228 Não |
 | 2026-05-20 | 2613731-65 | Não | 182 Sim × 182 Não |
-| 2026-05-19 | 2422887-23 | Sim | 126 Sim × 274 Não |
+| 2026-05-19 | 2605243-12 | Não | 317 Sim × 123 Não |
