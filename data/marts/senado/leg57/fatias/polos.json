@@ -7,10 +7,10 @@
     "C3": "PT 9, MDB 5"
   },
   "nucleo_a": 30,
-  "nucleo_b": 20,
+  "nucleo_b": 21,
   "tamanho_nucleos": {
     "C1": 30,
-    "C2": 18,
-    "C3": 20
+    "C2": 19,
+    "C3": 21
   }
 }

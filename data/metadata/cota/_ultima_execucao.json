@@ -1,17 +1,17 @@
 {
-  "executado_em": "2026-11-09T20:39:12+00:00",
+  "executado_em": "2026-11-16T20:01:42+00:00",
   "anos": [
     {
       "casa": "camara",
       "ano": 2025,
-      "linhas": 208144,
-      "valor": 239208957.97
+      "linhas": 208151,
+      "valor": 239208706.67000002
     },
     {
       "casa": "camara",
       "ano": 2026,
-      "linhas": 122533,
-      "valor": 149041162.48000002
+      "linhas": 124942,
+      "valor": 154329997.13
     },
     {
       "casa": "senado",
@@ -22,8 +22,8 @@
     {
       "casa": "senado",
       "ano": 2026,
-      "linhas": 16274,
-      "valor": 26582428.19
+      "linhas": 16626,
+      "valor": 27407993.3
     }
   ]
 }

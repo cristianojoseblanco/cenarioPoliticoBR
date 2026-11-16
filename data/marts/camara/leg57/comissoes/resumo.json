@@ -260,9 +260,9 @@
       {
         "sigla": "CSPCCO",
         "nome": "Comissão de Segurança Pública e Combate ao Crime Organizado",
-        "titulares": 83,
-        "apoio_gov": 0.5301,
-        "diferenca": -0.185
+        "titulares": 85,
+        "apoio_gov": 0.5304,
+        "diferenca": -0.1847
       },
       {
         "sigla": "CAPADR",
@@ -373,8 +373,8 @@
         "sigla": "CASP",
         "nome": "Comissão de Administração e Serviço Público",
         "titulares": 53,
-        "apoio_gov": 0.7409,
-        "diferenca": 0.0258
+        "apoio_gov": 0.7424,
+        "diferenca": 0.0273
       },
       {
         "sigla": "CME",
@@ -422,8 +422,8 @@
         "sigla": "CCTI",
         "nome": "Comissão de Ciência, Tecnologia e Inovação",
         "titulares": 48,
-        "apoio_gov": 0.7645,
-        "diferenca": 0.0495
+        "apoio_gov": 0.7666,
+        "diferenca": 0.0516
       },
       {
         "sigla": "CMADS",
@@ -442,16 +442,16 @@
       {
         "sigla": "CINDRE",
         "nome": "Comissão de Integração Nacional e Desenvolvimento Regional",
-        "titulares": 54,
-        "apoio_gov": 0.7898,
-        "diferenca": 0.0747
+        "titulares": 55,
+        "apoio_gov": 0.7907,
+        "diferenca": 0.0757
       },
       {
         "sigla": "CMO",
         "nome": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização",
-        "titulares": 135,
-        "apoio_gov": 0.7908,
-        "diferenca": 0.0758
+        "titulares": 137,
+        "apoio_gov": 0.7912,
+        "diferenca": 0.0761
       },
       {
         "sigla": "CDC",

@@ -3,10 +3,11 @@
 
 ## Wikipédia
 
-- 74 de 593 deputados com verbete identificado.
+- 84 de 593 deputados com verbete identificado.
 
 | Deputado | Partido | Visitas por mês |
 | --- | --- | --- |
+| Eduardo Bolsonaro | PSL | 16.504 |
 | Carla Zambelli | PSL | 13.557 |
 | Aécio Neves | PSDB | 8.211 |
 | Arthur Lira | PP | 7.589 |
@@ -21,7 +22,6 @@
 | Caroline de Toni | PSL | 961 |
 | Aguinaldo Ribeiro | PP | 790 |
 | Arlindo Chinaglia | PT | 687 |
-| Delegado Éder Mauro | PSD | 590 |
 
 ## Discursos
 
@@ -49,10 +49,10 @@
 
 | Atenção | Com | Todos | Dentro do partido | n |
 | --- | --- | --- | --- | --- |
-| visitas_mes | apoio_gov | -0,09 | -0,38* | 74 |
-| visitas_mes | disciplina | -0,03 | -0,05 | 74 |
-| visitas_mes | extremidade | 0,08 | -0,02 | 73 |
-| visitas_mes | pago | -0,11 | -0,15 | 74 |
+| visitas_mes | apoio_gov | -0,10 | -0,32* | 84 |
+| visitas_mes | disciplina | -0,01 | -0,06 | 84 |
+| visitas_mes | extremidade | 0,09 | 0,08 | 83 |
+| visitas_mes | pago | -0,09 | -0,16 | 84 |
 | discursos | apoio_gov | -0,36* | -0,14* | 593 |
 | discursos | disciplina | 0,01 | -0,07 | 591 |
 | discursos | extremidade | 0,30* | 0,06 | 520 |
@@ -61,7 +61,7 @@
 | palavras | disciplina | 0,02 | -0,07 | 591 |
 | palavras | extremidade | 0,30* | 0,04 | 520 |
 | palavras | pago | -0,05 | 0,04 | 546 |
-| visitas_mes | discursos | 0,23 | 0,10 | 74 |
-| visitas_mes | palavras | 0,22 | 0,13 | 74 |
+| visitas_mes | discursos | 0,25 | 0,14 | 84 |
+| visitas_mes | palavras | 0,25 | 0,15 | 84 |
 
 \* p < 0,01.

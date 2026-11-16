@@ -1,5 +1,5 @@
 {
-  "executado_em": "2026-11-09T19:49:10+00:00",
+  "executado_em": "2026-11-16T19:37:17+00:00",
   "anos": [
     2019,
     2020,
@@ -17,11 +17,11 @@
     },
     {
       "arquivo": "frentes",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "frentesDeputados",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoes-2019",
@@ -105,7 +105,7 @@
     },
     {
       "arquivo": "votacoes-2024",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "votacoesVotos-2024",
@@ -117,7 +117,7 @@
     },
     {
       "arquivo": "votacoesProposicoes-2024",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoes-2025",
@@ -133,7 +133,7 @@
     },
     {
       "arquivo": "votacoesProposicoes-2025",
-      "status": "sem_mudanca"
+      "status": "atualizado"
     },
     {
       "arquivo": "votacoes-2026",
@@ -141,7 +141,7 @@
     },
     {
       "arquivo": "votacoesVotos-2026",
-      "status": "atualizado"
+      "status": "sem_mudanca"
     },
     {
       "arquivo": "votacoesOrientacoes-2026",

@@ -1,12 +1,12 @@
 # Dimensões de voto
 
-80 senadores (com valor em 30%+ das votações) × 110 votações.
+80 senadores (com valor em 30%+ das votações) × 112 votações.
 
 | Dimensão | Variância explicada | Corr. com eixo entre polos | Corr. com apoio ao governo | Corr. com participação |
 | --- | --- | --- | --- | --- |
-| 1 | 52,4% | 0,99 | 0,99 | 0,06 |
-| 2 | 10,9% | -0,05 | 0,05 | -0,04 |
-| 3 | 5,2% | 0,01 | 0,03 | -0,04 |
+| 1 | 52,5% | 0,99 | 0,99 | 0,06 |
+| 2 | 10,6% | -0,04 | 0,05 | -0,04 |
+| 3 | 5,1% | 0,01 | 0,03 | -0,04 |
 
 ## Dimensão 1: temas com mais peso
 
@@ -36,8 +36,8 @@ Peso relativo (1 = média das votações; acima de 1 = o tema define mais esta d
 
 Votações em que votar Sim mais aproxima do lado positivo:
 
-- 2025-12-17 · RQS 857/2024 · Requer urgência para o Projeto de Lei nº 2234/2022, nos termos dos arts. 336, III, e 338, III, do Regimento Interno do Senado Federal.
 - 2025-12-17 · PL 2234/2022 · Dispõe sobre a exploração de jogos e apostas em todo o território nacional; altera a Lei nº 7.291, de 19 de dezembro de 1984; e revoga o Dec
+- 2025-12-17 · RQS 857/2024 · Requer urgência para o Projeto de Lei nº 2234/2022, nos termos dos arts. 336, III, e 338, III, do Regimento Interno do Senado Federal.
 - 2025-06-25 · PLP 177/2023 · Fixa o número de Senadores Federais; estabelece normas para a distribuição das vagas do Senado dos Senadores entre os Estados e o Distrito F
 - 2025-06-25 · RQS 451/2025 · Requer urgência para o Projeto de Lei Complementar nº 177/2023, nos termos do art. 336, III, e 338,III, do Regimento Interno do Senado Feder
 - 2025-09-02 · PLP 192/2023 · Altera a Lei Complementar nº 64, de 18 de maio de 1990, e a Lei nº 9.504, de 30 de setembro de 1997 (Lei das Eleições).

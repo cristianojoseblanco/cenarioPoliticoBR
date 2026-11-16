@@ -56,46 +56,46 @@ Média de encontros por deputado, por partido (8+ deputados):
 
 ## Wikipédia
 
-- 129 de 629 deputados com verbete identificado.
+- 157 de 629 deputados com verbete identificado.
 
 | Deputado | Partido | Visitas por mês |
 | --- | --- | --- |
-| Carla Zambelli | PL | 9.181 |
-| Aécio Neves | PSDB | 6.110 |
-| Arthur Lira | PP | 5.487 |
-| Celso Russomanno | REPUBLICANOS | 5.360 |
-| Chiquinho Brazão | UNIÃO | 4.013 |
-| Caroline de Toni | PL | 3.834 |
-| Alfredo Gaspar | UNIÃO | 3.740 |
-| André Janones | AVANTE | 3.119 |
-| Amom Mandel | CIDADANIA | 2.863 |
-| André Fernandes | PL | 2.677 |
-| Bandeira de Mello | PSB | 2.223 |
-| Carlos Jordy | PL | 2.135 |
-| Danrlei de Deus Hinterholz | PSD | 2.027 |
-| Amália Barros | PL | 1.915 |
-| Baleia Rossi | MDB | 1.863 |
+| Eduardo Bolsonaro | PL | 12.143 |
+| Carla Zambelli | PL | 9.135 |
+| Duda Salabert | PDT | 6.921 |
+| Aécio Neves | PSDB | 6.079 |
+| Arthur Lira | PP | 5.459 |
+| Celso Russomanno | REPUBLICANOS | 5.333 |
+| Delegado Paulo Bilynskyj | PL | 4.047 |
+| Chiquinho Brazão | UNIÃO | 3.992 |
+| Caroline de Toni | PL | 3.814 |
+| Alfredo Gaspar | UNIÃO | 3.721 |
+| André Janones | AVANTE | 3.104 |
+| Amom Mandel | CIDADANIA | 2.848 |
+| André Fernandes | PL | 2.663 |
+| Bandeira de Mello | PSB | 2.212 |
+| Carlos Jordy | PL | 2.125 |
 
 ## Discursos
 
-- 52.597 discursos; mediana de 28 por deputado.
+- 52.913 discursos; mediana de 28 por deputado.
 
 | Deputado | Partido | Discursos | Palavras |
 | --- | --- | --- | --- |
-| Cabo Gilberto Silva | PL | 1834 | 468.633 |
-| Erika Kokay | PT | 1237 | 418.380 |
-| Luiz Lima | PL | 1189 | 397.659 |
-| Chico Alencar | PSOL | 1115 | 323.101 |
+| Cabo Gilberto Silva | PL | 1850 | 471.840 |
+| Erika Kokay | PT | 1242 | 422.894 |
+| Luiz Lima | PL | 1196 | 399.296 |
+| Chico Alencar | PSOL | 1121 | 324.150 |
 | Adriana Ventura | NOVO | 1042 | 333.547 |
-| Marcel van Hattem | NOVO | 995 | 348.471 |
-| Gilson Marques | NOVO | 851 | 220.742 |
-| Bibo Nunes | PL | 834 | 177.041 |
-| Pompeo de Mattos | PDT | 749 | 265.643 |
-| Bohn Gass | PT | 684 | 215.650 |
-| Otoni de Paula | MDB | 671 | 188.317 |
-| Duarte Jr. | PSB | 655 | 288.229 |
+| Marcel van Hattem | NOVO | 1010 | 354.249 |
+| Gilson Marques | NOVO | 857 | 224.618 |
+| Bibo Nunes | PL | 836 | 177.383 |
+| Pompeo de Mattos | PDT | 752 | 266.927 |
+| Bohn Gass | PT | 689 | 217.520 |
+| Otoni de Paula | MDB | 680 | 190.338 |
+| Duarte Jr. | PSB | 658 | 290.212 |
 | Helder Salomão | PT | 642 | 182.050 |
-| Laura Carneiro | PSD | 598 | 230.499 |
+| Laura Carneiro | PSD | 601 | 232.409 |
 | Bia Kicis | PL | 582 | 205.341 |
 
 ## Correlações (Spearman; dentro = descontada a mediana do partido)
@@ -105,23 +105,23 @@ Média de encontros por deputado, por partido (8+ deputados):
 | encontros | apoio_gov | 0,48* | 0,14* | 629 |
 | encontros | disciplina | 0,23* | 0,03 | 616 |
 | encontros | extremidade | -0,14* | -0,04 | 522 |
-| encontros | pago | 0,27* | 0,21* | 543 |
-| visitas_mes | apoio_gov | -0,13 | 0,01 | 129 |
-| visitas_mes | disciplina | -0,10 | 0,04 | 129 |
-| visitas_mes | extremidade | 0,20 | 0,13 | 113 |
-| visitas_mes | pago | -0,12 | -0,01 | 122 |
-| discursos | apoio_gov | 0,01 | -0,19* | 629 |
+| encontros | pago | 0,27* | 0,22* | 543 |
+| visitas_mes | apoio_gov | -0,09 | -0,01 | 157 |
+| visitas_mes | disciplina | -0,09 | 0,04 | 157 |
+| visitas_mes | extremidade | 0,20 | 0,15 | 137 |
+| visitas_mes | pago | -0,12 | -0,06 | 148 |
+| discursos | apoio_gov | 0,02 | -0,18* | 629 |
 | discursos | disciplina | 0,06 | -0,10 | 616 |
 | discursos | extremidade | 0,41* | 0,24* | 522 |
-| discursos | pago | -0,10 | -0,03 | 543 |
+| discursos | pago | -0,10 | -0,02 | 543 |
 | palavras | apoio_gov | 0,03 | -0,18* | 629 |
 | palavras | disciplina | 0,06 | -0,10 | 616 |
 | palavras | extremidade | 0,38* | 0,22* | 522 |
-| palavras | pago | -0,09 | -0,04 | 543 |
-| encontros | visitas_mes | -0,09 | -0,07 | 129 |
+| palavras | pago | -0,10 | -0,03 | 543 |
+| encontros | visitas_mes | -0,04 | -0,06 | 157 |
 | encontros | discursos | 0,33* | 0,28* | 629 |
 | encontros | palavras | 0,34* | 0,30* | 629 |
-| visitas_mes | discursos | 0,07 | -0,08 | 129 |
-| visitas_mes | palavras | 0,10 | -0,04 | 129 |
+| visitas_mes | discursos | 0,13 | 0,01 | 157 |
+| visitas_mes | palavras | 0,16 | 0,04 | 157 |
 
 \* p < 0,01.

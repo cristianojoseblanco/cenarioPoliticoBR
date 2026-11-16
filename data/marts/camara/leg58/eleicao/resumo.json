@@ -4,14 +4,14 @@
   "eleicoes": [
     2026
   ],
-  "eleitos": 513,
-  "ligados": 333,
+  "eleitos": 505,
+  "ligados": 328,
   "com_comportamento": false,
-  "mediana_votos": 107232.0,
-  "mediana_receita": 2501521.0,
-  "mediana_custo_por_voto": 22.008554268745357,
-  "mediana_frac_fundo_eleitoral": 0.874530935806157,
-  "eleitos_qp": 385,
-  "eleitos_media": 128,
+  "mediana_votos": 107849.0,
+  "mediana_receita": 2504416.0,
+  "mediana_custo_por_voto": 21.708238992488365,
+  "mediana_frac_fundo_eleitoral": 0.8747887070348577,
+  "eleitos_qp": 381,
+  "eleitos_media": 124,
   "qp_vs_media": null
 }

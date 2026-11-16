@@ -118,14 +118,14 @@ Apoio ao governo dos titulares × Plenário (comissões mais distantes):
 
 | Comissão | Titulares | Apoio | Diferença |
 | --- | --- | --- | --- |
-| CSPCCO | 83 | 53% | -18,5 pp |
+| CSPCCO | 85 | 53% | -18,5 pp |
 | CAPADR | 104 | 60% | -11,8 pp |
 | CREDN | 89 | 63% | -8,2 pp |
 | CPASF | 48 | 64% | -7,2 pp |
 | CCJC | 153 | 68% | -3,4 pp |
 | CSAUDE | 118 | 70% | -1,9 pp |
-| CINDRE | 54 | 79% | +7,5 pp |
-| CMO | 135 | 79% | +7,6 pp |
+| CINDRE | 55 | 79% | +7,6 pp |
+| CMO | 137 | 79% | +7,6 pp |
 | CDC | 26 | 80% | +8,2 pp |
 | CTRAB | 39 | 81% | +9,4 pp |
 | CLP | 34 | 82% | +10,7 pp |

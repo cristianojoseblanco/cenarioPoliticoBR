@@ -5,9 +5,9 @@ Parâmetros em `config/sources.yaml` → `fatias`.
 ## Eixo de referência
 
 - Polo A = C1 (PL 13, PP 5); núcleo estável com 30 senadores.
-- Polo B = C3 (PT 9, MDB 5); núcleo estável com 20 senadores.
+- Polo B = C3 (PT 9, MDB 5); núcleo estável com 21 senadores.
 - Os polos são as duas comunidades globais com menor concordância entre si, entre as que têm núcleo estável de pelo menos 6 senadores. Sem rótulo ideológico.
-- Núcleo estável por comunidade: C1 30, C2 18, C3 20.
+- Núcleo estável por comunidade: C1 30, C2 19, C3 21.
 - Posição de um senador = concordância com o núcleo B − concordância com o núcleo A (−1 a +1).
 
 Composição das comunidades globais: C1 = PL 13, PP 5; C2 = PSD 8, MDB 6; C3 = PT 9, MDB 5
@@ -21,10 +21,10 @@ Composição das comunidades globais: C1 = PL 13, PP 5; C2 = PSD 8, MDB 6; C3 = 
 
 | Fatia | Votações | Concordância A×B | Semelhança com a estrutura global (ARI) | C1 | C2 | C3 |
 | --- | --- | --- | --- | --- | --- | --- |
-| J01 2023-05-09 a 2024-12-12 | 60 | 31,5% | 0,66 | -0,50 | 0,16 | 0,59 |
-| J02 2023-11-08 a 2025-06-25 | 60 | 34,8% | 0,77 | -0,46 | 0,15 | 0,50 |
-| J03 2024-05-08 a 2025-12-17 | 60 | 36,8% | 0,65 | -0,42 | 0,18 | 0,49 |
-| J04 2024-08-14 a 2026-11-03 | 60 | 39,2% | 0,60 | -0,40 | 0,16 | 0,45 |
+| J01 2023-05-09 a 2024-12-12 | 60 | 31,6% | 0,66 | -0,50 | 0,16 | 0,59 |
+| J02 2023-11-08 a 2025-06-25 | 60 | 34,7% | 0,77 | -0,46 | 0,16 | 0,50 |
+| J03 2024-05-08 a 2025-12-17 | 60 | 36,8% | 0,65 | -0,42 | 0,19 | 0,49 |
+| J04 2024-08-14 a 2026-11-12 | 60 | 37,0% | 0,67 | -0,42 | 0,18 | 0,48 |
 
 ## Quem mais se moveu no eixo
 
@@ -32,31 +32,31 @@ Posição média nas 3 últimas janelas menos a posição média nas 3 primeiras
 
 | Senador | Partido | Comunidade global | Posição no início | Posição no fim | Deslocamento |
 | --- | --- | --- | --- | --- | --- |
-| Carlos Viana | PODE | C2 | -0,08 | 0,05 | +0,12 |
-| Angelo Coronel | PSD | C2 | 0,32 | 0,20 | -0,12 |
-| Zequinha Marinho | PODE | C2 | -0,15 | -0,04 | +0,11 |
-| Tereza Cristina | PP | C1 | -0,41 | -0,31 | +0,09 |
-| Cid Gomes | PSB | C2 | 0,32 | 0,23 | -0,08 |
-| Jorge Kajuru | PSB | C3 | 0,47 | 0,39 | -0,08 |
-| Mecias de Jesus | REPUBLICANOS | C1 | -0,22 | -0,13 | +0,08 |
-| Ana Paula Lobato | PDT | C3 | 0,46 | 0,38 | -0,08 |
-| Cleitinho | REPUBLICANOS | C1 | -0,50 | -0,43 | +0,08 |
-| Luis Carlos Heinze | PP | C1 | -0,46 | -0,39 | +0,08 |
-| Esperidião Amin | PP | C1 | -0,46 | -0,38 | +0,07 |
-| Marcelo Castro | MDB | C3 | 0,50 | 0,43 | -0,07 |
-| Soraya Thronicke | PODE | C2 | 0,06 | 0,13 | +0,07 |
-| Fernando Farias | MDB | C3 | 0,45 | 0,38 | -0,07 |
-| Confúcio Moura | MDB | C3 | 0,47 | 0,40 | -0,07 |
-| Teresa Leitão | PT | C3 | 0,60 | 0,54 | -0,07 |
-| Irajá | PSD | C2 | -0,06 | -0,12 | -0,07 |
-| Sérgio Petecão | PSD | C2 | 0,37 | 0,30 | -0,06 |
-| Chico Rodrigues | PSB | C2 | 0,22 | 0,16 | -0,06 |
+| Angelo Coronel | PSD | C2 | 0,33 | 0,20 | -0,13 |
+| Carlos Viana | PODE | C2 | -0,08 | 0,03 | +0,11 |
+| Zequinha Marinho | PODE | C2 | -0,15 | -0,05 | +0,10 |
+| Jorge Kajuru | PSB | C3 | 0,47 | 0,39 | -0,09 |
+| Soraya Thronicke | PODE | C2 | 0,07 | 0,15 | +0,08 |
+| Tereza Cristina | PP | C1 | -0,41 | -0,33 | +0,08 |
+| Mecias de Jesus | REPUBLICANOS | C1 | -0,21 | -0,13 | +0,08 |
+| Cid Gomes | PSB | C2 | 0,32 | 0,24 | -0,08 |
+| Ana Paula Lobato | PDT | C3 | 0,46 | 0,39 | -0,07 |
+| Fernando Farias | MDB | C3 | 0,45 | 0,39 | -0,07 |
+| Cleitinho | REPUBLICANOS | C1 | -0,51 | -0,44 | +0,07 |
+| Luis Carlos Heinze | PP | C1 | -0,46 | -0,40 | +0,06 |
+| Teresa Leitão | PT | C3 | 0,60 | 0,54 | -0,06 |
+| Esperidião Amin | PP | C1 | -0,46 | -0,39 | +0,06 |
+| Irajá | PSD | C2 | -0,06 | -0,12 | -0,06 |
+| Marcelo Castro | MDB | C3 | 0,51 | 0,45 | -0,06 |
+| Confúcio Moura | MDB | C3 | 0,48 | 0,42 | -0,06 |
 | Eliziane Gama | PSD | C3 | 0,68 | 0,62 | -0,05 |
+| Chico Rodrigues | PSB | C2 | 0,23 | 0,18 | -0,05 |
+| Styvenson Valentim | PODE | C2 | -0,16 | -0,11 | +0,05 |
 
 ### Deslocamento médio por comunidade global
 
 | Comunidade | Senadores comparáveis | Início | Fim | Deslocamento |
 | --- | --- | --- | --- | --- |
 | C1 (PL 13, PP 5) | 30 | -0,46 | -0,43 | +0,03 |
-| C2 (PSD 8, MDB 6) | 28 | 0,16 | 0,15 | -0,01 |
-| C3 (PT 9, MDB 5) | 22 | 0,53 | 0,48 | -0,04 |
+| C2 (PSD 8, MDB 6) | 28 | 0,16 | 0,16 | -0,00 |
+| C3 (PT 9, MDB 5) | 22 | 0,53 | 0,49 | -0,04 |

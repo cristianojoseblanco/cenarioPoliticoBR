@@ -2,32 +2,32 @@
   "casa": "senado",
   "legislatura": "57",
   "parlamentares": 102,
-  "total_real": 133228528.40180862,
-  "mediana_por_mes_real": 38174.031484272666,
+  "total_real": 134054423.12486288,
+  "mediana_por_mes_real": 38894.90610460003,
   "categorias": [
     {
       "categoria": "Locomoção, hospedagem, alimentação, combustíveis e lubrificantes",
-      "valor_real": 31811924.28446735
+      "valor_real": 32137948.486463565
     },
     {
       "categoria": "Contratação de consultorias, assessorias, pesquisas, trabalhos técnicos e outros serviços de apoio ao exercício do mandato parlamentar",
-      "valor_real": 28197877.051305242
+      "valor_real": 28403306.57859009
     },
     {
       "categoria": "Passagens aéreas, aquáticas e terrestres nacionais",
-      "valor_real": 24732210.2140138
+      "valor_real": 24763073.30191143
     },
     {
       "categoria": "Divulgação da atividade parlamentar",
-      "valor_real": 22456494.473840214
+      "valor_real": 22516706.77335169
     },
     {
       "categoria": "Aluguel de imóveis para escritório político, compreendendo despesas concernentes a eles.",
-      "valor_real": 20203512.179914694
+      "valor_real": 20339957.340108085
     },
     {
       "categoria": "Aquisição de material de consumo para uso no escritório político, inclusive aquisição ou locação de software, despesas postais, aquisição de publicações, locação de móveis e de equipamentos. ",
-      "valor_real": 4804999.36134288
+      "valor_real": 4864919.807513602
     },
     {
       "categoria": "Serviços de Segurança Privada",
@@ -45,25 +45,25 @@
   "reeleicao": null,
   "rede": {
     "todos": {
-      "pares": 3087,
-      "ligados": 486,
-      "conc_com": 0.6387295722961426,
-      "conc_sem": 0.6210635900497437,
-      "spearman": 0.02670394637137694
+      "pares": 3097,
+      "ligados": 490,
+      "conc_com": 0.6371598243713379,
+      "conc_sem": 0.6182442307472229,
+      "spearman": 0.02845520634091445
     },
     "mesmo partido": {
-      "pares": 322,
-      "ligados": 61,
-      "conc_com": 0.8306763172149658,
-      "conc_sem": 0.8195760250091553,
-      "spearman": 0.04003361126851109
+      "pares": 323,
+      "ligados": 62,
+      "conc_com": 0.8312574625015259,
+      "conc_sem": 0.8147598505020142,
+      "spearman": 0.057688215257204384
     },
     "partidos diferentes": {
-      "pares": 2765,
-      "ligados": 425,
-      "conc_com": 0.6111796498298645,
-      "conc_sem": 0.5989218950271606,
-      "spearman": 0.017152531702956907
+      "pares": 2774,
+      "ligados": 428,
+      "conc_com": 0.6090428829193115,
+      "conc_sem": 0.5963812470436096,
+      "spearman": 0.01732910496352373
     }
   },
   "patrimonio": {},

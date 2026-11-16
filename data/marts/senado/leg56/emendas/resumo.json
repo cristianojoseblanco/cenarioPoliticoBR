@@ -11,8 +11,8 @@
   "autores_ligados": 92,
   "autores_total": 656,
   "empenhado": 8618737083.710001,
-  "pago": 8075149161.17,
-  "execucao_mediana": 0.9619312658093517,
+  "pago": 8082661646.95,
+  "execucao_mediana": 0.9626558008919707,
   "conexao_mediana": 0.47378841277592115,
   "frac_base_mediana": 0.0014087122109077308,
   "tempo": {
@@ -24,36 +24,36 @@
   "necessidade": [
     {
       "indicador": "pib_per_capita",
-      "spearman": 0.03671543251036033,
-      "p": 0.006135120072231761,
+      "spearman": 0.03615544117826114,
+      "p": 0.0069622361922286125,
       "n": 5570
     },
     {
       "indicador": "alfabetizacao",
-      "spearman": -0.028535692793606997,
-      "p": 0.03320102978809285,
+      "spearman": -0.028169824429651803,
+      "p": 0.03552456759973746,
       "n": 5570
     },
     {
       "indicador": "pop_2022",
-      "spearman": -0.019721809498934192,
-      "p": 0.14110207197125313,
+      "spearman": -0.020428216143109135,
+      "p": 0.12740274258719064,
       "n": 5570
     },
     {
       "indicador": "urbanizacao",
-      "spearman": -0.09413721085179538,
-      "p": 1.9258618826516775e-12,
+      "spearman": -0.09462926480720837,
+      "p": 1.476154884588945e-12,
       "n": 5570
     },
     {
       "indicador": "densidade",
-      "spearman": -0.060556285383456414,
-      "p": 6.108483861268697e-06,
+      "spearman": -0.06068687874371152,
+      "p": 5.832544067410903e-06,
       "n": 5570
     }
   ],
-  "execucao_apoio_dentro": 0.007603916326237219,
-  "execucao_apoio_dentro_p": 0.949091686681789,
-  "necessidade_pib": 0.03671543251036033
+  "execucao_apoio_dentro": 0.0021328057988226345,
+  "execucao_apoio_dentro_p": 0.9857120910169441,
+  "necessidade_pib": 0.03615544117826114
 }
