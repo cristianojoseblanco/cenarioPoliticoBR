@@ -2,7 +2,7 @@
 
 Emendas individuais dos orçamentos 2020–2023: 3.392 emendas de 92 parlamentares ligados (de 656 autores).
 
-- Empenhado: R$ 8.618.737.083; pago: R$ 8.082.661.646
+- Empenhado: R$ 8.618.737.083; pago: R$ 8.082.702.219
 - Taxa de execução (mediana por parlamentar): 96,3%
 - Fração do pago para a base eleitoral (mediana): 0,1%; R$ por habitante na base ÷ resto da UF (mediana): 0,47
 
@@ -12,16 +12,16 @@ Emendas individuais dos orçamentos 2020–2023: 3.392 emendas de 92 parlamentar
 | --- | --- | --- | --- | --- |
 | pago | apoio_gov | -0,05 | -0,18 | 80 |
 | pago | disciplina | 0,19 | -0,13 | 79 |
-| pago | imprevisibilidade | 0,02 | 0,14 | 80 |
+| pago | imprevisibilidade | -0,06 | 0,03 | 80 |
 | execucao | apoio_gov | 0,16 | 0,00 | 80 |
 | execucao | disciplina | 0,00 | -0,07 | 79 |
-| execucao | imprevisibilidade | -0,00 | 0,00 | 80 |
+| execucao | imprevisibilidade | -0,07 | -0,14 | 80 |
 | conexao | apoio_gov | -0,16 | 0,09 | 40 |
 | conexao | disciplina | -0,34 | -0,35 | 40 |
-| conexao | imprevisibilidade | 0,01 | 0,00 | 40 |
+| conexao | imprevisibilidade | 0,15 | 0,23 | 40 |
 | frac_base | apoio_gov | -0,01 | -0,02 | 80 |
 | frac_base | disciplina | 0,11 | 0,05 | 79 |
-| frac_base | imprevisibilidade | -0,00 | 0,10 | 80 |
+| frac_base | imprevisibilidade | -0,05 | 0,07 | 80 |
 
 \* p < 0,01.
 

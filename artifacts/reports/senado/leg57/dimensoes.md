@@ -1,12 +1,12 @@
 # Dimensões de voto
 
-80 senadores (com valor em 30%+ das votações) × 112 votações.
+81 senadores (com valor em 30%+ das votações) × 116 votações.
 
 | Dimensão | Variância explicada | Corr. com eixo entre polos | Corr. com apoio ao governo | Corr. com participação |
 | --- | --- | --- | --- | --- |
-| 1 | 52,5% | 0,99 | 0,99 | 0,06 |
-| 2 | 10,6% | -0,04 | 0,05 | -0,04 |
-| 3 | 5,1% | 0,01 | 0,03 | -0,04 |
+| 1 | 52,8% | 0,99 | 0,99 | 0,06 |
+| 2 | 10,5% | -0,03 | 0,04 | -0,04 |
+| 3 | 4,9% | -0,00 | 0,03 | -0,04 |
 
 ## Dimensão 1: temas com mais peso
 
@@ -15,11 +15,11 @@ Peso relativo (1 = média das votações; acima de 1 = o tema define mais esta d
 
 Votações em que votar Sim mais aproxima do lado positivo:
 
-- 2023-08-30 · PL 2384/2023 · Disciplina a proclamação de resultados de julgamentos na hipótese de empate na votação no âmbito do Conselho Administrativo de Recursos Fisc
 - 2026-11-03 · PEC 18/2025 · Altera os arts. 5º, 15, 22, 23, 24, 40, 49, 84, 103-B, 130-A e 144 da Constituição Federal e o art.76 do Ato das Disposições Constitucionais
+- 2023-08-30 · PL 2384/2023 · Disciplina a proclamação de resultados de julgamentos na hipótese de empate na votação no âmbito do Conselho Administrativo de Recursos Fisc
 - 2024-05-08 · PLP 233/2023 · Dispõe sobre o Seguro Obrigatório para Proteção de Vítimas de Acidentes de Trânsito (SPVAT); altera o Decreto-Lei nº 73, de 21 de novembro d
+- 2026-11-12 · PLP 299/2026 · Altera a Lei Complementar nº 200, de 30 de agosto de 2023, para conferir ao Poder Executivo federal novos instrumentos de gestão com vistas 
 - 2024-02-20 · PL 2253/2022 · Altera a Lei nº 7.210, de 11 de julho de 1984 (Lei de Execução Penal), para dispor sobre a monitoração eletrônica do preso, prever a realiza
-- 2024-11-18 · PLP 175/2024 · Dispõe sobre a proposição e a execução de emendas parlamentares na lei orçamentária anual; e dá outras providências.
 
 Votações em que votar Sim mais aproxima do lado negativo:
 
@@ -27,7 +27,7 @@ Votações em que votar Sim mais aproxima do lado negativo:
 - 2024-12-19 · PLP 210/2024 · Altera a Lei Complementar nº 200, de 30 de agosto de 2023, que institui regime fiscal sustentável para garantir a estabilidade macroeconômic
 - 2024-05-15 · PLP 85/2024 · Autoriza a União a postergar o pagamento da dívida de entes federativos afetados por calamidade pública reconhecida pelo Congresso Nacional,
 - 2024-12-12 · PLP 68/2024 · Institui o Imposto sobre Bens e Serviços (IBS), a Contribuição Social sobre Bens e Serviços (CBS) e o Imposto Seletivo (IS); e dá outras pro
-- 2024-05-08 · PLP 233/2023 · Dispõe sobre o Seguro Obrigatório para Proteção de Vítimas de Acidentes de Trânsito (SPVAT); altera o Decreto-Lei nº 73, de 21 de novembro d
+- 2024-05-22 · RQS 369/2024 · Requer preferência para a votação da Emenda Substitutiva n° 23 em relação ao Substitutivo da CCJ.
 
 ## Dimensão 2: temas com mais peso
 
@@ -36,8 +36,8 @@ Peso relativo (1 = média das votações; acima de 1 = o tema define mais esta d
 
 Votações em que votar Sim mais aproxima do lado positivo:
 
-- 2025-12-17 · PL 2234/2022 · Dispõe sobre a exploração de jogos e apostas em todo o território nacional; altera a Lei nº 7.291, de 19 de dezembro de 1984; e revoga o Dec
 - 2025-12-17 · RQS 857/2024 · Requer urgência para o Projeto de Lei nº 2234/2022, nos termos dos arts. 336, III, e 338, III, do Regimento Interno do Senado Federal.
+- 2025-12-17 · PL 2234/2022 · Dispõe sobre a exploração de jogos e apostas em todo o território nacional; altera a Lei nº 7.291, de 19 de dezembro de 1984; e revoga o Dec
 - 2025-06-25 · PLP 177/2023 · Fixa o número de Senadores Federais; estabelece normas para a distribuição das vagas do Senado dos Senadores entre os Estados e o Distrito F
 - 2025-06-25 · RQS 451/2025 · Requer urgência para o Projeto de Lei Complementar nº 177/2023, nos termos do art. 336, III, e 338,III, do Regimento Interno do Senado Feder
 - 2025-09-02 · PLP 192/2023 · Altera a Lei Complementar nº 64, de 18 de maio de 1990, e a Lei nº 9.504, de 30 de setembro de 1997 (Lei das Eleições).

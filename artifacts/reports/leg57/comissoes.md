@@ -125,8 +125,8 @@ Apoio ao governo dos titulares × Plenário (comissões mais distantes):
 | CCJC | 153 | 68% | -3,4 pp |
 | CSAUDE | 118 | 70% | -1,9 pp |
 | CINDRE | 55 | 79% | +7,6 pp |
-| CMO | 137 | 79% | +7,6 pp |
+| CMO | 138 | 79% | +7,6 pp |
+| CTRAB | 41 | 80% | +8,2 pp |
 | CDC | 26 | 80% | +8,2 pp |
-| CTRAB | 39 | 81% | +9,4 pp |
 | CLP | 34 | 82% | +10,7 pp |
 | CPOVOS | 39 | 82% | +11,0 pp |

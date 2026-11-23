@@ -3,12 +3,12 @@
   "dataset": "deputados",
   "ano": null,
   "url": "https://dadosabertos.camara.leg.br/arquivos/deputados/csv/deputados.csv",
-  "coletado_em": "2026-11-16T19:36:15+00:00",
-  "sha256": "28bf8eafa9e079babad41b4bb02c081e596a5869ace17dd2dfc75fb5166cd726",
+  "coletado_em": "2026-11-23T21:22:58+00:00",
+  "sha256": "098094ff27798f47bd9340a3a0f32d61894254bffb7c0675ff3cd96733b658dd",
   "linhas": 7890,
-  "bytes_csv": 1372783,
-  "bytes_parquet": 263523,
-  "segundos": 9.1,
+  "bytes_csv": 1373410,
+  "bytes_parquet": 263721,
+  "segundos": 2.2,
   "versao_esquema": 1,
   "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
 }

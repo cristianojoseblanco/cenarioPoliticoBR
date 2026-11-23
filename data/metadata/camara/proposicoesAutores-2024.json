@@ -3,12 +3,12 @@
   "dataset": "proposicoesAutores",
   "ano": 2024,
   "url": "https://dadosabertos.camara.leg.br/arquivos/proposicoesAutores/csv/proposicoesAutores-2024.csv",
-  "coletado_em": "2026-10-25T16:34:39+00:00",
-  "sha256": "225ae7cd995d2221899cbea70e428f617003c41238dfe282fb4586ecabd26727",
-  "linhas": 97124,
-  "bytes_csv": 24401498,
-  "bytes_parquet": 680005,
-  "segundos": 3.8,
+  "coletado_em": "2026-11-23T21:24:04+00:00",
+  "sha256": "e0e92d303e985e53dbbd4a68d69a347303de365a1897be7cdbf0ce3245cb7ee0",
+  "linhas": 97125,
+  "bytes_csv": 24401722,
+  "bytes_parquet": 680398,
+  "segundos": 2.6,
   "versao_esquema": 1,
   "transformacao": "csv -> parquet, todas as colunas como texto, sem filtros"
 }

@@ -40,4 +40,4 @@ Valores em reais de 202609 (IPCA).
 ## Patrimônio declarado (real, IPCA)
 
 - 2018-2022: razão mediana 0,98; 229 de 463 aumentaram
-- 2022-2026: razão mediana 1,13; 217 de 346 aumentaram
+- 2022-2026: razão mediana 1,13; 218 de 347 aumentaram

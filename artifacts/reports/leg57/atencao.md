@@ -56,47 +56,47 @@ Média de encontros por deputado, por partido (8+ deputados):
 
 ## Wikipédia
 
-- 157 de 629 deputados com verbete identificado.
+- 192 de 629 deputados com verbete identificado.
 
 | Deputado | Partido | Visitas por mês |
 | --- | --- | --- |
-| Eduardo Bolsonaro | PL | 12.143 |
-| Carla Zambelli | PL | 9.135 |
-| Duda Salabert | PDT | 6.921 |
-| Aécio Neves | PSDB | 6.079 |
-| Arthur Lira | PP | 5.459 |
-| Celso Russomanno | REPUBLICANOS | 5.333 |
-| Delegado Paulo Bilynskyj | PL | 4.047 |
-| Chiquinho Brazão | UNIÃO | 3.992 |
-| Caroline de Toni | PL | 3.814 |
-| Alfredo Gaspar | UNIÃO | 3.721 |
-| André Janones | AVANTE | 3.104 |
-| Amom Mandel | CIDADANIA | 2.848 |
-| André Fernandes | PL | 2.663 |
-| Bandeira de Mello | PSB | 2.212 |
-| Carlos Jordy | PL | 2.125 |
+| Erika Hilton | PSOL | 28.704 |
+| Eduardo Bolsonaro | PL | 12.082 |
+| Carla Zambelli | PL | 9.089 |
+| Duda Salabert | PDT | 6.886 |
+| Aécio Neves | PSDB | 6.048 |
+| Arthur Lira | PP | 5.431 |
+| Celso Russomanno | REPUBLICANOS | 5.306 |
+| Delegado Paulo Bilynskyj | PL | 4.027 |
+| Chiquinho Brazão | UNIÃO | 3.972 |
+| Caroline de Toni | PL | 3.795 |
+| Alfredo Gaspar | UNIÃO | 3.703 |
+| André Janones | AVANTE | 3.088 |
+| Amom Mandel | CIDADANIA | 2.834 |
+| André Fernandes | PL | 2.650 |
+| Bandeira de Mello | PSB | 2.201 |
 
 ## Discursos
 
-- 52.913 discursos; mediana de 28 por deputado.
+- 53.026 discursos; mediana de 28 por deputado.
 
 | Deputado | Partido | Discursos | Palavras |
 | --- | --- | --- | --- |
-| Cabo Gilberto Silva | PL | 1850 | 471.840 |
+| Cabo Gilberto Silva | PL | 1857 | 473.127 |
 | Erika Kokay | PT | 1242 | 422.894 |
-| Luiz Lima | PL | 1196 | 399.296 |
+| Luiz Lima | PL | 1199 | 400.263 |
 | Chico Alencar | PSOL | 1121 | 324.150 |
-| Adriana Ventura | NOVO | 1042 | 333.547 |
+| Adriana Ventura | NOVO | 1044 | 335.246 |
 | Marcel van Hattem | NOVO | 1010 | 354.249 |
-| Gilson Marques | NOVO | 857 | 224.618 |
+| Gilson Marques | NOVO | 858 | 224.712 |
 | Bibo Nunes | PL | 836 | 177.383 |
 | Pompeo de Mattos | PDT | 752 | 266.927 |
-| Bohn Gass | PT | 689 | 217.520 |
-| Otoni de Paula | MDB | 680 | 190.338 |
-| Duarte Jr. | PSB | 658 | 290.212 |
+| Bohn Gass | PT | 690 | 217.703 |
+| Otoni de Paula | MDB | 684 | 191.775 |
+| Duarte Jr. | PSB | 660 | 291.358 |
 | Helder Salomão | PT | 642 | 182.050 |
-| Laura Carneiro | PSD | 601 | 232.409 |
-| Bia Kicis | PL | 582 | 205.341 |
+| Laura Carneiro | PSD | 603 | 233.032 |
+| Bia Kicis | PL | 583 | 206.325 |
 
 ## Correlações (Spearman; dentro = descontada a mediana do partido)
 
@@ -105,12 +105,12 @@ Média de encontros por deputado, por partido (8+ deputados):
 | encontros | apoio_gov | 0,48* | 0,14* | 629 |
 | encontros | disciplina | 0,23* | 0,03 | 616 |
 | encontros | extremidade | -0,14* | -0,04 | 522 |
-| encontros | pago | 0,27* | 0,22* | 543 |
-| visitas_mes | apoio_gov | -0,09 | -0,01 | 157 |
-| visitas_mes | disciplina | -0,09 | 0,04 | 157 |
-| visitas_mes | extremidade | 0,20 | 0,15 | 137 |
-| visitas_mes | pago | -0,12 | -0,06 | 148 |
-| discursos | apoio_gov | 0,02 | -0,18* | 629 |
+| encontros | pago | 0,28* | 0,22* | 543 |
+| visitas_mes | apoio_gov | -0,11 | -0,02 | 192 |
+| visitas_mes | disciplina | -0,09 | -0,01 | 190 |
+| visitas_mes | extremidade | 0,19 | 0,12 | 164 |
+| visitas_mes | pago | -0,10 | -0,04 | 177 |
+| discursos | apoio_gov | 0,01 | -0,18* | 629 |
 | discursos | disciplina | 0,06 | -0,10 | 616 |
 | discursos | extremidade | 0,41* | 0,24* | 522 |
 | discursos | pago | -0,10 | -0,02 | 543 |
@@ -118,10 +118,10 @@ Média de encontros por deputado, por partido (8+ deputados):
 | palavras | disciplina | 0,06 | -0,10 | 616 |
 | palavras | extremidade | 0,38* | 0,22* | 522 |
 | palavras | pago | -0,10 | -0,03 | 543 |
-| encontros | visitas_mes | -0,04 | -0,06 | 157 |
+| encontros | visitas_mes | 0,03 | -0,02 | 192 |
 | encontros | discursos | 0,33* | 0,28* | 629 |
 | encontros | palavras | 0,34* | 0,30* | 629 |
-| visitas_mes | discursos | 0,13 | 0,01 | 157 |
-| visitas_mes | palavras | 0,16 | 0,04 | 157 |
+| visitas_mes | discursos | 0,15 | 0,06 | 192 |
+| visitas_mes | palavras | 0,19* | 0,07 | 192 |
 
 \* p < 0,01.

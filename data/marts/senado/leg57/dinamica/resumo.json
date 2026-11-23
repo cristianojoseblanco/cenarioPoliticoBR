@@ -1,13 +1,13 @@
 {
-  "polo_a": "C1",
+  "polo_a": "C2",
   "polo_b": "C3",
   "polo_governo": "C3",
   "margem_apertada": 0.1,
-  "votacoes": 185,
-  "polarizadas": 81,
+  "votacoes": 189,
+  "polarizadas": 86,
   "apertadas": 9,
-  "vitorias_gov": 107,
-  "votos_para_virar_mediana": 30.0,
+  "vitorias_gov": 111,
+  "votos_para_virar_mediana": 29.0,
   "fracao_fora_para_virar_mediana": 1.0,
-  "fora_no_lado_gov_medio": 0.35910383568720755
+  "fora_no_lado_gov_medio": 0.49062624189397963
 }

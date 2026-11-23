@@ -1,16 +1,18 @@
 {
-  "polo_a": "C1",
+  "polo_a": "C2",
   "polo_b": "C3",
   "composicao": {
-    "C1": "PL 13, PP 5",
-    "C2": "PSD 8, MDB 6",
-    "C3": "PT 9, MDB 5"
+    "C1": "MDB 8, PSD 7",
+    "C2": "PL 12, REPUBLICANOS 3",
+    "C3": "PT 9, PSD 4",
+    "C4": "PODE 4, PP 4"
   },
-  "nucleo_a": 30,
-  "nucleo_b": 21,
+  "nucleo_a": 22,
+  "nucleo_b": 19,
   "tamanho_nucleos": {
-    "C1": 30,
-    "C2": 19,
-    "C3": 21
+    "C1": 12,
+    "C2": 22,
+    "C3": 19,
+    "C4": 0
   }
 }

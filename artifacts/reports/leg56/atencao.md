@@ -3,7 +3,7 @@
 
 ## Wikipédia
 
-- 84 de 593 deputados com verbete identificado.
+- 104 de 593 deputados com verbete identificado.
 
 | Deputado | Partido | Visitas por mês |
 | --- | --- | --- |
@@ -17,11 +17,11 @@
 | Baleia Rossi | MDB | 3.756 |
 | Alexandre Padilha | PT | 2.806 |
 | Danrlei de Deus Hinterholz | PSD | 2.263 |
+| Felipe Francischini | PSL | 1.395 |
 | Carlos Jordy | PSL | 1.294 |
-| Bibo Nunes | PSL | 974 |
-| Caroline de Toni | PSL | 961 |
-| Aguinaldo Ribeiro | PP | 790 |
-| Arlindo Chinaglia | PT | 687 |
+| Fernanda Melchionna | PSOL | 1.288 |
+| Erika Kokay | PT | 1.008 |
+| Filipe Barros | PSL | 989 |
 
 ## Discursos
 
@@ -49,10 +49,10 @@
 
 | Atenção | Com | Todos | Dentro do partido | n |
 | --- | --- | --- | --- | --- |
-| visitas_mes | apoio_gov | -0,10 | -0,32* | 84 |
-| visitas_mes | disciplina | -0,01 | -0,06 | 84 |
-| visitas_mes | extremidade | 0,09 | 0,08 | 83 |
-| visitas_mes | pago | -0,09 | -0,16 | 84 |
+| visitas_mes | apoio_gov | -0,10 | -0,35* | 104 |
+| visitas_mes | disciplina | 0,03 | -0,03 | 104 |
+| visitas_mes | extremidade | 0,15 | 0,11 | 102 |
+| visitas_mes | pago | -0,11 | -0,05 | 103 |
 | discursos | apoio_gov | -0,36* | -0,14* | 593 |
 | discursos | disciplina | 0,01 | -0,07 | 591 |
 | discursos | extremidade | 0,30* | 0,06 | 520 |
@@ -61,7 +61,7 @@
 | palavras | disciplina | 0,02 | -0,07 | 591 |
 | palavras | extremidade | 0,30* | 0,04 | 520 |
 | palavras | pago | -0,05 | 0,04 | 546 |
-| visitas_mes | discursos | 0,25 | 0,14 | 84 |
-| visitas_mes | palavras | 0,25 | 0,15 | 84 |
+| visitas_mes | discursos | 0,23 | 0,12 | 104 |
+| visitas_mes | palavras | 0,23 | 0,14 | 104 |
 
 \* p < 0,01.

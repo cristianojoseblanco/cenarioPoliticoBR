@@ -11,8 +11,8 @@
   },
   "comunidades_multi": 8,
   "comunidades_voto": 8,
-  "ari_multi_voto": 0.6830241015204681,
-  "ari_multi_partido": 0.3226291380229051,
+  "ari_multi_voto": 0.739891069597996,
+  "ari_multi_partido": 0.32497848875306645,
   "ari_voto_partido": 0.30323972688644923,
   "pares_coautoria": 12933,
   "pares_frentes": 155810,
@@ -20,5 +20,5 @@
   "frentes_tematicas_efeito_claro": [
     "Agropecuária (FPA)"
   ],
-  "frentes_bloco": 5
+  "frentes_bloco": 8
 }

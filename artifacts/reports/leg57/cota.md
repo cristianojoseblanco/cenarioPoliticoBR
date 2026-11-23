@@ -2,17 +2,17 @@
 
 Valores em reais de 202609 (IPCA).
 
-- Gasto total da cota: R$ 947.851.181; mediana por parlamentar e mês: R$ 40.974
+- Gasto total da cota: R$ 951.743.619; mediana por parlamentar e mês: R$ 40.995
 
 ## Maiores categorias
 
-- DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.: R$ 382.145.167
-- LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES: R$ 171.055.343
-- MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR: R$ 131.574.721
+- DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.: R$ 384.127.459
+- LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES: R$ 171.962.122
+- MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR: R$ 132.219.767
 - PASSAGEM AÉREA - SIGEPA: R$ 119.293.597
-- COMBUSTÍVEIS E LUBRIFICANTES.: R$ 90.302.720
-- HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.: R$ 15.210.094
-- TELEFONIA: R$ 11.704.542
+- COMBUSTÍVEIS E LUBRIFICANTES.: R$ 90.627.772
+- HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.: R$ 15.240.491
+- TELEFONIA: R$ 11.770.088
 - LOCAÇÃO OU FRETAMENTO DE AERONAVES: R$ 9.229.639
 
 ## Divulgação no 1º semestre de 2026 (ano eleitoral) × 1º semestre de 2025
@@ -24,20 +24,20 @@ Valores em reais de 202609 (IPCA).
 
 | Quartil | Gasto mensal (mediana) | Reeleitos |
 | --- | --- | --- |
-| 1º (menos) | R$ 6.151 | 84 de 125 (67,2%) |
-| 2º | R$ 12.579 | 73 de 124 (58,9%) |
-| 3º | R$ 18.904 | 73 de 124 (58,9%) |
-| 4º (mais) | R$ 26.831 | 69 de 124 (55,6%) |
+| 1º (menos) | R$ 6.343 | 84 de 125 (67,2%) |
+| 2º | R$ 12.611 | 75 de 124 (60,5%) |
+| 3º | R$ 18.884 | 71 de 124 (57,3%) |
+| 4º (mais) | R$ 26.959 | 70 de 125 (56,0%) |
 
 ## Fornecedores em comum × voto
 
 | Pares | Concordância com fornecedor em comum | Sem | Pares ligados |
 | --- | --- | --- | --- |
-| todos | 65,4% | 65,9% | 47.666 de 175.747 |
-| mesmo partido | 84,4% | 81,3% | 5.298 de 16.974 |
-| partidos diferentes | 63,0% | 64,4% | 42.368 de 158.773 |
+| todos | 65,4% | 65,9% | 47.711 de 175.747 |
+| mesmo partido | 84,4% | 81,3% | 5.302 de 16.974 |
+| partidos diferentes | 63,0% | 64,4% | 42.409 de 158.773 |
 
 ## Patrimônio declarado (real, IPCA)
 
 - 2018-2022: razão mediana 0,98; 170 de 345 aumentaram
-- 2022-2026: razão mediana 1,18; 324 de 514 aumentaram
+- 2022-2026: razão mediana 1,18; 325 de 515 aumentaram

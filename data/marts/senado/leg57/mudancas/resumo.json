@@ -1,16 +1,17 @@
 {
-  "polo_a": "C1",
+  "polo_a": "C2",
   "polo_b": "C3",
   "composicao": {
-    "C1": "PL 13, PP 5",
-    "C2": "PSD 8, MDB 6",
-    "C3": "PT 9, MDB 5"
+    "C1": "MDB 8, PSD 7",
+    "C2": "PL 12, REPUBLICANOS 3",
+    "C3": "PT 9, PSD 4",
+    "C4": "PODE 4, PP 4"
   },
   "meses": 26,
   "pontos": 1,
   "robustos": 0,
   "penalidade_fator": 1.0,
   "min_meses": 3,
-  "ari_mediana": 0.6994929331588556,
-  "trocaram_mediana": 0.12658227848101267
+  "ari_mediana": 0.5708362899333299,
+  "trocaram_mediana": 0.25
 }

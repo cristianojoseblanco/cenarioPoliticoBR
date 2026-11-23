@@ -1,21 +1,21 @@
 {
-  "executado_em": "2026-11-16T19:58:38+00:00",
+  "executado_em": "2026-11-23T21:48:14+00:00",
   "anos": [
     {
       "ano": 2025,
-      "sha256": "cc23c3d9a16e7d55e01a16caa36c337e325efcd1dbd64535c9129c5aa6014d29",
+      "sha256": "f22a3779efe6f2d6959dc9cc285a9494e7eb62e8b5e3d67dd1aab37dd6748926",
       "votacoes": 99,
       "votos": 8019,
       "orientacoes": 603,
-      "baixado_em": "2026-11-16T19:58:34+00:00"
+      "baixado_em": "2026-11-23T21:48:10+00:00"
     },
     {
       "ano": 2026,
-      "sha256": "c27c4e1a397950be161deae35c4590ea048746d05b2a8bed582a272af7d76b00",
-      "votacoes": 29,
-      "votos": 2349,
-      "orientacoes": 205,
-      "baixado_em": "2026-11-16T19:58:37+00:00"
+      "sha256": "34672a5844d1ee515a0f30cdd2f5a616d0ec0f0c09faab18d5d7dbd3193a4b06",
+      "votacoes": 33,
+      "votos": 2673,
+      "orientacoes": 255,
+      "baixado_em": "2026-11-23T21:48:14+00:00"
     }
   ]
 }

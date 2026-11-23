@@ -1,6 +1,6 @@
 # Campanha × Plenário — Câmara, legislatura 58
 
-Eleições: 2026. 505 eleitos; 328 ligados aos dados do Plenário.
+Eleições: 2026. 505 eleitos; 329 ligados aos dados do Plenário.
 
 - Votos (mediana): 107.849
 - Receita de campanha (mediana): R$ 2.504.416

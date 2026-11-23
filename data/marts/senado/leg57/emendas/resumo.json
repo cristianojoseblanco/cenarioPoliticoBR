@@ -7,53 +7,53 @@
     2026,
     2027
   ],
-  "emendas": 2827,
+  "emendas": 2829,
   "autores_ligados": 82,
   "autores_total": 647,
-  "empenhado": 16412249534.5,
-  "pago": 14624221772.98,
-  "execucao_mediana": 0.9229022333051757,
+  "empenhado": 16430638111.58,
+  "pago": 14645953199.25,
+  "execucao_mediana": 0.9250753766783533,
   "conexao_mediana": 0.41303620499978977,
-  "frac_base_mediana": 0.2713303977431978,
+  "frac_base_mediana": 0.2721447771455817,
   "tempo": {
-    "spearman": 0.0678178220574363,
-    "p": 0.023598964076805326,
-    "n": 1114,
-    "apoio_meses_com_pagamento": -0.004036858152356122
+    "spearman": 0.06597351801580642,
+    "p": 0.027532679461064618,
+    "n": 1116,
+    "apoio_meses_com_pagamento": -0.0048797977024237415
   },
   "necessidade": [
     {
       "indicador": "pib_per_capita",
-      "spearman": -0.06944573623681832,
-      "p": 2.125589459564584e-07,
+      "spearman": -0.06936180296586451,
+      "p": 2.1984967174876153e-07,
       "n": 5570
     },
     {
       "indicador": "alfabetizacao",
-      "spearman": -0.23333745466701894,
-      "p": 9.333240834420043e-70,
+      "spearman": -0.23310659702750697,
+      "p": 1.2827573593897803e-69,
       "n": 5570
     },
     {
       "indicador": "pop_2022",
-      "spearman": -0.2820968146688098,
-      "p": 2.073731578228732e-102,
+      "spearman": -0.282239639256032,
+      "p": 1.6242412099690793e-102,
       "n": 5570
     },
     {
       "indicador": "urbanizacao",
-      "spearman": -0.28337275393295536,
-      "p": 2.326231127923586e-103,
+      "spearman": -0.28333032443056627,
+      "p": 2.502232504507385e-103,
       "n": 5570
     },
     {
       "indicador": "densidade",
-      "spearman": -0.2594635574994926,
-      "p": 2.2280430975327104e-86,
+      "spearman": -0.25982031091191676,
+      "p": 1.2798220110180692e-86,
       "n": 5570
     }
   ],
-  "execucao_apoio_dentro": 0.3297397215743052,
-  "execucao_apoio_dentro_p": 0.003405970766458419,
-  "necessidade_pib": -0.06944573623681832
+  "execucao_apoio_dentro": 0.33788512747665805,
+  "execucao_apoio_dentro_p": 0.002652707402348527,
+  "necessidade_pib": -0.06936180296586451
 }

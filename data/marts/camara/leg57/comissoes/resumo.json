@@ -328,18 +328,18 @@
         "diferenca": 0.0022
       },
       {
+        "sigla": "CMULHER",
+        "nome": "Comissão de Defesa dos Direitos da Mulher",
+        "titulares": 56,
+        "apoio_gov": 0.7181,
+        "diferenca": 0.003
+      },
+      {
         "sigla": "CPD",
         "nome": "Comissão de Defesa dos Direitos das Pessoas com Deficiência",
         "titulares": 52,
         "apoio_gov": 0.7206,
         "diferenca": 0.0056
-      },
-      {
-        "sigla": "CMULHER",
-        "nome": "Comissão de Defesa dos Direitos da Mulher",
-        "titulares": 55,
-        "apoio_gov": 0.7217,
-        "diferenca": 0.0066
       },
       {
         "sigla": "CDE",
@@ -422,8 +422,8 @@
         "sigla": "CCTI",
         "nome": "Comissão de Ciência, Tecnologia e Inovação",
         "titulares": 48,
-        "apoio_gov": 0.7666,
-        "diferenca": 0.0516
+        "apoio_gov": 0.7687,
+        "diferenca": 0.0536
       },
       {
         "sigla": "CMADS",
@@ -449,9 +449,16 @@
       {
         "sigla": "CMO",
         "nome": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização",
-        "titulares": 137,
-        "apoio_gov": 0.7912,
-        "diferenca": 0.0761
+        "titulares": 138,
+        "apoio_gov": 0.7913,
+        "diferenca": 0.0762
+      },
+      {
+        "sigla": "CTRAB",
+        "nome": "Comissão de Trabalho",
+        "titulares": 41,
+        "apoio_gov": 0.7966,
+        "diferenca": 0.0815
       },
       {
         "sigla": "CDC",
@@ -459,13 +466,6 @@
         "titulares": 26,
         "apoio_gov": 0.797,
         "diferenca": 0.082
-      },
-      {
-        "sigla": "CTRAB",
-        "nome": "Comissão de Trabalho",
-        "titulares": 39,
-        "apoio_gov": 0.8092,
-        "diferenca": 0.0941
       },
       {
         "sigla": "CLP",

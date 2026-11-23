@@ -1,200 +1,200 @@
 {
   "legislatura": "56",
   "wikipedia": {
-    "com_verbete": 84,
+    "com_verbete": 104,
     "deputados": 593,
     "serie": [
       {
         "mes": "2019-02",
-        "v": 93989
+        "v": 112516
       },
       {
         "mes": "2019-03",
-        "v": 80169
+        "v": 100402
       },
       {
         "mes": "2019-04",
-        "v": 67658
+        "v": 96426
       },
       {
         "mes": "2019-05",
-        "v": 83158
+        "v": 97059
       },
       {
         "mes": "2019-06",
-        "v": 63387
+        "v": 73492
       },
       {
         "mes": "2019-07",
-        "v": 154686
+        "v": 169910
       },
       {
         "mes": "2019-08",
-        "v": 77132
+        "v": 88049
       },
       {
         "mes": "2019-09",
-        "v": 81951
+        "v": 92181
       },
       {
         "mes": "2019-10",
-        "v": 91723
+        "v": 103470
       },
       {
         "mes": "2019-11",
-        "v": 82942
+        "v": 93445
       },
       {
         "mes": "2019-12",
-        "v": 72036
+        "v": 79777
       },
       {
         "mes": "2020-01",
-        "v": 53411
+        "v": 60444
       },
       {
         "mes": "2020-02",
-        "v": 61015
+        "v": 68773
       },
       {
         "mes": "2020-03",
-        "v": 108216
+        "v": 117449
       },
       {
         "mes": "2020-04",
-        "v": 229351
+        "v": 241171
       },
       {
         "mes": "2020-05",
-        "v": 216689
+        "v": 234644
       },
       {
         "mes": "2020-06",
-        "v": 143539
+        "v": 157436
       },
       {
         "mes": "2020-07",
-        "v": 98610
+        "v": 108606
       },
       {
         "mes": "2020-08",
-        "v": 92502
+        "v": 100790
       },
       {
         "mes": "2020-09",
-        "v": 105508
+        "v": 114957
       },
       {
         "mes": "2020-10",
-        "v": 149618
+        "v": 165034
       },
       {
         "mes": "2020-11",
-        "v": 183392
+        "v": 200381
       },
       {
         "mes": "2020-12",
-        "v": 130461
+        "v": 140161
       },
       {
         "mes": "2021-01",
-        "v": 144804
+        "v": 152925
       },
       {
         "mes": "2021-02",
-        "v": 216226
+        "v": 229420
       },
       {
         "mes": "2021-03",
-        "v": 119640
+        "v": 134440
       },
       {
         "mes": "2021-04",
-        "v": 77894
+        "v": 89736
       },
       {
         "mes": "2021-05",
-        "v": 98611
+        "v": 114158
       },
       {
         "mes": "2021-06",
-        "v": 84809
+        "v": 94618
       },
       {
         "mes": "2021-07",
-        "v": 87027
+        "v": 99335
       },
       {
         "mes": "2021-08",
-        "v": 73079
+        "v": 84774
       },
       {
         "mes": "2021-09",
-        "v": 78037
+        "v": 86095
       },
       {
         "mes": "2021-10",
-        "v": 57858
+        "v": 69419
       },
       {
         "mes": "2021-11",
-        "v": 57488
+        "v": 65812
       },
       {
         "mes": "2021-12",
-        "v": 52136
+        "v": 59451
       },
       {
         "mes": "2022-01",
-        "v": 60581
+        "v": 69682
       },
       {
         "mes": "2022-02",
-        "v": 53402
+        "v": 61744
       },
       {
         "mes": "2022-03",
-        "v": 73910
+        "v": 84218
       },
       {
         "mes": "2022-04",
-        "v": 83395
+        "v": 94435
       },
       {
         "mes": "2022-05",
-        "v": 75354
+        "v": 86689
       },
       {
         "mes": "2022-06",
-        "v": 70738
+        "v": 81721
       },
       {
         "mes": "2022-07",
-        "v": 92901
+        "v": 104180
       },
       {
         "mes": "2022-08",
-        "v": 144293
+        "v": 161560
       },
       {
         "mes": "2022-09",
-        "v": 190914
+        "v": 227071
       },
       {
         "mes": "2022-10",
-        "v": 435915
+        "v": 481050
       },
       {
         "mes": "2022-11",
-        "v": 189948
+        "v": 207373
       },
       {
         "mes": "2022-12",
-        "v": 88522
+        "v": 103003
       },
       {
         "mes": "2023-01",
-        "v": 138738
+        "v": 156564
       }
     ],
     "picos": [
@@ -293,44 +293,44 @@
     {
       "atencao": "visitas_mes",
       "comportamento": "apoio_gov",
-      "spearman": -0.101,
-      "p": 0.362663,
-      "n": 84,
-      "spearman_dentro": -0.32,
-      "p_dentro": 0.003035,
+      "spearman": -0.099,
+      "p": 0.315038,
+      "n": 104,
+      "spearman_dentro": -0.353,
+      "p_dentro": 0.000232,
       "relevante": false,
       "relevante_dentro": true
     },
     {
       "atencao": "visitas_mes",
       "comportamento": "disciplina",
-      "spearman": -0.008,
-      "p": 0.945346,
-      "n": 84,
-      "spearman_dentro": -0.062,
-      "p_dentro": 0.577339,
+      "spearman": 0.029,
+      "p": 0.76692,
+      "n": 104,
+      "spearman_dentro": -0.026,
+      "p_dentro": 0.793788,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "visitas_mes",
       "comportamento": "extremidade",
-      "spearman": 0.09,
-      "p": 0.4171,
-      "n": 83,
-      "spearman_dentro": 0.08,
-      "p_dentro": 0.474001,
+      "spearman": 0.155,
+      "p": 0.118874,
+      "n": 102,
+      "spearman_dentro": 0.11,
+      "p_dentro": 0.270517,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "visitas_mes",
       "comportamento": "pago",
-      "spearman": -0.09,
-      "p": 0.413309,
-      "n": 84,
-      "spearman_dentro": -0.157,
-      "p_dentro": 0.153008,
+      "spearman": -0.114,
+      "p": 0.252835,
+      "n": 103,
+      "spearman_dentro": -0.047,
+      "p_dentro": 0.639689,
       "relevante": false,
       "relevante_dentro": false
     },
@@ -371,10 +371,10 @@
       "atencao": "discursos",
       "comportamento": "pago",
       "spearman": -0.056,
-      "p": 0.194016,
+      "p": 0.19468,
       "n": 546,
       "spearman_dentro": 0.052,
-      "p_dentro": 0.223056,
+      "p_dentro": 0.223076,
       "relevante": false,
       "relevante_dentro": false
     },
@@ -414,33 +414,33 @@
     {
       "atencao": "palavras",
       "comportamento": "pago",
-      "spearman": -0.052,
-      "p": 0.229103,
+      "spearman": -0.051,
+      "p": 0.22993,
       "n": 546,
       "spearman_dentro": 0.043,
-      "p_dentro": 0.318945,
+      "p_dentro": 0.318197,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "visitas_mes",
       "comportamento": "discursos",
-      "spearman": 0.25,
-      "p": 0.021778,
-      "n": 84,
-      "spearman_dentro": 0.14,
-      "p_dentro": 0.20555,
+      "spearman": 0.233,
+      "p": 0.017444,
+      "n": 104,
+      "spearman_dentro": 0.124,
+      "p_dentro": 0.210058,
       "relevante": false,
       "relevante_dentro": false
     },
     {
       "atencao": "visitas_mes",
       "comportamento": "palavras",
-      "spearman": 0.249,
-      "p": 0.022606,
-      "n": 84,
-      "spearman_dentro": 0.153,
-      "p_dentro": 0.165378,
+      "spearman": 0.227,
+      "p": 0.020243,
+      "n": 104,
+      "spearman_dentro": 0.138,
+      "p_dentro": 0.161165,
       "relevante": false,
       "relevante_dentro": false
     }

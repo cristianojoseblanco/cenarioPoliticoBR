@@ -17,65 +17,66 @@
     }
   },
   "votacoes": {
-    "votacoes_total": 185,
+    "votacoes_total": 189,
     "sem_voto_com_valor": 0,
     "abaixo_minoria": 73,
-    "incluidas": 112
+    "incluidas": 116
   },
   "deputados_na_matriz": 104,
   "deputados_no_grafo": 80,
-  "arestas": 467,
+  "arestas": 472,
   "comunidades": {
-    "C1": 30,
-    "C2": 28,
-    "C3": 22
+    "C1": 23,
+    "C2": 22,
+    "C3": 19,
+    "C4": 16
   },
-  "modularidade": 0.5506400090669662,
-  "estabilidade_sementes_ari": 0.8696944176001434,
-  "ari_com_partido": 0.18556344502131908,
-  "nmi_com_partido": 0.38331088042549194,
+  "modularidade": 0.5416786986153389,
+  "estabilidade_sementes_ari": 0.8354754149388234,
+  "ari_com_partido": 0.2278784791119215,
+  "nmi_com_partido": 0.4194343650365522,
   "sensibilidade": {
     "codificacao=B": {
       "ari_vs_principal": 1.0,
-      "comunidades": 3,
-      "modularidade": 0.5506400090669662,
+      "comunidades": 4,
+      "modularidade": 0.5416786986153389,
       "deputados": 80,
-      "votacoes": 112
+      "votacoes": 116
     },
     "codificacao=C": {
-      "ari_vs_principal": 0.9650135390644489,
-      "comunidades": 3,
-      "modularidade": 0.5421895175277307,
+      "ari_vs_principal": 1.0,
+      "comunidades": 4,
+      "modularidade": 0.5319696988746394,
       "deputados": 80,
-      "votacoes": 112
+      "votacoes": 116
     },
     "minoria=0.0": {
-      "ari_vs_principal": 0.8111813658388197,
+      "ari_vs_principal": 0.49331459439618847,
       "comunidades": 3,
-      "modularidade": 0.5390308902475658,
+      "modularidade": 0.5358029196112146,
       "deputados": 82,
-      "votacoes": 185
+      "votacoes": 189
     },
     "minoria=0.1": {
-      "ari_vs_principal": 0.8919227939710876,
+      "ari_vs_principal": 0.6533829178703987,
       "comunidades": 3,
-      "modularidade": 0.5440741495057095,
+      "modularidade": 0.5426989825264243,
       "deputados": 80,
-      "votacoes": 91
+      "votacoes": 94
     },
     "knn=10": {
-      "ari_vs_principal": 1.0,
-      "comunidades": 3,
-      "modularidade": 0.5333275601913167,
+      "ari_vs_principal": 0.8399935359629396,
+      "comunidades": 4,
+      "modularidade": 0.5280642550908269,
       "deputados": 80,
-      "votacoes": 112
+      "votacoes": 116
     },
     "knn=25": {
-      "ari_vs_principal": 0.7606146964395224,
+      "ari_vs_principal": 0.4851958802579652,
       "comunidades": 3,
-      "modularidade": 0.43931822611288485,
+      "modularidade": 0.430455991359318,
       "deputados": 80,
-      "votacoes": 112
+      "votacoes": 116
     }
   }
 }

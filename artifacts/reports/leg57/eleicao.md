@@ -46,5 +46,5 @@ São 50 comparações: com p < 0,01, cerca de 0,5 apareceriam por acaso.
 
 | | Apoio ao governo | Disciplina | Votos imprevisíveis | Participação |
 | --- | --- | --- | --- | --- |
-| Média (sobras) | 80,4% | 94,5% | 2,9% | 82,4% |
-| Votação própria (QP) | 82,4% | 95,8% | 2,5% | 80,7% |
+| Média (sobras) | 80,4% | 94,5% | 2,8% | 82,4% |
+| Votação própria (QP) | 82,4% | 95,8% | 2,6% | 80,7% |

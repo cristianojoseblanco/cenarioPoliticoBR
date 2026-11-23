@@ -4,87 +4,89 @@ Parâmetros em `config/sources.yaml` → `governabilidade`.
 
 ## Orientação e resultado
 
-- Votações nominais: 185; com orientação do Governo Sim/Não/Obstrução: 123 de 185 (66,5%)
-- Governo venceu: 107 de 123 (87,0%)
-  - em votações de quórum qualificado (PEC, PLP): 87 de 93 (93,5%)
-- Resultado pelo campo `aprovacao`: 185 de 185 (100,0%); pelo placar nas demais.
+- Votações nominais: 189; com orientação do Governo Sim/Não/Obstrução: 127 de 189 (67,2%)
+- Governo venceu: 111 de 127 (87,4%)
+  - em votações de quórum qualificado (PEC, PLP): 91 de 97 (93,8%)
+- Resultado pelo campo `aprovacao`: 189 de 189 (100,0%); pelo placar nas demais.
 
 ## Por comunidade
 
 | Comunidade | Apoio ao governo | Disciplina partidária |
 | --- | --- | --- |
-| C1 (PL 13, PP 5) | 57,3% | 95,2% |
-| C2 (PSD 8, MDB 6) | 85,8% | 95,3% |
-| C3 (PT 9, MDB 5) | 97,9% | 98,4% |
+| C1 (MDB 8, PSD 7) | 91,0% | 96,4% |
+| C2 (PL 12, REPUBLICANOS 3) | 53,1% | 95,8% |
+| C3 (PT 9, PSD 4) | 98,0% | 98,2% |
+| C4 (PODE 4, PP 4) | 69,6% | 92,9% |
 
 ## Por partido (5+ senadores)
 
 | Partido | Senadores no período | Apoio ao governo | Disciplina | Votos com disciplina medida | Coesão (Rice) |
 | --- | --- | --- | --- | --- | --- |
-| PT | 11 | 99,2% | 98,9% | 1.098 de 1.426 (77,0%) | 94,1% |
-| MDB | 13 | 95,5% | 95,8% | 1.003 de 1.500 (66,9%) | 86,8% |
-| PSD | 21 | 89,9% | 94,3% | 1.375 de 2.036 (67,5%) | 81,4% |
-| PSB | 10 | 89,7% | 99,1% | 320 de 635 (50,4%) | 85,7% |
-| UNIÃO | 11 | 75,1% | 91,6% | 688 de 966 (71,2%) | 78,2% |
-| PODE | 8 | 69,6% | 94,9% | 412 de 748 (55,1%) | 79,8% |
-| PSDB | 7 | 68,5% | 94,6% | 166 de 374 (44,4%) | 84,8% |
-| PP | 11 | 65,9% | 96,9% | 548 de 1.033 (53,0%) | 83,5% |
-| REPUBLICANOS | 7 | 58,6% | 97,9% | 386 de 742 (52,0%) | 84,1% |
-| PL | 23 | 55,2% | 96,8% | 1.475 de 2.027 (72,8%) | 90,0% |
+| PT | 11 | 99,2% | 98,9% | 1.134 de 1.462 (77,6%) | 94,2% |
+| MDB | 13 | 95,4% | 95,7% | 1.039 de 1.536 (67,6%) | 86,8% |
+| PSB | 10 | 90,3% | 99,1% | 346 de 661 (52,3%) | 86,1% |
+| PSD | 21 | 89,8% | 94,0% | 1.426 de 2.087 (68,3%) | 81,3% |
+| UNIÃO | 11 | 75,4% | 91,6% | 690 de 974 (70,8%) | 78,2% |
+| PODE | 8 | 69,5% | 94,7% | 415 de 760 (54,6%) | 78,5% |
+| PSDB | 7 | 68,1% | 91,8% | 182 de 390 (46,7%) | 81,5% |
+| PP | 11 | 65,2% | 96,9% | 548 de 1.063 (51,6%) | 82,7% |
+| REPUBLICANOS | 7 | 57,6% | 97,9% | 386 de 765 (50,5%) | 84,1% |
+| PL | 23 | 54,0% | 96,7% | 1.530 de 2.082 (73,5%) | 89,9% |
 
 \* Disciplina medida em menos de 30% dos votos do partido: ler com cautela.
 
 ## Cobertura da disciplina
 
-- Votos com valor com orientação de referência (partido, federação ou bloco): 7.783 de 12.159 (64,0%)
-  - referência usada (votos com valor): partido: 7.783; federacao: 0; bloco: 0
+- Votos com valor com orientação de referência (partido, federação ou bloco): 8.009 de 12.464 (64,3%)
+  - referência usada (votos com valor): partido: 8.009; federacao: 0; bloco: 0
 - Votos sem medida: o partido liberou a bancada, ninguém orientou por ele, ou ele estava na parte cortada do nome de um bloco ("...").
 
 ## Participação
 
 - Fonte: **aproximacao** (em exercício = votou no Plenário no mesmo mês; superestima a presença)
-- Participação média dos senadores: 97,8%
+- Participação média dos senadores: 97,9%
 - Votos registrados fora de um período de exercício: 0
 
 | Comunidade | Participação média |
 | --- | --- |
-| C1 (PL 13, PP 5) | 99,8% |
-| C2 (PSD 8, MDB 6) | 99,7% |
-| C3 (PT 9, MDB 5) | 99,9% |
+| C1 (MDB 8, PSD 7) | 100,0% |
+| C2 (PL 12, REPUBLICANOS 3) | 99,7% |
+| C3 (PT 9, PSD 4) | 99,9% |
+| C4 (PODE 4, PP 4) | 99,4% |
 
 ## No tempo
 
-| Janela | Votações | Vitória do governo | C1 | C2 | C3 |
-| --- | --- | --- | --- | --- | --- |
-| J01 2023-05-09 a 2024-12-12 | 82 | 82,1% | 48% | 81% | 97% |
-| J02 2023-11-08 a 2025-06-25 | 87 | 87,9% | 56% | 87% | 98% |
-| J03 2024-05-08 a 2025-12-17 | 97 | 87,1% | 59% | 86% | 98% |
-| J04 2024-08-14 a 2026-11-12 | 111 | 86,1% | 62% | 87% | 98% |
+| Janela | Votações | Vitória do governo | C1 | C2 | C3 | C4 |
+| --- | --- | --- | --- | --- | --- | --- |
+| J01 2023-05-09 a 2024-12-12 | 82 | 82,1% | 89% | 45% | 97% | 62% |
+| J02 2023-11-08 a 2025-06-25 | 87 | 87,9% | 91% | 53% | 98% | 71% |
+| J03 2024-05-08 a 2025-12-17 | 97 | 87,1% | 90% | 56% | 98% | 72% |
+| J04 2024-11-12 a 2026-11-18 | 112 | 88,0% | 91% | 58% | 98% | 74% |
 
 ## Por tema (apoio ao governo)
 
-| Tema | Vitória do governo | C1 | C2 | C3 |
-| --- | --- | --- | --- | --- |
+| Tema | Vitória do governo | C1 | C2 | C3 | C4 |
+| --- | --- | --- | --- | --- | --- |
 
 ## Senadores que mais divergem do próprio partido (100+ votos medidos)
 
 | Senador | Partido | Comunidade | Disciplina | Apoio ao governo |
 | --- | --- | --- | --- | --- |
-| Lucas Barreto | PSD | C1 | 76,1% | 68,9% |
-| Sergio Moro | UNIÃO | C1 | 79,0% | 56,8% |
-| Marcio Bittar | UNIÃO | C1 | 88,3% | 58,2% |
-| Eduardo Gomes | PL | C1 | 92,5% | 64,6% |
-| Professora Dorinha Seabra | UNIÃO | C2 | 94,8% | 88,6% |
-| Izalci Lucas | PL | C1 | 95,7% | 60,7% |
-| Efraim Filho | UNIÃO | C2 | 96,5% | 77,3% |
-| Jaime Bagattoli | PL | C1 | 96,6% | 51,9% |
-| Jaques Wagner | PT | C3 | 96,9% | 99,1% |
-| Jorge Seif | PL | C1 | 97,2% | 50,0% |
-| Zenaide Maia | PSD | C3 | 97,4% | 97,5% |
-| Teresa Leitão | PT | C3 | 97,5% | 98,1% |
-| Wellington Fagundes | PL | C1 | 98,0% | 54,9% |
-| Carlos Portinho | PL | C1 | 99,0% | 51,6% |
-| Omar Aziz | PSD | C2 | 99,0% | 97,9% |
+| Lucas Barreto | PSD | C4 | 77,0% | 70,0% |
+| Sergio Moro | UNIÃO | C2 | 79,7% | 55,7% |
+| Ivete da Silveira | MDB | C1 | 86,0% | 87,3% |
+| Vanderlan Cardoso | PSD | C4 | 86,3% | 74,5% |
+| Alessandro Vieira | MDB | C1 | 87,1% | 87,6% |
+| Marcio Bittar | UNIÃO | C2 | 88,7% | 56,4% |
+| Eduardo Gomes | PL | C4 | 91,8% | 64,0% |
+| Izalci Lucas | PL | C2 | 94,1% | 61,8% |
+| Professora Dorinha Seabra | UNIÃO | C1 | 94,8% | 89,0% |
+| Nelsinho Trad | PSD | C1 | 95,0% | 89,2% |
+| Fernando Dueire | MDB | C1 | 95,1% | 95,1% |
+| Efraim Filho | UNIÃO | C4 | 96,6% | 75,4% |
+| Jaime Bagattoli | PL | C2 | 96,7% | 50,9% |
+| Jaques Wagner | PT | C3 | 97,0% | 99,2% |
+| Jorge Seif | PL | C2 | 97,3% | 49,0% |
 
 ## Derrotas do governo (10 mais recentes)
 
